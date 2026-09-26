@@ -1,0 +1,4180 @@
+[
+  {
+    "id": 3446,
+    "name": "Adamantine Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 11,
+        "name": "Adamantine Charm",
+        "skills": [
+          {
+            "skill": 159,
+            "level": 1
+          },
+          {
+            "skill": 205,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3253,
+    "name": "Artillery Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Artillery Charm I",
+        "skills": [
+          {
+            "skill": 71,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Artillery Charm II",
+        "skills": [
+          {
+            "skill": 71,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Artillery Charm III",
+        "skills": [
+          {
+            "skill": 71,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3380,
+    "name": "Attack Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Attack Charm I",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Attack Charm II",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Attack Charm III",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Attack Charm IV",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Attack Charm V",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3413,
+    "name": "Awakening Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Awakening Charm I",
+        "skills": [
+          {
+            "skill": 47,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Awakening Charm II",
+        "skills": [
+          {
+            "skill": 47,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Awakening Charm III",
+        "skills": [
+          {
+            "skill": 47,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3148,
+    "name": "Blast Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Blast Charm I",
+        "skills": [
+          {
+            "skill": 6,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Blast Charm II",
+        "skills": [
+          {
+            "skill": 6,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Blast Charm III",
+        "skills": [
+          {
+            "skill": 6,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3348,
+    "name": "Blast Coating Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Blast Coating Charm",
+        "skills": [
+          {
+            "skill": 46,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3386,
+    "name": "Blaze Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Blaze Charm I",
+        "skills": [
+          {
+            "skill": 30,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Blaze Charm II",
+        "skills": [
+          {
+            "skill": 30,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Blaze Charm III",
+        "skills": [
+          {
+            "skill": 30,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 10,
+        "name": "Blaze Charm IV",
+        "skills": [
+          {
+            "skill": 30,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 11,
+        "name": "Blaze Charm V",
+        "skills": [
+          {
+            "skill": 30,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3151,
+    "name": "Bleed Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Bleed Charm I",
+        "skills": [
+          {
+            "skill": 7,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Bleed Charm II",
+        "skills": [
+          {
+            "skill": 7,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Bleed Charm III",
+        "skills": [
+          {
+            "skill": 7,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3294,
+    "name": "Blessing Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Blessing Charm I",
+        "skills": [
+          {
+            "skill": 97,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Blessing Charm II",
+        "skills": [
+          {
+            "skill": 97,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Blessing Charm III",
+        "skills": [
+          {
+            "skill": 97,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3192,
+    "name": "Blight Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Blight Charm I",
+        "skills": [
+          {
+            "skill": 29,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Blight Charm II",
+        "skills": [
+          {
+            "skill": 29,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Blight Charm III",
+        "skills": [
+          {
+            "skill": 29,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3288,
+    "name": "Bombardier Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Bombardier Charm I",
+        "skills": [
+          {
+            "skill": 88,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Bombardier Charm II",
+        "skills": [
+          {
+            "skill": 88,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Bombardier Charm III",
+        "skills": [
+          {
+            "skill": 88,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3397,
+    "name": "Botany Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Botany Charm I",
+        "skills": [
+          {
+            "skill": 99,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Botany Charm II",
+        "skills": [
+          {
+            "skill": 99,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Botany Charm III",
+        "skills": [
+          {
+            "skill": 99,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 9,
+        "name": "Botany Charm IV",
+        "skills": [
+          {
+            "skill": 99,
+            "level": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3421,
+    "name": "Breaker Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Breaker Charm I",
+        "skills": [
+          {
+            "skill": 56,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Breaker Charm II",
+        "skills": [
+          {
+            "skill": 56,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Breaker Charm III",
+        "skills": [
+          {
+            "skill": 56,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3366,
+    "name": "Bulwark Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Bulwark Charm",
+        "skills": [
+          {
+            "skill": 157,
+            "level": 1
+          },
+          {
+            "skill": 67,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3353,
+    "name": "Capacity Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Capacity Charm",
+        "skills": [
+          {
+            "skill": 69,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3433,
+    "name": "Challenger Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Challenger Charm I",
+        "skills": [
+          {
+            "skill": 62,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Challenger Charm II",
+        "skills": [
+          {
+            "skill": 62,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Challenger Charm III",
+        "skills": [
+          {
+            "skill": 62,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Challenger Charm IV",
+        "skills": [
+          {
+            "skill": 62,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Challenger Charm V",
+        "skills": [
+          {
+            "skill": 62,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3359,
+    "name": "Clearmind Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Clearmind Charm",
+        "skills": [
+          {
+            "skill": 17,
+            "level": 1
+          },
+          {
+            "skill": 16,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3438,
+    "name": "Critical Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Critical Charm I",
+        "skills": [
+          {
+            "skill": 49,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 12,
+        "name": "Critical Charm II",
+        "skills": [
+          {
+            "skill": 49,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Critical Charm III",
+        "skills": [
+          {
+            "skill": 49,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3382,
+    "name": "Defense Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Defense Charm I",
+        "skills": [
+          {
+            "skill": 20,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Defense Charm II",
+        "skills": [
+          {
+            "skill": 20,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Defense Charm III",
+        "skills": [
+          {
+            "skill": 20,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 9,
+        "name": "Defense Charm IV",
+        "skills": [
+          {
+            "skill": 20,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 11,
+        "name": "Defense Charm V",
+        "skills": [
+          {
+            "skill": 20,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3453,
+    "name": "Demolition Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Demolition Charm I",
+        "skills": [
+          {
+            "skill": 38,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Demolition Charm II",
+        "skills": [
+          {
+            "skill": 38,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Demolition Charm III",
+        "skills": [
+          {
+            "skill": 38,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Demolition Charm IV",
+        "skills": [
+          {
+            "skill": 38,
+            "level": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3456,
+    "name": "Dispersal Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Dispersal Charm",
+        "skills": [
+          {
+            "skill": 41,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 11,
+        "name": "Dispersal Charm II",
+        "skills": [
+          {
+            "skill": 41,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3189,
+    "name": "Dragon Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Dragon Charm I",
+        "skills": [
+          {
+            "skill": 28,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Dragon Charm II",
+        "skills": [
+          {
+            "skill": 28,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Dragon Charm III",
+        "skills": [
+          {
+            "skill": 28,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3406,
+    "name": "Draw Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Draw Charm I",
+        "skills": [
+          {
+            "skill": 55,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Draw Charm II",
+        "skills": [
+          {
+            "skill": 55,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Draw Charm III",
+        "skills": [
+          {
+            "skill": 55,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3417,
+    "name": "Earplugs Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Earplugs Charm I",
+        "skills": [
+          {
+            "skill": 11,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Earplugs Charm II",
+        "skills": [
+          {
+            "skill": 11,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Earplugs Charm III",
+        "skills": [
+          {
+            "skill": 11,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Earplugs Charm IV",
+        "skills": [
+          {
+            "skill": 11,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Earplugs Charm V",
+        "skills": [
+          {
+            "skill": 11,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3240,
+    "name": "Enervate Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Enervate Charm I",
+        "skills": [
+          {
+            "skill": 58,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Enervate Charm II",
+        "skills": [
+          {
+            "skill": 58,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Enervate Charm III",
+        "skills": [
+          {
+            "skill": 58,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3403,
+    "name": "Evasion Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Evasion Charm I",
+        "skills": [
+          {
+            "skill": 78,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Evasion Charm II",
+        "skills": [
+          {
+            "skill": 78,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Evasion Charm III",
+        "skills": [
+          {
+            "skill": 78,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Evasion Charm IV",
+        "skills": [
+          {
+            "skill": 78,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Evasion Charm V",
+        "skills": [
+          {
+            "skill": 78,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3419,
+    "name": "Exploiter Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Exploiter Charm I",
+        "skills": [
+          {
+            "skill": 50,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Exploiter Charm II",
+        "skills": [
+          {
+            "skill": 50,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Exploiter Charm III",
+        "skills": [
+          {
+            "skill": 50,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3279,
+    "name": "Extension Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Extension Charm I",
+        "skills": [
+          {
+            "skill": 83,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Extension Charm II",
+        "skills": [
+          {
+            "skill": 83,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Extension Charm III",
+        "skills": [
+          {
+            "skill": 83,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3123,
+    "name": "Fair Wind Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Fair Wind Charm",
+        "skills": [
+          {
+            "skill": 19,
+            "level": 1
+          },
+          {
+            "skill": 97,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3177,
+    "name": "Fire Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Fire Charm I",
+        "skills": [
+          {
+            "skill": 24,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Fire Charm II",
+        "skills": [
+          {
+            "skill": 24,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Fire Charm III",
+        "skills": [
+          {
+            "skill": 24,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3409,
+    "name": "Fitness Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Fitness Charm I",
+        "skills": [
+          {
+            "skill": 74,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Fitness Charm II",
+        "skills": [
+          {
+            "skill": 74,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Fitness Charm III",
+        "skills": [
+          {
+            "skill": 74,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Fitness Charm IV",
+        "skills": [
+          {
+            "skill": 74,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Fitness Charm V",
+        "skills": [
+          {
+            "skill": 74,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3388,
+    "name": "Flood Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Flood Charm I",
+        "skills": [
+          {
+            "skill": 31,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Flood Charm II",
+        "skills": [
+          {
+            "skill": 31,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Flood Charm III",
+        "skills": [
+          {
+            "skill": 31,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 10,
+        "name": "Flood Charm IV",
+        "skills": [
+          {
+            "skill": 31,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 11,
+        "name": "Flood Charm V",
+        "skills": [
+          {
+            "skill": 31,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3420,
+    "name": "Focus Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Focus Charm I",
+        "skills": [
+          {
+            "skill": 52,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Focus Charm II",
+        "skills": [
+          {
+            "skill": 52,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Focus Charm III",
+        "skills": [
+          {
+            "skill": 52,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3350,
+    "name": "Fortification Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Fortification Charm",
+        "skills": [
+          {
+            "skill": 65,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3394,
+    "name": "Friendship Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Friendship Charm I",
+        "skills": [
+          {
+            "skill": 82,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Friendship Charm II",
+        "skills": [
+          {
+            "skill": 82,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Friendship Charm III",
+        "skills": [
+          {
+            "skill": 82,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Friendship Charm IV",
+        "skills": [
+          {
+            "skill": 82,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Friendship Charm V",
+        "skills": [
+          {
+            "skill": 82,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3399,
+    "name": "Frost Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Frost Charm I",
+        "skills": [
+          {
+            "skill": 32,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Frost Charm II",
+        "skills": [
+          {
+            "skill": 32,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Frost Charm III",
+        "skills": [
+          {
+            "skill": 32,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Frost Charm IV",
+        "skills": [
+          {
+            "skill": 32,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Frost Charm V",
+        "skills": [
+          {
+            "skill": 32,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3424,
+    "name": "Fury Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Fury Charm I",
+        "skills": [
+          {
+            "skill": 66,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Fury Charm II",
+        "skills": [
+          {
+            "skill": 66,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Fury Charm III",
+        "skills": [
+          {
+            "skill": 66,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Fury Charm IV",
+        "skills": [
+          {
+            "skill": 66,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Fury Charm V",
+        "skills": [
+          {
+            "skill": 66,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3364,
+    "name": "Gale Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Gale Charm",
+        "skills": [
+          {
+            "skill": 122,
+            "level": 1
+          },
+          {
+            "skill": 60,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3358,
+    "name": "Gatherer's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Gatherer's Charm",
+        "skills": [
+          {
+            "skill": 94,
+            "level": 1
+          },
+          {
+            "skill": 96,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3303,
+    "name": "Geology Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Geology Charm I",
+        "skills": [
+          {
+            "skill": 100,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Geology Charm II",
+        "skills": [
+          {
+            "skill": 100,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Geology Charm III",
+        "skills": [
+          {
+            "skill": 100,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3363,
+    "name": "Geomancy Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Geomancy Charm",
+        "skills": [
+          {
+            "skill": 118,
+            "level": 1
+          },
+          {
+            "skill": 119,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3282,
+    "name": "Glutton's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Glutton's Charm I",
+        "skills": [
+          {
+            "skill": 85,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Glutton's Charm II",
+        "skills": [
+          {
+            "skill": 85,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Glutton's Charm III",
+        "skills": [
+          {
+            "skill": 85,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3427,
+    "name": "Grit Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Grit Charm I",
+        "skills": [
+          {
+            "skill": 64,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Grit Charm II",
+        "skills": [
+          {
+            "skill": 64,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Grit Charm III",
+        "skills": [
+          {
+            "skill": 64,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Grit Charm IV",
+        "skills": [
+          {
+            "skill": 64,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Grit Charm V",
+        "skills": [
+          {
+            "skill": 64,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3154,
+    "name": "Guard Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Guard Charm I",
+        "skills": [
+          {
+            "skill": 8,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Guard Charm II",
+        "skills": [
+          {
+            "skill": 8,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Guard Charm III",
+        "skills": [
+          {
+            "skill": 8,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3445,
+    "name": "Guardian Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 9,
+        "name": "Guardian Charm I",
+        "skills": [
+          {
+            "skill": 185,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 10,
+        "name": "Guardian Charm II",
+        "skills": [
+          {
+            "skill": 185,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Guardian Charm III",
+        "skills": [
+          {
+            "skill": 185,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3449,
+    "name": "Gutsy Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 11,
+        "name": "Gutsy Charm",
+        "skills": [
+          {
+            "skill": 160,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3415,
+    "name": "Handicraft Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Handicraft Charm I",
+        "skills": [
+          {
+            "skill": 54,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Handicraft Charm II",
+        "skills": [
+          {
+            "skill": 54,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Handicraft Charm III",
+        "skills": [
+          {
+            "skill": 54,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Handicraft Charm IV",
+        "skills": [
+          {
+            "skill": 54,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Handicraft Charm V",
+        "skills": [
+          {
+            "skill": 54,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3168,
+    "name": "Health Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Health Charm I",
+        "skills": [
+          {
+            "skill": 21,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Health Charm II",
+        "skills": [
+          {
+            "skill": 21,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Health Charm III",
+        "skills": [
+          {
+            "skill": 21,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3340,
+    "name": "Heavy Artillery Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Heavy Artillery Charm I",
+        "skills": [
+          {
+            "skill": 72,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Heavy Artillery Charm II",
+        "skills": [
+          {
+            "skill": 72,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3262,
+    "name": "Hungerless Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Hungerless Charm I",
+        "skills": [
+          {
+            "skill": 77,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Hungerless Charm II",
+        "skills": [
+          {
+            "skill": 77,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Hungerless Charm III",
+        "skills": [
+          {
+            "skill": 77,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3356,
+    "name": "Hunter's Life Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Hunter's Life Charm",
+        "skills": [
+          {
+            "skill": 92,
+            "level": 1
+          },
+          {
+            "skill": 91,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3183,
+    "name": "Ice Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Ice Charm I",
+        "skills": [
+          {
+            "skill": 26,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Ice Charm II",
+        "skills": [
+          {
+            "skill": 26,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Ice Charm III",
+        "skills": [
+          {
+            "skill": 26,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3451,
+    "name": "Immobilize Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Immobilize Charm I",
+        "skills": [
+          {
+            "skill": 36,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Immobilize Charm II",
+        "skills": [
+          {
+            "skill": 36,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Immobilize Charm III",
+        "skills": [
+          {
+            "skill": 36,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Immobilize Charm IV",
+        "skills": [
+          {
+            "skill": 36,
+            "level": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3436,
+    "name": "Impact Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Impact Charm I",
+        "skills": [
+          {
+            "skill": 104,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Impact Charm II",
+        "skills": [
+          {
+            "skill": 104,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Impact Charm III",
+        "skills": [
+          {
+            "skill": 104,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3322,
+    "name": "Insect Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Insect Charm I",
+        "skills": [
+          {
+            "skill": 115,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Insect Charm III",
+        "skills": [
+          {
+            "skill": 115,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3328,
+    "name": "Intimidator Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Intimidator Charm I",
+        "skills": [
+          {
+            "skill": 124,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Intimidator Charm II",
+        "skills": [
+          {
+            "skill": 124,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Intimidator Charm III",
+        "skills": [
+          {
+            "skill": 124,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3439,
+    "name": "Invigorate Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Invigorate Charm I",
+        "skills": [
+          {
+            "skill": 53,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Invigorate Charm II",
+        "skills": [
+          {
+            "skill": 53,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Invigorate Charm III",
+        "skills": [
+          {
+            "skill": 53,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3392,
+    "name": "Ironside Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Ironside Charm I",
+        "skills": [
+          {
+            "skill": 80,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Ironside Charm II",
+        "skills": [
+          {
+            "skill": 80,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Ironside Charm III",
+        "skills": [
+          {
+            "skill": 80,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Ironside Charm IV",
+        "skills": [
+          {
+            "skill": 80,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Ironside Charm V",
+        "skills": [
+          {
+            "skill": 80,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3237,
+    "name": "KO Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "KO Charm I",
+        "skills": [
+          {
+            "skill": 57,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "KO Charm II",
+        "skills": [
+          {
+            "skill": 57,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "KO Charm III",
+        "skills": [
+          {
+            "skill": 57,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3411,
+    "name": "Leaping Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Leaping Charm I",
+        "skills": [
+          {
+            "skill": 79,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Leaping Charm II",
+        "skills": [
+          {
+            "skill": 79,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Leaping Charm III",
+        "skills": [
+          {
+            "skill": 79,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3341,
+    "name": "Light Eater's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Light Eater's Charm",
+        "skills": [
+          {
+            "skill": 84,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3338,
+    "name": "Maintenance Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Maintenance Charm I",
+        "skills": [
+          {
+            "skill": 120,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Maintenance Charm II",
+        "skills": [
+          {
+            "skill": 120,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Maintenance Charm III",
+        "skills": [
+          {
+            "skill": 120,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3407,
+    "name": "Marathon Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Marathon Charm I",
+        "skills": [
+          {
+            "skill": 73,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Marathon Charm II",
+        "skills": [
+          {
+            "skill": 73,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Marathon Charm III",
+        "skills": [
+          {
+            "skill": 73,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3401,
+    "name": "Master's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Master's Charm I",
+        "skills": [
+          {
+            "skill": 48,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Master's Charm II",
+        "skills": [
+          {
+            "skill": 48,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Master's Charm III",
+        "skills": [
+          {
+            "skill": 48,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Master's Charm IV",
+        "skills": [
+          {
+            "skill": 48,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Master's Charm V",
+        "skills": [
+          {
+            "skill": 48,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3325,
+    "name": "Miasma Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Miasma Charm II",
+        "skills": [
+          {
+            "skill": 116,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Miasma Charm III",
+        "skills": [
+          {
+            "skill": 116,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3435,
+    "name": "Mighty Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Mighty Charm I",
+        "skills": [
+          {
+            "skill": 101,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Mighty Charm II",
+        "skills": [
+          {
+            "skill": 101,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Mighty Charm III",
+        "skills": [
+          {
+            "skill": 101,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3319,
+    "name": "Mirewalker Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Mirewalker Charm I",
+        "skills": [
+          {
+            "skill": 109,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Mirewalker Charm II",
+        "skills": [
+          {
+            "skill": 109,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Mirewalker Charm III",
+        "skills": [
+          {
+            "skill": 109,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3354,
+    "name": "Mud Puppy Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Mud Puppy Charm",
+        "skills": [
+          {
+            "skill": 5,
+            "level": 1
+          },
+          {
+            "skill": 75,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3412,
+    "name": "Mushroom Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Mushroom Charm I",
+        "skills": [
+          {
+            "skill": 90,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Mushroom Charm II",
+        "skills": [
+          {
+            "skill": 90,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Mushroom Charm III",
+        "skills": [
+          {
+            "skill": 90,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3454,
+    "name": "Normal Shots Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Normal Shots Charm",
+        "skills": [
+          {
+            "skill": 39,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 11,
+        "name": "Normal Shots Charm II",
+        "skills": [
+          {
+            "skill": 39,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3346,
+    "name": "Para Coating Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Para Coating Charm",
+        "skills": [
+          {
+            "skill": 43,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3139,
+    "name": "Paralysis Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Paralysis Charm I",
+        "skills": [
+          {
+            "skill": 2,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Paralysis Charm II",
+        "skills": [
+          {
+            "skill": 2,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Paralysis Charm III",
+        "skills": [
+          {
+            "skill": 2,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3455,
+    "name": "Penetration Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Penetration Charm",
+        "skills": [
+          {
+            "skill": 40,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 11,
+        "name": "Penetration Charm II",
+        "skills": [
+          {
+            "skill": 40,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3457,
+    "name": "Performer's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Performer's Charm",
+        "skills": [
+          {
+            "skill": 68,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 9,
+        "name": "Performer's Charm II",
+        "skills": [
+          {
+            "skill": 68,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3442,
+    "name": "Phoenix Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 11,
+        "name": "Phoenix Charm I",
+        "skills": [
+          {
+            "skill": 186,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 12,
+        "name": "Phoenix Charm II",
+        "skills": [
+          {
+            "skill": 186,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Phoenix Charm III",
+        "skills": [
+          {
+            "skill": 186,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3130,
+    "name": "Poison Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Poison Charm I",
+        "skills": [
+          {
+            "skill": 1,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Poison Charm II",
+        "skills": [
+          {
+            "skill": 1,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Poison Charm III",
+        "skills": [
+          {
+            "skill": 1,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3345,
+    "name": "Poison Coating Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Poison Coating Charm",
+        "skills": [
+          {
+            "skill": 42,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3430,
+    "name": "Power Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Power Charm I",
+        "skills": [
+          {
+            "skill": 61,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Power Charm II",
+        "skills": [
+          {
+            "skill": 61,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 11,
+        "name": "Power Charm III",
+        "skills": [
+          {
+            "skill": 61,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 12,
+        "name": "Power Charm IV",
+        "skills": [
+          {
+            "skill": 61,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Power Charm V",
+        "skills": [
+          {
+            "skill": 61,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3357,
+    "name": "Procurer's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Procurer's Charm",
+        "skills": [
+          {
+            "skill": 93,
+            "level": 1
+          },
+          {
+            "skill": 95,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3396,
+    "name": "Rally Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Rally Charm I",
+        "skills": [
+          {
+            "skill": 98,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Rally Charm II",
+        "skills": [
+          {
+            "skill": 98,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Rally Charm III",
+        "skills": [
+          {
+            "skill": 98,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 9,
+        "name": "Rally Charm IV",
+        "skills": [
+          {
+            "skill": 98,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 10,
+        "name": "Rally Charm V",
+        "skills": [
+          {
+            "skill": 98,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3447,
+    "name": "Razor Sharp Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 11,
+        "name": "Razor Sharp Charm",
+        "skills": [
+          {
+            "skill": 162,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3171,
+    "name": "Recovery Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Recovery Charm I",
+        "skills": [
+          {
+            "skill": 22,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Recovery Charm II",
+        "skills": [
+          {
+            "skill": 22,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Recovery Charm III",
+        "skills": [
+          {
+            "skill": 22,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3360,
+    "name": "Rider's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Rider's Charm",
+        "skills": [
+          {
+            "skill": 59,
+            "level": 1
+          },
+          {
+            "skill": 107,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3448,
+    "name": "Sealer's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 11,
+        "name": "Sealer's Charm",
+        "skills": [
+          {
+            "skill": 123,
+            "level": 1
+          },
+          {
+            "skill": 206,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3462,
+    "name": "Shaver Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 9,
+        "name": "Shaver Charm",
+        "skills": [
+          {
+            "skill": 223,
+            "level": 1
+          },
+          {
+            "skill": 111,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3273,
+    "name": "Sheath Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Sheath Charm I",
+        "skills": [
+          {
+            "skill": 81,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Sheath Charm II",
+        "skills": [
+          {
+            "skill": 81,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Sheath Charm III",
+        "skills": [
+          {
+            "skill": 81,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3390,
+    "name": "Shock Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Shock Charm I",
+        "skills": [
+          {
+            "skill": 33,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Shock Charm II",
+        "skills": [
+          {
+            "skill": 33,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Shock Charm III",
+        "skills": [
+          {
+            "skill": 33,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 10,
+        "name": "Shock Charm IV",
+        "skills": [
+          {
+            "skill": 33,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 11,
+        "name": "Shock Charm V",
+        "skills": [
+          {
+            "skill": 33,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3142,
+    "name": "Sleep Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Sleep Charm I",
+        "skills": [
+          {
+            "skill": 3,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Sleep Charm II",
+        "skills": [
+          {
+            "skill": 3,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Sleep Charm III",
+        "skills": [
+          {
+            "skill": 3,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3347,
+    "name": "Sleep Coating Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Sleep Coating Charm",
+        "skills": [
+          {
+            "skill": 44,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3308,
+    "name": "Slinger Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Slinger Charm I",
+        "skills": [
+          {
+            "skill": 102,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Slinger Charm II",
+        "skills": [
+          {
+            "skill": 102,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Slinger Charm III",
+        "skills": [
+          {
+            "skill": 102,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3316,
+    "name": "Smoke Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Smoke Charm I",
+        "skills": [
+          {
+            "skill": 108,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Smoke Charm II",
+        "skills": [
+          {
+            "skill": 108,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Smoke Charm III",
+        "skills": [
+          {
+            "skill": 108,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3250,
+    "name": "Special Shot Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Special Shot Charm I",
+        "skills": [
+          {
+            "skill": 70,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Special Shot Charm II",
+        "skills": [
+          {
+            "skill": 70,
+            "level": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3173,
+    "name": "Speed Heal Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Speed Heal Charm I",
+        "skills": [
+          {
+            "skill": 23,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Speed Heal Charm II",
+        "skills": [
+          {
+            "skill": 23,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Speed Heal Charm III",
+        "skills": [
+          {
+            "skill": 23,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3311,
+    "name": "Stealth Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Stealth Charm I",
+        "skills": [
+          {
+            "skill": 103,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Stealth Charm II",
+        "skills": [
+          {
+            "skill": 103,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Stealth Charm III",
+        "skills": [
+          {
+            "skill": 103,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3145,
+    "name": "Stun Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Stun Charm I",
+        "skills": [
+          {
+            "skill": 4,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Stun Charm II",
+        "skills": [
+          {
+            "skill": 4,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Stun Charm III",
+        "skills": [
+          {
+            "skill": 4,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3410,
+    "name": "Surge Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Surge Charm I",
+        "skills": [
+          {
+            "skill": 76,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Surge Charm II",
+        "skills": [
+          {
+            "skill": 76,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Surge Charm III",
+        "skills": [
+          {
+            "skill": 76,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3361,
+    "name": "Surveyor's Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Surveyor's Charm",
+        "skills": [
+          {
+            "skill": 105,
+            "level": 1
+          },
+          {
+            "skill": 114,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3186,
+    "name": "Thunder Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Thunder Charm I",
+        "skills": [
+          {
+            "skill": 27,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Thunder Charm II",
+        "skills": [
+          {
+            "skill": 27,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Thunder Charm III",
+        "skills": [
+          {
+            "skill": 27,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3362,
+    "name": "Tracker Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Tracker Charm",
+        "skills": [
+          {
+            "skill": 117,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3452,
+    "name": "Tranq Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Tranq Charm I",
+        "skills": [
+          {
+            "skill": 37,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Tranq Charm II",
+        "skills": [
+          {
+            "skill": 37,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Tranq Charm III",
+        "skills": [
+          {
+            "skill": 37,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Tranq Charm IV",
+        "skills": [
+          {
+            "skill": 37,
+            "level": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3418,
+    "name": "Tremor Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 6,
+        "name": "Tremor Charm I",
+        "skills": [
+          {
+            "skill": 13,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Tremor Charm II",
+        "skills": [
+          {
+            "skill": 13,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Tremor Charm III",
+        "skills": [
+          {
+            "skill": 13,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3355,
+    "name": "Trickshot Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Trickshot Charm",
+        "skills": [
+          {
+            "skill": 14,
+            "level": 1
+          },
+          {
+            "skill": 112,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3323,
+    "name": "Unavailable",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Unavailable",
+        "skills": [
+          {
+            "skill": 115,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Unavailable",
+        "skills": [
+          {
+            "skill": 116,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3434,
+    "name": "Unscathed Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 7,
+        "name": "Unscathed Charm I",
+        "skills": [
+          {
+            "skill": 63,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 8,
+        "name": "Unscathed Charm II",
+        "skills": [
+          {
+            "skill": 63,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 12,
+        "name": "Unscathed Charm III",
+        "skills": [
+          {
+            "skill": 63,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3450,
+    "name": "Venom Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Venom Charm I",
+        "skills": [
+          {
+            "skill": 35,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Venom Charm II",
+        "skills": [
+          {
+            "skill": 35,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Venom Charm III",
+        "skills": [
+          {
+            "skill": 35,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Venom Charm IV",
+        "skills": [
+          {
+            "skill": 35,
+            "level": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3180,
+    "name": "Water Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Water Charm I",
+        "skills": [
+          {
+            "skill": 25,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Water Charm II",
+        "skills": [
+          {
+            "skill": 25,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Water Charm III",
+        "skills": [
+          {
+            "skill": 25,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3285,
+    "name": "Whetstone Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 4,
+        "name": "Whetstone Charm I",
+        "skills": [
+          {
+            "skill": 86,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 6,
+        "name": "Whetstone Charm II",
+        "skills": [
+          {
+            "skill": 86,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 7,
+        "name": "Whetstone Charm III",
+        "skills": [
+          {
+            "skill": 86,
+            "level": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3384,
+    "name": "Windproof Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 3,
+        "name": "Windproof Charm I",
+        "skills": [
+          {
+            "skill": 12,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 5,
+        "name": "Windproof Charm II",
+        "skills": [
+          {
+            "skill": 12,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 6,
+        "name": "Windproof Charm III",
+        "skills": [
+          {
+            "skill": 12,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Windproof Charm IV",
+        "skills": [
+          {
+            "skill": 12,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Windproof Charm V",
+        "skills": [
+          {
+            "skill": 12,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3405,
+    "name": "Wyrmsbane Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 5,
+        "name": "Wyrmsbane Charm I",
+        "skills": [
+          {
+            "skill": 34,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "rarity": 7,
+        "name": "Wyrmsbane Charm II",
+        "skills": [
+          {
+            "skill": 34,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "rarity": 8,
+        "name": "Wyrmsbane Charm III",
+        "skills": [
+          {
+            "skill": 34,
+            "level": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "rarity": 11,
+        "name": "Wyrmsbane Charm IV",
+        "skills": [
+          {
+            "skill": 34,
+            "level": 4
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "rarity": 12,
+        "name": "Wyrmsbane Charm V",
+        "skills": [
+          {
+            "skill": 34,
+            "level": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3365,
+    "name": "Wyrmslayer Charm",
+    "ranks": [
+      {
+        "level": 1,
+        "rarity": 8,
+        "name": "Wyrmslayer Charm",
+        "skills": [
+          {
+            "skill": 123,
+            "level": 1
+          },
+          {
+            "skill": 34,
+            "level": 1
+          }
+        ]
+      }
+    ]
+  }
+]

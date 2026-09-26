@@ -1,0 +1,12 @@
+# Portainer: Stacks > Add stack > Repository, point it at this repository and this file.
+# MHBUILDER_PORT (default 5188) is the host port the web UI is published on.
+services:
+  mhbuilder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mhbuilder:latest
+    container_name: mhbuilder
+    ports:
+      - "${MHBUILDER_PORT:-5188}:8080"
+    restart: unless-stopped

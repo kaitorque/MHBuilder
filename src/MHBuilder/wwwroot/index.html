@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MHBuilder — Iceborne Set Search</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=44" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=44" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="jewel-crisp" color-interpolation-filters="sRGB">
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="4" intercept="-3" />
+      </feComponentTransfer>
+    </filter>
+  </svg>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <span class="brand-mark">MH</span>
+        <div>
+          <h1>MHBuilder</h1>
+          <p class="tag">Iceborne companion builder</p>
+        </div>
+      </div>
+      <div class="meta" id="meta">Loading catalog…</div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Skills</h2>
+            <button type="button" class="btn small ghost hidden" id="skillsClear" title="Remove every wanted and excluded skill">Clear</button>
+          </div>
+          <button type="button" class="btn block" id="openSkillPicker">Add skill…</button>
+          <ul class="chip-list" id="wantedSkills"></ul>
+          <ul class="chip-list" id="excludedSkills"></ul>
+          <button type="button" id="searchBtn" class="btn primary block">Auto Search</button>
+          <p class="hint" id="searchStatus"></p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Weapon</h2>
+            <button type="button" class="btn small ghost hidden" id="weaponClear" title="Remove the weapon and its slots">Clear</button>
+          </div>
+          <button type="button" class="btn block" id="openWeaponPicker">Choose weapon…</button>
+          <div class="selected" id="weaponSelected">No weapon — using the slots below</div>
+          <div class="field">
+            <span>Or pick slots</span>
+            <div class="slot-selects" id="manualSlots">
+              <label class="slot-select"><span class="slot-select-ico"></span><select aria-label="Weapon slot 1"></select></label>
+              <label class="slot-select"><span class="slot-select-ico"></span><select aria-label="Weapon slot 2"></select></label>
+              <label class="slot-select"><span class="slot-select-ico"></span><select aria-label="Weapon slot 3"></select></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Armor</h2>
+          <div class="field">
+            <span>Rank</span>
+            <div class="toggle-row" id="rankToggles"></div>
+          </div>
+          <div class="field">
+            <span>Rarity</span>
+            <div class="toggle-row rarity-toggles" id="rarityToggles"></div>
+          </div>
+          <label class="field inline">
+            <span>Hunter</span>
+            <select id="gender">
+              <option value="female" selected>Female</option>
+              <option value="male">Male</option>
+            </select>
+          </label>
+          <div class="field">
+            <span>Minimums <em class="field-note">blank = any</em></span>
+            <div class="stat-mins" id="statMins"></div>
+          </div>
+          <button type="button" class="btn block" id="openExcludePicker">Exclude pieces…</button>
+          <div class="exclude-summary hidden" id="excludeList"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Decorations</h2>
+          <label class="check">
+            <input type="checkbox" id="unlimitedDecos" checked />
+            <span>Unlimited decorations</span>
+          </label>
+          <button type="button" class="btn block" id="openDecoPicker">Edit deco list…</button>
+          <p class="hint" id="decoSummary">Unlimited</p>
+          <div class="field">
+            <span>Import from save <em class="field-note">read-only</em></span>
+            <div class="save-import">
+              <button type="button" class="btn small hidden" id="importSaveLocal" title="Read the decorations from this PC's Iceborne save">This PC's save</button>
+              <button type="button" class="btn small" id="importSaveFile" title="Steam\userdata\&lt;id&gt;\582010\remote\SAVEDATA1000">Choose save file…</button>
+              <input type="file" id="saveFileInput" class="hidden" />
+            </div>
+            <p class="hint" id="saveImportNote"></p>
+          </div>
+          <div class="field">
+            <span>Min free slots <em class="field-note">blank = any</em></span>
+            <div class="stat-mins free-slot-mins" id="freeSlotMins"></div>
+          </div>
+        </section>
+      </aside>
+
+      <div class="workspace">
+        <section class="panel builder-panel" id="builder">
+          <div class="builder-head">
+            <h2>Builder</h2>
+            <span class="builder-stats">
+              <span class="def-chip" id="builderDef" title="Defense">0</span>
+              <span class="resists" id="builderResists"></span>
+            </span>
+            <span class="builder-actions">
+              <span class="hint" id="builderPins"></span>
+              <button type="button" class="btn small ghost" id="builderSaved" title="Save the builder or load a saved build">Saved sets</button>
+              <button type="button" class="btn small ghost" id="builderMaterials" title="Forging materials and where to get them">Materials</button>
+              <button type="button" class="btn small" id="builderClear">Clear</button>
+            </span>
+          </div>
+          <div class="builder-body">
+            <div class="bgear" id="builderGear"></div>
+            <div class="builder-summary">
+              <div class="result-section">
+                <div class="result-section-label section-label-row">Skills
+                  <button type="button" class="btn small ghost hidden" id="builderImportSkills" title="Replace your wanted skills with the builder's skills">Use these skills</button>
+                </div>
+                <div class="skills" id="builderSkills"></div>
+                <div class="builder-missing" id="builderMissing"></div>
+              </div>
+              <div class="result-section set-bonuses-block">
+                <div class="result-section-label">Set bonuses</div>
+                <div class="set-bonuses" id="builderSets"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="results-head">
+            <h2>Search results</h2>
+            <span class="results-actions">
+              <span id="resultMeta"></span>
+              <button type="button" class="btn small hidden" id="moreSkillsBtn" title="Which other skills still fit on top of your picks">More skills…</button>
+            </span>
+          </div>
+          <div id="results" class="results">
+            <p class="hint">Pick skills, then Auto Search. Pinned builder pieces stay fixed; apply a result to load it into the builder.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Shared popout -->
+  <div class="modal-backdrop hidden" id="modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <header class="modal-head">
+        <h3 id="modalTitle">Picker</h3>
+        <button type="button" class="btn small" id="modalClose">Close</button>
+      </header>
+      <div class="modal-toolbar">
+        <input id="modalSearch" type="search" placeholder="Filter…" autocomplete="off" />
+        <div class="modal-extra" id="modalExtra"></div>
+      </div>
+      <div class="modal-body">
+        <nav class="cat-nav" id="modalCats"></nav>
+        <div class="cat-pane" id="modalPane"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop confirm-backdrop hidden" id="confirmModal">
+    <div class="modal confirm-modal" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+      <header class="modal-head">
+        <h3 id="confirmTitle">Are you sure?</h3>
+      </header>
+      <p class="confirm-message" id="confirmMessage"></p>
+      <div class="confirm-choices hidden" id="confirmChoices" role="radiogroup"></div>
+      <footer class="confirm-actions">
+        <button type="button" class="btn" id="confirmCancel">Cancel</button>
+        <button type="button" class="btn primary" id="confirmOk">OK</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="/icons.js?v=44"></script>
+  <script src="/builder.js?v=44"></script>
+  <script src="/materials.js?v=44"></script>
+  <script src="/saved-sets.js?v=44"></script>
+  <script src="/app.js?v=44"></script>
+</body>
+</html>

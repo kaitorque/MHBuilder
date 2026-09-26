@@ -1,0 +1,6594 @@
+[
+  {
+    "id": 727,
+    "equipmentId": 0,
+    "name": "Antidote Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 1,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 728,
+    "equipmentId": 1,
+    "name": "Antipara Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 2,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 729,
+    "equipmentId": 2,
+    "name": "Pep Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 3,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 730,
+    "equipmentId": 3,
+    "name": "Steadfast Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Gold",
+    "skills": [
+      {
+        "skill": 4,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 731,
+    "equipmentId": 4,
+    "name": "Antiblast Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 6,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 732,
+    "equipmentId": 5,
+    "name": "Suture Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 7,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 733,
+    "equipmentId": 6,
+    "name": "Def Lock Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 8,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 734,
+    "equipmentId": 7,
+    "name": "Earplug Jewel 3",
+    "slot": 3,
+    "rarity": 6,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 735,
+    "equipmentId": 8,
+    "name": "Wind Resist Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 736,
+    "equipmentId": 9,
+    "name": "Footing Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 739,
+    "equipmentId": 10,
+    "name": "Attack Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 740,
+    "equipmentId": 11,
+    "name": "Defense Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 20,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 741,
+    "equipmentId": 12,
+    "name": "Vitality Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 742,
+    "equipmentId": 13,
+    "name": "Recovery Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 23,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 743,
+    "equipmentId": 14,
+    "name": "Fire Res Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 24,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 744,
+    "equipmentId": 15,
+    "name": "Water Res Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 25,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 745,
+    "equipmentId": 16,
+    "name": "Ice Res Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 26,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 746,
+    "equipmentId": 17,
+    "name": "Thunder Res Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Gold",
+    "skills": [
+      {
+        "skill": 27,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 747,
+    "equipmentId": 18,
+    "name": "Dragon Res Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 28,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 748,
+    "equipmentId": 19,
+    "name": "Resistor Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "DarkBlue",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 749,
+    "equipmentId": 20,
+    "name": "Blaze Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 30,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 750,
+    "equipmentId": 21,
+    "name": "Stream Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 31,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 751,
+    "equipmentId": 22,
+    "name": "Frost Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 32,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 752,
+    "equipmentId": 23,
+    "name": "Bolt Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Gold",
+    "skills": [
+      {
+        "skill": 33,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 753,
+    "equipmentId": 24,
+    "name": "Dragon Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 34,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 754,
+    "equipmentId": 25,
+    "name": "Venom Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 35,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 755,
+    "equipmentId": 26,
+    "name": "Paralyzer Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 36,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 756,
+    "equipmentId": 27,
+    "name": "Sleep Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 37,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 757,
+    "equipmentId": 28,
+    "name": "Blast Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 38,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 758,
+    "equipmentId": 29,
+    "name": "Poisoncoat Jewel 3",
+    "slot": 3,
+    "rarity": 6,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 42,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 759,
+    "equipmentId": 30,
+    "name": "Paracoat Jewel 3",
+    "slot": 3,
+    "rarity": 7,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 43,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 760,
+    "equipmentId": 31,
+    "name": "Sleepcoat Jewel 3",
+    "slot": 3,
+    "rarity": 7,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 44,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 761,
+    "equipmentId": 32,
+    "name": "Blastcoat Jewel 3",
+    "slot": 3,
+    "rarity": 7,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 46,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 763,
+    "equipmentId": 33,
+    "name": "Release Jewel 3",
+    "slot": 3,
+    "rarity": 8,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 764,
+    "equipmentId": 34,
+    "name": "Expert Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "DarkBlue",
+    "skills": [
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 765,
+    "equipmentId": 35,
+    "name": "Critical Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "DarkBlue",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 766,
+    "equipmentId": 36,
+    "name": "Tenderizer Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "DarkBlue",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 767,
+    "equipmentId": 37,
+    "name": "Charger Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 768,
+    "equipmentId": 38,
+    "name": "Handicraft Jewel 3",
+    "slot": 3,
+    "rarity": 8,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 769,
+    "equipmentId": 39,
+    "name": "Draw Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "DarkBlue",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 770,
+    "equipmentId": 40,
+    "name": "Destroyer Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 771,
+    "equipmentId": 41,
+    "name": "KO Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Gold",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 772,
+    "equipmentId": 42,
+    "name": "Drain Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 774,
+    "equipmentId": 43,
+    "name": "Flight Jewel 2",
+    "slot": 2,
+    "rarity": 5,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 775,
+    "equipmentId": 44,
+    "name": "Throttle Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 776,
+    "equipmentId": 45,
+    "name": "Challenger Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 777,
+    "equipmentId": 46,
+    "name": "Flawless Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 778,
+    "equipmentId": 47,
+    "name": "Potential Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 779,
+    "equipmentId": 48,
+    "name": "Fortitude Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 780,
+    "equipmentId": 49,
+    "name": "Furor Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 781,
+    "equipmentId": 50,
+    "name": "Sonorous Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 68,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 782,
+    "equipmentId": 51,
+    "name": "Magazine Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 69,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 783,
+    "equipmentId": 52,
+    "name": "Trueshot Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 70,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 784,
+    "equipmentId": 53,
+    "name": "Artillery Jewel 1",
+    "slot": 1,
+    "rarity": 8,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 71,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 785,
+    "equipmentId": 54,
+    "name": "Heavy Artillery Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 72,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 786,
+    "equipmentId": 55,
+    "name": "Sprinter Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 787,
+    "equipmentId": 56,
+    "name": "Physique Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 789,
+    "equipmentId": 57,
+    "name": "Refresh Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 790,
+    "equipmentId": 58,
+    "name": "Hungerless Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 77,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 791,
+    "equipmentId": 59,
+    "name": "Evasion Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 792,
+    "equipmentId": 60,
+    "name": "Jumping Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 793,
+    "equipmentId": 61,
+    "name": "Ironwall Jewel 1",
+    "slot": 1,
+    "rarity": 7,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 794,
+    "equipmentId": 62,
+    "name": "Sheath Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 795,
+    "equipmentId": 63,
+    "name": "Friendship Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 796,
+    "equipmentId": 64,
+    "name": "Enduring Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 83,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 797,
+    "equipmentId": 65,
+    "name": "Satiated Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 798,
+    "equipmentId": 66,
+    "name": "Gobbler Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 799,
+    "equipmentId": 67,
+    "name": "Grinder Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Gold",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 800,
+    "equipmentId": 68,
+    "name": "Bomber Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 801,
+    "equipmentId": 69,
+    "name": "Fungiform Jewel 1",
+    "slot": 1,
+    "rarity": 8,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 808,
+    "equipmentId": 70,
+    "name": "Protection Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 809,
+    "equipmentId": 71,
+    "name": "Meowster Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 98,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 810,
+    "equipmentId": 72,
+    "name": "Botany Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 99,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 811,
+    "equipmentId": 73,
+    "name": "Geology Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 100,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 812,
+    "equipmentId": 74,
+    "name": "Mighty Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 813,
+    "equipmentId": 75,
+    "name": "Stonethrower Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 814,
+    "equipmentId": 76,
+    "name": "Tip Toe Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 103,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 815,
+    "equipmentId": 77,
+    "name": "Brace Jewel 3",
+    "slot": 3,
+    "rarity": 6,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 819,
+    "equipmentId": 78,
+    "name": "Survival Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 108,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 820,
+    "equipmentId": 79,
+    "name": "Mirewalker Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 109,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 824,
+    "equipmentId": 80,
+    "name": "Specimen Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 115,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 825,
+    "equipmentId": 97,
+    "name": "Miasma Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "DarkBeige",
+    "skills": [
+      {
+        "skill": 116,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 826,
+    "equipmentId": 81,
+    "name": "Scent Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 117,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 828,
+    "equipmentId": 82,
+    "name": "Intimidator Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 124,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 832,
+    "equipmentId": 83,
+    "name": "Slider Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 833,
+    "equipmentId": 84,
+    "name": "Medicine Jewel 1",
+    "slot": 1,
+    "rarity": 6,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 834,
+    "equipmentId": 85,
+    "name": "Forceshot Jewel 3",
+    "slot": 3,
+    "rarity": 7,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 39,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 835,
+    "equipmentId": 86,
+    "name": "Pierce Jewel 3",
+    "slot": 3,
+    "rarity": 8,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 40,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 836,
+    "equipmentId": 87,
+    "name": "Spread Jewel 3",
+    "slot": 3,
+    "rarity": 8,
+    "iconColor": "DarkGreen",
+    "skills": [
+      {
+        "skill": 41,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 837,
+    "equipmentId": 88,
+    "name": "Enhancer Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 838,
+    "equipmentId": 89,
+    "name": "Crisis Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 839,
+    "equipmentId": 90,
+    "name": "Dragonseal Jewel 3",
+    "slot": 3,
+    "rarity": 7,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 123,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 842,
+    "equipmentId": 91,
+    "name": "Maintenance Jewel 1",
+    "slot": 1,
+    "rarity": 5,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 874,
+    "equipmentId": 92,
+    "name": "Mighty Bow Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 155,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 875,
+    "equipmentId": 93,
+    "name": "Mind's Eye Jewel 2",
+    "slot": 2,
+    "rarity": 8,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 156,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 876,
+    "equipmentId": 94,
+    "name": "Shield Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 157,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 877,
+    "equipmentId": 95,
+    "name": "Sharp Jewel 2",
+    "slot": 2,
+    "rarity": 7,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 158,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 878,
+    "equipmentId": 96,
+    "name": "Elementless Jewel 2",
+    "slot": 2,
+    "rarity": 6,
+    "iconColor": "DarkBeige",
+    "skills": [
+      {
+        "skill": 159,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 1968,
+    "equipmentId": 98,
+    "name": "Phoenix Jewel 3",
+    "slot": 3,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 1969,
+    "equipmentId": 99,
+    "name": "Guardian Jewel 2",
+    "slot": 2,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 1970,
+    "equipmentId": 100,
+    "name": "Cooling Jewel 2",
+    "slot": 2,
+    "rarity": 9,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 17,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 1971,
+    "equipmentId": 101,
+    "name": "Fire Res Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 24,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1972,
+    "equipmentId": 102,
+    "name": "Water Res Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 25,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1973,
+    "equipmentId": 103,
+    "name": "Ice Res Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 26,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1974,
+    "equipmentId": 104,
+    "name": "Thunder Res Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 27,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1975,
+    "equipmentId": 105,
+    "name": "Dragon Res Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 28,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1976,
+    "equipmentId": 106,
+    "name": "Blaze Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 30,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1977,
+    "equipmentId": 107,
+    "name": "Stream Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 31,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1978,
+    "equipmentId": 108,
+    "name": "Frost Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 32,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1979,
+    "equipmentId": 109,
+    "name": "Bolt Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 33,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1980,
+    "equipmentId": 110,
+    "name": "Dragon Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 34,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1981,
+    "equipmentId": 111,
+    "name": "Venom Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 35,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1982,
+    "equipmentId": 112,
+    "name": "Paralyzer Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 36,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1983,
+    "equipmentId": 113,
+    "name": "Sleep Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 37,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1984,
+    "equipmentId": 114,
+    "name": "Blast Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 38,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1985,
+    "equipmentId": 115,
+    "name": "Hard Fire Res Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 24,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 1986,
+    "equipmentId": 116,
+    "name": "Hard Water Res Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 25,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 1987,
+    "equipmentId": 117,
+    "name": "Hard Ice Res Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 26,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 1988,
+    "equipmentId": 118,
+    "name": "Hard Thunder Res Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 27,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 1989,
+    "equipmentId": 119,
+    "name": "Hard Dragon Res Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 28,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 1990,
+    "equipmentId": 120,
+    "name": "Antidote Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 1,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1991,
+    "equipmentId": 121,
+    "name": "Antipara Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 2,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1992,
+    "equipmentId": 122,
+    "name": "Pep Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 3,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1993,
+    "equipmentId": 123,
+    "name": "Steadfast Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 4,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1994,
+    "equipmentId": 124,
+    "name": "Antiblast Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 6,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1995,
+    "equipmentId": 125,
+    "name": "Suture Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 7,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1996,
+    "equipmentId": 126,
+    "name": "Def Lock Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "DarkBeige",
+    "skills": [
+      {
+        "skill": 8,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1997,
+    "equipmentId": 127,
+    "name": "Miasma Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 116,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1998,
+    "equipmentId": 128,
+    "name": "Hungerless Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 77,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 1999,
+    "equipmentId": 129,
+    "name": "Recovery Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 23,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2000,
+    "equipmentId": 130,
+    "name": "Tip Toe Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 103,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2001,
+    "equipmentId": 131,
+    "name": "Intimidator Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 124,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2002,
+    "equipmentId": 132,
+    "name": "Meowster Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 98,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2003,
+    "equipmentId": 133,
+    "name": "Hard Tip Toe Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 103,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2004,
+    "equipmentId": 134,
+    "name": "Hard Intimidator Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 124,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2005,
+    "equipmentId": 135,
+    "name": "Hard Meowster Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 98,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2006,
+    "equipmentId": 136,
+    "name": "Trueshot Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 70,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2007,
+    "equipmentId": 137,
+    "name": "Heavy Artillery Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 72,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2008,
+    "equipmentId": 138,
+    "name": "Botany Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 99,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2009,
+    "equipmentId": 139,
+    "name": "Geology Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 100,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2010,
+    "equipmentId": 140,
+    "name": "Survival Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 108,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2011,
+    "equipmentId": 141,
+    "name": "Mirewalker Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 109,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2012,
+    "equipmentId": 142,
+    "name": "Specimen Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 115,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2013,
+    "equipmentId": 143,
+    "name": "Sonorous Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 68,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2014,
+    "equipmentId": 144,
+    "name": "Hard Botany Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 99,
+        "level": 4
+      }
+    ]
+  },
+  {
+    "id": 2015,
+    "equipmentId": 145,
+    "name": "Hard Geology Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 100,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2016,
+    "equipmentId": 146,
+    "name": "Hard Survival Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 108,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2017,
+    "equipmentId": 147,
+    "name": "Hard Specimen Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Green",
+    "skills": [
+      {
+        "skill": 115,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2018,
+    "equipmentId": 148,
+    "name": "Enduring Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 83,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2019,
+    "equipmentId": 149,
+    "name": "Defense Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 20,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2020,
+    "equipmentId": 150,
+    "name": "Hard Enduring Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 83,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2021,
+    "equipmentId": 151,
+    "name": "Hard Defense Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 20,
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": 2022,
+    "equipmentId": 152,
+    "name": "Artillery Jewel+ 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 71,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2023,
+    "equipmentId": 153,
+    "name": "Earplug Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2024,
+    "equipmentId": 154,
+    "name": "Wind Resist Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2025,
+    "equipmentId": 155,
+    "name": "Attack Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 19,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2026,
+    "equipmentId": 156,
+    "name": "Expert Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "DarkPurple",
+    "skills": [
+      {
+        "skill": 48,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2027,
+    "equipmentId": 157,
+    "name": "Handicraft Jewel+ 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2028,
+    "equipmentId": 158,
+    "name": "Throttle Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2029,
+    "equipmentId": 159,
+    "name": "Challenger Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2030,
+    "equipmentId": 160,
+    "name": "Potential Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2031,
+    "equipmentId": 161,
+    "name": "Furor Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2032,
+    "equipmentId": 162,
+    "name": "Physique Jewel+ 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 74,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2033,
+    "equipmentId": 163,
+    "name": "Evasion Jewel+ 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 78,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2034,
+    "equipmentId": 164,
+    "name": "Ironwall Jewel+ 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2035,
+    "equipmentId": 165,
+    "name": "Friendship Jewel+ 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": 2036,
+    "equipmentId": 166,
+    "name": "Drain/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2037,
+    "equipmentId": 167,
+    "name": "Fortitude/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2038,
+    "equipmentId": 168,
+    "name": "Crisis/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2039,
+    "equipmentId": 169,
+    "name": "Ironwall/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2040,
+    "equipmentId": 170,
+    "name": "Friendship/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2041,
+    "equipmentId": 171,
+    "name": "Satiated/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2042,
+    "equipmentId": 172,
+    "name": "Stonethrower/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2043,
+    "equipmentId": 173,
+    "name": "Resistor/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2044,
+    "equipmentId": 174,
+    "name": "Flight/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2045,
+    "equipmentId": 175,
+    "name": "Sprinter/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2046,
+    "equipmentId": 176,
+    "name": "Refresh/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2047,
+    "equipmentId": 177,
+    "name": "Jumping/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2048,
+    "equipmentId": 178,
+    "name": "Sheath/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2049,
+    "equipmentId": 179,
+    "name": "Gobbler/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2050,
+    "equipmentId": 180,
+    "name": "Grinder/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2051,
+    "equipmentId": 181,
+    "name": "Bomber/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2052,
+    "equipmentId": 182,
+    "name": "Fungiform/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2053,
+    "equipmentId": 183,
+    "name": "Slider/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2054,
+    "equipmentId": 184,
+    "name": "Guardian/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2055,
+    "equipmentId": 185,
+    "name": "Drain/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2056,
+    "equipmentId": 186,
+    "name": "Fortitude/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2057,
+    "equipmentId": 187,
+    "name": "Crisis/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2058,
+    "equipmentId": 188,
+    "name": "Ironwall/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2059,
+    "equipmentId": 189,
+    "name": "Friendship/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2060,
+    "equipmentId": 190,
+    "name": "Satiated/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2061,
+    "equipmentId": 191,
+    "name": "Stonethrower/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2062,
+    "equipmentId": 192,
+    "name": "Resistor/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2063,
+    "equipmentId": 193,
+    "name": "Flight/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2064,
+    "equipmentId": 194,
+    "name": "Sprinter/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2065,
+    "equipmentId": 195,
+    "name": "Refresh/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2066,
+    "equipmentId": 196,
+    "name": "Jumping/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2067,
+    "equipmentId": 197,
+    "name": "Sheath/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2068,
+    "equipmentId": 198,
+    "name": "Gobbler/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2069,
+    "equipmentId": 199,
+    "name": "Grinder/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2070,
+    "equipmentId": 200,
+    "name": "Bomber/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2071,
+    "equipmentId": 201,
+    "name": "Fungiform/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2072,
+    "equipmentId": 202,
+    "name": "Slider/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2073,
+    "equipmentId": 203,
+    "name": "Guardian/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2074,
+    "equipmentId": 204,
+    "name": "Drain/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2075,
+    "equipmentId": 205,
+    "name": "Fortitude/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2076,
+    "equipmentId": 206,
+    "name": "Crisis/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2077,
+    "equipmentId": 207,
+    "name": "Ironwall/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2078,
+    "equipmentId": 208,
+    "name": "Friendship/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2079,
+    "equipmentId": 209,
+    "name": "Satiated/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2080,
+    "equipmentId": 210,
+    "name": "Stonethrower/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2081,
+    "equipmentId": 211,
+    "name": "Resistor/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2082,
+    "equipmentId": 212,
+    "name": "Flight/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2083,
+    "equipmentId": 213,
+    "name": "Sprinter/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2084,
+    "equipmentId": 214,
+    "name": "Refresh/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2085,
+    "equipmentId": 215,
+    "name": "Jumping/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2086,
+    "equipmentId": 216,
+    "name": "Sheath/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2087,
+    "equipmentId": 217,
+    "name": "Gobbler/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2088,
+    "equipmentId": 218,
+    "name": "Grinder/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2089,
+    "equipmentId": 219,
+    "name": "Bomber/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2090,
+    "equipmentId": 220,
+    "name": "Fungiform/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2091,
+    "equipmentId": 221,
+    "name": "Slider/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2092,
+    "equipmentId": 222,
+    "name": "Guardian/Attack Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 19,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2093,
+    "equipmentId": 223,
+    "name": "Drain/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2094,
+    "equipmentId": 224,
+    "name": "Fortitude/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2095,
+    "equipmentId": 225,
+    "name": "Crisis/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2096,
+    "equipmentId": 226,
+    "name": "Ironwall/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2097,
+    "equipmentId": 227,
+    "name": "Friendship/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2098,
+    "equipmentId": 228,
+    "name": "Satiated/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2099,
+    "equipmentId": 229,
+    "name": "Stonethrower/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2100,
+    "equipmentId": 230,
+    "name": "Resistor/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2101,
+    "equipmentId": 231,
+    "name": "Flight/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2102,
+    "equipmentId": 232,
+    "name": "Sprinter/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2103,
+    "equipmentId": 233,
+    "name": "Refresh/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2104,
+    "equipmentId": 234,
+    "name": "Jumping/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2105,
+    "equipmentId": 235,
+    "name": "Sheath/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2106,
+    "equipmentId": 236,
+    "name": "Gobbler/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2107,
+    "equipmentId": 237,
+    "name": "Grinder/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2108,
+    "equipmentId": 238,
+    "name": "Bomber/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2109,
+    "equipmentId": 239,
+    "name": "Fungiform/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2110,
+    "equipmentId": 240,
+    "name": "Slider/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2111,
+    "equipmentId": 241,
+    "name": "Guardian/Expert Jewel 4",
+    "slot": 4,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 48,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2112,
+    "equipmentId": 242,
+    "name": "Drain/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2113,
+    "equipmentId": 243,
+    "name": "Fortitude/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2114,
+    "equipmentId": 244,
+    "name": "Crisis/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2115,
+    "equipmentId": 245,
+    "name": "Ironwall/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2116,
+    "equipmentId": 246,
+    "name": "Friendship/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2117,
+    "equipmentId": 247,
+    "name": "Satiated/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2118,
+    "equipmentId": 248,
+    "name": "Stonethrower/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2119,
+    "equipmentId": 249,
+    "name": "Resistor/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2120,
+    "equipmentId": 250,
+    "name": "Flight/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2121,
+    "equipmentId": 251,
+    "name": "Sprinter/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2122,
+    "equipmentId": 252,
+    "name": "Refresh/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2123,
+    "equipmentId": 253,
+    "name": "Jumping/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2124,
+    "equipmentId": 254,
+    "name": "Sheath/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2125,
+    "equipmentId": 255,
+    "name": "Gobbler/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2126,
+    "equipmentId": 256,
+    "name": "Grinder/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2127,
+    "equipmentId": 257,
+    "name": "Bomber/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2128,
+    "equipmentId": 258,
+    "name": "Fungiform/Release Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2129,
+    "equipmentId": 259,
+    "name": "Slider/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2130,
+    "equipmentId": 260,
+    "name": "Guardian/Release Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 47,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2131,
+    "equipmentId": 261,
+    "name": "Drain/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 58,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2132,
+    "equipmentId": 262,
+    "name": "Fortitude/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 65,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2133,
+    "equipmentId": 263,
+    "name": "Crisis/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 67,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2134,
+    "equipmentId": 264,
+    "name": "Ironwall/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 80,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2135,
+    "equipmentId": 265,
+    "name": "Friendship/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 82,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2136,
+    "equipmentId": 266,
+    "name": "Satiated/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 84,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2137,
+    "equipmentId": 267,
+    "name": "Stonethrower/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Lime",
+    "skills": [
+      {
+        "skill": 102,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2138,
+    "equipmentId": 268,
+    "name": "Resistor/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 29,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2139,
+    "equipmentId": 269,
+    "name": "Flight/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 60,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2140,
+    "equipmentId": 270,
+    "name": "Sprinter/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 73,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2141,
+    "equipmentId": 271,
+    "name": "Refresh/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 76,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2142,
+    "equipmentId": 272,
+    "name": "Jumping/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 79,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2143,
+    "equipmentId": 273,
+    "name": "Sheath/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 81,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2144,
+    "equipmentId": 274,
+    "name": "Gobbler/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Beige",
+    "skills": [
+      {
+        "skill": 85,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2145,
+    "equipmentId": 275,
+    "name": "Grinder/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 86,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2146,
+    "equipmentId": 276,
+    "name": "Bomber/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 88,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2147,
+    "equipmentId": 277,
+    "name": "Fungiform/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 90,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2148,
+    "equipmentId": 278,
+    "name": "Slider/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 122,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2149,
+    "equipmentId": 279,
+    "name": "Guardian/Handicraft Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 185,
+        "level": 1
+      },
+      {
+        "skill": 54,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2150,
+    "equipmentId": 280,
+    "name": "Footing/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2151,
+    "equipmentId": 281,
+    "name": "Charger/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2152,
+    "equipmentId": 282,
+    "name": "Enhancer/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2153,
+    "equipmentId": 283,
+    "name": "Destroyer/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2154,
+    "equipmentId": 284,
+    "name": "KO/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2155,
+    "equipmentId": 285,
+    "name": "Potential/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2156,
+    "equipmentId": 286,
+    "name": "Wind Resist/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2157,
+    "equipmentId": 287,
+    "name": "Draw/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2158,
+    "equipmentId": 288,
+    "name": "Throttle/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2159,
+    "equipmentId": 289,
+    "name": "Challenger/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2160,
+    "equipmentId": 290,
+    "name": "Flawless/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2161,
+    "equipmentId": 291,
+    "name": "Furor/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2162,
+    "equipmentId": 292,
+    "name": "Mighty/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2163,
+    "equipmentId": 293,
+    "name": "Brace/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2164,
+    "equipmentId": 294,
+    "name": "Phoenix/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2165,
+    "equipmentId": 295,
+    "name": "Earplug/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2166,
+    "equipmentId": 296,
+    "name": "Critical/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2167,
+    "equipmentId": 297,
+    "name": "Tenderizer/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2168,
+    "equipmentId": 298,
+    "name": "Handicraft/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2169,
+    "equipmentId": 299,
+    "name": "Release/Protection Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 97,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2170,
+    "equipmentId": 300,
+    "name": "Footing/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2171,
+    "equipmentId": 301,
+    "name": "Charger/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2172,
+    "equipmentId": 302,
+    "name": "Enhancer/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2173,
+    "equipmentId": 303,
+    "name": "Destroyer/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2174,
+    "equipmentId": 304,
+    "name": "KO/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2175,
+    "equipmentId": 305,
+    "name": "Potential/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2176,
+    "equipmentId": 306,
+    "name": "Wind Resist/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2177,
+    "equipmentId": 307,
+    "name": "Draw/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2178,
+    "equipmentId": 308,
+    "name": "Throttle/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2179,
+    "equipmentId": 309,
+    "name": "Challenger/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2180,
+    "equipmentId": 310,
+    "name": "Flawless/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2181,
+    "equipmentId": 311,
+    "name": "Furor/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2182,
+    "equipmentId": 312,
+    "name": "Mighty/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2183,
+    "equipmentId": 313,
+    "name": "Brace/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2184,
+    "equipmentId": 314,
+    "name": "Phoenix/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2185,
+    "equipmentId": 315,
+    "name": "Earplug/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2186,
+    "equipmentId": 316,
+    "name": "Critical/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2187,
+    "equipmentId": 317,
+    "name": "Tenderizer/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2188,
+    "equipmentId": 318,
+    "name": "Handicraft/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2189,
+    "equipmentId": 319,
+    "name": "Release/Medicine Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 22,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2190,
+    "equipmentId": 320,
+    "name": "Footing/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2191,
+    "equipmentId": 321,
+    "name": "Charger/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2192,
+    "equipmentId": 322,
+    "name": "Enhancer/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2193,
+    "equipmentId": 323,
+    "name": "Destroyer/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2194,
+    "equipmentId": 324,
+    "name": "KO/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2195,
+    "equipmentId": 325,
+    "name": "Potential/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2196,
+    "equipmentId": 326,
+    "name": "Wind Resist/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2197,
+    "equipmentId": 327,
+    "name": "Draw/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2198,
+    "equipmentId": 328,
+    "name": "Throttle/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2199,
+    "equipmentId": 329,
+    "name": "Challenger/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2200,
+    "equipmentId": 330,
+    "name": "Flawless/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2201,
+    "equipmentId": 331,
+    "name": "Furor/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2202,
+    "equipmentId": 332,
+    "name": "Mighty/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2203,
+    "equipmentId": 333,
+    "name": "Brace/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2204,
+    "equipmentId": 334,
+    "name": "Phoenix/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2205,
+    "equipmentId": 335,
+    "name": "Earplug/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2206,
+    "equipmentId": 336,
+    "name": "Critical/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2207,
+    "equipmentId": 337,
+    "name": "Tenderizer/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2208,
+    "equipmentId": 338,
+    "name": "Handicraft/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2209,
+    "equipmentId": 339,
+    "name": "Release/Vitality Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 21,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2210,
+    "equipmentId": 340,
+    "name": "Footing/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2211,
+    "equipmentId": 341,
+    "name": "Charger/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2212,
+    "equipmentId": 342,
+    "name": "Enhancer/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2213,
+    "equipmentId": 343,
+    "name": "Destroyer/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2214,
+    "equipmentId": 344,
+    "name": "KO/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2215,
+    "equipmentId": 345,
+    "name": "Potential/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2216,
+    "equipmentId": 346,
+    "name": "Wind Resist/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2217,
+    "equipmentId": 347,
+    "name": "Draw/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2218,
+    "equipmentId": 348,
+    "name": "Throttle/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2219,
+    "equipmentId": 349,
+    "name": "Challenger/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2220,
+    "equipmentId": 350,
+    "name": "Flawless/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2221,
+    "equipmentId": 351,
+    "name": "Furor/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2222,
+    "equipmentId": 352,
+    "name": "Mighty/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2223,
+    "equipmentId": 353,
+    "name": "Brace/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 10,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2224,
+    "equipmentId": 354,
+    "name": "Phoenix/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2225,
+    "equipmentId": 355,
+    "name": "Earplug/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2226,
+    "equipmentId": 356,
+    "name": "Critical/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2227,
+    "equipmentId": 357,
+    "name": "Tenderizer/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2228,
+    "equipmentId": 358,
+    "name": "Handicraft/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2229,
+    "equipmentId": 359,
+    "name": "Release/Maintenance Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 120,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2230,
+    "equipmentId": 360,
+    "name": "Footing/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2231,
+    "equipmentId": 361,
+    "name": "Charger/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2232,
+    "equipmentId": 362,
+    "name": "Enhancer/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2233,
+    "equipmentId": 363,
+    "name": "Destroyer/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2234,
+    "equipmentId": 364,
+    "name": "KO/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2235,
+    "equipmentId": 365,
+    "name": "Potential/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2236,
+    "equipmentId": 366,
+    "name": "Wind Resist/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2237,
+    "equipmentId": 367,
+    "name": "Draw/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2238,
+    "equipmentId": 368,
+    "name": "Throttle/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2239,
+    "equipmentId": 369,
+    "name": "Challenger/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2240,
+    "equipmentId": 370,
+    "name": "Flawless/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2241,
+    "equipmentId": 371,
+    "name": "Furor/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2242,
+    "equipmentId": 372,
+    "name": "Mighty/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2243,
+    "equipmentId": 373,
+    "name": "Brace/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2244,
+    "equipmentId": 374,
+    "name": "Phoenix/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2245,
+    "equipmentId": 375,
+    "name": "Earplug/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2246,
+    "equipmentId": 376,
+    "name": "Critical/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2247,
+    "equipmentId": 377,
+    "name": "Tenderizer/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2248,
+    "equipmentId": 378,
+    "name": "Handicraft/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2249,
+    "equipmentId": 379,
+    "name": "Release/Physique Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 74,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2250,
+    "equipmentId": 380,
+    "name": "Footing/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 13,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2251,
+    "equipmentId": 381,
+    "name": "Charger/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 52,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2252,
+    "equipmentId": 382,
+    "name": "Enhancer/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "LightBeige",
+    "skills": [
+      {
+        "skill": 53,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2253,
+    "equipmentId": 383,
+    "name": "Destroyer/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 56,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2254,
+    "equipmentId": 384,
+    "name": "KO/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Yellow",
+    "skills": [
+      {
+        "skill": 57,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2255,
+    "equipmentId": 385,
+    "name": "Potential/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 64,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2256,
+    "equipmentId": 386,
+    "name": "Wind Resist/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 12,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2257,
+    "equipmentId": 387,
+    "name": "Draw/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 55,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2258,
+    "equipmentId": 388,
+    "name": "Throttle/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 61,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2259,
+    "equipmentId": 389,
+    "name": "Challenger/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 62,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2260,
+    "equipmentId": 390,
+    "name": "Flawless/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 63,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2261,
+    "equipmentId": 391,
+    "name": "Furor/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "DarkRed",
+    "skills": [
+      {
+        "skill": 66,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2262,
+    "equipmentId": 392,
+    "name": "Mighty/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 101,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2263,
+    "equipmentId": 393,
+    "name": "Brace/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 11,
+    "iconColor": "Gray",
+    "skills": [
+      {
+        "skill": 104,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2264,
+    "equipmentId": 394,
+    "name": "Phoenix/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 186,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2265,
+    "equipmentId": 395,
+    "name": "Earplug/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 11,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2266,
+    "equipmentId": 396,
+    "name": "Critical/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 49,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2267,
+    "equipmentId": 397,
+    "name": "Tenderizer/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Violet",
+    "skills": [
+      {
+        "skill": 50,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2268,
+    "equipmentId": 398,
+    "name": "Handicraft/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 54,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2269,
+    "equipmentId": 399,
+    "name": "Release/Evasion Jewel 4",
+    "slot": 4,
+    "rarity": 12,
+    "iconColor": "Cyan",
+    "skills": [
+      {
+        "skill": 47,
+        "level": 1
+      },
+      {
+        "skill": 78,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2272,
+    "equipmentId": 400,
+    "name": "Warming Jewel 2",
+    "slot": 2,
+    "rarity": 9,
+    "iconColor": "White",
+    "skills": [
+      {
+        "skill": 207,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2273,
+    "equipmentId": 401,
+    "name": "Diversion Jewel 3",
+    "slot": 3,
+    "rarity": 11,
+    "iconColor": "Orange",
+    "skills": [
+      {
+        "skill": 184,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2274,
+    "equipmentId": 402,
+    "name": "Acrobat Jewel 3",
+    "slot": 3,
+    "rarity": 11,
+    "iconColor": "Blue",
+    "skills": [
+      {
+        "skill": 187,
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": 2275,
+    "equipmentId": 403,
+    "name": "Shaver Jewel 3",
+    "slot": 3,
+    "rarity": 11,
+    "iconColor": "Red",
+    "skills": [
+      {
+        "skill": 223,
+        "level": 1
+      }
+    ]
+  }
+]

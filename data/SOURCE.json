@@ -1,0 +1,14 @@
+{
+  "source": "Live dump from local Monster Hunter World Iceborne chunks",
+  "tool": "https://github.com/TanukiSharp/MHWMasterDataUtils",
+  "note": "Skill IDs are game-native (NOT mhw-db IDs). Defense/slots from game tables.",
+  "counts": {
+    "skills": 203,
+    "armor": 1648,
+    "charms": 110,
+    "decorations": 404,
+    "weapons": 3695,
+    "armorZeroDefense": 0,
+    "armorDefenseMax": 180
+  }
+}

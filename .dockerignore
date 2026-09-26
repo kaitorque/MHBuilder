@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/TestResults/
+.git/
+.vs/
+.vscode/
+.idea/
+.cursor/
+.playwright-mcp/
+docs/
+tools/
+*.md
+Dockerfile
+docker-compose.yml
+.dockerignore
+.gitignore
+.gitattributes

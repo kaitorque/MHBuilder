@@ -1,0 +1,4125 @@
+[
+  {
+    "id": 1,
+    "name": "Poison Resistance",
+    "description": "Reduces damage while poisoned.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the number of times you take poison damage."
+      },
+      {
+        "level": 2,
+        "description": "Greatly reduces the number of times you take poison damage."
+      },
+      {
+        "level": 3,
+        "description": "Prevents poison."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 2,
+    "name": "Paralysis Resistance",
+    "description": "Reduces the duration of paralysis.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the duration of paralysis by 30%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the duration of paralysis by 60%."
+      },
+      {
+        "level": 3,
+        "description": "Prevents paralysis."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 3,
+    "name": "Sleep Resistance",
+    "description": "Reduces the duration of sleep.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the duration of sleep by 30%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the duration of sleep by 60%."
+      },
+      {
+        "level": 3,
+        "description": "Prevents sleep."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 4,
+    "name": "Stun Resistance",
+    "description": "Reduces stun duration.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the duration of stun by 60%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the duration of stun by 90%."
+      },
+      {
+        "level": 3,
+        "description": "Prevents stun."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 5,
+    "name": "Muck Resistance",
+    "description": "Reduces impairments to mobility while stuck in monster muck.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces limits on movement speed and evasion."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 6,
+    "name": "Blast Resistance",
+    "description": "Grants protection against blastblight.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Delays blastblight and reduces blast damage."
+      },
+      {
+        "level": 2,
+        "description": "Greatly delays blastblight and greatly reduces blast damage."
+      },
+      {
+        "level": 3,
+        "description": "Prevents blastblight."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 7,
+    "name": "Bleeding Resistance",
+    "description": "Grants protection against bleeding.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces damage while bleeding."
+      },
+      {
+        "level": 2,
+        "description": "Greatly reduces damage while bleeding."
+      },
+      {
+        "level": 3,
+        "description": "Prevents bleeding."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 8,
+    "name": "Iron Skin",
+    "description": "Grants protection against Defense Down.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the duration of Defense Down by 50%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the duration of Defense Down by 75%."
+      },
+      {
+        "level": 3,
+        "description": "Prevents Defense Down."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 11,
+    "name": "Earplugs",
+    "description": "Grants protection from large monsters' roars.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly reduces the effects of weak monster roars."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the effects of weak monster roars."
+      },
+      {
+        "level": 3,
+        "description": "Nullifies weak monster roars."
+      },
+      {
+        "level": 4,
+        "description": "Nullifies weak monster roars and reduces the effects of strong monster roars."
+      },
+      {
+        "level": 5,
+        "description": "Nullifies weak and strong monster roars."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 12,
+    "name": "Windproof",
+    "description": "Grants protection against wind pressure.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly reduces the effects of minor wind pressure."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the effects of minor wind pressure."
+      },
+      {
+        "level": 3,
+        "description": "Negates minor wind pressure."
+      },
+      {
+        "level": 4,
+        "description": "Negates minor wind pressure and reduces the effects of major wind pressure."
+      },
+      {
+        "level": 5,
+        "description": "Negates minor and major wind pressure."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 13,
+    "name": "Tremor Resistance",
+    "description": "Grants protection against ground tremors.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Nullifies minor ground tremors."
+      },
+      {
+        "level": 2,
+        "description": "Nullifies minor ground tremors and reduces the effects of major ground tremors."
+      },
+      {
+        "level": 3,
+        "description": "Nullifies minor and major ground tremors."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 14,
+    "name": "Dungmaster",
+    "description": "Makes monsters hit with slinger dung pods more likely to run.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Makes slinger dung pods more effective at making monsters run away."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 16,
+    "name": "Effluvial Expert",
+    "description": "Nullifies or reduces environmental damage in the Rotten Vale.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Nullifies damage from effluvia and reduces damage from acids."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 17,
+    "name": "Heat Guard",
+    "description": "Nullifies damage from heat.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Nullifies heat damage."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 19,
+    "name": "Attack Boost",
+    "description": "Increases attack power. Also improves affinity at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Attack +3"
+      },
+      {
+        "level": 2,
+        "description": "Attack +6"
+      },
+      {
+        "level": 3,
+        "description": "Attack +9"
+      },
+      {
+        "level": 4,
+        "description": "Attack +12 Affinity +5%"
+      },
+      {
+        "level": 5,
+        "description": "Attack +15 Affinity +5%"
+      },
+      {
+        "level": 6,
+        "description": "Attack +18 Affinity +5%"
+      },
+      {
+        "level": 7,
+        "description": "Attack +21 Affinity +5%"
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 7
+  },
+  {
+    "id": 20,
+    "name": "Defense Boost",
+    "description": "Increases defense. Level up to improve resistances as well.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Defense +5"
+      },
+      {
+        "level": 2,
+        "description": "Defense +10"
+      },
+      {
+        "level": 3,
+        "description": "Defense +5% Bonus: +10"
+      },
+      {
+        "level": 4,
+        "description": "Defense +5% Bonus: +20 All Elemental Resistances +3"
+      },
+      {
+        "level": 5,
+        "description": "Defense +8% Bonus: +20 All Elemental Resistances +3"
+      },
+      {
+        "level": 6,
+        "description": "Defense +8% Bonus: +35 All Elemental Resistances +5"
+      },
+      {
+        "level": 7,
+        "description": "Defense +10% Bonus: +35 All Elemental Resistances +5"
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 7
+  },
+  {
+    "id": 21,
+    "name": "Health Boost",
+    "description": "Increases health.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Health +15"
+      },
+      {
+        "level": 2,
+        "description": "Health +30"
+      },
+      {
+        "level": 3,
+        "description": "Health +50"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 22,
+    "name": "Recovery Up",
+    "description": "Increases the amount recovered when restoring health.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Recovery +10%"
+      },
+      {
+        "level": 2,
+        "description": "Recovery +20%"
+      },
+      {
+        "level": 3,
+        "description": "Recovery +30%"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 23,
+    "name": "Recovery Speed",
+    "description": "Speeds healing of recoverable damage (the red portion of the health gauge).",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Doubles the speed at which you heal recoverable damage."
+      },
+      {
+        "level": 2,
+        "description": "Triples the speed at which you heal recoverable damage."
+      },
+      {
+        "level": 3,
+        "description": "Quadruples the speed at which you heal recoverable damage."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 24,
+    "name": "Fire Resistance",
+    "description": "Increases fire resistance. Also improves defense at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Fire resistance +6"
+      },
+      {
+        "level": 2,
+        "description": "Fire resistance +12"
+      },
+      {
+        "level": 3,
+        "description": "Fire resistance +20 Defense +10"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 25,
+    "name": "Water Resistance",
+    "description": "Increases water resistance. Also improves defense at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Water resistance +6"
+      },
+      {
+        "level": 2,
+        "description": "Water resistance +12"
+      },
+      {
+        "level": 3,
+        "description": "Water resistance +20 Defense +10"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 26,
+    "name": "Ice Resistance",
+    "description": "Increases ice resistance. Also improves defense at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Ice resistance +6"
+      },
+      {
+        "level": 2,
+        "description": "Ice resistance +12"
+      },
+      {
+        "level": 3,
+        "description": "Ice resistance +20 Defense +10"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 27,
+    "name": "Thunder Resistance",
+    "description": "Increases thunder resistance. Also improves defense at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Thunder resistance +6"
+      },
+      {
+        "level": 2,
+        "description": "Thunder resistance +12"
+      },
+      {
+        "level": 3,
+        "description": "Thunder resistance +20 Defense +10"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 28,
+    "name": "Dragon Resistance",
+    "description": "Increases dragon resistance. Also improves defense at higher levels.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Dragon resistance +6"
+      },
+      {
+        "level": 2,
+        "description": "Dragon resistance +12"
+      },
+      {
+        "level": 3,
+        "description": "Dragon resistance +20 Defense +10"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 29,
+    "name": "Blight Resistance",
+    "description": "Grants protection against all elemental blights.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces the duration of all elemental blights by 50%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces the duration of all elemental blights by 75%."
+      },
+      {
+        "level": 3,
+        "description": "Nullifies all elemental blights."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 30,
+    "name": "Fire Attack",
+    "description": "Increases fire element attack power. (Elemental attack power has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Fire attack +30"
+      },
+      {
+        "level": 2,
+        "description": "Fire attack +60"
+      },
+      {
+        "level": 3,
+        "description": "Fire attack +100"
+      },
+      {
+        "level": 4,
+        "description": "Fire attack +5% Bonus: +100"
+      },
+      {
+        "level": 5,
+        "description": "Fire attack +10% Bonus: +100"
+      },
+      {
+        "level": 6,
+        "description": "Fire attack +20% Bonus: +100"
+      }
+    ],
+    "maxLevel": 6,
+    "baseMaxLevel": 6
+  },
+  {
+    "id": 31,
+    "name": "Water Attack",
+    "description": "Increases water element attack power. (Elemental attack power has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Water attack +30"
+      },
+      {
+        "level": 2,
+        "description": "Water attack +60"
+      },
+      {
+        "level": 3,
+        "description": "Water attack +100"
+      },
+      {
+        "level": 4,
+        "description": "Water attack +5% Bonus: +100"
+      },
+      {
+        "level": 5,
+        "description": "Water attack +10% Bonus: +100"
+      },
+      {
+        "level": 6,
+        "description": "Water attack +20% Bonus: +100"
+      }
+    ],
+    "maxLevel": 6,
+    "baseMaxLevel": 6
+  },
+  {
+    "id": 32,
+    "name": "Ice Attack",
+    "description": "Increases ice element attack power. (Elemental attack power has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Ice attack +30"
+      },
+      {
+        "level": 2,
+        "description": "Ice attack +60"
+      },
+      {
+        "level": 3,
+        "description": "Ice attack +100"
+      },
+      {
+        "level": 4,
+        "description": "Ice attack +5% Bonus: +100"
+      },
+      {
+        "level": 5,
+        "description": "Ice attack +10% Bonus: +100"
+      },
+      {
+        "level": 6,
+        "description": "Ice attack +20% Bonus: +100"
+      }
+    ],
+    "maxLevel": 6,
+    "baseMaxLevel": 6
+  },
+  {
+    "id": 33,
+    "name": "Thunder Attack",
+    "description": "Increases thunder element attack power. (Elemental attack power has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Thunder attack +30"
+      },
+      {
+        "level": 2,
+        "description": "Thunder attack +60"
+      },
+      {
+        "level": 3,
+        "description": "Thunder attack +100"
+      },
+      {
+        "level": 4,
+        "description": "Thunder attack +5% Bonus: +100"
+      },
+      {
+        "level": 5,
+        "description": "Thunder attack +10% Bonus: +100"
+      },
+      {
+        "level": 6,
+        "description": "Thunder attack +20% Bonus: +100"
+      }
+    ],
+    "maxLevel": 6,
+    "baseMaxLevel": 6
+  },
+  {
+    "id": 34,
+    "name": "Dragon Attack",
+    "description": "Increases dragon element attack power. (Elemental attack power has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Dragon attack +30"
+      },
+      {
+        "level": 2,
+        "description": "Dragon attack +60"
+      },
+      {
+        "level": 3,
+        "description": "Dragon attack +100"
+      },
+      {
+        "level": 4,
+        "description": "Dragon attack +5% Bonus: +100"
+      },
+      {
+        "level": 5,
+        "description": "Dragon attack +10% Bonus: +100"
+      },
+      {
+        "level": 6,
+        "description": "Dragon attack +20% Bonus: +100"
+      }
+    ],
+    "maxLevel": 6,
+    "baseMaxLevel": 6
+  },
+  {
+    "id": 35,
+    "name": "Poison Attack",
+    "description": "Increases the rate of poison buildup. (Elemental buildup has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Poison buildup +5% Bonus: +10"
+      },
+      {
+        "level": 2,
+        "description": "Poison buildup +10% Bonus: +10"
+      },
+      {
+        "level": 3,
+        "description": "Poison buildup +20% Bonus: +10"
+      },
+      {
+        "level": 4,
+        "description": "Poison buildup +30% Bonus: +10"
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 36,
+    "name": "Paralysis Attack",
+    "description": "Increases the rate of paralysis buildup. (Elemental buildup has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Paralysis buildup +5% Bonus: +10"
+      },
+      {
+        "level": 2,
+        "description": "Paralysis buildup +10% Bonus: +10"
+      },
+      {
+        "level": 3,
+        "description": "Paralysis buildup +20% Bonus: +10"
+      },
+      {
+        "level": 4,
+        "description": "Paralysis buildup +30% Bonus: +10"
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 37,
+    "name": "Sleep Attack",
+    "description": "Increases the rate of sleep buildup. (Elemental buildup has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Sleep buildup +5% Bonus: +10"
+      },
+      {
+        "level": 2,
+        "description": "Sleep buildup +10% Bonus: +10"
+      },
+      {
+        "level": 3,
+        "description": "Sleep buildup +20% Bonus: +10"
+      },
+      {
+        "level": 4,
+        "description": "Sleep buildup +30% Bonus: +10"
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 38,
+    "name": "Blast Attack",
+    "description": "Increases the rate of blast buildup. (Elemental buildup has a maximum limit.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Blast buildup +5% Bonus: +10"
+      },
+      {
+        "level": 2,
+        "description": "Blast buildup +10% Bonus: +10"
+      },
+      {
+        "level": 3,
+        "description": "Blast buildup +20% Bonus: +10"
+      },
+      {
+        "level": 4,
+        "description": "Blast buildup +30% Bonus: +10"
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 39,
+    "name": "Normal Shots",
+    "description": "Increases the attack power of normal ammo and normal arrows.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the power of normal ammo and normal arrows."
+      },
+      {
+        "level": 2,
+        "description": "Greatly increases the power of normal ammo and normal arrows."
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 40,
+    "name": "Piercing Shots",
+    "description": "Increases the attack power of piercing ammo and Dragon Piercer.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the power of piercing ammo and Dragon Piercer."
+      },
+      {
+        "level": 2,
+        "description": "Greatly increases the power of piercing ammo and Dragon Piercer."
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 41,
+    "name": "Spread/Power Shots",
+    "description": "Increases the attack power of spread ammo, power shot arrows, and Thousand Dragons.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the power of spread ammo, power shot arrows, and Thousand Dragons."
+      },
+      {
+        "level": 2,
+        "description": "Greatly increases the power of spread ammo, power shot arrows, and Thousand Dragons."
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 42,
+    "name": "Poison Functionality",
+    "description": "Allows you to apply poison coatings.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Lets you use poison coating."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 43,
+    "name": "Para Functionality",
+    "description": "Allows you to apply paralysis coatings.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Lets you use paralysis coating."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 44,
+    "name": "Sleep Functionality",
+    "description": "Allows you to apply sleep coatings.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Lets you use sleep coating."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 46,
+    "name": "Blast Functionality",
+    "description": "Allows you to apply blast coatings.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Lets you use blast coating."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 47,
+    "name": "Free Elem/Ammo Up",
+    "description": "Unlocks your weapon's hidden element. Also increases bowgun loading capacity. (There is a cap to loading capacity.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Draws out 33% of hidden element and expands clip size for some ammo."
+      },
+      {
+        "level": 2,
+        "description": "Draws out 66% of hidden element and expands clip size for many ammo."
+      },
+      {
+        "level": 3,
+        "description": "Draws out 100% of hidden element and expands clip size for most ammo."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 48,
+    "name": "Critical Eye",
+    "description": "Increases affinity.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Affinity +5%"
+      },
+      {
+        "level": 2,
+        "description": "Affinity +10%"
+      },
+      {
+        "level": 3,
+        "description": "Affinity +15%"
+      },
+      {
+        "level": 4,
+        "description": "Affinity +20%"
+      },
+      {
+        "level": 5,
+        "description": "Affinity +25%"
+      },
+      {
+        "level": 6,
+        "description": "Affinity +30%"
+      },
+      {
+        "level": 7,
+        "description": "Affinity +40%"
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 7
+  },
+  {
+    "id": 49,
+    "name": "Critical Boost",
+    "description": "Increases the damage of critical hits.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases damage dealt by critical hits to 30%."
+      },
+      {
+        "level": 2,
+        "description": "Increases damage dealt by critical hits to 35%."
+      },
+      {
+        "level": 3,
+        "description": "Increases damage dealt by critical hits to 40%."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 50,
+    "name": "Weakness Exploit",
+    "description": "Increases the affinity of attacks that exploit a monster weak spot.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Attacks that hit weak spots have 10% increased affinity, with an extra 5% on wounded parts."
+      },
+      {
+        "level": 2,
+        "description": "Attacks that hit weak spots have 15% increased affinity, with an extra 15% on wounded parts."
+      },
+      {
+        "level": 3,
+        "description": "Attacks that hit weak spots have 30% increased affinity, with an extra 20% on wounded parts."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 52,
+    "name": "Focus",
+    "description": "Increases the fill rate for weapons with gauges and the charge rate for weapons with charge attacks.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases gauge fill rate by 5% and reduces charge times by 5%."
+      },
+      {
+        "level": 2,
+        "description": "Increases gauge fill rate by 10% and reduces charge times by 10%."
+      },
+      {
+        "level": 3,
+        "description": "Increases gauge fill rate by 20% and reduces charge times by 15%."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 53,
+    "name": "Power Prolonger",
+    "description": "Allows long swords, dual blades, insect glaives, switch axes, and charge blades to stay powered up longer.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly increases the duration weapons are powered up."
+      },
+      {
+        "level": 2,
+        "description": "Increases the duration weapons are powered up."
+      },
+      {
+        "level": 3,
+        "description": "Greatly increases the duration weapons are powered up."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 54,
+    "name": "Handicraft",
+    "description": "Extends the weapon sharpness gauge. However, it will not increase the gauge past its maximum.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Weapon sharpness +10"
+      },
+      {
+        "level": 2,
+        "description": "Weapon sharpness +20"
+      },
+      {
+        "level": 3,
+        "description": "Weapon sharpness +30"
+      },
+      {
+        "level": 4,
+        "description": "Weapon sharpness +40"
+      },
+      {
+        "level": 5,
+        "description": "Weapon sharpness +50"
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 55,
+    "name": "Critical Draw",
+    "description": "Increases affinity when performing draw attacks.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Draw attack affinity +30%"
+      },
+      {
+        "level": 2,
+        "description": "Draw attack affinity +60%"
+      },
+      {
+        "level": 3,
+        "description": "Draw attack affinity +100%"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 56,
+    "name": "Partbreaker",
+    "description": "Makes it easier to break or sever parts of large monsters.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Part damage +10%"
+      },
+      {
+        "level": 2,
+        "description": "Part damage +20%"
+      },
+      {
+        "level": 3,
+        "description": "Part damage +30%"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 57,
+    "name": "Slugger",
+    "description": "Makes it easier to stun monsters.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Stun power +20%"
+      },
+      {
+        "level": 2,
+        "description": "Stun power +30%"
+      },
+      {
+        "level": 3,
+        "description": "Stun power +40%"
+      },
+      {
+        "level": 4,
+        "description": "Stun power +50%"
+      },
+      {
+        "level": 5,
+        "description": "Stun power +60%"
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 58,
+    "name": "Stamina Thief",
+    "description": "Increases certain attacks' ability to exhaust monsters.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Exhaust power +20%"
+      },
+      {
+        "level": 2,
+        "description": "Exhaust power +30%"
+      },
+      {
+        "level": 3,
+        "description": "Exhaust power +40%"
+      },
+      {
+        "level": 4,
+        "description": "Exhaust power +50%"
+      },
+      {
+        "level": 5,
+        "description": "Exhaust power +60%"
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 59,
+    "name": "Master Mounter",
+    "description": "Makes it easier to mount monsters.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Makes it easier to mount monsters and down mounted monsters."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 60,
+    "name": "Airborne",
+    "description": "Increases the damage caused by jumping attacks.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Jumping attack power +30%"
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 61,
+    "name": "Latent Power",
+    "description": "Temporarily increases affinity and reduces stamina depletion when certain conditions are met.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, increases affinity by 10% and reduces stamina depletion by 30%."
+      },
+      {
+        "level": 2,
+        "description": "While active, increases affinity by 20% and reduces stamina depletion by 30%."
+      },
+      {
+        "level": 3,
+        "description": "While active, increases affinity by 30% and reduces stamina depletion by 50%."
+      },
+      {
+        "level": 4,
+        "description": "While active, increases affinity by 40% and reduces stamina depletion by 50%."
+      },
+      {
+        "level": 5,
+        "description": "While active, increases affinity by 50% and reduces stamina depletion by 50%."
+      },
+      {
+        "level": 6,
+        "description": "While active, increases affinity by 50%, reduces stamina depletion by 50%. Triggers easier."
+      },
+      {
+        "level": 7,
+        "description": "While active, increases affinity by 60%, reduces stamina depletion by 50%. Triggers easier."
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 62,
+    "name": "Agitator",
+    "description": "Increases attack power and affinity when large monsters become enraged.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, grants attack +4 and increases affinity by 5%."
+      },
+      {
+        "level": 2,
+        "description": "While active, grants attack +8 and increases affinity by 5%."
+      },
+      {
+        "level": 3,
+        "description": "While active, grants attack +12 and increases affinity by 7%."
+      },
+      {
+        "level": 4,
+        "description": "While active, grants attack +16 and increases affinity by 7%."
+      },
+      {
+        "level": 5,
+        "description": "While active, grants attack +20 and increases affinity by 10%."
+      },
+      {
+        "level": 6,
+        "description": "While active, grants attack +24 and increases affinity by 15%."
+      },
+      {
+        "level": 7,
+        "description": "While active, grants attack +28 and increases affinity by 20%."
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 63,
+    "name": "Peak Performance",
+    "description": "Increases attack when your health is full.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, grants attack +5."
+      },
+      {
+        "level": 2,
+        "description": "While active, grants attack +10."
+      },
+      {
+        "level": 3,
+        "description": "While active, grants attack +20."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 64,
+    "name": "Heroics",
+    "description": "Increases attack power and defense when health drops to 35% or lower.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, increases defense by 50 points."
+      },
+      {
+        "level": 2,
+        "description": "While active, increases attack power by 5% and increases defense by 50 points."
+      },
+      {
+        "level": 3,
+        "description": "While active, increases attack power by 5% and increases defense by 100 points."
+      },
+      {
+        "level": 4,
+        "description": "While active, increases attack power by 10% and increases defense by 100 points."
+      },
+      {
+        "level": 5,
+        "description": "While active, increases attack power by 15% and increases defense by 100 points."
+      },
+      {
+        "level": 6,
+        "description": "While active, increases attack power by 25% and increases defense by 150 points."
+      },
+      {
+        "level": 7,
+        "description": "While active, increases attack power by 40% and increases defense by 150 points."
+      }
+    ],
+    "maxLevel": 7,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 65,
+    "name": "Fortify",
+    "description": "Temporarily increases your attack and defense every time you faint up to 2 times.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases attack by 10% and defense by 15% with each use."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 66,
+    "name": "Resentment",
+    "description": "Increases attack when you have recoverable damage (the red portion of your health gauge).",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, grants attack +5."
+      },
+      {
+        "level": 2,
+        "description": "While active, grants attack +10."
+      },
+      {
+        "level": 3,
+        "description": "While active, grants attack +15."
+      },
+      {
+        "level": 4,
+        "description": "While active, grants attack +20."
+      },
+      {
+        "level": 5,
+        "description": "While active, grants attack +25."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 67,
+    "name": "Resuscitate",
+    "description": "Improves evasion and reduces stamina depletion when afflicted with abnormal status effects.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, greatly improves evasion invulnerability time and reduces stamina depletion."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 68,
+    "name": "Horn Maestro",
+    "description": "Increases the effect duration of hunting horn melodies.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Extends melody effect duration and increases health recovery."
+      },
+      {
+        "level": 2,
+        "description": "Greatly increases the effect duration of hunting horn melodies."
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 69,
+    "name": "Capacity Boost",
+    "description": "Increases the gunlance's shell capacity and charge blade's phial capacity.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Loading capacity +1"
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 70,
+    "name": "Special Ammo Boost",
+    "description": "Increases the power of bowgun special ammo, Dragon Piercer, and Thousand Dragons.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the power of bowgun special ammo, Dragon Piercer, and Thousand Dragons by 10%."
+      },
+      {
+        "level": 2,
+        "description": "Increases the power of bowgun special ammo, Dragon Piercer, and Thousand Dragons by 20%."
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 71,
+    "name": "Artillery",
+    "description": "Strengthens explosive attacks like gunlance shells, Wyvern's Fire, charge blade phial attacks, and sticky ammo.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases power of each attack by 10% and reduces Wyvern's Fire cooldown by 15%."
+      },
+      {
+        "level": 2,
+        "description": "Increases power of each attack by 20% and reduces Wyvern's Fire cooldown by 30%."
+      },
+      {
+        "level": 3,
+        "description": "Increases power of each attack by 30% and reduces Wyvern's Fire cooldown by 50%."
+      },
+      {
+        "level": 4,
+        "description": "Increases power of each attack by 40% and reduces Wyvern's Fire cooldown by 60%."
+      },
+      {
+        "level": 5,
+        "description": "Increases power of each attack by 50% and reduces Wyvern's Fire cooldown by 70%."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 72,
+    "name": "Heavy Artillery",
+    "description": "Increases the firepower of ballistae and cannons.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Firepower +50%"
+      },
+      {
+        "level": 2,
+        "description": "Firepower +100%"
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 73,
+    "name": "Marathon Runner",
+    "description": "Slows down stamina depletion for actions which continuously drain stamina (such as dashing).",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces continuous stamina depletion by 15%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces continuous stamina depletion by 30%."
+      },
+      {
+        "level": 3,
+        "description": "Reduces continuous stamina depletion by 50%."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 74,
+    "name": "Constitution",
+    "description": "Reduces stamina depletion when performing stamina-draining moves such as evading, etc.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces fixed stamina depletion by 10%."
+      },
+      {
+        "level": 2,
+        "description": "Reduces fixed stamina depletion by 20%."
+      },
+      {
+        "level": 3,
+        "description": "Reduces fixed stamina depletion by 30%."
+      },
+      {
+        "level": 4,
+        "description": "Reduces fixed stamina depletion by 40%."
+      },
+      {
+        "level": 5,
+        "description": "Reduces fixed stamina depletion by 50%."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 75,
+    "name": "Leap of Faith",
+    "description": "Allows you to do a dive-evade when facing towards large monsters, and extends the dive-evade distance.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Enables Leap of Faith."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 76,
+    "name": "Stamina Surge",
+    "description": "Speeds up stamina recovery.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Stamina recovery speed +10%"
+      },
+      {
+        "level": 2,
+        "description": "Stamina recovery speed +20%"
+      },
+      {
+        "level": 3,
+        "description": "Stamina recovery speed +30%"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 77,
+    "name": "Hunger Resistance",
+    "description": "Reduces maximum stamina depletion over time. However, does not work against cold environments that reduce stamina.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Extends the time until your stamina cap decreases by 50%."
+      },
+      {
+        "level": 2,
+        "description": "Extends the time until your stamina cap decreases by 100%."
+      },
+      {
+        "level": 3,
+        "description": "Prevents your stamina cap from decreasing."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 78,
+    "name": "Evade Window",
+    "description": "Extends the invulnerability period when evading.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Very slightly increases invulnerability window."
+      },
+      {
+        "level": 2,
+        "description": "Slightly increases invulnerability window."
+      },
+      {
+        "level": 3,
+        "description": "Increases invulnerability window."
+      },
+      {
+        "level": 4,
+        "description": "Greatly increases invulnerability window."
+      },
+      {
+        "level": 5,
+        "description": "Massively increases invulnerability window."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 79,
+    "name": "Evade Extender",
+    "description": "Increases evade distance.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly extends evasion distance."
+      },
+      {
+        "level": 2,
+        "description": "Extends evasion distance."
+      },
+      {
+        "level": 3,
+        "description": "Greatly extends evasion distance."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 80,
+    "name": "Guard",
+    "description": "Reduces knockbacks and stamina depletion when guarding.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Very slightly decreases the impact of attacks."
+      },
+      {
+        "level": 2,
+        "description": "Slightly decreases the impact of attacks and reduces stamina depletion by 15%."
+      },
+      {
+        "level": 3,
+        "description": "Greatly decreases the impact of attacks and reduces stamina depletion by 15%."
+      },
+      {
+        "level": 4,
+        "description": "Greatly decreases the impact of attacks and reduces stamina depletion by 30%."
+      },
+      {
+        "level": 5,
+        "description": "Massively decreases the impact of attacks and reduces stamina depletion by 50%."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 81,
+    "name": "Quick Sheath",
+    "description": "Speeds up weapon sheathing.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly increases sheathing speed."
+      },
+      {
+        "level": 2,
+        "description": "Moderately increases sheathing speed."
+      },
+      {
+        "level": 3,
+        "description": "Greatly increases sheathing speed."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 82,
+    "name": "Wide-Range",
+    "description": "Allows the effects of certain items to also affect nearby allies.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Items affect nearby allies with 33% of their efficacy."
+      },
+      {
+        "level": 2,
+        "description": "Items affect nearby allies in a wider radius with 33% of their efficacy."
+      },
+      {
+        "level": 3,
+        "description": "Items affect nearby allies in a wider radius at 66% of their efficacy."
+      },
+      {
+        "level": 4,
+        "description": "Items affect nearby allies in a much wider radius with 66% of their efficacy."
+      },
+      {
+        "level": 5,
+        "description": "Items affect nearby allies in a much wider radius with full efficacy."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 83,
+    "name": "Item Prolonger",
+    "description": "Extends the duration of some item effects.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Item effect duration +10%"
+      },
+      {
+        "level": 2,
+        "description": "Item effect duration +25%"
+      },
+      {
+        "level": 3,
+        "description": "Item effect duration +50%"
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 84,
+    "name": "Free Meal",
+    "description": "Gives you a predetermined chance of consuming a food or drink item for free.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates 25% of the time."
+      },
+      {
+        "level": 2,
+        "description": "Activates 50% of the time."
+      },
+      {
+        "level": 3,
+        "description": "Activates 75% of the time."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 85,
+    "name": "Speed Eating",
+    "description": "Increases meat-eating and item-consumption speed.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Slightly increases item use speed."
+      },
+      {
+        "level": 2,
+        "description": "Moderately increases item use speed."
+      },
+      {
+        "level": 3,
+        "description": "Greatly increases item use speed."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 86,
+    "name": "Speed Sharpening",
+    "description": "Speeds up weapon sharpening when using a whetstone.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Removes one cycle from the sharpening process."
+      },
+      {
+        "level": 2,
+        "description": "Removes two cycles from the sharpening process."
+      },
+      {
+        "level": 3,
+        "description": "Removes three cycles from the sharpening process."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 88,
+    "name": "Bombardier",
+    "description": "Increases the damage of explosive items.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Explosive power +10%"
+      },
+      {
+        "level": 2,
+        "description": "Explosive power +20%"
+      },
+      {
+        "level": 3,
+        "description": "Explosive power +30%"
+      },
+      {
+        "level": 4,
+        "description": "Explosive power +40%"
+      },
+      {
+        "level": 5,
+        "description": "Explosive power +50%"
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 90,
+    "name": "Mushroomancer",
+    "description": "Lets you digest mushrooms that would otherwise be inedible and gain their advantageous effects.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Lets you digest blue mushrooms and toadstools."
+      },
+      {
+        "level": 2,
+        "description": "Additionally lets you digest nitroshrooms and parashrooms."
+      },
+      {
+        "level": 3,
+        "description": "Additionally lets you digest mandragoras, devil's blight, and exciteshrooms."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 91,
+    "name": "Master Fisher",
+    "description": "Improves your skill at fishing.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the time window for reeling in fish, and makes it easier to catch large fish."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 92,
+    "name": "BBQ Master",
+    "description": "Improves your skill at cooking meat.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Makes it easier to cook well-done steaks."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 93,
+    "name": "Pro Transporter",
+    "description": "Increases your speed while transporting items and decreases the likelihood of dropping them.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases movement speed while transporting and reduces downtime on landings."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 94,
+    "name": "Master Gatherer",
+    "description": "Allows you to gather more quickly, and also prevents attacks from knocking you back while gathering.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Speeds up gathering and prevents knockbacks while gathering."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 95,
+    "name": "Honey Hunter",
+    "description": "Increases the quantity of honey you receive when gathering in the field.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "One extra honey per gather."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 96,
+    "name": "Carving Pro",
+    "description": "Prevents knockback from attacks while carving.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Prevents knockback while carving."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 97,
+    "name": "Divine Blessing",
+    "description": "Has a predetermined chance of reducing the damage you take.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, reduces damage taken by 15%."
+      },
+      {
+        "level": 2,
+        "description": "While active, reduces damage taken by 30%."
+      },
+      {
+        "level": 3,
+        "description": "While active, reduces damage taken by 50%."
+      },
+      {
+        "level": 4,
+        "description": "While active, reduces damage taken by 60%."
+      },
+      {
+        "level": 5,
+        "description": "While active, reduces damage taken by 60%. Skill becomes easier to activate as well."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 98,
+    "name": "Palico Rally",
+    "description": "Powers up Palicoes.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases Palico attack power and defense by 5%."
+      },
+      {
+        "level": 2,
+        "description": "Increases Palico attack power and defense by 10%."
+      },
+      {
+        "level": 3,
+        "description": "Increases Palico attack power and defense by 15%."
+      },
+      {
+        "level": 4,
+        "description": "Increases Palico attack power and defense by 20%."
+      },
+      {
+        "level": 5,
+        "description": "Increases Palico attack power and defense by 25%."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 99,
+    "name": "Botanist",
+    "description": "Increases the quantity of herbs and other consumable items you gather.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "One extra consumable herb item per gather."
+      },
+      {
+        "level": 2,
+        "description": "One extra consumable herb, fruit, nut, or seed item per gather."
+      },
+      {
+        "level": 3,
+        "description": "One extra consumable herb, fruit, nut, seed, or insect item per gather."
+      },
+      {
+        "level": 4,
+        "description": "One extra consumable herb, fruit, nut, seed, insect, or mushroom item per gather."
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 100,
+    "name": "Geologist",
+    "description": "Increases the number of times you can use a gathering point.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Allows you to gather one extra time from bonepiles."
+      },
+      {
+        "level": 2,
+        "description": "Allows you to gather one extra time from bonepiles and special item gathering points."
+      },
+      {
+        "level": 3,
+        "description": "Allows you to gather one extra time from bonepiles, gathering points, and mining outcrops."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 101,
+    "name": "Maximum Might",
+    "description": "Increases affinity as long as stamina is kept full for a period of time.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, increases affinity by 10%."
+      },
+      {
+        "level": 2,
+        "description": "While active, increases affinity by 20%."
+      },
+      {
+        "level": 3,
+        "description": "While active, increases affinity by 30%."
+      },
+      {
+        "level": 4,
+        "description": "While active, increases affinity by 40%."
+      },
+      {
+        "level": 5,
+        "description": "Increases affinity by 40% as soon as the stamina gauge is full."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 102,
+    "name": "Slinger Capacity",
+    "description": "Increases loading capacity for slinger ammo obtained in the field. Limits the amount of ammo used when firing certain shots.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the loading capacity for slinger ammo collected from the ground or plants."
+      },
+      {
+        "level": 2,
+        "description": "In addition, increases the loading capacity for some slinger ammo dropped by monsters."
+      },
+      {
+        "level": 3,
+        "description": "In addition, increases the loading capacity for all slinger ammo dropped by monsters."
+      },
+      {
+        "level": 4,
+        "description": "Increases the loading capacity for slinger ammo collected from the ground or plants even more."
+      },
+      {
+        "level": 5,
+        "description": "Increases the loading capacity for all slinger ammo."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 103,
+    "name": "Stealth",
+    "description": "Makes it easier for monsters to lose sight of you.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Makes it slightly easier for monsters to lose sight of you."
+      },
+      {
+        "level": 2,
+        "description": "Makes it moderately easier for monsters to lose sight of you."
+      },
+      {
+        "level": 3,
+        "description": "Makes it much easier for monsters to lose sight of you."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 104,
+    "name": "Flinch Free",
+    "description": "Prevents knockbacks and other reactions to small damage.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Prevents knockbacks. Increases some Kinsect extract effects."
+      },
+      {
+        "level": 2,
+        "description": "Prevents knockbacks. Tripping is reduced to a knockback. Increases some Kinsect extract effects."
+      },
+      {
+        "level": 3,
+        "description": "Prevents knockbacks and tripping. Increases some Kinsect extract effects."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 105,
+    "name": "Scoutfly Range Up",
+    "description": "Expands your scoutflies' detection range.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Expands your scoutflies' detection range."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 106,
+    "name": "Speed Crawler",
+    "description": "Increases movement speed while crouching.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases movement speed while crouching."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 107,
+    "name": "Jump Master",
+    "description": "Prevents attacks from knocking you back during a jump.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Negates knockback during jumps."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 108,
+    "name": "Survival Expert",
+    "description": "Extra health is recovered from environmental interactables like Sporepuffs or Wiggly Litchi.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Interactables restore an additional 50 health."
+      },
+      {
+        "level": 2,
+        "description": "Interactables restore an additional 80 health."
+      },
+      {
+        "level": 3,
+        "description": "Interactables restore an additional 100 health."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 109,
+    "name": "Aquatic/Polar Mobility",
+    "description": "Lets you move more freely in water. Also prevents you from being slowed down by terrain effects, such as deep snow.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Prevents lowered movement speed."
+      },
+      {
+        "level": 2,
+        "description": "Increases your evade window and prevents lowered movement speed."
+      },
+      {
+        "level": 3,
+        "description": "Greatly increases evade window and prevents lowered movement speed."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 111,
+    "name": "Cliffhanger",
+    "description": "Decreases stamina depletion when evading while clinging to walls or ivy, or when moving while grappling onto an enemy.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces stamina depletion while climbing by 50%."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 112,
+    "name": "Blindsider",
+    "description": "Improves the effectiveness of flash attacks and items.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the range of Flash Pods."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 114,
+    "name": "Scholar",
+    "description": "Speeds up progress on research levels and special investigations. (Effect is applied at the quest results screen.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Speeds up progress on research levels and special investigations."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 115,
+    "name": "Entomologist",
+    "description": "Decreases the chances of destroying the bodies of small insect monsters, allowing them to be carved.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the chances of a corpse being left behind."
+      },
+      {
+        "level": 2,
+        "description": "Greatly increases the chances of a corpse being left behind."
+      },
+      {
+        "level": 3,
+        "description": "Makes it so corpses will always be left behind."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 116,
+    "name": "Effluvia Resistance",
+    "description": "Gain a resistance to effluvial buildup.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Reduces effluvial buildup."
+      },
+      {
+        "level": 2,
+        "description": "Greatly reduces effluvial buildup."
+      },
+      {
+        "level": 3,
+        "description": "Prevents effluvial buildup."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 117,
+    "name": "Scenthound",
+    "description": "Increases your scoutflies' gauge fill rate when you find tracks and other traces left by monsters.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases gauge fill rate by 50%."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 118,
+    "name": "Forager's Luck",
+    "description": "Increases the chance of finding rare gathering points.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases the likelihood of rare gathering points respawning."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 119,
+    "name": "Detector",
+    "description": "Shows rare gathering points on the Wildlife Map.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Marks rare sites on the wildlife map."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 120,
+    "name": "Tool Specialist",
+    "description": "Reduces the recharge time for specialized tools.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Shortens time until reuse by 10%."
+      },
+      {
+        "level": 2,
+        "description": "Shortens time until reuse by 20%."
+      },
+      {
+        "level": 3,
+        "description": "Shortens time until reuse by 30%."
+      },
+      {
+        "level": 4,
+        "description": "Shortens time until reuse by 40%."
+      },
+      {
+        "level": 5,
+        "description": "Shortens time until reuse by 50%."
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 122,
+    "name": "Affinity Sliding",
+    "description": "Sliding increases your affinity for a short time.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Increases affinity by 30% for a short time after sliding."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 123,
+    "name": "Elderseal Boost",
+    "description": "Increases the Elderseal of weapons and dragon ammo.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Boosts Elderseal one level."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 124,
+    "name": "Intimidator",
+    "description": "Reduces the chances small monsters will attack after spotting you. (No effect on certain monsters.)",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Discourages monsters from engaging you even if you've been spotted."
+      },
+      {
+        "level": 2,
+        "description": "Highly discourages monsters from engaging you even if you've been spotted."
+      },
+      {
+        "level": 3,
+        "description": "Prevents monsters from engaging you even if you've been spotted."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 125,
+    "name": "Anjanath Power",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Adrenaline",
+        "description": "Temporarily reduces stamina depletion when health is at 40% or lower.",
+        "grantsSkill": 206,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 126,
+    "name": "Nergigante Hunger",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Hasten Recovery",
+        "description": "Regenerates your health as you continually attack a monster. Recovery varies by weapon.",
+        "grantsSkill": 161,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 127,
+    "name": "Vaal Hazak Vitality",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Super Recovery",
+        "description": "Allows recovery to exceed the red portion of the health gauge.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 128,
+    "name": "Rathalos Power",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Critical Element",
+        "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
+        "grantsSkill": 165,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 129,
+    "name": "Diablos Power",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Bludgeoner",
+        "description": "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
+        "grantsSkill": 205,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 130,
+    "name": "Kirin Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 4,
+        "effectName": "Capture Master",
+        "description": "High chance of increased capture rewards. (No effect when joining mid-quest.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 131,
+    "name": "Pink Rathian Mastery",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Poison Duration Up",
+        "description": "Extends the duration of your poison's effect on monsters.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 132,
+    "name": "Anjanath Will",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Adrenaline",
+        "description": "Temporarily reduces stamina depletion when health is at 40% or lower.",
+        "grantsSkill": 206,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Stamina Cap Up",
+        "description": "Increases stamina cap.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 135,
+    "name": "Rathalos Mastery",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Critical Element",
+        "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
+        "grantsSkill": 165,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Mind's Eye/Ballistics",
+        "description": "Prevents attacks from being deflected. Also shortens the distance before ammo and arrows reach maximum power.",
+        "grantsSkill": 156,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 136,
+    "name": "Diablos Mastery",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Bludgeoner",
+        "description": "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
+        "grantsSkill": 205,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Non-elemental Boost",
+        "description": "Powers up non-elemental weapons you have equipped.",
+        "grantsSkill": 159,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 137,
+    "name": "Kirin Favor",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Capture Master",
+        "description": "High chance of increased capture rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 138,
+    "name": "Uragaan Protection",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Guard Up",
+        "description": "Allows you to guard against ordinarily unblockable attacks.",
+        "grantsSkill": 157,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 142,
+    "name": "Bazelgeuse Protection",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Guts",
+        "description": "Above a certain health threshold, you withstand an attack that would normally cart you (once only).",
+        "grantsSkill": 160,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 143,
+    "name": "Teostra Technique",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Master's Touch",
+        "description": "Prevents your weapon from losing sharpness during critical hits.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 144,
+    "name": "Kushala Daora Flight",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Nullify Wind Pressure",
+        "description": "Negates all wind pressure.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 145,
+    "name": "Xeno'jiiva Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Razor Sharp/Spare Shot",
+        "description": "Halves sharpness loss. For bows and bowguns, shots have a chance not to expend coatings or ammo.",
+        "grantsSkill": 162,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 147,
+    "name": "Zorah Magdaros Mastery",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Critical Status",
+        "description": "Increases abnormal status effect damage (paralysis, poison, sleep, blast) when landing critical hits.",
+        "grantsSkill": 166,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 149,
+    "name": "Guild Guidance",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 4,
+        "effectName": "Great Luck",
+        "description": "High chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 150,
+    "name": "Commission Guidance",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 4,
+        "effectName": "Carving Master",
+        "description": "Lets you carve one additional time. (No effect when joining mid-quest.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 151,
+    "name": "Legiana Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Good Luck",
+        "description": "Good chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 152,
+    "name": "Legiana Favor",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Good Luck",
+        "description": "Good chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Bow Charge Plus",
+        "description": "Increases max bow charge level by one.",
+        "grantsSkill": 155,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 153,
+    "name": "Odogaron Power",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Punishing Draw",
+        "description": "Adds a stun effect to draw attacks and slightly increases attack power.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 154,
+    "name": "Odogaron Mastery",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Punishing Draw",
+        "description": "Adds a stun effect to draw attacks and slightly increases attack power.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Protective Polish",
+        "description": "Weapon sharpness does not decrease for a set time after sharpening.",
+        "grantsSkill": 158,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 155,
+    "name": "Bow Charge Plus",
+    "description": "Increases max bow charge level by one.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 156,
+    "name": "Mind's Eye/Ballistics",
+    "description": "Prevents attacks from being deflected. Also shortens the distance before ammo and arrows reach maximum power.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 157,
+    "name": "Guard Up",
+    "description": "Allows you to guard against ordinarily unblockable attacks.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Enables skill use."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 158,
+    "name": "Protective Polish",
+    "description": "Weapon sharpness does not decrease for a set time after sharpening.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Enables skill use."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 159,
+    "name": "Non-elemental Boost",
+    "description": "Powers up non-elemental weapons you have equipped.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Raises base attack for non-elemental weapons."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 160,
+    "name": "Guts",
+    "description": "Above a certain health threshold, you withstand an attack that would normally cart you (once only).",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 161,
+    "name": "Hasten Recovery",
+    "description": "Regenerates your health as you continually attack a monster. Recovery varies by weapon.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 162,
+    "name": "Razor Sharp/Spare Shot",
+    "description": "Halves sharpness loss. For bows and bowguns, shots have a chance not to expend coatings or ammo.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 163,
+    "name": "Lunastra Favor",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Stamina Cap Up",
+        "description": "Increases stamina cap.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Mind's Eye/Ballistics",
+        "description": "Prevents attacks from being deflected. Also shortens the distance before ammo and arrows reach maximum power.",
+        "grantsSkill": 156,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 164,
+    "name": "Soul of the Dragoon",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Elemental Airborne",
+        "description": "Elemental damage increased for jumping attacks.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Master's Touch",
+        "description": "Prevents your weapon from losing sharpness during critical hits.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 165,
+    "name": "Critical Element",
+    "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 166,
+    "name": "Critical Status",
+    "description": "Increases abnormal status effect damage (paralysis, poison, sleep, blast) when landing critical hits.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 167,
+    "name": "Witcher's Knowledge",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Igni Intensity",
+        "description": "Only those who complete the rigorous witcher training are allowed to use the powerful magic of the Igni Sign.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Super Recovery",
+        "description": "Allows recovery to exceed the red portion of the health gauge.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 168,
+    "name": "Astera Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 5,
+        "effectName": "Great Luck",
+        "description": "Often increases the number of rewards received at the end of a quest. (Does not work if joining a quest in progress)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 169,
+    "name": "Zinogre Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Latent Power Secret",
+        "description": "Raises the maximum level of the Latent Power skill.",
+        "raisesCapFor": 61,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 170,
+    "name": "Tigrex Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Free Meal Secret",
+        "description": "Raises the maximum level of the Free Meal skill.",
+        "raisesCapFor": 84,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 171,
+    "name": "Nargacuga Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "True Razor Sharp/Spare Shot",
+        "description": "Greatly reduces sharpness loss. Bows and bowguns have a chance not to expend coatings or ammo.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 172,
+    "name": "Brachydios Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Agitator Secret",
+        "description": "Raises the maximum level of the Agitator skill.",
+        "raisesCapFor": 62,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 173,
+    "name": "Glavenus Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Maximum Might Secret",
+        "description": "Raises the maximum level of the Maximum Might skill.",
+        "raisesCapFor": 101,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 174,
+    "name": "Silver Rathalos Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Slinger Ammo Secret",
+        "description": "Raises the maximum level of the Slinger Capacity skill.",
+        "raisesCapFor": 102,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "True Critical Element",
+        "description": "Greatly increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 175,
+    "name": "Gold Rathian Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Divine Blessing Secret",
+        "description": "Raises the maximum level of the Divine Blessing skill.",
+        "raisesCapFor": 97,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "True Critical Status",
+        "description": "Greatly increases status effect damage (paralysis, poison, sleep, blast) when landing critical hits.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 176,
+    "name": "Shara Ishvalda Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 4,
+        "effectName": "Gaia's Veil",
+        "description": "While wearing a mantle, gain Windproof Lv3, Earplugs Lv3, Tremor Res Lv3, and Flinch Free.",
+        "level": 4
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "True Gaia's Veil",
+        "description": "While wearing a mantle, gain Tremor Resistance Lv3, Earplugs Lv5, max Windproof, and Flinch Free.",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 177,
+    "name": "Namielle Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Element Acceleration",
+        "description": "Continually attacking a monster activates Free Element/Ammo Up Lv2 and increases elemental damage.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "True Element Acceleration",
+        "description": "Continually attacking a monster activates Free Element/Ammo Up Lv3 and increases elemental damage.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 178,
+    "name": "Velkhana Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Critical Element",
+        "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
+        "grantsSkill": 165,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Frostcraft",
+        "description": "An aura of frost builds when your weapon is sheathed, raising attack. Wanes each melee hit or shot fired.",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 179,
+    "name": "Ancient Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Critical Status",
+        "description": "Increases abnormal status effect damage (paralysis, poison, sleep, blast) when landing critical hits.",
+        "grantsSkill": 166,
+        "grantsLevel": 1,
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 180,
+    "name": "Commission Alchemy",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Bombardier Secret",
+        "description": "Raises the maximum level of the Bombardier skill.",
+        "raisesCapFor": 88,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 181,
+    "name": "Instructor's Guidance",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Capture Master",
+        "description": "High chance of increased capture rewards. (No effect when joining mid-quest.)",
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 182,
+    "name": "Anjanath Dominance",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Stamina Cap Up",
+        "description": "Increases stamina cap.",
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 183,
+    "name": "Rathian Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Poison Duration Up",
+        "description": "Extends the duration of your poison's effect on monsters.",
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 184,
+    "name": "Provoker",
+    "description": "Increases the attention drawn when attacking a monster.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 185,
+    "name": "Offensive Guard",
+    "description": "Temporarily increases attack power after executing a perfectly-timed guard.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, increases attack power by 5%."
+      },
+      {
+        "level": 2,
+        "description": "While active, increases attack power by 10%."
+      },
+      {
+        "level": 3,
+        "description": "While active, increases attack power by 15%."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 186,
+    "name": "Coalescence",
+    "description": "Temporarily enhances attacks after recovering from blights or abnormal status.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "While active, grants attack +12, element attack power +30, and status buildup +5%."
+      },
+      {
+        "level": 2,
+        "description": "While active, grants attack +15, element attack power +60, and status buildup +10%."
+      },
+      {
+        "level": 3,
+        "description": "While active, grants attack +18, element attack power +90, and status buildup +15%."
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 187,
+    "name": "Safe Landing",
+    "description": "Allows you to quickly recover from heavy attacks that blow you back when you have your weapon unsheathed.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 188,
+    "name": "Barioth Hidden Art",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Punishing Draw",
+        "description": "Adds a stun effect to draw attacks and slightly increases attack power.",
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 189,
+    "name": "Rathalos Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Mind's Eye/Ballistics",
+        "description": "Prevents attacks from being deflected. Also shortens the distance before ammo and arrows reach maximum power.",
+        "grantsSkill": 156,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 190,
+    "name": "Diablos Ambition",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Slugger Secret",
+        "description": "Raises the maximum level of the Slugger skill.",
+        "raisesCapFor": 57,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 191,
+    "name": "Legiana Ambition",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Bow Charge Plus",
+        "description": "Increases max bow charge level by one.",
+        "grantsSkill": 155,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 192,
+    "name": "Odogaron Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Protective Polish",
+        "description": "Weapon sharpness does not decrease for a set time after sharpening.",
+        "grantsSkill": 158,
+        "grantsLevel": 1,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 193,
+    "name": "Uragaan Ambition",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Guard Up",
+        "description": "Allows you to guard against ordinarily unblockable attacks.",
+        "grantsSkill": 157,
+        "grantsLevel": 1,
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 194,
+    "name": "Bazelgeuse Ambition",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Guts",
+        "description": "Above a certain health threshold, you withstand an attack that would normally cart you (once only).",
+        "grantsSkill": 160,
+        "grantsLevel": 1,
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 195,
+    "name": "Deviljho Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Stamina Thief Secret",
+        "description": "Raises the maximum level of the Stamina Thief skill.",
+        "raisesCapFor": 58,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 196,
+    "name": "Vaal Soulvein",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Super Recovery",
+        "description": "Allows recovery to exceed the red portion of the health gauge.",
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 199,
+    "name": "Kirin Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Great Luck",
+        "description": "High chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 200,
+    "name": "Guild Pride",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Good Luck",
+        "description": "Good chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Carving Master",
+        "description": "Lets you carve one additional time. (No effect when joining mid-quest.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 201,
+    "name": "Zorah Magdaros Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Artillery Secret",
+        "description": "Raises the maximum level of the Artillery skill.",
+        "raisesCapFor": 71,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 202,
+    "name": "Lunastra Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Tool Specialist Secret",
+        "description": "Raises the maximum level of the Tool Specialist skill.",
+        "raisesCapFor": 120,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 203,
+    "name": "Nergigante Ambition",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Hasten Recovery",
+        "description": "Regenerates your health as you continually attack a monster. Recovery varies by weapon.",
+        "grantsSkill": 161,
+        "grantsLevel": 1,
+        "level": 2
+      }
+    ],
+    "maxLevel": 2,
+    "baseMaxLevel": 2
+  },
+  {
+    "id": 205,
+    "name": "Bludgeoner",
+    "description": "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 206,
+    "name": "Adrenaline",
+    "description": "Temporarily reduces stamina depletion when health is at 40% or lower.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 207,
+    "name": "Coldproof",
+    "description": "Nullifies the effects of cold weather.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 208,
+    "name": "Rajang's Rage",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Mind's Eye/Ballistics",
+        "description": "Prevents attacks from being deflected. Also shortens the distance before ammo and arrows reach maximum power.",
+        "grantsSkill": 156,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Protective Polish",
+        "description": "Weapon sharpness does not decrease for a set amount of time after sharpening.",
+        "grantsSkill": 158,
+        "grantsLevel": 1,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 209,
+    "name": "Power Cell",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 5,
+        "effectName": "Ancient Armory",
+        "description": "Increases defense and eliminates damage reactions. Taking several hits knocks it out, but reactivates over time.",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 210,
+    "name": "Survivor",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Zombie & Effluvia Res",
+        "description": "Prevents zombie and effluvial buildup.",
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Agitator Secret",
+        "description": "Raises the maximum level of the Agitator skill.",
+        "raisesCapFor": 62,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 211,
+    "name": "Safi'jiiva Seal",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Dragonvein Awakening",
+        "description": "Elem., abnormal status, & affinity up with weapon drawn. Take damage when attacking, but can be recovered by continually attacking.",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "True Dragonvein Awakening",
+        "description": "Enhances attacks even more with weapon drawn. Take damage when attacking, but can be recovered by continually attacking.",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 212,
+    "name": "Joyful Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Joy's Gift",
+        "description": "Increases odds of getting special Holiday Joy rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "Joy's Gratitude",
+        "description": "Greatly increases odds of getting special Holiday Joy rewards. (No effect when joining mid-quest.)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 213,
+    "name": "Appreciation Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Gratitude's Gift",
+        "description": "Increases odds of getting special Grand Appreciation rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "Gratitude's Blessing",
+        "description": "Greatly increases odds of getting special Grand Appreciation rewards. (No effect when joining mid-quest.)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 214,
+    "name": "Full Bloom Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Full Bloom's Gift",
+        "description": "Increases odds of getting special Full Bloom rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "Full Bloom Gratitude",
+        "description": "Greatly increases odds of getting special Full Bloom rewards. (No effect when joining mid-quest.)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 215,
+    "name": "Sizzling Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Sizzling Gift",
+        "description": "Increases odds of getting special Sizzling Spice rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "Sizzling Gratitude",
+        "description": "Greatly increases odds of getting special Sizzling Spice rewards. (No effect when joining mid-quest.)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 216,
+    "name": "Fun Fright Blessing",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 3,
+        "effectName": "Fun Fright's Gift",
+        "description": "Increases odds of getting special Fun Fright rewards. (No effect when joining mid-quest.)",
+        "level": 3
+      },
+      {
+        "requiredParts": 5,
+        "effectName": "Fun Fright's Gratitude",
+        "description": "Greatly increases odds of getting special Fun Fright rewards. (No effect when joining mid-quest.)",
+        "level": 5
+      }
+    ],
+    "maxLevel": 5,
+    "baseMaxLevel": 5
+  },
+  {
+    "id": 217,
+    "name": "Rajang Will",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Maximum Might Secret",
+        "description": "Raises the maximum level of the Maximum Might skill.",
+        "raisesCapFor": 101,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Heroics Secret",
+        "description": "Raises the maximum level of the Heroics skill.",
+        "raisesCapFor": 64,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 218,
+    "name": "Brachydios Will",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Agitator Secret",
+        "description": "Raises the maximum level of the Agitator skill.",
+        "raisesCapFor": 62,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Artillery Secret",
+        "description": "Raises the maximum level of the Artillery skill.",
+        "raisesCapFor": 71,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 219,
+    "name": "Kulve Taroth Essence",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Guts",
+        "description": "Above a certain health threshold, you withstand an attack that would normally cart you (once only).",
+        "grantsSkill": 160,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Free Meal Secret",
+        "description": "Raises the maximum level of the Free Meal skill.",
+        "raisesCapFor": 84,
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 220,
+    "name": "Frostfang Absolute Art",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 1,
+        "effectName": "Punishing Draw",
+        "description": "Adds a stun effect to draw attacks and slightly increases attack power.",
+        "level": 1
+      },
+      {
+        "requiredParts": 3,
+        "effectName": "Slugger Secret",
+        "description": "Raises the maximum level of the Slugger skill.",
+        "raisesCapFor": 57,
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 221,
+    "name": "Alatreon Divinity",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Element Conversion",
+        "description": "Equipped weapon's elemental power increases as your armor's elemental resistance increases.",
+        "level": 2
+      },
+      {
+        "requiredParts": 3,
+        "effectName": "All Elemental Resistance",
+        "description": "Increases all elemental resistances +20%.",
+        "level": 3
+      }
+    ],
+    "maxLevel": 3,
+    "baseMaxLevel": 3
+  },
+  {
+    "id": 222,
+    "name": "Fatalis Legend",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Inheritance",
+        "description": "Removes the skill level cap for the skill secrets.",
+        "raisesAllCaps": true,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Transcendence",
+        "description": "Grants True Razor Sharp/Spare Shot. Health/Stamina +100 at the start of a quest or after fainting. (Effect doesn't stack.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  },
+  {
+    "id": 223,
+    "name": "Clutch Claw Boost",
+    "description": "Clutch claw weapon attacks wound monsters easier, and have a better chance of dropping slinger ammo.",
+    "isSetBonus": false,
+    "ranks": [
+      {
+        "level": 1,
+        "description": "Activates skill effect."
+      }
+    ],
+    "maxLevel": 1,
+    "baseMaxLevel": 1
+  },
+  {
+    "id": 224,
+    "name": "New World",
+    "isSetBonus": true,
+    "ranks": [
+      {
+        "requiredParts": 2,
+        "effectName": "Hasten Recovery",
+        "description": "Regenerates your health as you continually attack a monster. Recovery varies by weapon.",
+        "grantsSkill": 161,
+        "grantsLevel": 1,
+        "level": 2
+      },
+      {
+        "requiredParts": 4,
+        "effectName": "Great Luck",
+        "description": "High chance of increased quest rewards. (No effect when joining mid-quest.)",
+        "level": 4
+      }
+    ],
+    "maxLevel": 4,
+    "baseMaxLevel": 4
+  }
+]

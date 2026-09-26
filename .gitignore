@@ -1,0 +1,30 @@
+# Build output
+bin/
+obj/
+publish/
+TestResults/
+*.user
+*.suo
+.vs/
+.vscode/
+.idea/
+
+# Local scratch and tooling state
+*.log
+*.tmp
+.playwright-mcp/
+.cursor/
+
+# Game-data extraction workspace (chunk files, exporters, databases, icon sources).
+# Only the pipeline scripts are tracked; see docs/DATA.md.
+tools/dump/*
+!tools/dump/*.py
+*.pkg
+
+# Game saves never belong in the repository
+SAVEDATA1000*
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
