@@ -183,7 +183,7 @@ async function renderMaterialsModal(q, cats, pane, extra, seq) {
   for (const [note, names] of gifts) {
     const info = document.createElement("div");
     info.className = "mat-warning mat-info";
-    info.innerHTML = `<strong>Free gift gear: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(note)}</span>`;
+    info.innerHTML = `<strong>No materials needed: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(note)}</span>`;
     pane.appendChild(info);
   }
   const giftNames = new Set([...gifts.values()].flat());

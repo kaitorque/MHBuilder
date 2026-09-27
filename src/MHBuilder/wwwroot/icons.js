@@ -241,11 +241,11 @@ const UNOBTAINABLE_ARMOR = [
   },
 ];
 
-/** Armor handed out for free instead of forged, so it has no materials to farm. */
+/** Armor given away or bought outright instead of forged, so it has no materials to farm. */
 const GIFT_ARMOR = [
   {
     set: "Defender α",
-    note: "Defender α and Guardian α+ are the same armor under two names. It's free gear claimed from the in-game gifts (Guardian α+ comes with Iceborne), not forged from monster materials, so there's nothing to farm.",
+    note: "Defender α and Guardian α+ are the same armor under two names. Guardian α+ is a free gift with Iceborne, and Defender α is bought from the armory. Neither is forged from monster materials, so there's nothing to farm.",
   },
 ];
 
@@ -253,12 +253,12 @@ const armorNote = (list, setName) => list.find((u) => String(setName || "").star
 const unobtainableNote = (setName) => armorNote(UNOBTAINABLE_ARMOR, setName);
 const giftNote = (setName) => armorNote(GIFT_ARMOR, setName);
 
-/** Small tag after an armor name: save-edit-only or free gift gear. */
+/** Small tag after an armor name: save-edit-only, or gift / armory gear. */
 function armorNoteTag(setName) {
   const unobtainable = unobtainableNote(setName);
   if (unobtainable) return ` <span class="unobtainable-tag" title="${escapeHtml(unobtainable)}">Save edit only</span>`;
   const gift = giftNote(setName);
-  return gift ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml(gift)}">Free gift</span>` : "";
+  return gift ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml(gift)}">Gift / armory</span>` : "";
 }
 
 /** Crafting material (item_<stem>.png), tinted by its in-game icon color. */

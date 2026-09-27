@@ -57,7 +57,7 @@ public sealed class CatalogTests(CatalogFixture fixture)
         Assert.DoesNotContain(_catalog.Armor, a => a.Name.StartsWith("Guardian"));
 
         var guardianHelm = _catalog.ArmorById[442];
-        Assert.Equal("Defender Helm α", guardianHelm.Name);
+        Assert.Equal("Defender Helm α / Guardian Helm α+", guardianHelm.Name);
         Assert.Contains(guardianHelm, defender);
         Assert.Equal(guardianHelm.Id, _catalog.CanonicalArmorId(442));
     }

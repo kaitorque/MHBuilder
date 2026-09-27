@@ -385,8 +385,8 @@ public sealed class GameCatalog
     public int CanonicalArmorId(int id) => ArmorById.TryGetValue(id, out var piece) ? piece.Id : id;
 
     /// <summary>
-    /// Sets that exist under two names with identical pieces (Defender α and Guardian α+) become one set named
-    /// after both, keeping the lower set id. Sets that differ only by gender stay separate.
+    /// Sets that exist under two names with identical pieces (Defender α and Guardian α+) become one set, with the
+    /// set and each piece named after both, keeping the lower ids. Sets that differ only by gender stay separate.
     /// </summary>
     private static List<ArmorPiece> MergeIdenticalSets(List<ArmorPiece> armor, Dictionary<int, ArmorPiece> aliases)
     {
@@ -409,7 +409,12 @@ public sealed class GameCatalog
         foreach (var sets in duplicates)
         {
             string name = string.Join(" / ", sets.Select(s => s.Pieces[0].ArmorSetName).Distinct());
-            var kept = sets[0].Pieces.ToDictionary(PieceKey, p => p with { ArmorSetName = name });
+            var piecesByKey = sets.SelectMany(s => s.Pieces).ToLookup(PieceKey);
+            var kept = sets[0].Pieces.ToDictionary(PieceKey, p => p with
+            {
+                Name = string.Join(" / ", piecesByKey[PieceKey(p)].Select(x => x.Name).Distinct()),
+                ArmorSetName = name,
+            });
             foreach (var p in sets[0].Pieces)
                 replaced[p.Id] = kept[PieceKey(p)];
             foreach (var p in sets.Skip(1).SelectMany(s => s.Pieces))
