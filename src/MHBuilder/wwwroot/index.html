@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MHBuilder — Iceborne Set Search</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=45" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=46" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=45" />
+  <link rel="stylesheet" href="/styles.css?v=46" />
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -103,6 +103,18 @@
               <input type="file" id="saveFileInput" class="hidden" />
             </div>
             <p class="hint" id="saveImportNote"></p>
+            <details class="save-help">
+              <summary>Where is my save file?</summary>
+              <ol>
+                <li>
+                  In the file window, paste this into the address bar:
+                  <div class="save-path"><code id="saveFolderPath">C:\<wbr>Program Files (x86)\<wbr>Steam\<wbr>userdata</code><button type="button" class="btn small ghost" id="copySaveFolder">Copy</button></div>
+                </li>
+                <li>Open the numbered folder (your Steam account), then <code>582010</code> → <code>remote</code>.</li>
+                <li>Pick <code>SAVEDATA1000</code>, the file with no extension.</li>
+              </ol>
+              <p>Steam installed somewhere else? <code>userdata</code> is always in the folder Steam itself is installed in (right-click the Steam shortcut → <em>Open file location</em>), not in a game library folder.</p>
+            </details>
           </div>
           <div class="field">
             <span>Min free slots <em class="field-note">blank = any</em></span>
@@ -192,10 +204,10 @@
     </div>
   </div>
 
-  <script src="/icons.js?v=45"></script>
-  <script src="/builder.js?v=45"></script>
-  <script src="/materials.js?v=45"></script>
-  <script src="/saved-sets.js?v=45"></script>
-  <script src="/app.js?v=45"></script>
+  <script src="/icons.js?v=46"></script>
+  <script src="/builder.js?v=46"></script>
+  <script src="/materials.js?v=46"></script>
+  <script src="/saved-sets.js?v=46"></script>
+  <script src="/app.js?v=46"></script>
 </body>
 </html>

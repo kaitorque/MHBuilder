@@ -808,6 +808,20 @@ function initSaveDrop() {
   });
 }
 
+async function copySaveFolder() {
+  const path = $("saveFolderPath");
+  const button = $("copySaveFolder");
+  try {
+    await navigator.clipboard.writeText(path.textContent);
+    button.textContent = "Copied";
+  } catch {
+    // Clipboard API is unavailable on plain http: select the text for Ctrl+C instead.
+    getSelection().selectAllChildren(path);
+    button.textContent = "Ctrl+C";
+  }
+  setTimeout(() => (button.textContent = "Copy"), 1500);
+}
+
 async function initSaveImport() {
   state.localSaves = [];
   const input = $("saveFileInput");
@@ -820,6 +834,7 @@ async function initSaveImport() {
     if (file) importSaveFile(file);
   };
   initSaveDrop();
+  $("copySaveFolder").onclick = copySaveFolder;
   if (canRememberSave) {
     try {
       rememberedSave = (await saveHandleStore("readonly", (s) => s.get("save"))) ?? null;

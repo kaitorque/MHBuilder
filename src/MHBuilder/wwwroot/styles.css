@@ -107,6 +107,15 @@ body {
 .save-import .btn { flex: 1; }
 .save-import .btn:disabled { opacity: 0.5; cursor: progress; }
 .save-drop { border-radius: 6px; outline: 2px dashed transparent; outline-offset: 4px; transition: outline-color 0.15s; }
+.save-help { margin-top: 0.35rem; color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+.save-help summary { cursor: pointer; width: fit-content; }
+.save-help summary:hover { color: var(--accent); }
+.save-help ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
+.save-help p { margin: 0.4rem 0 0; }
+.save-help code { color: var(--text); background: var(--surface-0); border: 1px solid var(--line); border-radius: 4px; padding: 0 0.25rem; font-size: 0.78rem; word-break: break-all; }
+.save-path { display: flex; align-items: center; gap: 0.35rem; margin-top: 0.2rem; }
+.save-path code { flex: 1; padding: 0.15rem 0.35rem; user-select: all; word-break: normal; }
+.save-path .btn { flex: none; padding-inline: 0.55rem; }
 .save-drop.drop-over { outline-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
 
 /* —— Layout —— */
