@@ -79,6 +79,31 @@ public sealed class ApiTests(WebApplicationFactory<Program> factory) : IClassFix
         Assert.Equal(5, mats.GetProperty("pieces").GetArrayLength());
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task Limited_decorations_with_an_empty_list_uses_no_jewels(bool sendEmptyList)
+    {
+        var skills = new[] { new { id = await SkillId("Critical Eye"), level = 5 }, new { id = await SkillId("Weakness Exploit"), level = 3 } };
+
+        async Task<List<JsonElement>> Search(object request)
+        {
+            var response = await _client.PostAsJsonAsync("/api/search", request);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadFromJsonAsync<JsonElement>();
+            return body.GetProperty("results").EnumerateArray().ToList();
+        }
+        static int Jewels(JsonElement r) => r.GetProperty("decorations").GetArrayLength();
+
+        var unlimited = await Search(new { skills, maxResults = 10 });
+        Assert.Contains(unlimited, r => Jewels(r) > 0);
+
+        var limited = await Search(sendEmptyList
+            ? new { skills, unlimitedDecorations = false, ownedDecorations = Array.Empty<object>(), maxResults = 10 }
+            : new { skills, unlimitedDecorations = false, maxResults = 10 });
+        Assert.All(limited, r => Assert.Equal(0, Jewels(r)));
+    }
+
     [Fact]
     public async Task Search_without_skills_is_a_bad_request()
     {

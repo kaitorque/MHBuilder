@@ -699,7 +699,9 @@ function renderDecoSummary() {
   const listText = `${owned.length} jewel types · ${n} owned`;
   $("decoSummary").textContent = state.unlimitedDecos
     ? `Unlimited${owned.length ? ` · list saved (${listText})` : ""}`
-    : listText;
+    : owned.length
+      ? listText
+      : "No jewels listed · search uses armor and charm skills only";
 }
 
 const MAX_SAVE_BYTES = 16 * 1024 * 1024;

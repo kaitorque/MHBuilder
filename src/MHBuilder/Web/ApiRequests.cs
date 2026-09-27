@@ -34,9 +34,11 @@ public sealed class SearchApiRequest
             wanted[s.Id] = s.Level;
         }
 
+        // Limited with an empty list means no jewels at all, not unlimited.
         Dictionary<int, int>? owned = null;
-        if (UnlimitedDecorations != true && OwnedDecorations is { Count: > 0 })
-            owned = OwnedDecorations.Where(x => x.Count > 0).ToDictionary(x => x.Id, x => x.Count);
+        if (UnlimitedDecorations != true)
+            owned = (OwnedDecorations ?? []).Where(x => x.Count > 0)
+                .GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g.Sum(x => x.Count));
 
         return new SearchRequest(
             wanted,
