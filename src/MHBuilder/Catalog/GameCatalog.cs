@@ -20,6 +20,7 @@ public sealed class GameCatalog
     /// <summary>Set bonuses that raise all soft caps (Fatalis Inheritance).</summary>
     public IReadOnlyList<(int SetBonusId, int RequiredParts, string EffectName)> CapRaisersAll { get; }
     public IReadOnlyList<ArmorPiece> Armor { get; }
+    /// <summary>Also resolves ids of pieces folded into an identical set (see <see cref="MergeIdenticalSets"/>).</summary>
     public IReadOnlyDictionary<int, ArmorPiece> ArmorById { get; }
     public IReadOnlyList<CharmRank> Charms { get; }
     /// <summary>Every rank of each charm (lowest first); <see cref="Charms"/> keeps only the top rank.</summary>
@@ -34,6 +35,7 @@ public sealed class GameCatalog
         List<SetBonusInfo> setBonuses,
         List<SetEffectInfo> setEffects,
         List<ArmorPiece> armor,
+        IReadOnlyDictionary<int, ArmorPiece> armorAliases,
         List<CharmRank> charms,
         List<CharmRank> allCharmRanks,
         List<Decoration> decorations,
@@ -73,7 +75,10 @@ public sealed class GameCatalog
                 .Select(t => (sb.Id, t.RequiredParts, t.EffectName ?? "Inheritance")))
             .ToList();
         Armor = armor;
-        ArmorById = armor.ToDictionary(a => a.Id);
+        var armorById = armor.ToDictionary(a => a.Id);
+        foreach (var (id, piece) in armorAliases)
+            armorById.TryAdd(id, piece);
+        ArmorById = armorById;
         Charms = charms;
         CharmRanksById = allCharmRanks
             .GroupBy(c => c.CharmId)
@@ -275,6 +280,8 @@ public sealed class GameCatalog
                 setSkillIds,
                 gender));
         }
+        var armorAliases = new Dictionary<int, ArmorPiece>();
+        armor = MergeIdenticalSets(armor, armorAliases);
 
         // Group set effects that aren't a real skill (Good Luck, Inheritance…) by effect name,
         // so Good Luck from many sets → one pickable skill.
@@ -371,7 +378,50 @@ public sealed class GameCatalog
             }
         }
 
-        return new GameCatalog(skills, setBonuses, setEffects, armor, charms, allCharmRanks, decorations, weapons);
+        return new GameCatalog(skills, setBonuses, setEffects, armor, armorAliases, charms, allCharmRanks, decorations, weapons);
+    }
+
+    /// <summary>The armor id a request should use: ids of pieces folded into an identical set map to the kept piece.</summary>
+    public int CanonicalArmorId(int id) => ArmorById.TryGetValue(id, out var piece) ? piece.Id : id;
+
+    /// <summary>
+    /// Sets that exist under two names with identical pieces (Defender α and Guardian α+) become one set named
+    /// after both, keeping the lower set id. Sets that differ only by gender stay separate.
+    /// </summary>
+    private static List<ArmorPiece> MergeIdenticalSets(List<ArmorPiece> armor, Dictionary<int, ArmorPiece> aliases)
+    {
+        static string PieceKey(ArmorPiece p) => string.Join("|",
+            p.Slot, p.Rank, p.Rarity, p.DefenseMax, p.Resistances, string.Join("-", p.Slots),
+            string.Join(",", p.Skills.OrderBy(s => s.SkillId).Select(s => $"{s.SkillId}:{s.Level}")),
+            string.Join(",", p.SetSkillIds.Order()), p.Gender);
+
+        var duplicates = armor
+            .Where(a => a.ArmorSetId is not null)
+            .GroupBy(a => a.ArmorSetId!.Value)
+            .Select(g => (SetId: g.Key, Pieces: g.OrderBy(p => p.Slot).ToList()))
+            .GroupBy(s => string.Join("\n", s.Pieces.Select(PieceKey)))
+            .Where(g => g.Count() > 1)
+            .Select(g => g.OrderBy(s => s.SetId).ToList())
+            .ToList();
+        if (duplicates.Count == 0) return armor;
+
+        var replaced = new Dictionary<int, ArmorPiece?>();
+        foreach (var sets in duplicates)
+        {
+            string name = string.Join(" / ", sets.Select(s => s.Pieces[0].ArmorSetName).Distinct());
+            var kept = sets[0].Pieces.ToDictionary(PieceKey, p => p with { ArmorSetName = name });
+            foreach (var p in sets[0].Pieces)
+                replaced[p.Id] = kept[PieceKey(p)];
+            foreach (var p in sets.Skip(1).SelectMany(s => s.Pieces))
+            {
+                replaced[p.Id] = null;
+                aliases[p.Id] = kept[PieceKey(p)];
+            }
+        }
+        return armor
+            .Select(a => replaced.TryGetValue(a.Id, out var r) ? r : a)
+            .OfType<ArmorPiece>()
+            .ToList();
     }
 
     private static string? ReadDescription(JsonElement e) =>

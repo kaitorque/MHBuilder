@@ -23,7 +23,7 @@ public static class SearchEndpoints
         {
             try
             {
-                var req = body.ToSearchRequest();
+                var req = body.ToSearchRequest(cat);
                 var sw = Stopwatch.StartNew();
                 var outcome = searcher.SearchDetailed(req, http.RequestAborted);
                 sw.Stop();
@@ -48,11 +48,11 @@ public static class SearchEndpoints
             }
         });
 
-        app.MapPost("/api/search/more", (SearchApiRequest body, SkillExpander expander) =>
+        app.MapPost("/api/search/more", (SearchApiRequest body, SkillExpander expander, GameCatalog cat) =>
         {
             try
             {
-                var result = expander.Find(body.ToSearchRequest(), Recall(body));
+                var result = expander.Find(body.ToSearchRequest(cat), Recall(body));
                 return Results.Json(new
                 {
                     elapsedMs = result.ElapsedMs,

@@ -175,10 +175,23 @@ async function renderMaterialsModal(q, cats, pane, extra, seq) {
     warn.innerHTML = `<strong>Can't be earned in game: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(note)}</span>`;
     pane.appendChild(warn);
   }
-  if (noRecipe.length) {
+  const gifts = new Map();
+  for (const p of tabPieces) {
+    const note = giftNote(p.set);
+    if (note) gifts.set(note, [...(gifts.get(note) || []), p.name]);
+  }
+  for (const [note, names] of gifts) {
+    const info = document.createElement("div");
+    info.className = "mat-warning mat-info";
+    info.innerHTML = `<strong>Free gift gear: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(note)}</span>`;
+    pane.appendChild(info);
+  }
+  const giftNames = new Set([...gifts.values()].flat());
+  const unexplained = noRecipe.filter((r) => !giftNames.has(r.label));
+  if (unexplained.length) {
     const p = document.createElement("p");
     p.className = "hint";
-    p.textContent = `No forge recipe in the game data for ${noRecipe.map((r) => r.label).join(", ")} (reward, event or DLC gear).`;
+    p.textContent = `No forge recipe in the game data for ${unexplained.map((r) => r.label).join(", ")} (reward, event or DLC gear).`;
     pane.appendChild(p);
   }
 

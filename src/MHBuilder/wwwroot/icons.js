@@ -241,14 +241,24 @@ const UNOBTAINABLE_ARMOR = [
   },
 ];
 
-function unobtainableNote(setName) {
-  const name = String(setName || "");
-  return UNOBTAINABLE_ARMOR.find((u) => name.startsWith(u.set))?.note || null;
-}
+/** Armor handed out for free instead of forged, so it has no materials to farm. */
+const GIFT_ARMOR = [
+  {
+    set: "Defender α",
+    note: "Defender α and Guardian α+ are the same armor under two names. It's free gear claimed from the in-game gifts (Guardian α+ comes with Iceborne), not forged from monster materials, so there's nothing to farm.",
+  },
+];
 
-function unobtainableTag(setName) {
-  const note = unobtainableNote(setName);
-  return note ? ` <span class="unobtainable-tag" title="${escapeHtml(note)}">Save edit only</span>` : "";
+const armorNote = (list, setName) => list.find((u) => String(setName || "").startsWith(u.set))?.note || null;
+const unobtainableNote = (setName) => armorNote(UNOBTAINABLE_ARMOR, setName);
+const giftNote = (setName) => armorNote(GIFT_ARMOR, setName);
+
+/** Small tag after an armor name: save-edit-only or free gift gear. */
+function armorNoteTag(setName) {
+  const unobtainable = unobtainableNote(setName);
+  if (unobtainable) return ` <span class="unobtainable-tag" title="${escapeHtml(unobtainable)}">Save edit only</span>`;
+  const gift = giftNote(setName);
+  return gift ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml(gift)}">Free gift</span>` : "";
 }
 
 /** Crafting material (item_<stem>.png), tinted by its in-game icon color. */
@@ -385,7 +395,7 @@ function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = 
     ${icon}
     <div class="piece-text">
       <span class="piece-slot">${label}</span>
-      <span class="piece-name">${escapeHtml(piece.name)}${unobtainableTag(piece.set)}</span>
+      <span class="piece-name">${escapeHtml(piece.name)}${armorNoteTag(piece.set)}</span>
       <span class="piece-meta rarity-text" style="color:${rarityColor(slot === "weapon" ? wRarity : rarity)}">${metaBits.join(" · ")}</span>
       ${slotIcons}
     </div>

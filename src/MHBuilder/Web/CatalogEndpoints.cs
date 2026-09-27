@@ -51,7 +51,8 @@ public static class CatalogEndpoints
             if (!string.IsNullOrWhiteSpace(slot) && Enum.TryParse<ArmorSlot>(slot, true, out var parsed))
                 list = list.Where(a => a.Slot == parsed);
             if (!string.IsNullOrWhiteSpace(q))
-                list = list.Where(a => a.Name.Contains(q, StringComparison.OrdinalIgnoreCase));
+                list = list.Where(a => a.Name.Contains(q, StringComparison.OrdinalIgnoreCase)
+                    || (a.ArmorSetName?.Contains(q, StringComparison.OrdinalIgnoreCase) ?? false));
             return Results.Json(list
                 .OrderByDescending(a => a.Rarity).ThenBy(a => a.Name)
                 .Take(Math.Clamp(limit, 1, 1000))

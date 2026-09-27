@@ -18,8 +18,9 @@ public static class MaterialsEndpoints
             }
 
             var pieces = (body.ArmorIds ?? [])
-                .Distinct()
                 .Where(cat.ArmorById.ContainsKey)
+                .Select(cat.CanonicalArmorId)
+                .Distinct()
                 .Select(id =>
                 {
                     var a = cat.ArmorById[id];

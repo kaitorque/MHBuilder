@@ -1105,6 +1105,12 @@ img.tint-layer { object-fit: contain; }
   font-size: 0.84rem;
 }
 .mat-warning strong { color: var(--danger); }
+.mat-warning.mat-info {
+  border-color: color-mix(in srgb, var(--accent-2) 55%, var(--line));
+  background: color-mix(in srgb, var(--accent-2) 9%, var(--surface-0));
+}
+.mat-warning.mat-info strong { color: var(--accent-2); }
+.unobtainable-tag.gift-tag { border-color: color-mix(in srgb, var(--accent-2) 70%, transparent); color: var(--accent-2); }
 .mat-summary {
   display: flex;
   flex-wrap: wrap;

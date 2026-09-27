@@ -15,7 +15,7 @@ public sealed class CatalogTests(CatalogFixture fixture)
         var counts = source.RootElement.GetProperty("counts");
 
         Assert.Equal(counts.GetProperty("skills").GetInt32(), _catalog.Skills.Count);
-        Assert.Equal(counts.GetProperty("armor").GetInt32(), _catalog.Armor.Count);
+        Assert.Equal(counts.GetProperty("armor").GetInt32(), _catalog.ArmorById.Count);
         Assert.Equal(counts.GetProperty("decorations").GetInt32(), _catalog.Decorations.Count);
         Assert.Equal(counts.GetProperty("weapons").GetInt32(), _catalog.Weapons.Count);
     }
@@ -47,6 +47,34 @@ public sealed class CatalogTests(CatalogFixture fixture)
     {
         Assert.All(_catalog.Skills.Where(s => !s.IsSetBonus), s =>
             Assert.True(s.BaseMaxLevel <= s.MaxLevel, $"{s.Name}: base cap {s.BaseMaxLevel} above max {s.MaxLevel}"));
+    }
+
+    [Fact]
+    public void Identical_sets_are_merged_under_both_names()
+    {
+        var defender = _catalog.Armor.Where(a => a.ArmorSetName == "Defender α / Guardian α+").ToList();
+        Assert.Equal(5, defender.Count);
+        Assert.DoesNotContain(_catalog.Armor, a => a.Name.StartsWith("Guardian"));
+
+        var guardianHelm = _catalog.ArmorById[442];
+        Assert.Equal("Defender Helm α", guardianHelm.Name);
+        Assert.Contains(guardianHelm, defender);
+        Assert.Equal(guardianHelm.Id, _catalog.CanonicalArmorId(442));
+    }
+
+    [Fact]
+    public void No_two_sets_are_identical_except_by_gender()
+    {
+        string Key(IEnumerable<Models.ArmorPiece> pieces, bool withGender) => string.Join("\n", pieces
+            .OrderBy(p => p.Slot)
+            .Select(p => $"{p.Slot}|{p.Rank}|{p.Rarity}|{p.DefenseMax}|{p.Resistances}|{string.Join("-", p.Slots)}|" +
+                         $"{string.Join(",", p.Skills.OrderBy(s => s.SkillId).Select(s => $"{s.SkillId}:{s.Level}"))}|" +
+                         $"{string.Join(",", p.SetSkillIds.Order())}|{(withGender ? p.Gender : "")}"));
+        var sets = _catalog.Armor.Where(a => a.ArmorSetId is not null).GroupBy(a => a.ArmorSetId).ToList();
+
+        Assert.Equal(sets.Count, sets.Select(s => Key(s, withGender: true)).Distinct().Count());
+        Assert.True(sets.Select(s => Key(s, withGender: false)).Distinct().Count() < sets.Count,
+            "King Beetle and Butterfly should stay separate sets");
     }
 
     [Fact]

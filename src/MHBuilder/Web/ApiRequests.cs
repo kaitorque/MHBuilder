@@ -1,3 +1,4 @@
+using MHBuilder.Catalog;
 using MHBuilder.Models;
 
 namespace MHBuilder.Web;
@@ -25,7 +26,7 @@ public sealed class SearchApiRequest
     public int MaxCandidatesPerSlot { get; set; } = 50;
     public int TimeLimitMs { get; set; } = 15_000;
 
-    public SearchRequest ToSearchRequest()
+    public SearchRequest ToSearchRequest(GameCatalog? catalog = null)
     {
         var wanted = new Dictionary<int, int>();
         foreach (var s in Skills ?? [])
@@ -47,7 +48,7 @@ public sealed class SearchApiRequest
             MaxResults <= 0 ? 100 : Math.Min(MaxResults, 100),
             MaxCandidatesPerSlot <= 0 ? 50 : Math.Min(MaxCandidatesPerSlot, 100),
             TimeLimitMs <= 0 ? 15_000 : Math.Min(TimeLimitMs, MaxTimeLimitMs),
-            ExcludeArmorIds is { Count: > 0 } ? ExcludeArmorIds.ToHashSet() : null,
+            ExcludeArmorIds is { Count: > 0 } ? ExcludeArmorIds.Select(id => catalog?.CanonicalArmorId(id) ?? id).ToHashSet() : null,
             owned,
             WeaponId,
             null,

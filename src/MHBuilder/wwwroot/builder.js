@@ -203,7 +203,7 @@ function builderRowHtml(loc) {
     filled = !!p;
     icon = armorIcon(loc, p?.rarity ?? 1, { size: 34 });
     name = p ? p.name : `Pick ${label.toLowerCase()}…`;
-    sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + unobtainableTag(p.set) : "";
+    sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + armorNoteTag(p.set) : "";
     pinnable = true;
   }
   const rarity = loc === "weapon" ? state.weaponRarity : loc === "charm" ? state.build.charm?.rarity : state.build.pieces[loc]?.rarity;
@@ -471,12 +471,13 @@ async function renderBuilderModal(kind, q, cats, pane, extra, seq) {
       cats.appendChild(btn);
     }
   };
-  const matches = (name, skills) =>
-    !q || name.toLowerCase().includes(q) || (skills || []).some((s) => String(s.name).toLowerCase().includes(q));
+  const matches = (name, skills, set = "") =>
+    !q || name.toLowerCase().includes(q) || set.toLowerCase().includes(q) ||
+    (skills || []).some((s) => String(s.name).toLowerCase().includes(q));
 
   if (kind === "barmor") {
     const all = (await armorForSlot(loc)).filter(
-      (a) => (!a.gender || a.gender === state.gender) && matches(a.name, a.skills)
+      (a) => (!a.gender || a.gender === state.gender) && matches(a.name, a.skills, a.set || "")
     );
     if (seq !== modalRenderSeq) return true;
     const rankOf = (a) => (a.rank === "master" ? "Master" : a.rank === "high" ? "High" : "Low");
@@ -485,7 +486,7 @@ async function renderBuilderModal(kind, q, cats, pane, extra, seq) {
     addCats(ranks.filter((r) => counts[r] > 0 || !q), counts);
     const current = state.build.pieces[loc];
     for (const a of all.filter((x) => state.modal.category === ALL_TAB || rankOf(x) === state.modal.category)) {
-      const html = `<span class="pick-with-ico">${armorIcon(a.slot, a.rarity, { size: 20 })}<span>${escapeHtml(a.name)}${unobtainableTag(a.set)}<span class="sub"> ${escapeHtml(skillsText(a.skills))}</span></span></span>
+      const html = `<span class="pick-with-ico">${armorIcon(a.slot, a.rarity, { size: 20 })}<span>${escapeHtml(a.name)}${armorNoteTag(a.set)}<span class="sub"> ${escapeHtml(skillsText(a.skills))}</span></span></span>
         <span class="sub bpick-meta"><span class="piece-slots">${slotsIconsHtml(a.slots, { size: 16 })}</span><span style="color:${rarityColor(a.rarity)}">R${a.rarity}</span></span>`;
       pane.appendChild(builderPickRow(html, current?.id === a.id, () => {
         setBuildPiece(loc, { ...a, slot: loc });
