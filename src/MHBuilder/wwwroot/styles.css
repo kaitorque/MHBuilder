@@ -106,6 +106,8 @@ body {
 .save-import { display: flex; gap: 0.4rem; }
 .save-import .btn { flex: 1; }
 .save-import .btn:disabled { opacity: 0.5; cursor: progress; }
+.save-drop { border-radius: 6px; outline: 2px dashed transparent; outline-offset: 4px; transition: outline-color 0.15s; }
+.save-drop.drop-over { outline-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
 
 /* —— Layout —— */
 .layout {

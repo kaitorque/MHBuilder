@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MHBuilder — Iceborne Set Search</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=44" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=45" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=44" />
+  <link rel="stylesheet" href="/styles.css?v=45" />
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -94,10 +94,11 @@
           </label>
           <button type="button" class="btn block" id="openDecoPicker">Edit deco list…</button>
           <p class="hint" id="decoSummary">Unlimited</p>
-          <div class="field">
-            <span>Import from save <em class="field-note">read-only</em></span>
+          <div class="field save-drop" id="saveDropZone">
+            <span>Import from save <em class="field-note">read-only · or drop the file here</em></span>
             <div class="save-import">
               <button type="button" class="btn small hidden" id="importSaveLocal" title="Read the decorations from this PC's Iceborne save">This PC's save</button>
+              <button type="button" class="btn small hidden" id="importSaveLast" title="Read the save file picked last time again">Reload last save</button>
               <button type="button" class="btn small" id="importSaveFile" title="Steam\userdata\&lt;id&gt;\582010\remote\SAVEDATA1000">Choose save file…</button>
               <input type="file" id="saveFileInput" class="hidden" />
             </div>
@@ -191,10 +192,10 @@
     </div>
   </div>
 
-  <script src="/icons.js?v=44"></script>
-  <script src="/builder.js?v=44"></script>
-  <script src="/materials.js?v=44"></script>
-  <script src="/saved-sets.js?v=44"></script>
-  <script src="/app.js?v=44"></script>
+  <script src="/icons.js?v=45"></script>
+  <script src="/builder.js?v=45"></script>
+  <script src="/materials.js?v=45"></script>
+  <script src="/saved-sets.js?v=45"></script>
+  <script src="/app.js?v=45"></script>
 </body>
 </html>

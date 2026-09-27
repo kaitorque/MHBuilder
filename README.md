@@ -78,7 +78,10 @@ The container reports its health through `/healthz`.
 
 Iceborne PC saves live at `<Steam>\userdata\<steam user id>\582010\remote\SAVEDATA1000`.
 
-- **Choose save file…** uploads any `SAVEDATA1000`. This works everywhere, including the Docker deployment.
+- **Choose save file…** uploads any `SAVEDATA1000`; dropping the file onto the import area does the same. This works
+  everywhere, including the Docker deployment.
+- **Reload last save** re-reads the file picked or dropped last time, and the picker reopens in its folder. This needs
+  Chrome or Edge on `https://` or `localhost`; other browsers and plain `http://` addresses keep the regular picker.
 - **This PC's save** finds the file automatically through the Steam install. It only works when MHBuilder runs on
   the same Windows machine as Steam, so a server deployment only offers the upload.
 

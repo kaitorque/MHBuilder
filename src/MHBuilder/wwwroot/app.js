@@ -682,31 +682,157 @@ function setSaveNote(text, isError = false) {
   note.classList.toggle("error", isError);
 }
 
+// The File System Access picker (Chromium, HTTPS or localhost only) reopens in the last folder and gives a
+// handle that survives reloads, so the same save can be read again in one click.
+const canRememberSave = typeof window.showOpenFilePicker === "function";
+let rememberedSave = null;
+
+function saveHandleStore(mode, run) {
+  return new Promise((resolve, reject) => {
+    const open = indexedDB.open("mhbuilder", 1);
+    open.onupgradeneeded = () => open.result.createObjectStore("handles");
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      const db = open.result;
+      try {
+        const tx = db.transaction("handles", mode);
+        const req = run(tx.objectStore("handles"));
+        tx.oncomplete = () => {
+          db.close();
+          resolve(req.result);
+        };
+        tx.onerror = tx.onabort = () => {
+          db.close();
+          reject(tx.error);
+        };
+      } catch (err) {
+        db.close();
+        reject(err);
+      }
+    };
+  });
+}
+
+function renderSaveButtons() {
+  $("importSaveLocal").classList.toggle("hidden", !state.localSaves.length);
+  $("importSaveLast").classList.toggle("hidden", !rememberedSave);
+  $("importSaveFile").classList.toggle("ghost", state.localSaves.length > 0 || !!rememberedSave);
+}
+
+async function rememberSave(handle) {
+  rememberedSave = handle;
+  renderSaveButtons();
+  try {
+    await saveHandleStore("readwrite", (s) => (handle ? s.put(handle, "save") : s.delete("save")));
+  } catch {
+    // Storage unavailable (e.g. private window): remembered for this page only.
+  }
+}
+
+function importSaveFile(file) {
+  importSaveDecorations(() => {
+    if (file.size > MAX_SAVE_BYTES) throw new Error("That file is too big to be an Iceborne save.");
+    return api("/api/save/decorations", {
+      method: "POST",
+      headers: { "Content-Type": "application/octet-stream" },
+      body: file,
+    });
+  });
+}
+
+async function chooseSaveFile() {
+  if (!canRememberSave) {
+    $("saveFileInput").click();
+    return;
+  }
+  let handle;
+  try {
+    [handle] = await window.showOpenFilePicker({ id: "mhw-save", startIn: rememberedSave ?? undefined });
+  } catch (err) {
+    if (err.name !== "AbortError") setSaveNote("Couldn't open the file picker.", true);
+    return;
+  }
+  const file = await handle.getFile();
+  await rememberSave(handle);
+  importSaveFile(file);
+}
+
+async function importLastSave() {
+  const handle = rememberedSave;
+  if (!handle) return;
+  try {
+    if ((await handle.queryPermission({ mode: "read" })) !== "granted" &&
+        (await handle.requestPermission({ mode: "read" })) !== "granted") return;
+    importSaveFile(await handle.getFile());
+  } catch {
+    await rememberSave(null);
+    setSaveNote("The last save file couldn't be opened anymore. Choose it again.", true);
+  }
+}
+
+function initSaveDrop() {
+  const zone = $("saveDropZone");
+  const hasFiles = (e) => [...(e.dataTransfer?.types ?? [])].includes("Files");
+  let depth = 0;
+  const clear = () => {
+    depth = 0;
+    zone.classList.remove("drop-over");
+  };
+  // Stop a file dropped next to the zone from navigating away from the page.
+  window.addEventListener("dragover", (e) => {
+    if (!hasFiles(e)) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = zone.contains(e.target) ? "copy" : "none";
+  });
+  window.addEventListener("drop", (e) => {
+    if (hasFiles(e)) e.preventDefault();
+  });
+  zone.addEventListener("dragenter", (e) => {
+    if (!hasFiles(e)) return;
+    depth++;
+    zone.classList.add("drop-over");
+  });
+  zone.addEventListener("dragleave", () => {
+    if (--depth <= 0) clear();
+  });
+  zone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    clear();
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    // getAsFileSystemHandle must be called during the drop event itself.
+    const item = [...e.dataTransfer.items].find((i) => i.kind === "file");
+    const handle = canRememberSave ? item?.getAsFileSystemHandle?.() : null;
+    handle?.then((h) => h?.kind === "file" && rememberSave(h)).catch(() => {});
+    importSaveFile(file);
+  });
+}
+
 async function initSaveImport() {
   state.localSaves = [];
   const input = $("saveFileInput");
-  $("importSaveFile").onclick = () => input.click();
+  $("importSaveFile").onclick = chooseSaveFile;
+  $("importSaveLast").onclick = importLastSave;
+  $("importSaveLocal").onclick = importLocalSave;
   input.onchange = () => {
     const file = input.files[0];
     input.value = "";
-    if (!file) return;
-    importSaveDecorations(() => {
-      if (file.size > MAX_SAVE_BYTES) throw new Error("That file is too big to be an Iceborne save.");
-      return api("/api/save/decorations", {
-        method: "POST",
-        headers: { "Content-Type": "application/octet-stream" },
-        body: file,
-      });
-    });
+    if (file) importSaveFile(file);
   };
-  $("importSaveLocal").onclick = importLocalSave;
+  initSaveDrop();
+  if (canRememberSave) {
+    try {
+      rememberedSave = (await saveHandleStore("readonly", (s) => s.get("save"))) ?? null;
+    } catch {
+      rememberedSave = null;
+    }
+  }
   try {
     state.localSaves = await api("/api/save/local");
   } catch {
     state.localSaves = [];
   }
-  $("importSaveLocal").classList.toggle("hidden", !state.localSaves.length);
-  $("importSaveFile").classList.toggle("ghost", state.localSaves.length > 0);
+  renderSaveButtons();
 }
 
 async function importLocalSave() {
@@ -728,7 +854,7 @@ async function importLocalSave() {
 async function importSaveDecorations(readSave) {
   if (saveImportBusy) return;
   saveImportBusy = true;
-  const buttons = [$("importSaveLocal"), $("importSaveFile")];
+  const buttons = [$("importSaveLocal"), $("importSaveLast"), $("importSaveFile")];
   for (const b of buttons) b.disabled = true;
   setSaveNote("Reading save…");
   let slots;
