@@ -45,21 +45,23 @@ dotnet test
 
 ## Deploying with Docker / Portainer
 
-The image builds from the repository, runs the tests during the build and serves the UI on port 8080.
+Every push to `master` builds the image with GitHub Actions (tests run inside the build) and publishes it as
+`ghcr.io/kaitorque/mhbuilder:latest`. The server only pulls it; the UI listens on port 8080 in the container.
 
 ```sh
-docker compose up -d --build          # UI on http://<host>:5188
+docker compose up -d                  # UI on http://<host>:5188
 ```
 
 **Portainer:** *Stacks → Add stack → Repository*, enter the repository URL and `docker-compose.yml` as the compose
-path. Set the `MHBUILDER_PORT` environment variable to publish on a port other than 5188. Enable automatic updates
-(polling or webhook) to redeploy on every push.
+path (or paste the file into the Web editor). Set the `MHBUILDER_PORT` environment variable to publish on a port
+other than 5188. To redeploy automatically after each push, enable the stack's webhook (with image re-pull) and store
+its URL as the `PORTAINER_WEBHOOK` repository secret; the workflow calls it once the new image is published.
 
-Without compose:
+Building locally instead of pulling:
 
 ```sh
-docker build -t mhbuilder .                        # add --build-arg SKIP_TESTS=true to skip tests
-docker run -d -p 5188:8080 --name mhbuilder mhbuilder
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+docker build -t mhbuilder . && docker run -d -p 5188:8080 mhbuilder   # add --build-arg SKIP_TESTS=true to skip tests
 ```
 
 The container reports its health through `/healthz`.

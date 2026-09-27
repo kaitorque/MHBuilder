@@ -1,0 +1,9 @@
+# Build the image locally instead of pulling it:
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+services:
+  mhbuilder:
+    image: mhbuilder:local
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile
