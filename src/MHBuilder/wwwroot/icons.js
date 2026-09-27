@@ -241,24 +241,92 @@ const UNOBTAINABLE_ARMOR = [
   },
 ];
 
-/** Armor given away or bought outright instead of forged, so it has no materials to farm. */
+const ARENA_STEPS = "Arena quests come from the Arena Lass once you clear the matching optional quests. The armor goes straight to your equipment box.";
+
+/** Armor earned, given away or bought outright instead of forged, by piece name or set name prefix. */
 const GIFT_ARMOR = [
   {
     set: "Defender α",
+    tag: "Gift / armory",
     note: "Defender α and Guardian α+ are the same armor under two names. Guardian α+ was given to everyone for free in a game update, and Defender α is bought from the armory for 300 zenny. Neither is forged from monster materials, so there's nothing to farm.",
+  },
+  {
+    set: "Origin",
+    tag: "Pre-order DLC",
+    note: "Pre-order bonus for Monster Hunter: World. It can't be bought anymore. If you own it, claim it from the Housekeeper's Add-on and DLC menu.",
+  },
+  {
+    piece: "Pulverizing Feather",
+    tag: "Arena reward",
+    note: `Get rank B or better on Arena Quests 01 to 07. ${ARENA_STEPS}`,
+  },
+  {
+    piece: "Dragonseal Earrings α",
+    tag: "Arena reward",
+    note: `Get rank B or better on Arena Quests 08 (Radobaan and Uragaan) and 09 (Diablos and Black Diablos). ${ARENA_STEPS}`,
+  },
+  {
+    piece: "Acrobat Earrings α+",
+    tag: "Arena reward",
+    note: `Get rank B or better on Arena Master Quests 01 to 05. ${ARENA_STEPS}`,
+  },
+  {
+    piece: "Showman Earrings α+",
+    tag: "Arena reward",
+    note: `Get rank B or better on Arena Master Quests 06 and 07. ${ARENA_STEPS}`,
   },
 ];
 
-const armorNote = (list, setName) => list.find((u) => String(setName || "").startsWith(u.set))?.note || null;
-const unobtainableNote = (setName) => armorNote(UNOBTAINABLE_ARMOR, setName);
-const giftNote = (setName) => armorNote(GIFT_ARMOR, setName);
+const armorEntry = (list, setName, pieceName) =>
+  list.find((u) => (u.piece ? u.piece === pieceName : String(setName || "").startsWith(u.set))) || null;
+const unobtainableNote = (setName) => armorEntry(UNOBTAINABLE_ARMOR, setName)?.note || null;
+const giftArmor = (setName, pieceName) => armorEntry(GIFT_ARMOR, setName, pieceName);
 
-/** Small tag after an armor name: save-edit-only, or gift / armory gear. */
-function armorNoteTag(setName) {
+/** Small tag after an armor name: save-edit-only, or earned / gift / armory gear. */
+function armorNoteTag(setName, pieceName) {
   const unobtainable = unobtainableNote(setName);
   if (unobtainable) return ` <span class="unobtainable-tag" title="${escapeHtml(unobtainable)}">Save edit only</span>`;
-  const gift = giftNote(setName);
-  return gift ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml(gift)}">Gift / armory</span>` : "";
+  const gift = giftArmor(setName, pieceName);
+  return gift ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml(gift.note)}">${escapeHtml(gift.tag)}</span>` : "";
+}
+
+const HOUSEKEEPER_STEPS = "Talk to the Housekeeper in your Seliana room to get the quest, clear it, then talk to the Housekeeper again to receive the charm.";
+
+/** Charms earned instead of forged, by charm name. */
+const CHARM_SOURCES = {
+  "Adamantine Charm": {
+    tag: "Quest reward",
+    title: "Optional quest: The Purr-fect Room: Stone",
+    lines: ["Capture a Tigrex in the Hoarfrost Reach.", "Unlocks at MR 10 after the assignment \"Absolute Power\".", HOUSEKEEPER_STEPS],
+  },
+  "Razor Sharp Charm": {
+    tag: "Quest reward",
+    title: "Optional quest: The Purr-fect Room: Light Iron",
+    lines: ["Capture an Acidic Glavenus in the Rotten Vale.", "Unlocks at MR 15 after \"The Disintegrating Blade\" and \"The Purr-fect Room: Stone\".", HOUSEKEEPER_STEPS],
+  },
+  "Sealer's Charm": {
+    tag: "Quest reward",
+    title: "Optional quest: The Purr-fect Room: Dark Iron",
+    lines: ["Hunt an Odogaron and an Ebony Odogaron in the Rotten Vale.", "Unlocks at MR 16 after \"The Purr-fect Room: Light Iron\".", HOUSEKEEPER_STEPS],
+  },
+  "Gutsy Charm": {
+    tag: "Quest reward",
+    title: "Optional quest: The Purr-fect Room: Silver",
+    lines: ["Capture a Seething Bazelgeuse in the Elder's Recess.", "Unlocks at MR 19 after \"The Purr-fect Room: Light Iron\".", HOUSEKEEPER_STEPS],
+  },
+  "Fair Wind Charm": {
+    tag: "Pre-order DLC",
+    title: "Pre-order bonus for Monster Hunter: World",
+    lines: ["It can't be bought anymore. If you own it, claim it from the Housekeeper's Add-on and DLC menu."],
+  },
+};
+
+const charmSource = (name) => CHARM_SOURCES[name] || null;
+
+/** Small tag after a charm name when it's earned instead of forged. */
+function charmNoteTag(name) {
+  const src = charmSource(name);
+  return src ? ` <span class="unobtainable-tag gift-tag" title="${escapeHtml([src.title, ...src.lines].join("\n"))}">${src.tag}</span>` : "";
 }
 
 /** Crafting material (item_<stem>.png), tinted by its in-game icon color. */
@@ -365,6 +433,28 @@ function pieceSkillsHtml(skills, cls = "piece-skills") {
   return `<span class="${cls}">${skills.map((s) => escapeHtml(`${s.name} ${s.level}`)).join(" · ")}</span>`;
 }
 
+/** Seated jewels in the order pieceSlotsFilledHtml draws them (each host slot takes the first placement of its size). */
+function orderByHostSlots(pieceSlots, placements) {
+  const placed = [...(placements || [])];
+  const out = [];
+  for (const hostSize of (pieceSlots || []).filter((n) => n > 0)) {
+    const idx = placed.findIndex((p) => Number(p.slotSize) === hostSize);
+    if (idx >= 0) out.push(placed.splice(idx, 1)[0]);
+  }
+  return out;
+}
+
+/** One entry per seated jewel, in slot order, in the gem's color: "Attack Boost 1" (or "Agitator 1 + Health Boost 1"). */
+function decoSkillsHtml(decos, cls = "deco-skills") {
+  const list = (decos || []).filter(Boolean);
+  if (!list.length) return "";
+  const chips = list.map((d) => {
+    const text = d.skills?.length ? d.skills.map((s) => `${s.name} ${s.level}`).join(" + ") : d.name;
+    return `<span class="deco-skill" style="color:${itemIconColor(d.iconColor)}" title="${escapeHtml(d.name)}">${escapeHtml(text)}</span>`;
+  });
+  return `<span class="${cls}">${chips.join("")}</span>`;
+}
+
 function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = "") {
   if (!piece) return "";
   const rarity = piece.rarity ?? (slot === "charm" ? 10 : 1);
@@ -401,10 +491,11 @@ function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = 
     ${icon}
     <div class="piece-text">
       <span class="piece-slot">${label}</span>
-      <span class="piece-name">${escapeHtml(piece.name)}${armorNoteTag(piece.set)}</span>
+      <span class="piece-name">${escapeHtml(piece.name)}${slot === "charm" ? charmNoteTag(piece.name) : armorNoteTag(piece.set, piece.name)}</span>
       <span class="piece-meta rarity-text" style="color:${rarityColor(slot === "weapon" ? wRarity : rarity)}">${metaBits.join(" · ")}</span>
       ${pieceSkillsHtml(piece.skills)}
       ${slotIcons}
+      ${decoSkillsHtml(orderByHostSlots(piece.slots, here))}
     </div>
     ${actionsHtml ? `<div class="piece-actions">${actionsHtml}</div>` : ""}
   </div>`;

@@ -27,9 +27,13 @@ Backs the **Materials** view: forge cost and materials per armor piece, charm ra
 material comes from.
 
 - **Armor and charm recipes, item names, descriptions, rarity:** the game export. 1632 armor pieces have a recipe;
-  the rest are reward or event gear.
+  the rest are reward or event gear. The export has no materials for 8 charm ranks added in later title updates
+  (Master's Charm V, Critical Charm III and others); those come from MHWorldData, matched by name.
 - **Weapons:** upgrade trees and recipes from MHWorldData (the game export's weapon trees are incomplete), zenny
-  cost from the game export. Matched by name and weapon type; 36 of 3695 weapons have no match. The view counts the
+  cost from the game export. Matched by name and weapon type; 36 of 3695 weapons have no match. 3 of those
+  (Black Eagle, Strong Ale, Azure Era "Soaring Dragon") take their forge recipe from the game export, and 19 late
+  upgrades (Xeno'jiiva "+", Black Lightning Eagle, Master Ale, ...) are entered by hand in `MANUAL_UPGRADES`. The other
+  14 are the loaner weapons from the removed Monster Hunter movie event quests and have no recipe. The view counts the
   cheapest path: forge the nearest forgeable ancestor, then every upgrade. Kulve Taroth and Safi'jiiva weapons are
   flagged as siege rewards.
 - **Material sources:** MHWorldData (monster drops with rank and chance, gathering spots, quest rewards,

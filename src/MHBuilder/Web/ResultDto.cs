@@ -90,7 +90,8 @@ public static class ResultDto
                 name = p.Decoration.Name,
                 decoSlotSize = p.Decoration.SlotSize,
                 rarity = p.Decoration.Rarity,
-                iconColor = p.Decoration.IconColor
+                iconColor = p.Decoration.IconColor,
+                skills = CatalogEndpoints.SkillList(cat, p.Decoration.Skills)
             }),
             setBonuses = (r.SetBonuses ?? [])
                 .GroupBy(s => s.Id)

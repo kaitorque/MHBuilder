@@ -180,16 +180,26 @@ async function renderMaterialsModal(q, cats, pane, extra, seq) {
   }
   const gifts = new Map();
   for (const p of tabPieces) {
-    const note = giftNote(p.set);
-    if (note) gifts.set(note, [...(gifts.get(note) || []), p.name]);
+    const gift = giftArmor(p.set, p.name);
+    if (gift) gifts.set(gift, [...(gifts.get(gift) || []), p.name]);
   }
-  for (const [note, names] of gifts) {
+  for (const [gift, names] of gifts) {
     const info = document.createElement("div");
     info.className = "mat-warning mat-info";
-    info.innerHTML = `<strong>No materials needed: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(note)}</span>`;
+    info.innerHTML = `<strong>${escapeHtml(gift.tag)}: ${escapeHtml(names.join(", "))}</strong><span>${escapeHtml(gift.note)}</span>`;
+    pane.appendChild(info);
+  }
+  const charmSrc = [ALL_TAB, MAT_CHARM_TAB].includes(m.category) && data.charm ? charmSource(data.charm.name) : null;
+  if (charmSrc) {
+    const info = document.createElement("div");
+    info.className = "mat-warning mat-info";
+    info.innerHTML = `<strong>${escapeHtml(charmSrc.tag)}: ${escapeHtml(data.charm.name)}</strong>
+      <span>${escapeHtml(charmSrc.title)}</span>
+      ${charmSrc.lines.map((l) => `<span>${escapeHtml(l)}</span>`).join("")}`;
     pane.appendChild(info);
   }
   const giftNames = new Set([...gifts.values()].flat());
+  if (charmSrc) giftNames.add(data.charm.name);
   const unexplained = noRecipe.filter((r) => !giftNames.has(r.label));
   if (unexplained.length) {
     const p = document.createElement("p");

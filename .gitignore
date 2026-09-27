@@ -13,6 +13,7 @@ TestResults/
 *.log
 *.tmp
 .scratch/
+.playwright-mcp/
 .cursor/
 .serena/
 

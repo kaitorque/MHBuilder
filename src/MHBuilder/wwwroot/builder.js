@@ -171,10 +171,18 @@ function buildChanged() {
   scheduleBuildEvaluate();
 }
 
+let decoByIdCache = { list: null, map: new Map() };
+function decoLookup() {
+  const list = state.decorations || [];
+  if (decoByIdCache.list !== list) decoByIdCache = { list, map: new Map(list.map((d) => [d.id, d])) };
+  return decoByIdCache.map;
+}
+
 function builderRowHtml(loc) {
   const label = BUILD_LABELS[loc];
   const hosts = hostSlots(loc);
   const decos = state.build.decos[loc] || [];
+  const decoById = decoLookup();
   const slotsHtml = hosts
     .map((h, i) => {
       const d = decos[i];
@@ -196,7 +204,7 @@ function builderRowHtml(loc) {
     filled = !!c;
     icon = armorIcon("charm", c?.rarity ?? 1, { size: 34 });
     name = c ? c.name : "Pick charm…";
-    sub = c ? `R${c.rarity}` : "";
+    sub = c ? `R${c.rarity}${charmNoteTag(c.name)}` : "";
     skills = c?.skills;
     pinnable = true;
   } else {
@@ -204,7 +212,7 @@ function builderRowHtml(loc) {
     filled = !!p;
     icon = armorIcon(loc, p?.rarity ?? 1, { size: 34 });
     name = p ? p.name : `Pick ${label.toLowerCase()}…`;
-    sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + armorNoteTag(p.set) : "";
+    sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + armorNoteTag(p.set, p.name) : "";
     skills = p?.skills;
     pinnable = true;
   }
@@ -213,8 +221,8 @@ function builderRowHtml(loc) {
   const pinBtn = pinnable
     ? `<button type="button" class="icon-btn pin${pinned ? " on" : ""}" data-act="pin" ${filled ? "" : "disabled"} aria-pressed="${pinned}" title="${pinned ? "Pinned: Auto Search keeps this piece" : "Pin so Auto Search keeps this piece"}">${pinIcon(pinned)}</button>`
     : "";
-  const clearBtn = filled
-    ? `<button type="button" class="icon-btn" data-act="clear" title="Remove">${materialIcon("close")}</button>`
+  const clearBtn = filled || (loc === "weapon" && hosts.length)
+    ? `<button type="button" class="icon-btn" data-act="clear" title="${loc === "weapon" && !filled ? "Remove weapon slots" : "Remove"}">${materialIcon("close")}</button>`
     : "";
 
   return `<div class="bgear-row${filled ? "" : " empty"}${pinned ? " pinned" : ""}" data-loc="${loc}">
@@ -224,6 +232,7 @@ function builderRowHtml(loc) {
       <button type="button" class="bgear-name" data-act="pick" title="Change ${label.toLowerCase()}">${escapeHtml(name)}</button>
       ${sub ? `<span class="bgear-sub" style="color:${filled ? rarityColor(rarity) : "var(--muted)"}">${sub}</span>` : ""}
       ${pieceSkillsHtml(skills, "piece-skills bgear-skills")}
+      ${decoSkillsHtml(decos.map((d) => d && { ...d, skills: decoById.get(d.id)?.skills }), "deco-skills bgear-skills")}
     </span>
     <span class="bgear-slots">${slotsHtml}</span>
     <span class="bgear-actions">${pinBtn}${clearBtn}</span>
@@ -433,7 +442,9 @@ function onBuilderClick(e) {
     renderBuilder();
   } else if (act === "clear") {
     if (loc === "weapon") {
-      clearWeaponSelection();
+      setWeapon(null, []);
+      savePrefs();
+      renderWeaponSelected();
       return;
     }
     setBuildPiece(loc, null);
@@ -513,7 +524,7 @@ async function renderBuilderModal(kind, q, cats, pane, extra, seq) {
     addCats(ranks.filter((r) => counts[r] > 0 || !q), counts);
     const current = state.build.pieces[loc];
     for (const a of all.filter((x) => state.modal.category === ALL_TAB || rankOf(x) === state.modal.category)) {
-      const html = `<span class="pick-with-ico">${armorIcon(a.slot, a.rarity, { size: 20 })}<span>${escapeHtml(a.name)}${armorNoteTag(a.set)}<span class="sub"> ${escapeHtml(skillsText(a.skills))}</span></span></span>
+      const html = `<span class="pick-with-ico">${armorIcon(a.slot, a.rarity, { size: 20 })}<span>${escapeHtml(a.name)}${armorNoteTag(a.set, a.name)}<span class="sub"> ${escapeHtml(skillsText(a.skills))}</span></span></span>
         <span class="sub bpick-meta"><span class="piece-slots">${slotsIconsHtml(a.slots, { size: 16 })}</span><span style="color:${rarityColor(a.rarity)}">R${a.rarity}</span></span>`;
       pane.appendChild(builderPickRow(html, current?.id === a.id, () => {
         setBuildPiece(loc, { ...a, slot: loc });

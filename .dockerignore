@@ -8,6 +8,7 @@
 .cursor/
 .serena/
 .scratch/
+.playwright-mcp/
 docs/
 tools/
 *.md

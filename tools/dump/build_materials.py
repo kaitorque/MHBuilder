@@ -1,7 +1,10 @@
 """Build data/materials.json: armor / charm / weapon crafting recipes and where each material comes from.
 
-Armor and charm recipes, item names, descriptions and rarity come from the live game dump (MHWMasterDataUtils).
-Weapon trees and recipes come from MHWorldData (see build_weapons); zenny costs from the game dump.
+Armor and charm recipes, item names, descriptions and rarity come from the live game dump (MHWMasterDataUtils);
+charm ranks the dump has no recipe for fall back to MHWorldData.
+Weapon trees and recipes come from MHWorldData (see build_weapons); zenny costs from the game dump, which
+also supplies forge recipes for event weapons MHWorldData lacks. A few late upgrades missing from both
+(Xeno'jiiva "+", Black Lightning Eagle, ...) are entered by hand in MANUAL_UPGRADES.
 Sources (monster rewards, gathering, quest rewards, combinations) and item icons come from the
 Gathering Hall Studios MHWorldData SQLite (tools/dump/mhw_ghs.db), matched by English item name
 because the two use different item ids. Item icons are copied from the MHOTOMO assets.
@@ -45,6 +48,25 @@ WEAPON_FILES = [
 ]
 MAX_QUESTS = 8
 
+_SAFI_UPGRADE = [("Safi'jiiva Hardhorn", 4), ("Safi'jiiva Hardclaw", 6), ("Pulsing Dragonshell", 7), ("Safi'jiiva Cortex", 8)]
+_AZURE_UPGRADE = [("Large Azure Era Gem", 1), ("Bergcrusher Claw", 1), ("Silverwhite Frostfang", 1), ("Velkhana Crystal", 1)]
+# Late upgrades that neither the dump nor MHWorldData has, entered by hand from mhw.poedb.tw / Kiranico.
+# upgraded weapon -> (parent weapon of the same type, materials); zenny comes from the dump.
+MANUAL_UPGRADES = {
+    **{f"{base}+": (base, _SAFI_UPGRADE) for base in [
+        "Xeno Maliq", "Xeno Cypher", "Xeno Mabura", "Xeno Raqs", "Xeno Maph'agarna", "Xeno Manasheena",
+        "Xeno Zauta", "Xeno Hemta", "Xeno Martshu", "Xeno Ra'atz", "Xeno Shmaena", "Xeno Neqiina",
+        "Xeno Jiiqa", "Xeno Metora"]},
+    "Black Lightning Eagle": ("Black Eagle", [("Black Eagle Blueprint", 3), ("Nargacuga Cutwing+", 4),
+                                              ("Purecrystal", 2), ("Conqueror's Seal", 1)]),
+    "Master Ale": ("Strong Ale", [("Spirited Canteen Ticket", 1), ("Ultraplegia Sac", 3), ("Torpor Sac", 3),
+                                  ("Conqueror's Seal", 1)]),
+    'Azure Era "Soaring Dragon"+': ('Azure Era "Soaring Dragon"', _AZURE_UPGRADE),
+    'Azure Star "Dragon Dance"+': ('Azure Star "Dragon Dance"', _AZURE_UPGRADE),
+    'Wyvern Impact "Silver"': ('Wyvern Ignition "Impact"', [("Black Eagle Blueprint", 2), ("Bazelgeuse Shard", 4),
+                                                            ("Scorching Silverwing", 3), ("Bazelgeuse Mantle", 1)]),
+}
+
 
 def load(name: str):
     return json.loads((DUMP / name).read_text(encoding="utf-8"))
@@ -74,10 +96,14 @@ def build_weapons(q, ghs_name, game_id_by_name):
     forgeItems = crafted from scratch; items = upgrade from parent. Zenny is the game's crafting cost.
     """
     ours = json.loads((ROOT / "data/weapons.json").read_text(encoding="utf-8"))
-    cost = {}
+    cost, dump_forge = {}, {}
     for index, f in enumerate(WEAPON_FILES):
         for w in load(f"{f}.json"):
-            cost[index * 100_000 + int(w["id"])] = int(w.get("craftingCost") or 0)
+            wid = index * 100_000 + int(w["id"])
+            cost[wid] = int(w.get("craftingCost") or 0)
+            craft = w.get("craft") or {}
+            if craft.get("isCraftable") and craft.get("items"):
+                dump_forge[wid] = [[int(i["id"]), int(i["quantity"])] for i in craft["items"] if i["quantity"] > 0]
 
     recipes = defaultdict(list)
     for rid, iid, qty in q("select recipe_id, item_id, quantity from recipe_item"):
@@ -98,11 +124,23 @@ def build_weapons(q, ghs_name, game_id_by_name):
         if g:
             ghs_to_ours.setdefault(g[0], w["id"])
 
+    ours_by_name = {(w["name"], w["type"]): w["id"] for w in ours}
     weapons, unmatched = {}, []
     for w in ours:
         g = ghs.get((w["name"], w["type"]))
         if not g:
-            unmatched.append(w["name"])
+            # Late event weapons (e.g. Black Eagle) are missing from MHWorldData; the dump has their forge recipe.
+            if w["id"] in dump_forge:
+                weapons[str(w["id"])] = {"zenny": cost.get(w["id"], 0), "forgeItems": dump_forge[w["id"]]}
+            elif w["name"] in MANUAL_UPGRADES:
+                parent_name, mats = MANUAL_UPGRADES[w["name"]]
+                missing = [n for n, _ in mats if n not in game_id_by_name]
+                if missing or (parent_name, w["type"]) not in ours_by_name:
+                    raise SystemExit(f"manual upgrade {w['name']}: unknown parent or items {missing}")
+                weapons[str(w["id"])] = {"zenny": cost.get(w["id"], 0), "parent": ours_by_name[(parent_name, w["type"])],
+                                         "items": [[game_id_by_name[n], qty] for n, qty in mats]}
+            else:
+                unmatched.append(w["name"])
             continue
         _, prev, craftable, create, upgrade, category = g
         entry = {"zenny": cost.get(w["id"], 0)}
@@ -124,19 +162,38 @@ def main() -> None:
     for f in SLOT_FILES:
         for a in load(f"{f}.json"):
             r = recipe(a)
-            if r:
+            # Gift / pre-order pieces (Guardian α+, Origin) cost 0z and some carry junk craft rows.
+            if r and r["zenny"]:
                 armor[str(int(a["id"]))] = r
-    charms = {}
-    for c in load("charms.json"):
-        r = recipe(c)
-        if r:
-            charms[eng(c["name"])] = r
-
     db = sqlite3.connect(GHS)
     q = lambda sql, *a: db.execute(sql, a).fetchall()
     ghs_by_name = {name: iid for iid, name in q("select id, name from item_text where lang_id='en'")}
     ghs_name = {iid: name for name, iid in ghs_by_name.items()}
     game_id_by_name = {eng(it["name"]): iid for iid, it in game_items.items()}
+
+    # The dump leaves `craft` empty for charm ranks added in later title updates (e.g. Master's Charm V);
+    # MHWorldData has those recipes, matched by English charm and item name.
+    ghs_charm_items = defaultdict(list)
+    for charm_name, item_name, qty in q(
+            "select t.name, it.name, ri.quantity from charm c"
+            " join charm_text t on t.id = c.id and t.lang_id = 'en'"
+            " join recipe_item ri on ri.recipe_id = c.recipe_id"
+            " join item_text it on it.id = ri.item_id and it.lang_id = 'en'"
+            " order by c.id, ri.rowid"):
+        ghs_charm_items[charm_name].append((item_name, qty))
+
+    charms, charms_from_ghs, unmatched_charm_items = {}, [], set()
+    for c in load("charms.json"):
+        name = eng(c["name"])
+        r = recipe(c)
+        if not r and ghs_charm_items.get(name):
+            items = [[game_id_by_name[n], qty] for n, qty in ghs_charm_items[name] if n in game_id_by_name]
+            unmatched_charm_items |= {n for n, _ in ghs_charm_items[name] if n not in game_id_by_name}
+            if len(items) == len(ghs_charm_items[name]):
+                r = {"zenny": int(c.get("cost") or 0), "items": items}
+                charms_from_ghs.append(name)
+        if r:
+            charms[name] = r
 
     weapons, unmatched_weapons = build_weapons(q, ghs_name, game_id_by_name)
 
@@ -241,6 +298,9 @@ def main() -> None:
 
     no_source = sorted(v["name"] for v in items.values() if "sources" not in v)
     print(f"armor recipes {len(armor)}, charm recipes {len(charms)}, materials {len(items)}")
+    print(f"charm recipes from MHWorldData (empty in the dump): {len(charms_from_ghs)} {charms_from_ghs}")
+    if unmatched_charm_items:
+        print(f"  charm materials with no game item match: {sorted(unmatched_charm_items)}")
     print(f"weapons {len(weapons)} ({sum('forgeItems' in w for w in weapons.values())} forgeable, "
           f"{sum('items' in w for w in weapons.values())} upgradable, "
           f"{sum('source' in w for w in weapons.values())} siege rewards); "
