@@ -12,8 +12,9 @@ TestResults/
 # Local scratch and tooling state
 *.log
 *.tmp
-.playwright-mcp/
+.scratch/
 .cursor/
+.serena/
 
 # Game-data extraction workspace (chunk files, exporters, databases, icon sources).
 # Only the pipeline scripts are tracked; see docs/DATA.md.

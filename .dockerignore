@@ -6,7 +6,8 @@
 .vscode/
 .idea/
 .cursor/
-.playwright-mcp/
+.serena/
+.scratch/
 docs/
 tools/
 *.md

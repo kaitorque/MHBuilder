@@ -245,7 +245,7 @@ const UNOBTAINABLE_ARMOR = [
 const GIFT_ARMOR = [
   {
     set: "Defender α",
-    note: "Defender α and Guardian α+ are the same armor under two names. Guardian α+ was given to everyone for free in a game update, and Defender α is bought from the armory. Neither is forged from monster materials, so there's nothing to farm.",
+    note: "Defender α and Guardian α+ are the same armor under two names. Guardian α+ was given to everyone for free in a game update, and Defender α is bought from the armory for 300 zenny. Neither is forged from monster materials, so there's nothing to farm.",
   },
 ];
 
