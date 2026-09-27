@@ -140,7 +140,36 @@ function toggleExcludedSkill(s) {
   state.excludedSkills.push({ id: s.id, name: s.name });
 }
 
+const SKILLS_STORAGE_KEY = "mhbuilder.skills.v1";
+
+/** Wanted skills (with levels) and excluded skills, kept between visits. */
+function loadSkillPrefs() {
+  let saved = null;
+  try {
+    saved = JSON.parse(localStorage.getItem(SKILLS_STORAGE_KEY) || "null");
+  } catch {
+    /* corrupt storage: keep defaults */
+  }
+  if (!saved) return;
+  for (const w of Array.isArray(saved.wanted) ? saved.wanted : []) {
+    const s = pickerSkill(w?.id);
+    if (s && Number(w.level) > 0) setWantedLevel(s, Number(w.level));
+  }
+  for (const id of Array.isArray(saved.excluded) ? saved.excluded : []) {
+    const s = pickerSkill(id);
+    if (s && !isExcludedSkill(s.id)) toggleExcludedSkill(s);
+  }
+}
+
+function saveSkillPrefs() {
+  localStorage.setItem(SKILLS_STORAGE_KEY, JSON.stringify({
+    wanted: state.wanted.map(({ id, level }) => ({ id, level })),
+    excluded: state.excludedSkills.map((s) => s.id),
+  }));
+}
+
 function renderWanted() {
+  saveSkillPrefs();
   const ul = $("wantedSkills");
   ul.innerHTML = "";
   for (const s of state.wanted) {
@@ -1912,6 +1941,7 @@ async function init() {
   };
 
   renderArmorTierToggles();
+  loadSkillPrefs();
   renderWanted();
   renderExclude();
   renderWeaponSelected();
