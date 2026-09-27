@@ -251,7 +251,10 @@ function setBonusesHtml(list) {
       const effects = (g.effects || [])
         .map((e) => {
           const cls = e.wanted ? " wanted" : " extra";
-          return `<span class="set-bonus-effect${cls}" data-effect="${escapeHtml(e.effect)}"><span class="set-bonus-parts">${e.parts}</span><span class="set-bonus-fx">${escapeHtml(e.effect)}</span>${ADD_ICON}</span>`;
+          const target = e.skillId
+            ? `data-skill-id="${e.skillId}" data-skill-level="${e.level}" data-tip="${escapeHtml(withDescription(`${g.name} ${e.parts}pc: ${e.effect}`, pickerSkill(e.skillId)))}"`
+            : `data-effect="${escapeHtml(e.effect)}"`;
+          return `<span class="set-bonus-effect${cls}" ${target}><span class="set-bonus-parts">${e.parts}</span><span class="set-bonus-fx">${escapeHtml(e.effect)}</span>${ADD_ICON}</span>`;
         })
         .join("");
       const cardCls = g.wanted ? " wanted" : " extra";
@@ -533,6 +536,10 @@ function onResultsClick(e) {
   const r = (state.results || [])[Number(btn.closest(".result-card")?.dataset.idx)];
   if (r && btn.dataset.ract === "import-skills") {
     importSetSkills(r.skills, r.setBonuses, `result #${Number(btn.closest(".result-card").dataset.idx) + 1}`);
+    return;
+  }
+  if (r && btn.dataset.ract === "skills") {
+    openSetSkills(`Skills · result #${Number(btn.closest(".result-card").dataset.idx) + 1}`, r);
     return;
   }
   if (r && btn.dataset.ract === "materials") {
@@ -1028,11 +1035,56 @@ function closeModal() {
 
 function openModal(kind, title, extra = {}) {
   state.modal = { kind, category: null, ...extra };
+  $("modal").dataset.kind = kind;
   $("modalTitle").textContent = title;
   $("modalSearch").value = "";
   $("modal").classList.remove("hidden");
   $("modalSearch").focus();
   renderModal();
+}
+
+/** set: a search result or the evaluated builder ({ skills, setBonuses }). */
+function openSetSkills(title, set) {
+  if (!set) return;
+  openModal("setskills", title, { skills: set.skills || [], setBonuses: set.setBonuses || [] });
+}
+
+function renderSetSkillsModal(q, pane, extra) {
+  const { skills, setBonuses } = state.modal;
+  const matches = (...texts) => !q || texts.some((t) => String(t || "").toLowerCase().includes(q));
+  const infoHtml = (name, badges, description, levelsHtml, wanted) => `
+    <div class="skill-info${wanted ? " is-wanted" : ""}">
+      <div class="skill-info-head"><span class="skill-info-name">${escapeHtml(name)}</span>${badges}</div>
+      ${description ? `<p class="skill-info-desc">${escapeHtml(description)}</p>` : ""}
+      ${levelsHtml}
+    </div>`;
+
+  const rows = [];
+  for (const s of skills) {
+    const k = pickerSkill(s.id);
+    const levels = k?.levelDescriptions || [];
+    if (!matches(s.name, k?.description, ...levels)) continue;
+    const secret = s.baseMaxLevel < s.maxLevel && s.level > s.baseMaxLevel;
+    const levelItems = levels
+      .map((d, i) => (d ? `<li class="${i + 1 === s.level ? "current" : i < s.level ? "reached" : ""}"><span class="lvl-no">Lv ${i + 1}</span><span>${escapeHtml(d)}</span></li>` : ""))
+      .join("");
+    const badges = (s.wanted ? `<span class="pick-badge wanted">Wanted</span>` : "")
+      + `<span class="pick-badge${secret ? " secret" : ""}">Lv ${s.level}/${s.maxLevel}</span>`;
+    rows.push(infoHtml(s.name, badges, k?.description, levelItems ? `<ol class="skill-info-levels">${levelItems}</ol>` : "", s.wanted));
+  }
+  // Effects that grant or uncap a skill are covered by that skill's row.
+  const effects = setBonuses.flatMap((g) => (g.effects || []).filter((e) => !e.skillId).map((e) => ({ g, e, k: setEffectSkill(e.effect) })));
+  for (const { g, e, k } of effects) {
+    if (!matches(e.effect, g.name, k?.description)) continue;
+    const badges = (e.wanted ? `<span class="pick-badge wanted">Wanted</span>` : "")
+      + `<span class="pick-badge set">${escapeHtml(g.name)} ${e.parts}pc</span>`;
+    rows.push(infoHtml(e.effect, badges, k?.description, "", e.wanted));
+  }
+
+  extra.innerHTML = `<span class="hint">${skills.length} skill${skills.length === 1 ? "" : "s"}${effects.length ? ` · ${effects.length} set effect${effects.length === 1 ? "" : "s"}` : ""} · the highlighted line is the level this set reaches</span>`;
+  pane.innerHTML = rows.length
+    ? `<div class="skill-info-list">${rows.join("")}</div>`
+    : `<p class="hint">${q ? `No skills match “${escapeHtml($("modalSearch").value.trim())}”.` : "This set has no skills."}</p>`;
 }
 
 function setModalCategory(cat) {
@@ -1092,6 +1144,10 @@ async function renderModal() {
   }
   if (kind === "saved") {
     renderSavedSetsModal(q, cats, pane, extra);
+    return;
+  }
+  if (kind === "setskills") {
+    renderSetSkillsModal(q, pane, extra);
     return;
   }
 
@@ -1822,6 +1878,7 @@ async function runSearch() {
           <div class="result-title-row">
             <h3>#${i + 1} <span class="def-chip" ${statChipAttrs("defense", r.defense)}>${defChipHtml(r.defense)}</span>${r.weapon ? ` · ${escapeHtml(r.weapon)}` : ""}</h3>
             <span class="result-head-actions">
+              <button type="button" class="btn small ghost" data-ract="skills" title="What each skill in this set does">Skills</button>
               <button type="button" class="btn small ghost" data-ract="materials" title="Forging materials and where to get them">Materials</button>
               <button type="button" class="btn small primary apply-btn" title="Load this set into the builder">Apply to builder</button>
             </span>
@@ -1833,7 +1890,7 @@ async function runSearch() {
             <div class="result-section-label">Equipment</div>
             <div class="pieces">
               ${BUILD_ARMOR.map((k) => pieceRowHtml(BUILD_LABELS[k], r[k], k, placements, null, r[k]?.id ? resultActionsHtml() : "")).join("")}
-              ${pieceRowHtml("Charm", { name: r.charm, rarity: r.charmInfo?.rarity ?? 10, set: "" }, "charm", undefined, null, r.charmInfo?.id ? resultActionsHtml() : "")}
+              ${pieceRowHtml("Charm", { name: r.charm, rarity: r.charmInfo?.rarity ?? 10, set: "", skills: r.charmInfo?.skills }, "charm", undefined, null, r.charmInfo?.id ? resultActionsHtml() : "")}
               ${weaponRow}
             </div>
           </div>
@@ -1928,6 +1985,7 @@ async function init() {
     if (ev) importSetSkills(ev.skills, ev.setBonuses, "the builder");
   };
   $("builderSaved").onclick = () => openModal("saved", "Saved set builds", { draftName: "" });
+  $("builderSkillInfo").onclick = () => openSetSkills("Skills · builder", state.buildEval);
   $("builderMaterials").onclick = () =>
     openMaterials("Materials · builder", BUILD_ARMOR.map((k) => state.build.pieces[k]), state.build.charm, state.weaponId);
   $("builderClear").onclick = async () => {

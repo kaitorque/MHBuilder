@@ -184,7 +184,7 @@ function builderRowHtml(loc) {
     })
     .join("");
 
-  let icon, name, sub, filled, pinnable;
+  let icon, name, sub, filled, pinnable, skills;
   if (loc === "weapon") {
     filled = !!state.weaponId;
     icon = weaponIcon(state.weaponType || DEFAULT_WEAPON_TYPE, state.weaponRarity ?? 12, { size: 34 });
@@ -197,6 +197,7 @@ function builderRowHtml(loc) {
     icon = armorIcon("charm", c?.rarity ?? 1, { size: 34 });
     name = c ? c.name : "Pick charm…";
     sub = c ? `R${c.rarity}` : "";
+    skills = c?.skills;
     pinnable = true;
   } else {
     const p = state.build.pieces[loc];
@@ -204,6 +205,7 @@ function builderRowHtml(loc) {
     icon = armorIcon(loc, p?.rarity ?? 1, { size: 34 });
     name = p ? p.name : `Pick ${label.toLowerCase()}…`;
     sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + armorNoteTag(p.set) : "";
+    skills = p?.skills;
     pinnable = true;
   }
   const rarity = loc === "weapon" ? state.weaponRarity : loc === "charm" ? state.build.charm?.rarity : state.build.pieces[loc]?.rarity;
@@ -221,6 +223,7 @@ function builderRowHtml(loc) {
       <span class="bgear-label">${label}</span>
       <button type="button" class="bgear-name" data-act="pick" title="Change ${label.toLowerCase()}">${escapeHtml(name)}</button>
       ${sub ? `<span class="bgear-sub" style="color:${filled ? rarityColor(rarity) : "var(--muted)"}">${sub}</span>` : ""}
+      ${pieceSkillsHtml(skills, "piece-skills bgear-skills")}
     </span>
     <span class="bgear-slots">${slotsHtml}</span>
     <span class="bgear-actions">${pinBtn}${clearBtn}</span>
@@ -257,6 +260,7 @@ function renderBuilderSummary() {
     : skillPillsHtml(ev.skills);
   $("builderSets").innerHTML = setBonusesHtml(ev?.setBonuses);
   $("builderImportSkills").classList.toggle("hidden", empty || !skillsFromSet(ev?.skills, ev?.setBonuses).length);
+  $("builderSkillInfo").disabled = empty || !(ev?.skills?.length || ev?.setBonuses?.length);
   syncSkillAddables();
   syncStatChips();
 
@@ -296,11 +300,34 @@ async function evaluateBuild() {
     });
     if (seq !== buildEvalSeq) return;
     state.buildEval = ev;
+    fillBuildSkills(ev);
   } catch {
     if (seq !== buildEvalSeq) return;
     state.buildEval = null;
   }
   renderBuilderSummary();
+}
+
+/** Builds saved before pieces and charms kept their skills: copy them from the evaluated build. */
+function fillBuildSkills(ev) {
+  const b = state.build;
+  let changed = false;
+  for (const k of BUILD_ARMOR) {
+    const p = b.pieces[k];
+    if (p && !p.skills && ev[k]?.id === p.id) {
+      p.skills = ev[k].skills;
+      changed = true;
+    }
+  }
+  const c = b.charm;
+  if (c && !c.skills && ev.charmInfo?.id === c.id && ev.charmInfo.level === c.level) {
+    c.skills = ev.charmInfo.skills;
+    changed = true;
+  }
+  if (changed) {
+    saveBuild();
+    renderBuilder();
+  }
 }
 
 /** Pins sent with Auto Search. */
@@ -327,9 +354,7 @@ async function applyResultToBuild(r) {
     const p = r[k];
     b.pieces[k] = p && p.id ? { ...p, slot: k } : null;
   }
-  b.charm = r.charmInfo && r.charmInfo.id
-    ? { id: r.charmInfo.id, level: r.charmInfo.level, name: r.charmInfo.name, rarity: r.charmInfo.rarity }
-    : null;
+  b.charm = r.charmInfo && r.charmInfo.id ? charmRef(r.charmInfo) : null;
 
   const locKey = { Head: "head", Chest: "chest", Gloves: "gloves", Waist: "waist", Legs: "legs", Weapon: "weapon" };
   b.decos = { weapon: [], head: [], chest: [], gloves: [], waist: [], legs: [] };
@@ -373,7 +398,7 @@ function toggleResultPin(loc, r) {
     const c = r.charmInfo;
     if (!c?.id) return;
     if (!(b.charm && b.charm.id === c.id && b.charm.level === c.level)) {
-      setBuildPiece("charm", { id: c.id, level: c.level, name: c.name, rarity: c.rarity });
+      setBuildPiece("charm", charmRef(c));
     }
   } else {
     const p = r[loc];
@@ -442,6 +467,8 @@ function charmList() {
   return charmListCache;
 }
 
+const charmRef = (c) => ({ id: c.id, level: c.level, name: c.name, rarity: c.rarity, skills: c.skills });
+
 function builderPickRow(html, active, onPick) {
   const row = document.createElement("button");
   row.type = "button";
@@ -505,7 +532,7 @@ async function renderBuilderModal(kind, q, cats, pane, extra, seq) {
       const html = `<span class="pick-with-ico">${armorIcon("charm", c.rarity, { size: 20 })}<span>${escapeHtml(c.name)}<span class="sub"> ${escapeHtml(skillsText(c.skills))}</span></span></span>
         <span class="sub" style="color:${rarityColor(c.rarity)}">R${c.rarity}</span>`;
       pane.appendChild(builderPickRow(html, current?.id === c.id && current?.level === c.level, () => {
-        setBuildPiece("charm", { id: c.id, level: c.level, name: c.name, rarity: c.rarity });
+        setBuildPiece("charm", charmRef(c));
         closeModal();
       }));
     }

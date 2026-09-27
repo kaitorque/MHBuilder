@@ -85,11 +85,14 @@ function bestSourceText(item) {
   const s = item?.sources;
   if (!s) return "No drop or gathering data · see details";
   const parts = [];
-  const m = monstersByItemRank(item)[0];
+  const ranked = monstersByItemRank(item);
+  const m = ranked[0];
   if (m) {
     const [condition, pct] = m.drops[0];
-    const others = s.monsters.length - 1;
-    parts.push(`${m.monster} · ${m.rank} · ${condition} ${pct}%${others > 0 ? ` (+${others} monster${others > 1 ? "s" : ""})` : ""}`);
+    const tied = ranked.filter((o) => o.rank === m.rank && o.drops[0][0] === condition && o.drops[0][1] === pct);
+    const names = [...new Set(tied.map((o) => o.monster))].slice(0, 3);
+    const others = new Set(s.monsters.map((o) => o.monster).filter((n) => !names.includes(n))).size;
+    parts.push(`${names.join(" / ")} · ${m.rank} · ${condition} ${pct}%${others > 0 ? ` (+${others} monster${others > 1 ? "s" : ""})` : ""}`);
   }
   const g = s.gathering?.[0];
   if (g) parts.push(`Gather in ${g.location}${m ? "" : ` · ${g.rank}${g.area ? ` · area ${g.area}` : ""}`}`);

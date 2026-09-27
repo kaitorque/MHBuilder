@@ -359,6 +359,12 @@ function resistRowHtml(resists, { clickable = true } = {}) {
     .join("");
 }
 
+/** "Slugger 2 · Marathon Runner 1" under a piece or charm; empty when it has no skills. */
+function pieceSkillsHtml(skills, cls = "piece-skills") {
+  if (!skills?.length) return "";
+  return `<span class="${cls}">${skills.map((s) => escapeHtml(`${s.name} ${s.level}`)).join(" · ")}</span>`;
+}
+
 function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = "") {
   if (!piece) return "";
   const rarity = piece.rarity ?? (slot === "charm" ? 10 : 1);
@@ -397,6 +403,7 @@ function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = 
       <span class="piece-slot">${label}</span>
       <span class="piece-name">${escapeHtml(piece.name)}${armorNoteTag(piece.set)}</span>
       <span class="piece-meta rarity-text" style="color:${rarityColor(slot === "weapon" ? wRarity : rarity)}">${metaBits.join(" · ")}</span>
+      ${pieceSkillsHtml(piece.skills)}
       ${slotIcons}
     </div>
     ${actionsHtml ? `<div class="piece-actions">${actionsHtml}</div>` : ""}

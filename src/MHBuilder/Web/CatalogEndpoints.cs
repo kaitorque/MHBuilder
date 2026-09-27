@@ -97,7 +97,7 @@ public static class CatalogEndpoints
     private static string SkillName(GameCatalog cat, int skillId) =>
         cat.SkillsById.TryGetValue(skillId, out var sk) ? sk.Name : $"#{skillId}";
 
-    private static IEnumerable<object> SkillList(GameCatalog cat, IEnumerable<SkillPoint> skills) =>
+    internal static IEnumerable<object> SkillList(GameCatalog cat, IEnumerable<SkillPoint> skills) =>
         skills.Select(s => new { s.SkillId, name = SkillName(cat, s.SkillId), s.Level });
 
     /// <summary>

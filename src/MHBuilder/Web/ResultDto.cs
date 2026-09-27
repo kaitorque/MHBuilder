@@ -36,6 +36,23 @@ public static class ResultDto
             return th.RaisesAllCaps && wantedSkills.Any(kv => kv.Value > cat.BaseMaxLevel(kv.Key));
         }
 
+        // The skill a set effect adds to the wanted list when clicked: the granted skill, or the capped skill at its raised max.
+        (int? SkillId, int Level, string Label) EffectSkill(SetBonusThreshold? th, string effect)
+        {
+            if (th?.GrantsSkillId is int gid && gid > 0 && cat.SkillsById.TryGetValue(gid, out var granted))
+            {
+                int level = Math.Max(1, th.GrantsLevel);
+                string skill = granted.MaxLevel > 1 ? $"{granted.Name} {level}" : granted.Name;
+                string label = th.EffectName is { Length: > 0 } en && !en.Equals(granted.Name, StringComparison.OrdinalIgnoreCase)
+                    ? $"{en} ({skill})"
+                    : skill;
+                return (gid, level, label);
+            }
+            if (th?.RaisesCapForSkillId is int capId && capId > 0 && cat.SkillsById.TryGetValue(capId, out var capped))
+                return (capId, capped.MaxLevel, effect);
+            return (null, 0, effect);
+        }
+
         return new
         {
             defense = r.Defense,
@@ -51,13 +68,13 @@ public static class ResultDto
                 .GroupBy(s => s)
                 .OrderByDescending(g => g.Key)
                 .Select(g => new { slotSize = g.Key, count = g.Count() }),
-            head = Piece(r.Head),
-            chest = Piece(r.Chest),
-            gloves = Piece(r.Gloves),
-            waist = Piece(r.Waist),
-            legs = Piece(r.Legs),
+            head = Piece(r.Head, cat),
+            chest = Piece(r.Chest, cat),
+            gloves = Piece(r.Gloves, cat),
+            waist = Piece(r.Waist, cat),
+            legs = Piece(r.Legs, cat),
             charm = r.Charm.Name,
-            charmInfo = new { id = r.Charm.CharmId, r.Charm.Level, r.Charm.Name, r.Charm.Rarity },
+            charmInfo = new { id = r.Charm.CharmId, r.Charm.Level, r.Charm.Name, r.Charm.Rarity, skills = CatalogEndpoints.SkillList(cat, r.Charm.Skills) },
             decorations = r.Decorations
                 .GroupBy(d => d.Id)
                 .Select(g =>
@@ -87,7 +104,8 @@ public static class ResultDto
                         {
                             var th = bonusInfo?.Thresholds.FirstOrDefault(t => t.RequiredParts == x.RequiredParts);
                             bool wantedFx = th is not null && EffectWanted(first.Id, th);
-                            return new { parts = x.RequiredParts, effect = x.Effect, wanted = wantedFx, extra = !wantedFx };
+                            var (skillId, level, label) = EffectSkill(th, x.Effect);
+                            return new { parts = x.RequiredParts, effect = label, skillId, level, wanted = wantedFx, extra = !wantedFx };
                         })
                         .ToList();
                     return new
@@ -127,11 +145,12 @@ public static class ResultDto
         };
     }
 
-    private static object Piece(ArmorPiece p) => new
+    private static object Piece(ArmorPiece p, GameCatalog cat) => new
     {
         p.Id,
         p.Name,
         slots = p.Slots,
+        skills = CatalogEndpoints.SkillList(cat, p.Skills),
         p.DefenseMax,
         p.Rarity,
         gender = p.Gender,

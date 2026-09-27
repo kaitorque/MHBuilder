@@ -193,6 +193,8 @@ body {
 .bgear-name:hover { color: var(--accent); }
 .bgear-row.empty .bgear-name { color: var(--muted); font-weight: 400; font-style: italic; }
 .bgear-sub { font-size: 0.74rem; }
+.piece-skills { font-size: 0.74rem; color: var(--muted); line-height: 1.3; }
+.bgear-skills { margin-top: 0.1rem; }
 .bgear-slots { display: inline-flex; gap: 0.2rem; }
 .bslot {
   padding: 2px;
@@ -1216,7 +1218,7 @@ img.tint-layer { object-fit: contain; }
 }
 .pick-row.pick-skill {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 11.5rem 2rem;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) 11.5rem 2rem;
   gap: 0.75rem;
 }
 .pick-row.pick-skill .pick-name {
@@ -1227,11 +1229,6 @@ img.tint-layer { object-fit: contain; }
 }
 .pick-text { display: grid; min-width: 0; gap: 0.05rem; }
 .pick-desc {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
   color: var(--muted);
   font-size: 0.76rem;
   line-height: 1.3;
@@ -1324,6 +1321,39 @@ img.tint-layer { object-fit: contain; }
   background: var(--accent-2);
   border-color: var(--accent-2);
 }
+#modal[data-kind="setskills"] .modal-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+#modal[data-kind="setskills"] .cat-nav { display: none; }
+.skill-info-list { display: grid; gap: 0.5rem; }
+.skill-info {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--r-md);
+  background: var(--surface-0);
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+.skill-info.is-wanted { border-color: color-mix(in srgb, var(--accent-2) 50%, var(--line)); }
+.skill-info-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.skill-info-name { font-weight: 600; margin-right: auto; }
+.skill-info-desc { margin: 0; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
+.skill-info-levels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+.skill-info-levels li { display: flex; gap: 0.5rem; padding: 0.1rem 0.35rem; border-radius: var(--r-sm); }
+.skill-info-levels li.reached { color: var(--muted); }
+.skill-info-levels li.current {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.skill-info-levels .lvl-no { flex-shrink: 0; width: 2.4rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.skill-info-levels li.current .lvl-no { color: var(--accent); }
 .pick-row.pick-set .pick-name {
   color: color-mix(in srgb, var(--accent) 35%, var(--text));
 }
