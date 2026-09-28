@@ -57,6 +57,8 @@ public static class ResultDto
         {
             defense = r.Defense,
             resistances = Resists(r.Resistances),
+            armorDefense = r.ArmorDefense,
+            armorResistances = Resists(r.ArmorResistances ?? r.Resistances),
             weapon = r.WeaponName,
             weaponId = r.WeaponId,
             weaponType = r.WeaponType,

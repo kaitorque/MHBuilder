@@ -154,8 +154,14 @@ public sealed partial class SetSearcher
     {
         if (!MeetsWantedSetRequirements(pieces, setEffects, setParts))
             return best;
-        if (request.Minimums is { } minimums && !minimums.MetBy(pieces))
-            return best;
+        var minimums = request.Minimums;
+        if (minimums is not null)
+        {
+            var (armor, resists) = ArmorTotals(pieces);
+            var (defense, maxResists) = StatBonuses.Apply(armor, resists, StatBonuses.MaxLevels);
+            if (!minimums.MetBy(defense, maxResists))
+                return best;
+        }
         var granted = EvaluateSetBonuses(pieces, out var active);
         if (granted.Any(g => excludedSkills.Contains(g.SkillId)) || active.Any(b => excludedSkills.Contains(b.Id)))
             return best;
@@ -187,7 +193,8 @@ public sealed partial class SetSearcher
             for (int level = best + 1; level <= maxLevel; level++)
             {
                 trial[skillId] = level;
-                if (!TryFillDecorationsKeepingFree(acc, trial, caps, slots, request.MinFreeSlots, request.OwnedDecorations, excludedSkills, out _, out _))
+                if (!TryFillDecorationsKeepingFree(acc, trial, caps, slots, request.MinFreeSlots, request.OwnedDecorations, excludedSkills, out var placed, out _)
+                    || (minimums is not null && !MeetsMinimums(minimums, pieces, acc, placed, raisedSkills, raisesAllCaps)))
                     break;
                 best = level;
             }
@@ -225,7 +232,8 @@ public sealed partial class SetSearcher
         foreach (var id in final.Keys.Where(k => final[k] <= 0).ToList())
             final.Remove(id);
 
-        var resists = worn.Aggregate(ElementalResists.Zero, (acc, p) => acc.Add(p.Resistances));
+        var (armorDefense, armorResists) = ArmorTotals(worn);
+        var (defense, resists) = _catalog.StatBonuses.Apply(armorDefense, armorResists, final);
         ArmorPiece Slot(ArmorSlot s) => pieces.TryGetValue(s, out var p)
             ? p
             : new ArmorPiece(0, "", s, "", 0, 0, ElementalResists.Zero, [], [], null, null, []);
@@ -236,14 +244,57 @@ public sealed partial class SetSearcher
             decorations,
             [],
             final,
-            worn.Sum(p => p.DefenseMax),
+            defense,
             resists,
             [],
             null,
             weaponSlots,
             null,
             null,
-            active);
+            active,
+            ArmorDefense: armorDefense,
+            ArmorResistances: armorResists);
+    }
+
+    private static (int Defense, ElementalResists Resists) ArmorTotals(IEnumerable<ArmorPiece> pieces)
+    {
+        int defense = 0;
+        var resists = ElementalResists.Zero;
+        foreach (var p in pieces)
+        {
+            defense += p.DefenseMax;
+            resists = resists.Add(p.Resistances);
+        }
+        return (defense, resists);
+    }
+
+    /// <summary>
+    /// Whether the set meets the stat floors: its armor plus the bonus skills at the levels from
+    /// <paramref name="skillAcc"/> (armor, set bonuses, charm) and the placed jewels, capped.
+    /// </summary>
+    private bool MeetsMinimums(
+        StatMinimums minimums,
+        ArmorPiece[] pieces,
+        int[] skillAcc,
+        List<DecorationPlacement> placements,
+        HashSet<int> raisedSkills,
+        bool raisesAllCaps)
+    {
+        var ids = _catalog.StatBonuses.SkillIds;
+        Span<int> levels = stackalloc int[StatBonuses.Count];
+        for (int i = 0; i < StatBonuses.Count; i++)
+        {
+            int id = ids[i];
+            if (id < 0) continue;
+            int level = skillAcc[id];
+            foreach (var p in placements)
+                foreach (var s in p.Decoration.Skills)
+                    if (s.SkillId == id) level += s.Level;
+            levels[i] = _catalog.CapSkill(id, level, raisesAllCaps || raisedSkills.Contains(id));
+        }
+        var (armor, resists) = ArmorTotals(pieces);
+        var (defense, total) = StatBonuses.Apply(armor, resists, levels);
+        return minimums.MetBy(defense, total);
     }
 
     private static int SlotScore(int[] slots) =>

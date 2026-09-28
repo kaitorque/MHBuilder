@@ -411,18 +411,19 @@ function pieceSlotsFilledHtml(pieceSlots, placements, { size = 16 } = {}) {
   return `<span class="piece-slots">${parts.join("")}</span>`;
 }
 
-/** Makes a defense / resistance chip set that search minimum on click (see setStatMin). */
-function statChipAttrs(stat, value) {
-  return `data-min-stat="${stat}" data-min-value="${value}" role="button" tabindex="0"`;
+/** Makes a defense / resistance chip set that search minimum on click (see setStatMin); armor is the value without skill bonuses. */
+function statChipAttrs(stat, value, armor) {
+  const split = armor != null && armor !== value ? ` data-armor-value="${armor}"` : "";
+  return `data-min-stat="${stat}" data-min-value="${value}"${split} role="button" tabindex="0"`;
 }
 
-function resistRowHtml(resists, { clickable = true } = {}) {
+function resistRowHtml(resists, { clickable = true, armor = null } = {}) {
   const r = resists || {};
   return ["fire", "water", "thunder", "ice", "dragon"]
     .map((k) => {
       const v = r[k] ?? 0;
       const cls = v > 0 ? "pos" : v < 0 ? "neg" : "zero";
-      return `<span class="resist-chip ${cls}" ${clickable ? statChipAttrs(k, v) : ""}>${elementIcon(k)}${v > 0 ? "+" : ""}${v}</span>`;
+      return `<span class="resist-chip ${cls}" ${clickable ? statChipAttrs(k, v, armor?.[k]) : ""}>${elementIcon(k)}${v > 0 ? "+" : ""}${v}</span>`;
     })
     .join("");
 }

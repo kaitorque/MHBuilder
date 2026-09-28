@@ -36,9 +36,11 @@ material comes from.
   14 are the loaner weapons from the removed Monster Hunter movie event quests and have no recipe. The view counts the
   cheapest path: forge the nearest forgeable ancestor, then every upgrade. Kulve Taroth and Safi'jiiva weapons are
   flagged as siege rewards.
-- **Material sources:** MHWorldData (monster drops with rank and chance, gathering spots, quest rewards,
-  combinations), matched to game items by English name. About 60 materials have no source data (Guiding Lands
-  materials, festival tickets and similar); their in-game description says where they come from.
+- **Material sources:** MHWorldData (monster drops with rank and chance, quest rewards, combinations), matched to
+  game items by English name. Gathering comes from [mhw.poedb.tw](https://mhw.poedb.tw/eng/) (every map and rank,
+  including Hoarfrost Reach and the Guiding Lands, by node type), which also supplies Tailraider Safari hauls and
+  monster drops for items MHWorldData has none for (master rank small monsters). poedb uses the game's item ids.
+  Items still without source data (festival tickets and similar) show what their in-game description says.
 - **Icons:** item icons copied into `src/MHBuilder/wwwroot/icons/mh/` and tinted in the browser.
 
 ## Regenerating
@@ -51,14 +53,20 @@ Local prerequisites under `tools/dump/` (not in git):
 | `MHWMasterDataUtils/` | [MHWMasterDataUtils](https://github.com/TanukiSharp/MHWMasterDataUtils); its Exporter writes `MHWMasterDataUtils.Exporter/data/*.json` from the chunks |
 | `mhw_ghs.db` | [MHWorldData](https://github.com/gatheringhallstudios/MHWorldData) SQLite build |
 | `mhotomo/` | Icon source assets |
+| `poedb/`, `poedb_sources.json` | Cached mhw.poedb.tw item pages and the sources parsed from them (`fetch_poedb.py`) |
 
 Then, from the repository root:
 
 ```sh
 python tools/dump/convert_game_dump.py     # skills, armor, charms, decorations, weapons, SOURCE.json
 python tools/dump/build_materials.py       # materials.json and item icons
+python tools/dump/fetch_poedb.py           # poedb pages for every material (cached; --refresh refetches)
+python tools/dump/build_materials.py       # again, to merge poedb_sources.json
 python tools/dump/restore_jewel_icons.py   # slot, jewel and gear icons
 ```
+
+`fetch_poedb.py` reads the material list from `materials.json`, so it runs after a first build; once
+`poedb_sources.json` exists, a single `build_materials.py` run is enough unless new materials appear.
 
 `convert_game_dump.py` adds 1 to ranged weapon rarity: the exporter applies that offset for melee weapons only.
 

@@ -1,3 +1,4 @@
+using MHBuilder.Catalog;
 using MHBuilder.Models;
 using MHBuilder.Search;
 
@@ -107,6 +108,33 @@ public sealed class SetSearcherTests(CatalogFixture fixture)
     }
 
     [Fact]
+    public void Stat_bonus_tables_follow_the_skill_levels()
+    {
+        // Defense Boost 4, Fire Resistance 3, Water Resistance 2.
+        var (defense, resists) = StatBonuses.Apply(1000, new ElementalResists(1, 2, 3, 4, -5), [4, 3, 2, 0, 0, 0]);
+
+        Assert.Equal(1000 * 105 / 100 + 20 + 10, defense);
+        Assert.Equal(new ElementalResists(1 + 3 + 20, 2 + 3 + 12, 3 + 3, 4 + 3, -5 + 3), resists);
+    }
+
+    [Fact]
+    public void Defense_and_resistances_include_skill_bonuses()
+    {
+        var request = fixture.Request(("Defense Boost", 7), ("Fire Resistance", 3), ("Weakness Exploit", 3), ("Critical Eye", 4))
+            with { Minimums = new StatMinimums(null, 25, null, null, null, null) };
+        var results = fixture.Searcher.Search(request);
+
+        Assert.NotEmpty(results);
+        AssertAllValid(request, results);
+        Assert.All(results, r =>
+        {
+            Assert.Equal(r.ArmorDefense * 110 / 100 + 35 + 10, r.Defense);
+            Assert.Equal(r.ArmorResistances!.Fire + 5 + 20, r.Resistances.Fire);
+            Assert.Equal(r.ArmorResistances.Water + 5, r.Resistances.Water);
+        });
+    }
+
+    [Fact]
     public void Impossible_request_returns_nothing_without_timing_out()
     {
         var request = fixture.Request(
@@ -162,6 +190,7 @@ public sealed class SetSearcherTests(CatalogFixture fixture)
         var evaluated = fixture.Searcher.EvaluateBuild(pieces, best.Charm, best.Decorations, [4, 2, 1]);
 
         Assert.Equal(best.Defense, evaluated.Defense);
+        Assert.Equal(best.Resistances, evaluated.Resistances);
         Assert.Equal(best.FinalSkills.OrderBy(kv => kv.Key), evaluated.FinalSkills.OrderBy(kv => kv.Key));
     }
 }

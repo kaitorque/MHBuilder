@@ -7,7 +7,9 @@ also supplies forge recipes for event weapons MHWorldData lacks. A few late upgr
 (Xeno'jiiva "+", Black Lightning Eagle, ...) are entered by hand in MANUAL_UPGRADES.
 Sources (monster rewards, gathering, quest rewards, combinations) and item icons come from the
 Gathering Hall Studios MHWorldData SQLite (tools/dump/mhw_ghs.db), matched by English item name
-because the two use different item ids. Item icons are copied from the MHOTOMO assets.
+because the two use different item ids. MHWorldData's gathering stops at base-game high rank, so gathering
+(and Tailraider Safari hauls, and monster drops for items MHWorldData has none for) come from mhw.poedb.tw
+when tools/dump/poedb_sources.json exists (see fetch_poedb.py). Item icons are copied from the MHOTOMO assets.
 """
 from __future__ import annotations
 
@@ -20,6 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DUMP = ROOT / "tools/dump/MHWMasterDataUtils/MHWMasterDataUtils.Exporter/data"
 GHS = ROOT / "tools/dump/mhw_ghs.db"
+POEDB = ROOT / "tools/dump/poedb_sources.json"
 ICON_SRC = ROOT / "tools/dump/mhotomo/apk_extract/assets/flutter_assets/assets/3.0x"
 ICON_DST = ROOT / "src/MHBuilder/wwwroot/icons/mh"
 OUT = ROOT / "data/materials.json"
@@ -222,6 +225,10 @@ def main() -> None:
     for rid, a, b, qty in q("select result_id, first_id, second_id, quantity from item_combination"):
         combos[rid].append((a, b, qty))
 
+    poedb = json.loads(POEDB.read_text(encoding="utf-8")) if POEDB.exists() else {}
+    if not poedb:
+        print(f"warning: {POEDB.name} missing, so no Iceborne gathering or Safari data; run fetch_poedb.py")
+
     def item_ref(ghs_id):
         name = ghs_name.get(ghs_id, "?")
         return {"id": game_id_by_name.get(name), "name": name}
@@ -239,21 +246,34 @@ def main() -> None:
         icon = ICONS.get(icon_name, "questionmark")
         icons_used.add(icon)
 
+        extra = poedb.get(str(gid), {})
         by_monster = defaultdict(list)
         for mid, rank, cond, pct, stack in rewards.get(ghs_id, []):
-            by_monster[(mid, rank)].append([cond, pct, stack])
+            by_monster[(monster.get(mid, "?"), rank)].append([cond, pct, stack])
+        if not by_monster:
+            for m in extra.get("monsters", []):
+                by_monster[(m["monster"], m["rank"])].append([m["condition"], m["chance"], m["stack"]])
         monsters = [
-            {"monster": monster.get(mid, "?"), "rank": rank,
-             "drops": sorted(drops, key=lambda d: -d[1])}
-            for (mid, rank), drops in by_monster.items()
+            {"monster": name, "rank": rank, "drops": sorted(drops, key=lambda d: -d[1])}
+            for (name, rank), drops in by_monster.items()
         ]
         monsters.sort(key=lambda m: (RANK_ORDER.get(m["rank"], 3), -max(d[1] for d in m["drops"]), m["monster"]))
 
-        gather = [
-            {"location": location.get(lid, "?"), "area": area, "rank": rank, "chance": pct, "stack": stack, "nodes": nodes}
-            for lid, area, rank, pct, stack, nodes in gathering.get(ghs_id, [])
-        ]
-        gather.sort(key=lambda g: (RANK_ORDER.get(g["rank"], 3), g["location"], -g["chance"], g["area"] or 0))
+        if extra.get("gathering"):
+            gather = sorted(extra["gathering"],
+                            key=lambda g: (RANK_ORDER.get(g["rank"], 3), g["location"], -g["chance"], g["node"]))
+        else:
+            gather = [
+                {"location": location.get(lid, "?"), "area": area, "rank": rank, "chance": pct, "stack": stack, "nodes": nodes}
+                for lid, area, rank, pct, stack, nodes in gathering.get(ghs_id, [])
+            ]
+            gather.sort(key=lambda g: (RANK_ORDER.get(g["rank"], 3), g["location"], -g["chance"], g["area"] or 0))
+        best_safari = {}
+        for s in extra.get("safari", []):
+            key = (s["map"], s["rank"])
+            if key not in best_safari or (s["chance"], s["stack"]) > (best_safari[key]["chance"], best_safari[key]["stack"]):
+                best_safari[key] = s
+        safari = sorted(best_safari.values(), key=lambda s: (RANK_ORDER.get(s["rank"], 3), -s["chance"], s["map"]))
 
         quests = [
             {"quest": quest[qid][0], "rank": quest[qid][1], "stars": quest[qid][2], "category": quest[qid][3],
@@ -279,6 +299,8 @@ def main() -> None:
             sources["monsters"] = monsters
         if gather:
             sources["gathering"] = gather
+        if safari:
+            sources["safari"] = safari
         if quests:
             sources["quests"] = quests[:MAX_QUESTS]
             if len(quests) > MAX_QUESTS:

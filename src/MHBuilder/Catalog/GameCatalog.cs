@@ -29,6 +29,7 @@ public sealed class GameCatalog
     public IReadOnlyDictionary<int, Decoration> DecorationsById { get; }
     public IReadOnlyList<WeaponInfo> Weapons { get; }
     public IReadOnlyDictionary<int, WeaponInfo> WeaponsById { get; }
+    public StatBonuses StatBonuses { get; }
 
     private GameCatalog(
         List<SkillInfo> skills,
@@ -44,6 +45,7 @@ public sealed class GameCatalog
         Skills = skills;
         SkillsById = skills.ToDictionary(s => s.Id);
         SkillsByName = skills.ToDictionary(s => s.Name, StringComparer.OrdinalIgnoreCase);
+        StatBonuses = new StatBonuses(SkillsByName);
         SetBonuses = setBonuses;
         SetBonusesById = setBonuses.ToDictionary(s => s.Id);
         SetEffects = setEffects;

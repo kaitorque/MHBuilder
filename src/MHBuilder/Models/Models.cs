@@ -65,7 +65,10 @@ public sealed record ElementalResists(int Fire, int Water, int Thunder, int Ice,
         Dragon + other.Dragon);
 }
 
-/// <summary>Search floors for the set's armor totals; null means no floor. Resistances may be negative.</summary>
+/// <summary>
+/// Search floors for the set's totals (armor plus Defense Boost / resistance skill bonuses); null means no floor.
+/// Resistances may be negative.
+/// </summary>
 public sealed record StatMinimums(int? Defense, int? Fire, int? Water, int? Thunder, int? Ice, int? Dragon)
 {
     public const int Count = 6;
@@ -85,11 +88,21 @@ public sealed record StatMinimums(int? Defense, int? Fire, int? Water, int? Thun
         _ => p.Resistances.Dragon,
     };
 
-    public bool MetBy(IEnumerable<ArmorPiece> pieces)
+    public static int Stat(int defense, ElementalResists r, int k) => k switch
+    {
+        0 => defense,
+        1 => r.Fire,
+        2 => r.Water,
+        3 => r.Thunder,
+        4 => r.Ice,
+        _ => r.Dragon,
+    };
+
+    public bool MetBy(int defense, ElementalResists resists)
     {
         var floors = ToArray();
         for (int k = 0; k < Count; k++)
-            if (floors[k] is int min && pieces.Sum(p => Stat(p, k)) < min)
+            if (floors[k] is int min && Stat(defense, resists, k) < min)
                 return false;
         return true;
     }
@@ -185,4 +198,7 @@ public sealed record SearchResult(
     string? WeaponType = null,
     int? WeaponRarity = null,
     IReadOnlyList<ActiveSetBonus>? SetBonuses = null,
-    int? WeaponId = null);
+    int? WeaponId = null,
+    // Armor alone; Defense / Resistances add the Defense Boost and resistance skill bonuses.
+    int ArmorDefense = 0,
+    ElementalResists? ArmorResistances = null);

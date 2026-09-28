@@ -94,7 +94,7 @@ public static class CliCommands
         int n = 1;
         foreach (var r in results)
         {
-            Console.WriteLine($"=== #{n++} def={r.Defense}  " +
+            Console.WriteLine($"=== #{n++} def={r.Defense} (armor {r.ArmorDefense})  " +
                 $"F{r.Resistances.Fire}/W{r.Resistances.Water}/T{r.Resistances.Thunder}/I{r.Resistances.Ice}/D{r.Resistances.Dragon}  " +
                 $"weapon={r.WeaponName ?? string.Join('-', r.WeaponSlots ?? [])} ===");
             Console.WriteLine($"  {r.Head.Name} / {r.Chest.Name} / {r.Gloves.Name} / {r.Waist.Name} / {r.Legs.Name}");

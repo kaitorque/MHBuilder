@@ -8,12 +8,22 @@ const SIEGE_SOURCES = {
   Safi: "a Safi'jiiva Siege reward",
 };
 
-/** pieces: armor objects with an id (builder pieces or result pieces); charm: { id, level } or null; weaponId: catalog weapon or null. */
-function openMaterials(title, pieces, charm, weaponId = null) {
+/**
+ * pieces: armor objects with an id (builder pieces or result pieces); charm: { id, level } or null; weaponId: catalog
+ * weapon or null. category: the tab to open on (see materialsTabFor).
+ */
+function openMaterials(title, pieces, charm, weaponId = null, category = ALL_TAB) {
   const armorIds = pieces.filter((p) => p?.id).map((p) => p.id);
   const charmSel = charm?.id ? { id: charm.id, level: charm.level } : null;
   if (!armorIds.length && !charmSel && !weaponId) return;
-  openModal("materials", title, { armorIds, charm: charmSel, weaponId, category: ALL_TAB, item: null, lastQ: "" });
+  openModal("materials", title, { armorIds, charm: charmSel, weaponId, category, item: null, lastQ: "" });
+}
+
+/** Materials tab for one equipment slot (armor slot key, "charm" or "weapon"), or null when it has nothing to forge. */
+function materialsTabFor(loc, piece, weaponId) {
+  if (loc === "weapon") return weaponId ? MAT_WEAPON_TAB : null;
+  if (loc === "charm") return piece?.id ? MAT_CHARM_TAB : null;
+  return piece?.id ? `p${piece.id}` : null;
 }
 
 function materialsData() {
@@ -73,34 +83,118 @@ function totalMaterials(recipes, items) {
     (items[b.id]?.rarity ?? 0) - (items[a.id]?.rarity ?? 0) || String(items[a.id]?.name).localeCompare(String(items[b.id]?.name)));
 }
 
+const itemRank = (item) => (item.rarity >= 9 ? "MR" : item.rarity >= 5 ? "HR" : "LR");
+
 /** Monsters with the item's own rank first (rarity 1-4 LR, 5-8 HR, 9+ MR); MR variants also drop many HR items. */
 function monstersByItemRank(item) {
   const list = item?.sources?.monsters || [];
-  const rank = item.rarity >= 9 ? "MR" : item.rarity >= 5 ? "HR" : "LR";
+  const rank = itemRank(item);
   return [...list.filter((m) => m.rank === rank), ...list.filter((m) => m.rank !== rank)];
+}
+
+const MAP_NAMES = ["Ancient Forest", "Wildspire Waste", "Coral Highlands", "Rotten Vale", "Elder's Recess", "Hoarfrost Reach"];
+const GATHERED_ICONS = new Set(["rock", "dragonbone", "herb", "mushroom", "bug", "seed"]);
+
+/**
+ * Where a gathered material comes from per its description, for the ores and bones the gathering data lacks
+ * (Guiding Lands, Hoarfrost Reach, most master rank nodes); null when the data has nodes or the text doesn't say.
+ */
+function describedGathering(item) {
+  if (item.sources?.gathering?.length || !GATHERED_ICONS.has(item.icon)) return null;
+  const d = item.description || "";
+  const region = d.match(/Guiding Lands' (\w+) region/);
+  if (region) return `Gather in Guiding Lands · ${region[1]} region`;
+  const map = MAP_NAMES.find((n) => d.includes(n));
+  if (map) return `Gather in ${map}`;
+  if (/mining outcrops|^Mined from/i.test(d)) return `Mine outcrops · ${itemRank(item)}`;
+  return null;
+}
+
+/** Non-gathering origin from the description (fest tickets, carves, Safari finds); null when it doesn't say. */
+function describedSource(item) {
+  const d = item.description || "";
+  let m;
+  if ((m = d.match(/attending the (.+? Fest)/))) return `${m[1]} reward · seasonal event`;
+  if (/Tailraider Safari/.test(d)) return "Tailraider Safari find";
+  if (/Steamworks/.test(d)) return "Steamworks reward";
+  if (/Botanical Research/.test(d)) return "Botanical Research";
+  if ((m = d.match(/^(?:Very rare |Rare )?(.+?) material\.\s*((?:Mostly )?[Oo]btained [^.]+)?/))) {
+    return `${m[1]} · ${itemRank(item)}${m[2] ? ` · ${m[2].charAt(0).toLowerCase()}${m[2].slice(1)}` : ""}`;
+  }
+  return null;
+}
+
+/** "Kirin 16%, Kushala Daora 12% · MR" for every monster of the item's rank; one monster also names its best drop. */
+function monsterSourceText(item) {
+  const ranked = monstersByItemRank(item);
+  if (!ranked.length) return null;
+  const rank = ranked[0].rank;
+  const best = new Map();
+  for (const o of ranked) {
+    if (o.rank !== rank) continue;
+    const [condition, pct] = o.drops[0];
+    if (!best.has(o.monster) || best.get(o.monster).pct < pct) best.set(o.monster, { condition, pct });
+  }
+  const others = new Set(ranked.filter((o) => !best.has(o.monster)).map((o) => o.monster)).size;
+  const more = others > 0 ? ` (+${others} in other ranks)` : "";
+  if (best.size === 1) {
+    const [[name, { condition, pct }]] = best;
+    return `${name} · ${rank} · ${condition} ${pct}%${more}`;
+  }
+  const list = [...best].sort((a, b) => b[1].pct - a[1].pct).map(([name, { pct }]) => `${name} ${pct}%`);
+  return `${list.join(", ")} · ${rank}${more}`;
+}
+
+/** Rows of the item's own rank, else of the first rank listed (lists come highest rank first). */
+function rowsOfItemRank(item, rows) {
+  const want = itemRank(item);
+  const rank = rows.some((r) => r.rank === want) ? want : rows[0]?.rank;
+  return { rank, rows: rows.filter((r) => r.rank === rank) };
+}
+
+/** A gathering row's place: the map, or for the Guiding Lands its region ("Guiding Lands Ancient Forest"). */
+function gatherPlace(g) {
+  const region = g.location === "Guiding Lands" && g.node?.includes(" - ") ? g.node.split(" - ")[0] : "";
+  return region ? `Guiding Lands ${region}` : g.location;
+}
+
+/** "Gather · LR · Wildspire Waste, Ancient Forest"; Guiding Lands places add their lowest region level. */
+function gatherSourceText(item) {
+  const { rank, rows } = rowsOfItemRank(item, item.sources?.gathering || []);
+  if (!rows.length) return null;
+  const places = new Map();
+  for (const g of rows) {
+    const lv = Number(g.node?.match(/Lv(\d)/)?.[1]) || 0;
+    const place = gatherPlace(g);
+    places.set(place, places.has(place) ? Math.min(places.get(place), lv) : lv);
+  }
+  const list = [...places].map(([place, lv]) => (lv ? `${place} Lv${lv}+` : place));
+  return `Gather${rank ? ` · ${rank}` : ""} · ${list.join(", ")}`;
+}
+
+/** "Tailraider Safari · MR · Ancient Forest 61%, Wildspire Waste 61%". */
+function safariSourceText(item) {
+  const { rank, rows } = rowsOfItemRank(item, item.sources?.safari || []);
+  if (!rows.length) return null;
+  return `Tailraider Safari · ${rank} · ${rows.map((s) => `${s.map} ${s.chance}%`).join(", ")}`;
 }
 
 /** One-line "where do I get this" for list rows. */
 function bestSourceText(item) {
-  const s = item?.sources;
-  if (!s) return "No drop or gathering data · see details";
+  const s = item?.sources || {};
   const parts = [];
-  const ranked = monstersByItemRank(item);
-  const m = ranked[0];
-  if (m) {
-    const [condition, pct] = m.drops[0];
-    const tied = ranked.filter((o) => o.rank === m.rank && o.drops[0][0] === condition && o.drops[0][1] === pct);
-    const names = [...new Set(tied.map((o) => o.monster))].slice(0, 3);
-    const others = new Set(s.monsters.map((o) => o.monster).filter((n) => !names.includes(n))).size;
-    parts.push(`${names.join(" / ")} · ${m.rank} · ${condition} ${pct}%${others > 0 ? ` (+${others} monster${others > 1 ? "s" : ""})` : ""}`);
-  }
-  const g = s.gathering?.[0];
-  if (g) parts.push(`Gather in ${g.location}${m ? "" : ` · ${g.rank}${g.area ? ` · area ${g.area}` : ""}`}`);
+  const monsters = monsterSourceText(item);
+  if (monsters) parts.push(monsters);
+  const gather = gatherSourceText(item) || describedGathering(item);
+  if (gather) parts.push(gather);
+  const safari = safariSourceText(item);
+  if (!parts.length && safari) parts.push(safari);
   const q = s.quests?.[0];
-  if (!parts.length && q) parts.push(`Quest reward · ${q.quest} (${q.rank} ★${q.stars}) ${q.chance}%`);
+  if (!parts.length && q) parts.push(`${q.category === "event" ? "Event quest" : "Quest reward"} · ${q.quest} (${q.rank} ★${q.stars}) ${q.chance}%`);
   const c = s.combine?.[0];
   if (!parts.length && c) parts.push(`Combine ${c.from.map((f) => f.name).join(" + ")}`);
-  return parts.join(" · ") || "See details";
+  if (!parts.length) parts.push(describedSource(item) || "No drop or gathering data · see details");
+  return parts.join(" · ");
 }
 
 async function renderMaterialsModal(q, cats, pane, extra, seq) {
@@ -263,11 +357,21 @@ function renderMaterialDetail(pane, item, total) {
       <div class="mat-src-head"><strong>${escapeHtml(mo.monster)}</strong>${rankTag(mo.rank)}</div>
       <div class="mat-drops">${mo.drops.map(([cond, p, n]) => `<span class="mat-drop">${escapeHtml(cond)}${stack(n)} ${pct(p)}</span>`).join("")}</div>
     </div>`).join("");
+  const described = describedGathering(item);
   const gathering = (s.gathering || []).map((g) => `
     <div class="mat-line">
-      <span><strong>${escapeHtml(g.location)}</strong>${g.area ? ` · area ${g.area}` : ""}${g.nodes > 1 ? ` · ${g.nodes} nodes` : ""}${rankTag(g.rank)}</span>
+      <span><strong>${escapeHtml(g.location)}</strong>${g.node ? ` · ${escapeHtml(g.node)}` : ""}${g.area ? ` · area ${g.area}` : ""}${g.nodes > 1 ? ` · ${g.nodes} nodes` : ""}${rankTag(g.rank)}</span>
       <span>${stack(g.stack)} ${pct(g.chance)}</span>
+    </div>`).join("") || (described
+    ? `<div class="mat-line"><span><strong>${escapeHtml(described.replace(/^Gather in /, ""))}</strong></span></div>
+      <p class="hint">From the item description. Node areas and rates for this material aren't in the data.</p>`
+    : "");
+  const safari = (s.safari || []).map((sa) => `
+    <div class="mat-line">
+      <span><strong>${escapeHtml(sa.map)}</strong>${rankTag(sa.rank)}</span>
+      <span>${stack(sa.stack)} ${pct(sa.chance)}</span>
     </div>`).join("");
+  const origin = item.sources ? null : describedSource(item);
   const quests = (s.quests || []).map((qu) => `
     <div class="mat-line">
       <span><strong>${escapeHtml(qu.quest)}</strong> · ★${qu.stars} ${escapeHtml(qu.category || "")}${rankTag(qu.rank)}</span>
@@ -289,9 +393,11 @@ function renderMaterialDetail(pane, item, total) {
     ${section("Needed for", uses)}
     ${section("Monster drops", monsters)}
     ${section("Gathering", gathering)}
+    ${section("Tailraider Safari", safari)}
     ${section("Quest rewards", quests)}
     ${section("Combine", combine)}
-    ${item.sources ? "" : `<p class="hint">No drop, gathering or quest data for this item. The description above says where it comes from.</p>`}`;
+    ${section("Where to get it", origin ? `<div class="mat-line"><span><strong>${escapeHtml(origin)}</strong></span></div>` : "")}
+    ${item.sources || described ? "" : `<p class="hint">No drop, gathering or quest data for this item${origin ? ", so this comes from its description" : ". The description above says where it comes from"}.</p>`}`;
   pane.querySelector(".mat-back").onclick = () => {
     state.modal.item = null;
     renderModal();

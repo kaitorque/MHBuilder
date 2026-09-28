@@ -529,10 +529,25 @@ function syncResultActions() {
   }
 }
 
+/** A result's slot piece as materialsTabFor expects it (the charm is charmInfo). */
+const resultSlotPiece = (r, loc) => (loc === "charm" ? r.charmInfo : r[loc]);
+
+function openResultMaterials(r, idx, category = ALL_TAB) {
+  openMaterials(`Materials · result #${idx + 1}`, BUILD_ARMOR.map((k) => r[k]), r.charmInfo, r.weaponId, category);
+}
+
 function onResultsClick(e) {
   if (onSkillAddClick(e)) return;
   const btn = e.target.closest("[data-ract]");
-  if (!btn) return;
+  if (!btn) {
+    const row = e.target.closest(".piece-row.has-mats");
+    if (!row || e.target.closest("button, a")) return;
+    const idx = Number(row.closest(".result-card")?.dataset.idx);
+    const r = (state.results || [])[idx];
+    const tab = r && materialsTabFor(row.dataset.loc, resultSlotPiece(r, row.dataset.loc), r.weaponId);
+    if (tab) openResultMaterials(r, idx, tab);
+    return;
+  }
   const r = (state.results || [])[Number(btn.closest(".result-card")?.dataset.idx)];
   if (r && btn.dataset.ract === "import-skills") {
     importSetSkills(r.skills, r.setBonuses, `result #${Number(btn.closest(".result-card").dataset.idx) + 1}`);
@@ -543,7 +558,7 @@ function onResultsClick(e) {
     return;
   }
   if (r && btn.dataset.ract === "materials") {
-    openMaterials(`Materials · result #${Number(btn.closest(".result-card").dataset.idx) + 1}`, BUILD_ARMOR.map((k) => r[k]), r.charmInfo, r.weaponId);
+    openResultMaterials(r, Number(btn.closest(".result-card").dataset.idx));
     return;
   }
   const loc = btn.closest(".piece-row")?.dataset.loc;
@@ -1712,10 +1727,12 @@ function syncStatChips() {
     const stat = chip.dataset.minStat;
     const value = Number(chip.dataset.minValue);
     const isMin = mins[stat] === value;
+    const armor = chip.dataset.armorValue;
+    const split = armor != null ? `Armor ${armor}, skills ${value - armor > 0 ? "+" : ""}${value - armor} · ` : "";
     chip.classList.toggle("is-min", isMin);
-    chip.title = isMin
+    chip.title = split + (isMin
       ? `Minimum ${STAT_MIN_LABELS[stat]} is ${value} · click to clear`
-      : `Click to set minimum ${STAT_MIN_LABELS[stat]} to ${value}`;
+      : `Click to set minimum ${STAT_MIN_LABELS[stat]} to ${value}`);
   }
 }
 
@@ -1780,7 +1797,26 @@ function readStatMins() {
   return Object.keys(out).length ? out : null;
 }
 
-async function runSearch() {
+const SEARCH_TIME_MS = 15000;
+const LONG_SEARCH_TIME_MS = 60000;
+
+/** Notice for a search that stopped at its time limit, with a longer retry while below the server's cap. */
+function timedOutNotice(timeLimitMs) {
+  const notice = document.createElement("div");
+  notice.className = "search-notice";
+  notice.setAttribute("role", "note");
+  const canGoLonger = timeLimitMs < LONG_SEARCH_TIME_MS;
+  notice.innerHTML = `
+    <div>
+      <strong>Stopped at the ${timeLimitMs / 1000} second limit</strong>
+      <span class="hint">These are the best sets found so far, so better ones may exist. Pin pieces you want to keep, turn off armor rarities you won't use, or exclude pieces to narrow the search so it can finish${canGoLonger ? ", or give it more time" : ""}.</span>
+    </div>
+    ${canGoLonger ? `<button type="button" class="btn small primary">Search longer (${LONG_SEARCH_TIME_MS / 1000} s)</button>` : ""}`;
+  notice.querySelector("button")?.addEventListener("click", () => runSearch(LONG_SEARCH_TIME_MS));
+  return notice;
+}
+
+async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
   const status = $("searchStatus");
   const results = $("results");
   const meta = $("resultMeta");
@@ -1793,7 +1829,6 @@ async function runSearch() {
     return;
   }
   status.textContent = "Searching…";
-  results.innerHTML = "";
   $("moreSkillsBtn").classList.add("hidden");
   meta.textContent = "";
 
@@ -1814,8 +1849,16 @@ async function runSearch() {
     minFreeSlots: readMinFreeSlots(),
     gender: state.gender,
     maxResults: 100,
-    timeLimitMs: 15000,
+    timeLimitMs,
   };
+  results.innerHTML = `
+    <div class="results-searching" role="status">
+      <span class="spinner" aria-hidden="true"></span>
+      <div>
+        <strong>Searching for sets…</strong>
+        <span class="hint">Trying armor, charms and decorations for your skills. This can take up to ${body.timeLimitMs / 1000} seconds.</span>
+      </div>
+    </div>`;
 
   try {
     const data = await api("/api/search", {
@@ -1824,15 +1867,16 @@ async function runSearch() {
       body: JSON.stringify(body),
     });
     status.textContent = "";
-    meta.textContent = `${data.count} sets · ${data.elapsedMs} ms`
-      + (data.timedOut ? " · time limit hit, a longer search may find better sets" : "");
+    results.innerHTML = "";
+    meta.textContent = `${data.count} sets · ${data.elapsedMs} ms` + (data.timedOut ? " · time limit hit" : "");
     state.lastSearchBody = data.results.length ? body : null;
     state.results = data.results;
     $("moreSkillsBtn").classList.toggle("hidden", !data.results.length);
+    if (data.timedOut) results.appendChild(timedOutNotice(timeLimitMs));
     if (!data.results.length) {
       const minsNote = (body.minimums ? ", lower the defense/resistance minimums" : "")
         + (body.minFreeSlots ? ", ask for fewer free slots" : "");
-      results.innerHTML = `<p class="hint">No sets found. Relax skills${minsNote}, add weapon slots, or enable unlimited decos.</p>`;
+      results.insertAdjacentHTML("beforeend", `<p class="hint">No sets found. Relax skills${minsNote}, add weapon slots, or enable unlimited decos.</p>`);
       return;
     }
     for (const [i, r] of data.results.entries()) {
@@ -1876,14 +1920,14 @@ async function runSearch() {
       card.innerHTML = `
         <div class="result-card-head">
           <div class="result-title-row">
-            <h3>#${i + 1} <span class="def-chip" ${statChipAttrs("defense", r.defense)}>${defChipHtml(r.defense)}</span>${r.weapon ? ` · ${escapeHtml(r.weapon)}` : ""}</h3>
+            <h3>#${i + 1} <span class="def-chip" ${statChipAttrs("defense", r.defense, r.armorDefense)}>${defChipHtml(r.defense)}</span>${r.weapon ? ` · ${escapeHtml(r.weapon)}` : ""}</h3>
             <span class="result-head-actions">
               <button type="button" class="btn small ghost" data-ract="skills" title="What each skill in this set does">Skills</button>
               <button type="button" class="btn small ghost" data-ract="materials" title="Forging materials and where to get them">Materials</button>
               <button type="button" class="btn small primary apply-btn" title="Load this set into the builder">Apply to builder</button>
             </span>
           </div>
-          <div class="resists">${resistRowHtml(r.resistances)}</div>
+          <div class="resists">${resistRowHtml(r.resistances, { armor: r.armorResistances })}</div>
         </div>
         <div class="result-body">
           <div class="result-section">
@@ -1911,6 +1955,11 @@ async function runSearch() {
           </div>
         </div>`;
       card.querySelector(".apply-btn").onclick = () => applyResultToBuild(r);
+      for (const row of card.querySelectorAll(".piece-row[data-loc]")) {
+        if (!materialsTabFor(row.dataset.loc, resultSlotPiece(r, row.dataset.loc), r.weaponId)) continue;
+        row.classList.add("has-mats");
+        row.title = "Click for forging materials";
+      }
       results.appendChild(card);
     }
     syncResultActions();
@@ -1918,6 +1967,7 @@ async function runSearch() {
     syncStatChips();
   } catch (err) {
     status.textContent = err.message;
+    results.innerHTML = `<p class="hint">Search failed: ${escapeHtml(err.message)}</p>`;
   }
 }
 
@@ -1954,7 +2004,7 @@ async function init() {
     renderDecoSummary();
     if (state.modal?.kind === "deco") renderModal();
   };
-  $("searchBtn").onclick = runSearch;
+  $("searchBtn").onclick = () => runSearch();
   $("moreSkillsBtn").onclick = openMoreSkills;
   $("rankToggles").onclick = onArmorTierClick;
   $("rarityToggles").onclick = onArmorTierClick;

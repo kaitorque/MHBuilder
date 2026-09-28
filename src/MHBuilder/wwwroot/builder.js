@@ -225,7 +225,8 @@ function builderRowHtml(loc) {
     ? `<button type="button" class="icon-btn" data-act="clear" title="${loc === "weapon" && !filled ? "Remove weapon slots" : "Remove"}">${materialIcon("close")}</button>`
     : "";
 
-  return `<div class="bgear-row${filled ? "" : " empty"}${pinned ? " pinned" : ""}" data-loc="${loc}">
+  const hasMats = !!materialsTabFor(loc, builderSlotPiece(loc), state.weaponId);
+  return `<div class="bgear-row${filled ? "" : " empty"}${pinned ? " pinned" : ""}${hasMats ? " has-mats" : ""}" data-loc="${loc}"${hasMats ? ` title="Click for forging materials"` : ""}>
     <span class="bgear-ico" style="opacity:${filled || loc === "weapon" ? 1 : 0.35}">${icon}</span>
     <span class="bgear-main">
       <span class="bgear-label">${label}</span>
@@ -255,15 +256,17 @@ function renderBuilderSummary() {
   const def = $("builderDef");
   def.innerHTML = defChipHtml(ev ? ev.defense : 0);
   if (empty) {
-    for (const a of ["data-min-stat", "data-min-value", "role", "tabindex"]) def.removeAttribute(a);
+    for (const a of ["data-min-stat", "data-min-value", "data-armor-value", "role", "tabindex"]) def.removeAttribute(a);
     def.classList.remove("is-min");
     def.title = "Defense";
   } else {
     Object.assign(def.dataset, { minStat: "defense", minValue: ev ? ev.defense : 0 });
+    if (ev && ev.armorDefense !== ev.defense) def.dataset.armorValue = ev.armorDefense;
+    else delete def.dataset.armorValue;
     def.setAttribute("role", "button");
     def.tabIndex = 0;
   }
-  $("builderResists").innerHTML = resistRowHtml(ev?.resistances, { clickable: !empty });
+  $("builderResists").innerHTML = resistRowHtml(ev?.resistances, { clickable: !empty, armor: ev?.armorResistances });
   $("builderSkills").innerHTML = empty || !ev?.skills?.length
     ? `<p class="hint">Pick armor on the left, or run Auto Search and apply a result.</p>`
     : skillPillsHtml(ev.skills);
@@ -424,9 +427,16 @@ function toggleResultPin(loc, r) {
   renderBuilder();
 }
 
+const builderSlotPiece = (loc) => (loc === "charm" ? state.build.charm : state.build.pieces[loc]);
+
 function onBuilderClick(e) {
   const btn = e.target.closest("[data-act]");
-  if (!btn) return;
+  if (!btn) {
+    const row = e.target.closest(".bgear-row.has-mats");
+    const tab = row && !e.target.closest("button, a") && materialsTabFor(row.dataset.loc, builderSlotPiece(row.dataset.loc), state.weaponId);
+    if (tab) openMaterials("Materials · builder", BUILD_ARMOR.map((k) => state.build.pieces[k]), state.build.charm, state.weaponId, tab);
+    return;
+  }
   const row = btn.closest(".bgear-row");
   const loc = row?.dataset.loc;
   if (!loc) return;

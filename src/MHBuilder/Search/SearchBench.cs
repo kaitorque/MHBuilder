@@ -189,7 +189,11 @@ public static class SearchBench
             if (r.FinalSkills.GetValueOrDefault(id) < level)
                 return $"{catalog.SkillsById[id].Name} {r.FinalSkills.GetValueOrDefault(id)}/{level}";
         }
-        if (request.Minimums is { } mins && !mins.MetBy(pieces))
+        var (defense, resists) = catalog.StatBonuses.Apply(
+            pieces.Sum(p => p.DefenseMax), pieces.Aggregate(ElementalResists.Zero, (acc, p) => acc.Add(p.Resistances)), r.FinalSkills);
+        if (defense != r.Defense || resists != r.Resistances)
+            return "defense / resistances don't match the armor and skills";
+        if (request.Minimums is { } mins && !mins.MetBy(defense, resists))
             return "stat floor not met";
         return null;
     }

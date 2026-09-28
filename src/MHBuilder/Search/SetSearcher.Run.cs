@@ -65,6 +65,12 @@ public sealed partial class SetSearcher
         private readonly int?[] _floors;
         private readonly bool _anyFloor;
         private readonly int[,] _bestRemaining = new int[6, StatMinimums.Count];
+        // Defense Boost / resistance skills: most levels each remaining depth (plus charm and set bonuses) can add,
+        // and each cap. Open ones can come from jewels placed for wanted skills, so they bound at the cap.
+        private readonly int[] _bonusIds;
+        private readonly int[,] _bonusRemaining = new int[6, StatBonuses.Count];
+        private readonly int[] _bonusCap = new int[StatBonuses.Count];
+        private readonly bool[] _bonusOpen = new bool[StatBonuses.Count];
         private readonly Dictionary<int, int> _trackedIndex = new();
         private readonly int[][] _setSlotsLeft;
 
@@ -226,6 +232,26 @@ public sealed partial class SetSearcher
                     _bestRemaining[d, k] = _bestRemaining[d + 1, k]
                         + (_order[d].List.Count == 0 ? 0 : _order[d].List.Max(p => StatMinimums.Stat(p, stat)));
                 }
+
+            _bonusIds = _catalog.StatBonuses.SkillIds;
+            for (int i = 0; i < StatBonuses.Count; i++)
+            {
+                int id = _bonusIds[i];
+                if (id < 0 || _excludedSkills.Contains(id) || !_catalog.SkillsById.TryGetValue(id, out var bonusSkill))
+                    continue;
+                _bonusCap[i] = bonusSkill.MaxLevel;
+                _bonusOpen[i] = _wantedSkills.ContainsKey(id)
+                    || (searcher._decosBySkill.TryGetValue(id, out var decos) && decos.Any(deco =>
+                        (owned is null || owned.GetValueOrDefault(deco.Id) > 0)
+                        && !deco.Skills.Any(s => _excludedSkills.Contains(s.SkillId))
+                        && deco.Skills.Any(s => _wantedSkills.ContainsKey(s.SkillId))));
+                int LevelOf(SkillPoint[] skills) => skills.Where(s => s.SkillId == id).Sum(s => s.Level);
+                _bonusRemaining[5, i] = (_charms.Count == 0 ? 0 : _charms.Max(c => LevelOf(c.Skills)))
+                    + (_catalog.SetBonusesGrantingSkill.TryGetValue(id, out var grants) ? grants.Sum(g => g.GrantsLevel) : 0);
+                for (int d = 4; d >= 0; d--)
+                    _bonusRemaining[d, i] = _bonusRemaining[d + 1, i]
+                        + (_order[d].List.Count == 0 ? 0 : _order[d].List.Max(p => LevelOf(p.Skills)));
+            }
 
             // Wanted set bonuses: prune when the remaining slots can't complete any qualifying set.
             foreach (var id in _wantedSetEffects.SelectMany(e => e.Sources.Select(s => s.SetBonusId)).Concat(_wantedSetBonusParts.Keys))
@@ -432,7 +458,9 @@ public sealed partial class SetSearcher
                         defBound += p.DefenseMax;
                         slotBound += p.Slots.Sum();
                     }
-                    if (!R.CouldPlace(defBound, slotBound)) return;
+                    Span<int> levels = stackalloc int[StatBonuses.Count];
+                    BonusLevelBound(0, levels);
+                    if (!R.CouldPlace(StatBonuses.Defense(defBound, StatBonuses.DefenseTerms(levels)), slotBound)) return;
                 }
                 int entered = 0;
                 bool reachable = true;
@@ -468,12 +496,15 @@ public sealed partial class SetSearcher
                     return;
                 }
 
+                Span<int> levels = stackalloc int[StatBonuses.Count];
+                BonusLevelBound(depth, levels);
+                var terms = StatBonuses.DefenseTerms(levels);
                 foreach (var piece in R._order[depth].List)
                 {
                     if (R._stopped || (!R._findBest && R.Full)) break;
                     if (R._findBest && R.Full)
                     {
-                        int defBound = _defAcc + piece.DefenseMax + R._bestRemaining[depth + 1, 0];
+                        int defBound = StatBonuses.Defense(_defAcc + piece.DefenseMax + R._bestRemaining[depth + 1, 0], terms);
                         if (defBound < R.WorstDefense) break;
                         int slotBound = _slotPointsAcc + piece.Slots.Sum() + R._slotPointsRemaining[depth + 1] + R._weaponSlotPoints;
                         if (!R.CouldPlace(defBound, slotBound)) continue;
@@ -529,10 +560,30 @@ public sealed partial class SetSearcher
 
             private bool FloorsReachable(int next)
             {
+                Span<int> levels = stackalloc int[StatBonuses.Count];
+                BonusLevelBound(next, levels);
                 for (int k = 0; k < StatMinimums.Count; k++)
-                    if (R._floors[k] is int min && _statAcc[k] + R._bestRemaining[next, k] < min)
-                        return false;
+                {
+                    if (R._floors[k] is not int min) continue;
+                    int best = _statAcc[k] + R._bestRemaining[next, k];
+                    best = k == 0
+                        ? StatBonuses.Defense(best, StatBonuses.DefenseTerms(levels))
+                        : best + StatBonuses.ResistBonus(levels, k - 1);
+                    if (best < min) return false;
+                }
                 return true;
+            }
+
+            /// <summary>Most levels each bonus skill can reach from the armor picked so far plus depths from <paramref name="next"/> on.</summary>
+            private void BonusLevelBound(int next, Span<int> levels)
+            {
+                for (int i = 0; i < StatBonuses.Count; i++)
+                {
+                    int id = R._bonusIds[i];
+                    levels[i] = id < 0 || R._bonusOpen[i]
+                        ? R._bonusCap[i]
+                        : Math.Min(R._bonusCap[i], Math.Max(0, _skillAcc[id]) + R._bonusRemaining[next, i]);
+                }
             }
 
             private bool FreeSlotsReachable(int next)
@@ -663,6 +714,10 @@ public sealed partial class SetSearcher
                     if (size <= 4) setSlotCount[size]++;
 
                 int totalPoints = labeledSlots.Sum(s => s.Size);
+                Span<int> levels = stackalloc int[StatBonuses.Count];
+                BonusLevelBound(5, levels);
+                int defBound = StatBonuses.Defense(_defAcc, StatBonuses.DefenseTerms(levels));
+                var minimums = R._request.Minimums;
                 (CharmRank Charm, List<DecorationPlacement> Placements, int[] Remaining)? best = null;
                 int bestFree = -1;
                 ApplySkills(_skillAcc, granted, +1);
@@ -674,11 +729,12 @@ public sealed partial class SetSearcher
                     {
                         if (!R._findBest && R.Full) break;
                         if (!CharmCanWork(ch, effectiveCaps, setSlotCount, out int minUsed)) continue;
-                        if (R._findBest && (totalPoints - minUsed < bestFree || !R.CouldPlace(_defAcc, totalPoints - minUsed)))
+                        if (R._findBest && (totalPoints - minUsed < bestFree || !R.CouldPlace(defBound, totalPoints - minUsed)))
                             continue;
                         ApplySkills(_skillAcc, ch.Skills, +1);
                         bool filled = R._s.TryFillDecorationsKeepingFree(_skillAcc, R._wantedSkills, effectiveCaps, labeledSlots,
-                            R._request.MinFreeSlots, R._request.OwnedDecorations, R._excludedSkills, out var placements, out var remainingSlots);
+                            R._request.MinFreeSlots, R._request.OwnedDecorations, R._excludedSkills, out var placements, out var remainingSlots)
+                            && (minimums is null || R._s.MeetsMinimums(minimums, pieces, _skillAcc, placements, raisedSkills, raisesAllCaps));
                         ApplySkills(_skillAcc, ch.Skills, -1);
                         if (!filled) continue;
 
@@ -727,14 +783,15 @@ public sealed partial class SetSearcher
                 foreach (var id in final.Keys.Where(k => final[k] <= 0).ToList())
                     final.Remove(id);
 
-                var resists = pieces.Skip(1).Aggregate(pieces[0].Resistances, (acc, p) => acc.Add(p.Resistances));
+                var (armorDefense, armorResists) = ArmorTotals(pieces);
+                var (defense, resists) = R._catalog.StatBonuses.Apply(armorDefense, armorResists, final);
                 return new SearchResult(
                     pieces[0], pieces[1], pieces[2], pieces[3], pieces[4],
                     charm,
                     usedDecos,
                     placements,
                     final,
-                    pieces.Sum(p => p.DefenseMax),
+                    defense,
                     resists,
                     remainingSlots,
                     R._weaponName,
@@ -742,7 +799,9 @@ public sealed partial class SetSearcher
                     R._weaponType,
                     R._weaponRarity,
                     activeSetBonuses,
-                    R._weaponType is null ? null : R._request.WeaponId);
+                    R._weaponType is null ? null : R._request.WeaponId,
+                    armorDefense,
+                    armorResists);
             }
         }
     }
