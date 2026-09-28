@@ -1178,6 +1178,9 @@ img.tint-layer { object-fit: contain; }
 .mat-text { display: grid; min-width: 0; gap: 0.05rem; }
 .mat-name { font-weight: 600; }
 .pick-row.mat-row .sub { white-space: normal; overflow-wrap: anywhere; line-height: 1.35; }
+.src-label { color: var(--text); font-weight: 600; }
+.src-label .rank-tag { margin-left: 0.3rem; }
+.src-lead .rank-tag { margin: 0 0.4rem 0 0; }
 .mat-qty { color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .mat-back { margin: 0.2rem 0 0.6rem; }
 .mat-detail-head { display: flex; align-items: center; gap: 0.75rem; padding: 0 0.3rem; }
