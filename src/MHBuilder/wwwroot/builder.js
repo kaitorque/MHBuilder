@@ -233,7 +233,7 @@ function builderRowHtml(loc) {
       <button type="button" class="bgear-name" data-act="pick" title="Change ${label.toLowerCase()}">${escapeHtml(name)}</button>
       ${sub ? `<span class="bgear-sub" style="color:${filled ? rarityColor(rarity) : "var(--muted)"}">${sub}</span>` : ""}
       ${pieceSkillsHtml(skills, "piece-skills bgear-skills")}
-      ${decoSkillsHtml(decos.map((d) => d && { ...d, skills: decoById.get(d.id)?.skills }), "deco-skills bgear-skills")}
+      ${decoNamesHtml(decos.map((d) => d && { ...d, skills: decoById.get(d.id)?.skills }), "deco-skills bgear-skills")}
     </span>
     <span class="bgear-slots">${slotsHtml}</span>
     <span class="bgear-actions">${pinBtn}${clearBtn}</span>

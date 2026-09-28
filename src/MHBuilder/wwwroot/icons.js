@@ -445,13 +445,13 @@ function orderByHostSlots(pieceSlots, placements) {
   return out;
 }
 
-/** One entry per seated jewel, in slot order, in the gem's color: "Attack Boost 1" (or "Agitator 1 + Health Boost 1"). */
-function decoSkillsHtml(decos, cls = "deco-skills") {
+/** One entry per seated jewel, in slot order, in the gem's color: "Attack Jewel 1"; its skills show on hover. */
+function decoNamesHtml(decos, cls = "deco-skills") {
   const list = (decos || []).filter(Boolean);
   if (!list.length) return "";
   const chips = list.map((d) => {
-    const text = d.skills?.length ? d.skills.map((s) => `${s.name} ${s.level}`).join(" + ") : d.name;
-    return `<span class="deco-skill" style="color:${itemIconColor(d.iconColor)}" title="${escapeHtml(d.name)}">${escapeHtml(text)}</span>`;
+    const skills = d.skills?.length ? d.skills.map((s) => `${s.name} ${s.level}`).join(" + ") : "";
+    return `<span class="deco-skill" style="color:${itemIconColor(d.iconColor)}"${skills ? ` title="${escapeHtml(skills)}"` : ""}>${escapeHtml(d.name)}</span>`;
   });
   return `<span class="${cls}">${chips.join("")}</span>`;
 }
@@ -496,7 +496,7 @@ function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = 
       <span class="piece-meta rarity-text" style="color:${rarityColor(slot === "weapon" ? wRarity : rarity)}">${metaBits.join(" · ")}</span>
       ${pieceSkillsHtml(piece.skills)}
       ${slotIcons}
-      ${decoSkillsHtml(orderByHostSlots(piece.slots, here))}
+      ${decoNamesHtml(orderByHostSlots(piece.slots, here))}
     </div>
     ${actionsHtml ? `<div class="piece-actions">${actionsHtml}</div>` : ""}
   </div>`;
