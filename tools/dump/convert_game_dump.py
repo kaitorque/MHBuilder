@@ -21,6 +21,11 @@ def norm_name(s: str) -> str:
     return s.replace("Α", "α").replace("Β", "β").replace("Γ", "γ")
 
 
+# Defense gained by fully upgrading armor of each rarity; the game export only has base defense. Matches
+# MHWorldData defense_max - defense_base for every piece both have.
+UPGRADE_DEFENSE = {1: 36, 2: 32, 3: 28, 4: 24, 5: 22, 6: 20, 7: 12, 8: 6, 9: 38, 10: 32, 11: 24, 12: 18}
+
+
 def rarity_to_rank(r: int) -> str:
     if r <= 4:
         return "low"
@@ -177,6 +182,8 @@ def main() -> None:
                 gender = "male"
             elif gender_code == 2:
                 gender = "female"
+            base_defense = int(p.get("defense") or 0)
+            max_defense = base_defense + UPGRADE_DEFENSE.get(rarity, 0) if base_defense > 0 else 0
             entry = {
                 "id": int(p["id"]),
                 "name": name,
@@ -184,9 +191,9 @@ def main() -> None:
                 "rank": rarity_to_rank(rarity),
                 "rarity": rarity,
                 "defense": {
-                    "base": int(p.get("defense") or 0),
-                    "max": int(p.get("defense") or 0),
-                    "augmented": int(p.get("defense") or 0),
+                    "base": base_defense,
+                    "max": max_defense,
+                    "augmented": max_defense,
                 },
                 "resistances": p.get("elementalResistances") or {},
                 "slots": [{"rank": s} for s in slots],
@@ -351,7 +358,7 @@ def main() -> None:
     meta = {
         "source": "Monster Hunter World: Iceborne game data (PC, final title update)",
         "tool": "https://github.com/TanukiSharp/MHWMasterDataUtils",
-        "note": "Skill ids are the game's own (not mhw-db ids). Defense and slots come from the game tables.",
+        "note": "Skill ids are the game's own (not mhw-db ids). Slots and base defense come from the game tables; max defense adds the per-rarity upgrade.",
         "counts": {
             "skills": len(skills_out),
             "armor": len(armor_out),

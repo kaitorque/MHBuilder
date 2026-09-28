@@ -1,7 +1,7 @@
 {
-  "source": "Live dump from local Monster Hunter World Iceborne chunks",
+  "source": "Monster Hunter World: Iceborne game data (PC, final title update)",
   "tool": "https://github.com/TanukiSharp/MHWMasterDataUtils",
-  "note": "Skill IDs are game-native (NOT mhw-db IDs). Defense/slots from game tables.",
+  "note": "Skill ids are the game's own (not mhw-db ids). Slots and base defense come from the game tables; max defense adds the per-rarity upgrade.",
   "counts": {
     "skills": 203,
     "armor": 1648,
@@ -9,6 +9,6 @@
     "decorations": 404,
     "weapons": 3695,
     "armorZeroDefense": 0,
-    "armorDefenseMax": 180
+    "armorDefenseMax": 198
   }
 }

@@ -10,13 +10,17 @@ Exported from the game's own tables (PC, final title update), so ids, defense an
 | File | Count | Notes |
 |------|------:|-------|
 | `skills.json` | 203 | Game skill ids, soft/hard caps, level descriptions |
-| `armor.json` | 1648 | Max defense, resistances, slots, skills, set bonuses |
+| `armor.json` | 1648 | Base and fully upgraded defense, resistances, slots, skills, set bonuses |
 | `charms.json` | 110 families | Ranks I–V grouped by name |
 | `decorations.json` | 404 | Slot size, skills, icon color |
 | `weapons.json` | 3695 | Rarity, slots, damage, affinity |
 | `materials.json` | | Crafting recipes and material sources (below) |
 
 `SOURCE.json` records the exporter and the counts.
+
+The game tables only hold base defense. Upgrading adds a fixed amount per rarity (R1 +36 down to R8 +6, R9 +38 down
+to R12 +18; `UPGRADE_DEFENSE` in `convert_game_dump.py`), which matches MHWorldData for every piece both list. The
+search, stats and minimums all use the fully upgraded value.
 
 Public community databases (e.g. mhw-db) were not used: they lag behind the last title updates and list dozens of
 late master-rank pieces with zero defense.
