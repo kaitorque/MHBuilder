@@ -59,7 +59,15 @@ public static class SearchEndpoints
                     result.Checked,
                     result.Candidates,
                     result.BudgetExhausted,
-                    skills = result.Skills.Select(s => new { s.Id, s.Name, s.Level, s.MaxLevel, s.MaybeMore })
+                    skills = result.Skills.Select(s => new
+                    {
+                        s.Id,
+                        s.Name,
+                        s.Level,
+                        s.MaxLevel,
+                        s.MaybeMore,
+                        armor = s.Armor?.ToDictionary(x => x.Key.ToString().ToLowerInvariant(), x => x.Value),
+                    })
                 });
             }
             catch (ArgumentException ex)

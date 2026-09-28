@@ -170,7 +170,10 @@ public sealed record SearchRequest(
     // [Lv1, Lv2, Lv3, Lv4] counts of empty slots (of at least that size) the set must keep after decorations.
     int[]? MinFreeSlots = null,
     // False: the best MaxResults sets (defense, then free slots). True: any MaxResults sets, stopping early (feasibility probes).
-    bool StopAtFirstResults = false);
+    bool StopAtFirstResults = false,
+    // Armor sets checked before the search (e.g. the previous results) so ones that still qualify list at once and
+    // tighten the bound. Sets breaking the request's exclusions, rarities, gender or pins are ignored.
+    IReadOnlyList<IReadOnlyDictionary<ArmorSlot, int>>? SeedSets = null);
 
 /// <summary>TimedOut: the search stopped at its time limit, so better sets may exist. Threads: workers used.</summary>
 public sealed record SearchOutcome(IReadOnlyList<SearchResult> Results, bool TimedOut, int Threads);

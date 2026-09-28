@@ -77,15 +77,18 @@ public sealed partial class SetSearcher
     /// Highest level of <paramref name="skillId"/> reachable near a found set: its exact armor, then (with a
     /// swap pool) every single-piece swap to armor carrying the skill or better slots. Each variant tries any
     /// charm with the skill and re-fits all decorations. Every level returned is backed by a valid set; the
-    /// decoration fill is greedy, so it is a lower bound.
+    /// decoration fill is greedy, so it is a lower bound. <paramref name="reachedWith"/> is the armor (by slot)
+    /// behind the returned level when it is above <paramref name="atLeast"/>.
     /// </summary>
     public int BestLevelNear(
         SearchResult set,
         SearchRequest request,
         int skillId,
+        out ArmorPiece[]? reachedWith,
         IReadOnlyDictionary<ArmorSlot, List<ArmorPiece>>? swapPool = null,
         int atLeast = 0)
     {
+        reachedWith = null;
         if (!_catalog.SkillsById.TryGetValue(skillId, out var target) || target.MaxLevel <= 0)
             return atLeast;
         var excludedSkills = request.ExcludedSkillIds ?? new HashSet<int>();
@@ -117,6 +120,7 @@ public sealed partial class SetSearcher
 
         var original = new[] { set.Head, set.Chest, set.Gloves, set.Waist, set.Legs };
         int best = BestLevelForPieces(original, weaponSlots, charms, request, need, setEffects, setParts, excludedSkills, skillId, atLeast);
+        if (best > atLeast) reachedWith = original;
         if (swapPool is null || best >= target.MaxLevel)
             return best;
 
@@ -132,7 +136,9 @@ public sealed partial class SetSearcher
             {
                 var pieces = (ArmorPiece[])original.Clone();
                 pieces[i] = piece;
-                best = BestLevelForPieces(pieces, weaponSlots, charms, request, need, setEffects, setParts, excludedSkills, skillId, best);
+                int level = BestLevelForPieces(pieces, weaponSlots, charms, request, need, setEffects, setParts, excludedSkills, skillId, best);
+                if (level > best) reachedWith = pieces;
+                best = level;
                 if (best >= target.MaxLevel)
                     return best;
             }
@@ -300,6 +306,57 @@ public sealed partial class SetSearcher
     private static int SlotScore(int[] slots) =>
         slots.Sum(s => s switch { 4 => 9, 3 => 5, 2 => 3, 1 => 1, _ => 0 });
 
+    /// <summary>
+    /// What <see cref="EvaluateSetBonuses"/> and <see cref="GameCatalog.ResolveRaisedCaps"/> work out, without the
+    /// display text: granted skills, completed bonus ids (into <paramref name="activeIds"/>) and raised caps.
+    /// </summary>
+    private SkillPoint[] SetBonusGrants(ArmorPiece[] pieces, List<int> activeIds, HashSet<int> raisedSkills, out bool raisesAllCaps)
+    {
+        raisesAllCaps = false;
+        Span<int> ids = stackalloc int[16];
+        Span<int> counts = stackalloc int[16];
+        int n = 0;
+        foreach (var piece in pieces)
+            foreach (var sid in piece.SetSkillIds)
+            {
+                int i = ids[..n].IndexOf(sid);
+                if (i >= 0) counts[i]++;
+                else if (n < ids.Length)
+                {
+                    ids[n] = sid;
+                    counts[n++] = 1;
+                }
+            }
+
+        List<SkillPoint>? grants = null;
+        for (int i = 0; i < n; i++)
+        {
+            if (!_catalog.SetBonusesById.TryGetValue(ids[i], out var bonus))
+                continue;
+            bool any = false;
+            foreach (var th in bonus.Thresholds)
+            {
+                if (counts[i] < th.RequiredParts)
+                    continue;
+                any = true;
+                if (th.GrantsSkillId is int gid && gid > 0)
+                {
+                    grants ??= new List<SkillPoint>();
+                    int level = Math.Max(1, th.GrantsLevel);
+                    int at = grants.FindIndex(g => g.SkillId == gid);
+                    if (at >= 0) grants[at] = new SkillPoint(gid, grants[at].Level + level);
+                    else grants.Add(new SkillPoint(gid, level));
+                }
+                if (th.RaisesAllCaps)
+                    raisesAllCaps = true;
+                if (th.RaisesCapForSkillId is int capId && capId > 0)
+                    raisedSkills.Add(capId);
+            }
+            if (any) activeIds.Add(bonus.Id);
+        }
+        return grants is null ? [] : grants.ToArray();
+    }
+
     private SkillPoint[] EvaluateSetBonuses(ArmorPiece[] pieces, out List<ActiveSetBonus> active)
     {
         active = new List<ActiveSetBonus>();
@@ -421,6 +478,28 @@ public sealed partial class SetSearcher
         return piece.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase);
     }
 
+    private ArmorPiece? PinnedPiece(SearchRequest request, ArmorSlot slot) =>
+        request.PinnedArmor is not null
+        && request.PinnedArmor.TryGetValue(slot, out var pinnedId)
+        && _catalog.ArmorById.TryGetValue(pinnedId, out var pinned)
+            ? pinned
+            : null;
+
+    /// <summary>Whether the request allows this piece in its slot: the pinned piece if any, else rarity, exclusions and gender.</summary>
+    private bool PieceAllowed(ArmorPiece a, SearchRequest request, IReadOnlySet<int> exclude, string? gender, IReadOnlySet<int> excludedSkills)
+    {
+        if (PinnedPiece(request, a.Slot) is { } pinned) return a.Id == pinned.Id;
+        bool tierOk = request.ArmorRarities is { Count: > 0 } rarities
+            ? rarities.Contains(a.Rarity)
+            : request.MinRank switch
+            {
+                "low" => true,
+                "high" => a.Rank is "high" or "master",
+                _ => a.Rank == "master",
+            };
+        return tierOk && !exclude.Contains(a.Id) && GenderOk(a, gender) && !a.Skills.Any(s => excludedSkills.Contains(s.SkillId));
+    }
+
     private List<ArmorPiece> Candidates(
         ArmorSlot slot,
         IReadOnlyDictionary<int, int> wanted,
@@ -429,24 +508,11 @@ public sealed partial class SetSearcher
         string? gender,
         IReadOnlySet<int> excludedSkills)
     {
-        if (request.PinnedArmor is not null
-            && request.PinnedArmor.TryGetValue(slot, out var pinnedId)
-            && _catalog.ArmorById.TryGetValue(pinnedId, out var pinned))
+        if (PinnedPiece(request, slot) is { } pinned)
             return [pinned];
 
-        bool RankOk(string rank) => request.MinRank switch
-        {
-            "low" => true,
-            "high" => rank is "high" or "master",
-            _ => rank == "master",
-        };
-        bool TierOk(ArmorPiece a) => request.ArmorRarities is { Count: > 0 } rarities
-            ? rarities.Contains(a.Rarity)
-            : RankOk(a.Rank);
-
         var scored = _catalog.Armor
-            .Where(a => a.Slot == slot && TierOk(a) && !exclude.Contains(a.Id) && GenderOk(a, gender)
-                && !a.Skills.Any(s => excludedSkills.Contains(s.SkillId)))
+            .Where(a => a.Slot == slot && PieceAllowed(a, request, exclude, gender, excludedSkills))
             .Select(a => (piece: a, score: ScorePiece(a, wanted)))
             .OrderByDescending(x => x.score)
             .ThenByDescending(x => x.piece.DefenseMax)

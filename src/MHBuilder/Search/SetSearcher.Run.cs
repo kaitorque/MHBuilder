@@ -11,6 +11,52 @@ public sealed partial class SetSearcher
     /// Best-results searches split the first two armor slots across threads; every worker prunes against the
     /// shared worst result, so later threads skip whatever can no longer make the list.
     /// </summary>
+    /// <summary>A jewel fill with placements kept as (jewel, slot size, on weapon), so it applies to any set with the same slots.</summary>
+    private sealed class JewelFill
+    {
+        public static readonly JewelFill Failed = new();
+
+        public bool Ok { get; }
+        public Decoration[] Decos { get; } = [];
+        public int[] Remaining { get; } = [];
+        public int Free { get; }
+        private readonly int[] _sizes = [];
+        private readonly bool[] _onWeapon = [];
+        private readonly List<(string Location, int Size)>? _slots;
+        private readonly List<DecorationPlacement> _placements = [];
+
+        private JewelFill() { }
+
+        public JewelFill(List<(string Location, int Size)> slots, List<DecorationPlacement> placements, int[] remaining)
+        {
+            Ok = true;
+            _slots = slots;
+            _placements = placements;
+            Decos = placements.Select(p => p.Decoration).ToArray();
+            _sizes = placements.Select(p => p.SlotSize).ToArray();
+            _onWeapon = placements.Select(p => p.Location == "Weapon").ToArray();
+            Remaining = remaining;
+            Free = remaining.Sum();
+        }
+
+        /// <summary>Placements in these slots: each jewel takes the first free slot of its size and kind, as the fillers do.</summary>
+        public List<DecorationPlacement> PlacedIn(List<(string Location, int Size)> slots)
+        {
+            if (ReferenceEquals(slots, _slots)) return _placements;
+            var used = new bool[slots.Count];
+            var placed = new List<DecorationPlacement>(Decos.Length);
+            for (int j = 0; j < Decos.Length; j++)
+                for (int i = 0; i < slots.Count; i++)
+                {
+                    if (used[i] || slots[i].Size != _sizes[j] || (slots[i].Location == "Weapon") != _onWeapon[j]) continue;
+                    used[i] = true;
+                    placed.Add(new DecorationPlacement(Decos[j], slots[i].Location, slots[i].Size));
+                    break;
+                }
+            return placed;
+        }
+    }
+
     private sealed class SearchRun
     {
         private readonly SetSearcher _s;
@@ -66,13 +112,22 @@ public sealed partial class SetSearcher
         private readonly bool _anyFloor;
         private readonly int[,] _bestRemaining = new int[6, StatMinimums.Count];
         // Defense Boost / resistance skills: most levels each remaining depth (plus charm and set bonuses) can add,
-        // and each cap. Open ones can come from jewels placed for wanted skills, so they bound at the cap.
+        // and each cap. Open ones ride on jewels placed for other wanted skills, so they bound at the cap. A wanted
+        // one only gets its own jewels while below the wanted level, so jewels take it to at most JewelReach.
         private readonly int[] _bonusIds;
         private readonly int[,] _bonusRemaining = new int[6, StatBonuses.Count];
         private readonly int[] _bonusCap = new int[StatBonuses.Count];
         private readonly bool[] _bonusOpen = new bool[StatBonuses.Count];
+        private readonly int[] _bonusJewelReach = new int[StatBonuses.Count];
         private readonly Dictionary<int, int> _trackedIndex = new();
         private readonly int[][] _setSlotsLeft;
+        // Seed sets (pieces by ArmorSlot) and their keys; the depth-first search skips sets already seeded.
+        private readonly List<ArmorPiece[]> _seeds = new();
+        private readonly HashSet<(int, int, int, int, int)> _seeded = new();
+        // Jewel fills are cached per worker keyed on 4 bits per wanted skill; kept-free slots change which slot
+        // each jewel lands in, so those requests fill every set.
+        private const int FillCacheSize = 200_000;
+        private readonly bool _fillCacheable;
 
         private readonly object _lock = new();
         private readonly List<SearchResult> _results = new();
@@ -105,6 +160,9 @@ public sealed partial class SetSearcher
                 else
                     _wantedSkills[id] = level;
             }
+            _fillCacheable = request.MinFreeSlots?.Any(n => n > 0) != true
+                && _wantedSkills.Count <= 16
+                && _wantedSkills.All(w => w.Value <= 15 && (!_catalog.SkillsById.TryGetValue(w.Key, out var sk) || sk.MaxLevel <= 15));
             _impossible = _wantedSetBonusParts.Values.Any(p => p > 5)
                 || _wantedSetEffects.Any(e => e.Sources.Min(s => s.RequiredParts) > 5);
 
@@ -240,11 +298,13 @@ public sealed partial class SetSearcher
                 if (id < 0 || _excludedSkills.Contains(id) || !_catalog.SkillsById.TryGetValue(id, out var bonusSkill))
                     continue;
                 _bonusCap[i] = bonusSkill.MaxLevel;
-                _bonusOpen[i] = _wantedSkills.ContainsKey(id)
-                    || (searcher._decosBySkill.TryGetValue(id, out var decos) && decos.Any(deco =>
-                        (owned is null || owned.GetValueOrDefault(deco.Id) > 0)
-                        && !deco.Skills.Any(s => _excludedSkills.Contains(s.SkillId))
-                        && deco.Skills.Any(s => _wantedSkills.ContainsKey(s.SkillId))));
+                var jewels = (searcher._decosBySkill.GetValueOrDefault(id) ?? [])
+                    .Where(deco => (owned is null || owned.GetValueOrDefault(deco.Id) > 0)
+                        && !deco.Skills.Any(s => _excludedSkills.Contains(s.SkillId)))
+                    .ToList();
+                _bonusOpen[i] = jewels.Any(deco => deco.Skills.Any(s => s.SkillId != id && _wantedSkills.ContainsKey(s.SkillId)));
+                if (_wantedSkills.TryGetValue(id, out var wantedLevel) && jewels.Count > 0)
+                    _bonusJewelReach[i] = wantedLevel - 1 + jewels.Max(deco => deco.Skills.Where(s => s.SkillId == id).Sum(s => s.Level));
                 int LevelOf(SkillPoint[] skills) => skills.Where(s => s.SkillId == id).Sum(s => s.Level);
                 _bonusRemaining[5, i] = (_charms.Count == 0 ? 0 : _charms.Max(c => LevelOf(c.Skills)))
                     + (_catalog.SetBonusesGrantingSkill.TryGetValue(id, out var grants) ? grants.Sum(g => g.GrantsLevel) : 0);
@@ -264,13 +324,37 @@ public sealed partial class SetSearcher
                     left[d] = left[d + 1] + (_order[d].List.Any(p => p.SetSkillIds.Contains(id)) ? 1 : 0);
                 _setSlotsLeft[idx] = left;
             }
+
+            if (_findBest)
+                foreach (var seed in request.SeedSets ?? [])
+                {
+                    var pieces = new ArmorPiece[5];
+                    bool allowed = true;
+                    foreach (var slot in Enum.GetValues<ArmorSlot>())
+                    {
+                        if (!seed.TryGetValue(slot, out var id) || !_catalog.ArmorById.TryGetValue(id, out var piece)
+                            || piece.Slot != slot || !searcher.PieceAllowed(piece, request, exclude, gender, _excludedSkills))
+                        {
+                            allowed = false;
+                            break;
+                        }
+                        pieces[(int)slot] = piece;
+                    }
+                    if (allowed && _seeded.Add(SetKey(pieces)))
+                        _seeds.Add(pieces);
+                }
         }
+
+        private static (int, int, int, int, int) SetKey(ArmorPiece[] bySlot) =>
+            (bySlot[0].Id, bySlot[1].Id, bySlot[2].Id, bySlot[3].Id, bySlot[4].Id);
 
         public SearchOutcome Execute()
         {
             int threads = 1;
             if (!_impossible)
             {
+                if (_seeds.Count > 0)
+                    RunSeeds(new Worker(this));
                 int maxThreads = MaxThreads;
                 long count = 0;
                 var prefixes = _findBest && maxThreads > 1 ? Prefixes(out count) : null;
@@ -306,6 +390,31 @@ public sealed partial class SetSearcher
             if (results.Count < _request.MaxResults)
                 results.AddRange(_overflow.OrderByDescending(r => r, ResultOrder).Take(_request.MaxResults - results.Count));
             return new SearchOutcome(results.OrderByDescending(r => r, ResultOrder).ToList(), _timedOut, threads);
+        }
+
+        /// <summary>
+        /// Evaluates the seed sets, then every single-piece swap around them (a set that just misses a newly added
+        /// skill is usually one piece away), for at most a quarter of the time limit. Everything evaluated here is
+        /// added to the seeded keys, so the depth-first search skips it.
+        /// </summary>
+        private void RunSeeds(Worker seeder)
+        {
+            foreach (var seed in _seeds)
+                seeder.RunSeed(seed);
+            long stopAt = Math.Min(_deadline, Environment.TickCount64 + _request.TimeLimitMs / 4);
+            foreach (var seed in _seeds)
+                for (int d = 0; d < 5; d++)
+                {
+                    int slot = (int)_order[d].Slot;
+                    var swapped = (ArmorPiece[])seed.Clone();
+                    foreach (var piece in _order[d].List)
+                    {
+                        if (Environment.TickCount64 >= stopAt || _ct.IsCancellationRequested) return;
+                        swapped[slot] = piece;
+                        if (_seeded.Add(SetKey(swapped)))
+                            seeder.RunSeed(swapped);
+                    }
+                }
         }
 
         /// <summary>
@@ -439,6 +548,8 @@ public sealed partial class SetSearcher
             private readonly int[] _setCounts;
             private int _defAcc, _slotPointsAcc, _capacityAcc;
             private int _nodes;
+            private bool _seeding;
+            private readonly Dictionary<(long, long, int), JewelFill> _fillCache = new();
 
             public Worker(SearchRun run)
             {
@@ -475,6 +586,32 @@ public sealed partial class SetSearcher
                     entered--;
                     Leave(entered, prefix[entered]);
                 }
+            }
+
+            /// <summary>Evaluates one seed set (pieces by ArmorSlot) against the request.</summary>
+            public void RunSeed(ArmorPiece[] bySlot)
+            {
+                _seeding = true;
+                int entered = 0;
+                bool reachable = true;
+                while (reachable && entered < 5)
+                {
+                    reachable = Enter(entered, bySlot[(int)R._order[entered].Slot]);
+                    entered++;
+                }
+                if (reachable && R.Full)
+                {
+                    Span<int> levels = stackalloc int[StatBonuses.Count];
+                    BonusLevelBound(5, levels);
+                    reachable = R.CouldPlace(StatBonuses.Defense(_defAcc, StatBonuses.DefenseTerms(levels)), _slotPointsAcc + R._weaponSlotPoints);
+                }
+                if (reachable) Leaf();
+                while (entered > 0)
+                {
+                    entered--;
+                    Leave(entered, bySlot[(int)R._order[entered].Slot]);
+                }
+                _seeding = false;
             }
 
             public void Dfs(int depth)
@@ -582,7 +719,7 @@ public sealed partial class SetSearcher
                     int id = R._bonusIds[i];
                     levels[i] = id < 0 || R._bonusOpen[i]
                         ? R._bonusCap[i]
-                        : Math.Min(R._bonusCap[i], Math.Max(0, _skillAcc[id]) + R._bonusRemaining[next, i]);
+                        : Math.Min(R._bonusCap[i], Math.Max(Math.Max(0, _skillAcc[id]) + R._bonusRemaining[next, i], R._bonusJewelReach[i]));
                 }
             }
 
@@ -679,15 +816,17 @@ public sealed partial class SetSearcher
                 var pieces = new ArmorPiece[5];
                 for (int i = 0; i < 5; i++)
                     pieces[(int)R._order[i].Slot] = _picked[i]!;
+                if (!_seeding && R._seeded.Count > 0 && R._seeded.Contains(SetKey(pieces))) return;
                 var catalog = R._catalog;
 
-                var granted = R._s.EvaluateSetBonuses(pieces, out var activeSetBonuses);
+                var activeIds = new List<int>(4);
+                var raisedSkills = new HashSet<int>();
+                var granted = R._s.SetBonusGrants(pieces, activeIds, raisedSkills, out bool raisesAllCaps);
                 if (!MeetsWantedSetRequirements(pieces, R._wantedSetEffects, R._wantedSetBonusParts)
                     || granted.Any(g => R._excludedSkills.Contains(g.SkillId))
-                    || activeSetBonuses.Any(b => R._excludedSkills.Contains(b.Id)))
+                    || activeIds.Any(R._excludedSkills.Contains))
                     return;
 
-                catalog.ResolveRaisedCaps(pieces, out var raisedSkills, out var raisesAllCaps);
                 var effectiveCaps = new Dictionary<int, int>(R._wantedSkills.Count);
                 foreach (var (id, need) in R._wantedSkills)
                 {
@@ -698,6 +837,7 @@ public sealed partial class SetSearcher
                 }
 
                 var labeledSlots = new List<(string Location, int Size)>(16);
+                int armorSlotKey = 0;
                 void AddSlots(string loc, int[] sizes)
                 {
                     foreach (var s in sizes)
@@ -708,6 +848,8 @@ public sealed partial class SetSearcher
                 AddSlots("Gloves", pieces[2].Slots);
                 AddSlots("Waist", pieces[3].Slots);
                 AddSlots("Legs", pieces[4].Slots);
+                foreach (var (_, size) in labeledSlots)
+                    if (size <= 4) armorSlotKey += 1 << (4 * (size - 1));
                 AddSlots("Weapon", R._weaponSlots);
                 var setSlotCount = new int[5];
                 foreach (var (_, size) in labeledSlots)
@@ -718,7 +860,7 @@ public sealed partial class SetSearcher
                 BonusLevelBound(5, levels);
                 int defBound = StatBonuses.Defense(_defAcc, StatBonuses.DefenseTerms(levels));
                 var minimums = R._request.Minimums;
-                (CharmRank Charm, List<DecorationPlacement> Placements, int[] Remaining)? best = null;
+                (CharmRank Charm, JewelFill Fill)? best = null;
                 int bestFree = -1;
                 ApplySkills(_skillAcc, granted, +1);
                 try
@@ -732,45 +874,95 @@ public sealed partial class SetSearcher
                         if (R._findBest && (totalPoints - minUsed < bestFree || !R.CouldPlace(defBound, totalPoints - minUsed)))
                             continue;
                         ApplySkills(_skillAcc, ch.Skills, +1);
-                        bool filled = R._s.TryFillDecorationsKeepingFree(_skillAcc, R._wantedSkills, effectiveCaps, labeledSlots,
-                            R._request.MinFreeSlots, R._request.OwnedDecorations, R._excludedSkills, out var placements, out var remainingSlots)
-                            && (minimums is null || R._s.MeetsMinimums(minimums, pieces, _skillAcc, placements, raisedSkills, raisesAllCaps));
+                        var fill = Fill(effectiveCaps, labeledSlots, armorSlotKey);
+                        bool filled = fill.Ok
+                            && (minimums is null || R._s.MeetsMinimums(minimums, pieces, _skillAcc, fill.PlacedIn(labeledSlots), raisedSkills, raisesAllCaps));
                         ApplySkills(_skillAcc, ch.Skills, -1);
                         if (!filled) continue;
-
                         if (!R._findBest)
                         {
-                            R.Offer(BuildResult(pieces, ch, granted, activeSetBonuses, placements, remainingSlots, raisedSkills, raisesAllCaps));
+                            R.Offer(BuildResult(pieces, ch, granted, fill.PlacedIn(labeledSlots), fill.Remaining.ToArray(), raisedSkills, raisesAllCaps));
                             continue;
                         }
-                        int free = remainingSlots.Sum();
-                        if (best is { } b && (free < bestFree
-                            || (free == bestFree && (placements.Count > b.Placements.Count
-                                || (placements.Count == b.Placements.Count && (ch.CharmId, ch.Level).CompareTo((b.Charm.CharmId, b.Charm.Level)) >= 0)))))
+                        if (best is { } b && (fill.Free < bestFree
+                            || (fill.Free == bestFree && (fill.Decos.Length > b.Fill.Decos.Length
+                                || (fill.Decos.Length == b.Fill.Decos.Length && (ch.CharmId, ch.Level).CompareTo((b.Charm.CharmId, b.Charm.Level)) >= 0)))))
                             continue;
-                        best = (ch, placements, remainingSlots);
-                        bestFree = free;
+                        best = (ch, fill);
+                        bestFree = fill.Free;
                         if (bestFree == totalPoints) break;
                     }
+                    // Offer drops a set below the worst listed one; check that before building the result.
+                    if (best is { } top && !R.CouldPlace(FinalDefense(top.Charm, top.Fill.Decos, raisedSkills, raisesAllCaps), bestFree + 1))
+                        best = null;
                 }
                 finally
                 {
                     ApplySkills(_skillAcc, granted, -1);
                 }
                 if (best is { } win)
-                    R.Offer(BuildResult(pieces, win.Charm, granted, activeSetBonuses, win.Placements, win.Remaining, raisedSkills, raisesAllCaps));
+                    R.Offer(BuildResult(pieces, win.Charm, granted, win.Fill.PlacedIn(labeledSlots), win.Fill.Remaining.ToArray(), raisedSkills, raisesAllCaps));
+            }
+
+            /// <summary>
+            /// Jewel fill for the current skills (charm included). The fill only depends on each wanted skill's missing
+            /// level and cap and on how many armor slots of each size there are, so results are cached on those.
+            /// </summary>
+            private JewelFill Fill(Dictionary<int, int> caps, List<(string Location, int Size)> slots, int armorSlotKey)
+            {
+                (long, long, int) key = default;
+                if (R._fillCacheable)
+                {
+                    long miss = 0, capKey = 0;
+                    foreach (var (id, need) in R._wantedSkills)
+                    {
+                        int cap = caps[id];
+                        miss = miss << 4 | (long)Math.Max(0, need - Math.Min(cap, Math.Max(0, _skillAcc[id])));
+                        capKey = capKey << 4 | (long)cap;
+                    }
+                    key = (miss, capKey, armorSlotKey);
+                    if (_fillCache.TryGetValue(key, out var cached)) return cached;
+                }
+                bool ok = R._s.TryFillDecorationsKeepingFree(_skillAcc, R._wantedSkills, caps, slots,
+                    R._request.MinFreeSlots, R._request.OwnedDecorations, R._excludedSkills, out var placements, out var remaining);
+                var fill = ok ? new JewelFill(slots, placements, remaining) : JewelFill.Failed;
+                if (R._fillCacheable)
+                {
+                    if (_fillCache.Count >= FillCacheSize) _fillCache.Clear();
+                    _fillCache[key] = fill;
+                }
+                return fill;
+            }
+
+            /// <summary>The set's defense as BuildResult computes it; the armor and set bonus skills are in _skillAcc.</summary>
+            private int FinalDefense(CharmRank charm, Decoration[] decos, HashSet<int> raisedSkills, bool raisesAllCaps)
+            {
+                Span<int> levels = stackalloc int[StatBonuses.Count];
+                for (int i = 0; i < StatBonuses.Count; i++)
+                {
+                    int id = R._bonusIds[i];
+                    if (id < 0) continue;
+                    int lv = _skillAcc[id];
+                    foreach (var s in charm.Skills)
+                        if (s.SkillId == id) lv += s.Level;
+                    foreach (var d in decos)
+                        foreach (var s in d.Skills)
+                            if (s.SkillId == id) lv += s.Level;
+                    levels[i] = Math.Max(0, R._catalog.CapSkill(id, lv, raisesAllCaps || raisedSkills.Contains(id)));
+                }
+                return StatBonuses.Defense(_defAcc, StatBonuses.DefenseTerms(levels));
             }
 
             private SearchResult BuildResult(
                 ArmorPiece[] pieces,
                 CharmRank charm,
                 SkillPoint[] granted,
-                List<ActiveSetBonus> activeSetBonuses,
                 List<DecorationPlacement> placements,
                 int[] remainingSlots,
                 HashSet<int> raisedSkills,
                 bool raisesAllCaps)
             {
+                R._s.EvaluateSetBonuses(pieces, out var activeSetBonuses);
                 var usedDecos = placements.Select(p => p.Decoration).ToList();
                 var final = new Dictionary<int, int>();
                 foreach (var p in pieces) Accumulate(final, p.Skills);

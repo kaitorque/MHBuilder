@@ -38,6 +38,8 @@ public static class SearchBench
             r => r with { Minimums = new StatMinimums(null, 10, null, null, null, null) }),
         new("very heavy", [("Weakness Exploit", 3), ("Critical Eye", 7), ("Attack Boost", 7), ("Critical Boost", 3),
             ("Health Boost", 3), ("Evade Window", 5), ("Divine Blessing", 3), ("Handicraft", 5), ("Agitator", 5), ("Maximum Might", 3)]),
+        new("defense boost", [("Attack Boost", 7), ("Critical Eye", 7), ("Weakness Exploit", 3), ("Defense Boost", 3)],
+            r => r with { ArmorRarities = new HashSet<int> { 12 }, WeaponSlots = [4, 2] }),
     ];
 
     private static GameCatalog? _catalog;

@@ -5,8 +5,11 @@ using MHBuilder.Models;
 
 namespace MHBuilder.Search;
 
-/// <summary>Highest level a skill can reach while every wanted skill stays satisfied.</summary>
-public sealed record AdditionalSkill(int Id, string Name, int Level, int MaxLevel, bool MaybeMore);
+/// <summary>
+/// Highest level a skill can reach while every wanted skill stays satisfied, and the armor ids (by slot) of a set
+/// that reaches it, so a search with the skill added can start from that set.
+/// </summary>
+public sealed record AdditionalSkill(int Id, string Name, int Level, int MaxLevel, bool MaybeMore, IReadOnlyDictionary<ArmorSlot, int>? Armor = null);
 
 public sealed record AdditionalSkillsResult(
     IReadOnlyList<AdditionalSkill> Skills,
@@ -56,6 +59,10 @@ public sealed class SkillExpander
             .ToList();
 
         var lowerBound = new ConcurrentDictionary<int, int>();
+        var reached = new ConcurrentDictionary<int, ArmorPiece[]>();
+        static ArmorPiece[] ArmorOf(SearchResult r) => [r.Head, r.Chest, r.Gloves, r.Waist, r.Legs];
+        IReadOnlyDictionary<ArmorSlot, int>? Armor(int skillId) =>
+            reached.TryGetValue(skillId, out var pieces) ? pieces.ToDictionary(p => p.Slot, p => p.Id) : null;
 
         int remainingMs = Math.Max(1_000, budgetMs - (int)sw.ElapsedMilliseconds);
         // Roughly one failing check per skill spread over all cores, with headroom for the passing ones.
@@ -81,8 +88,14 @@ public sealed class SkillExpander
                         {
                             cts.Token.ThrowIfCancellationRequested();
                             var set = baseline[i];
-                            level = Math.Max(level, set.FinalSkills.GetValueOrDefault(skill.Id));
-                            level = _searcher.BestLevelNear(set, request, skill.Id, i < SwapSets ? pool : null, level);
+                            int has = set.FinalSkills.GetValueOrDefault(skill.Id);
+                            if (has > level)
+                            {
+                                level = has;
+                                reached[skill.Id] = ArmorOf(set);
+                            }
+                            level = _searcher.BestLevelNear(set, request, skill.Id, out var near, i < SwapSets ? pool : null, level);
+                            if (near is not null) reached[skill.Id] = near;
                             lowerBound[skill.Id] = level;
                         }
                         level = Math.Min(level, skill.MaxLevel);
@@ -105,6 +118,7 @@ public sealed class SkillExpander
                                 break;
                             }
                             level = Math.Max(target, Math.Min(skill.MaxLevel, hit[0].FinalSkills.GetValueOrDefault(skill.Id)));
+                            reached[skill.Id] = ArmorOf(hit[0]);
                         }
                     }
                     catch (OperationCanceledException)
@@ -113,7 +127,7 @@ public sealed class SkillExpander
                     }
                     Interlocked.Increment(ref checkedCount);
                     if (level > 0)
-                        found.Add(new AdditionalSkill(skill.Id, skill.Name, level, skill.MaxLevel, maybeMore));
+                        found.Add(new AdditionalSkill(skill.Id, skill.Name, level, skill.MaxLevel, maybeMore, Armor(skill.Id)));
                 });
         }
         catch (OperationCanceledException)
@@ -128,7 +142,7 @@ public sealed class SkillExpander
             {
                 int lb = Math.Min(skill.MaxLevel, lowerBound.GetValueOrDefault(skill.Id));
                 if (lb > 0 && !done.Contains(skill.Id))
-                    found.Add(new AdditionalSkill(skill.Id, skill.Name, lb, skill.MaxLevel, lb < skill.MaxLevel));
+                    found.Add(new AdditionalSkill(skill.Id, skill.Name, lb, skill.MaxLevel, lb < skill.MaxLevel, Armor(skill.Id)));
             }
         }
 

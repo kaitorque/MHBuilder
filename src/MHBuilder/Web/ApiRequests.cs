@@ -22,9 +22,13 @@ public sealed class SearchApiRequest
     public List<CharmRefDto>? ExcludedCharms { get; set; }
     public StatMinimumsDto? Minimums { get; set; }
     public List<int>? MinFreeSlots { get; set; }
+    public const int MaxSeedSets = 200;
+
     public int MaxResults { get; set; } = 100;
     public int MaxCandidatesPerSlot { get; set; } = 50;
     public int TimeLimitMs { get; set; } = 15_000;
+    /// <summary>Armor sets ({"head": id, ...}) to check first, e.g. the previous results; incomplete sets are dropped.</summary>
+    public List<Dictionary<string, int>>? SeedSets { get; set; }
 
     public SearchRequest ToSearchRequest(GameCatalog? catalog = null)
     {
@@ -59,7 +63,19 @@ public sealed class SearchApiRequest
             PinnedCharm is { } pc ? (pc.Id, pc.Level) : null,
             ExcludedCharms is { Count: > 0 } ? ExcludedCharms.Select(c => (c.Id, c.Level)).ToHashSet() : null,
             Minimums is { } m && new StatMinimums(m.Defense, m.Fire, m.Water, m.Thunder, m.Ice, m.Dragon) is { Any: true } mins ? mins : null,
-            ParseMinFreeSlots(MinFreeSlots));
+            ParseMinFreeSlots(MinFreeSlots),
+            SeedSets: ParseSeedSets(SeedSets, catalog));
+    }
+
+    private static List<IReadOnlyDictionary<ArmorSlot, int>>? ParseSeedSets(List<Dictionary<string, int>>? raw, GameCatalog? catalog)
+    {
+        var sets = (raw ?? [])
+            .Take(MaxSeedSets)
+            .Select(s => ArmorSlots.Parse(s))
+            .Where(s => s.Count == 5)
+            .Select(s => (IReadOnlyDictionary<ArmorSlot, int>)s.ToDictionary(x => x.Key, x => catalog?.CanonicalArmorId(x.Value) ?? x.Value))
+            .ToList();
+        return sets.Count > 0 ? sets : null;
     }
 
     /// <summary>[Lv1..Lv4] free-slot counts, clamped to 0..20; null when none are asked for.</summary>

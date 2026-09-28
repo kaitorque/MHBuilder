@@ -82,6 +82,70 @@ public sealed class SetSearcherTests(CatalogFixture fixture)
         });
     }
 
+    private static Dictionary<ArmorSlot, int> ArmorOf(SearchResult r) => new()
+    {
+        [ArmorSlot.Head] = r.Head.Id,
+        [ArmorSlot.Chest] = r.Chest.Id,
+        [ArmorSlot.Gloves] = r.Gloves.Id,
+        [ArmorSlot.Waist] = r.Waist.Id,
+        [ArmorSlot.Legs] = r.Legs.Id,
+    };
+
+    [Fact]
+    public void Seed_sets_that_still_qualify_list_even_when_time_runs_out()
+    {
+        var first = fixture.Searcher.Search(fixture.Request(Typical));
+        var typicalIds = Typical.Select(s => fixture.SkillId(s.Item1)).ToHashSet();
+        var (seed, extra) = first
+            .Select(r => (r, extra: r.FinalSkills.FirstOrDefault(s => !typicalIds.Contains(s.Key))))
+            .First(x => x.extra.Key != 0);
+        var other = first.First(r => r.Chest.Id != seed.Chest.Id);
+
+        var request = fixture.Request([.. Typical, (fixture.Catalog.SkillsById[extra.Key].Name, extra.Value)]) with
+        {
+            TimeLimitMs = 1,
+            ExcludeArmorIds = new HashSet<int> { other.Chest.Id },
+            SeedSets = [ArmorOf(seed), ArmorOf(other)],
+        };
+        var results = fixture.Searcher.SearchDetailed(request).Results;
+
+        AssertAllValid(request, results);
+        Assert.Contains(results, r => ArmorOf(r).SequenceEqual(ArmorOf(seed)));
+        Assert.DoesNotContain(results, r => r.Chest.Id == other.Chest.Id);
+    }
+
+    [Fact]
+    public void Seeding_with_the_results_changes_nothing_and_adds_no_duplicates()
+    {
+        var baseline = fixture.Searcher.Search(fixture.Request(Typical));
+        var request = fixture.Request(Typical) with { SeedSets = baseline.Select(ArmorOf).ToList() };
+        var seeded = fixture.Searcher.Search(request);
+
+        AssertAllValid(request, seeded);
+        Assert.Equal(seeded.Count, seeded.Select(r => string.Join(",", ArmorOf(r).Values)).Distinct().Count());
+        Assert.Equal(baseline.Select(r => (r.Defense, r.RemainingSlots.Sum())), seeded.Select(r => (r.Defense, r.RemainingSlots.Sum())));
+    }
+
+    [Fact]
+    public void More_skills_come_with_armor_that_reaches_the_level()
+    {
+        var request = fixture.Request(Typical);
+        var more = new SkillExpander(fixture.Catalog, fixture.Searcher).Find(request, budgetMs: 5_000);
+
+        var withArmor = more.Skills.Where(s => s.Armor is not null).Take(5).ToList();
+        Assert.NotEmpty(withArmor);
+        Assert.All(withArmor, s =>
+        {
+            var check = request with
+            {
+                WantedSkills = new Dictionary<int, int>(request.WantedSkills) { [s.Id] = s.Level },
+                PinnedArmor = s.Armor,
+                MaxResults = 1,
+            };
+            Assert.NotEmpty(fixture.Searcher.Search(check));
+        });
+    }
+
     [Fact]
     public void Excluded_skills_never_show_up()
     {

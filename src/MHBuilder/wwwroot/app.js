@@ -101,7 +101,7 @@ async function openMoreSkills() {
       key,
       loading: false,
       exhausted: data.budgetExhausted,
-      levels: new Map(data.skills.map((s) => [s.id, { level: s.level, maybeMore: s.maybeMore }])),
+      levels: new Map(data.skills.map((s) => [s.id, { level: s.level, maybeMore: s.maybeMore, armor: s.armor }])),
     };
   } catch (err) {
     if (state.more?.key !== key) return;
@@ -1800,6 +1800,20 @@ function readStatMins() {
 const SEARCH_TIME_MS = 15000;
 const LONG_SEARCH_TIME_MS = 60000;
 
+/**
+ * Armor sets the server checks before searching: the builder's full set and the last results. Ones that still meet
+ * the request list at once and raise the bar, so a tweaked search (e.g. one skill added) finishes sooner.
+ */
+function searchSeedSets() {
+  const bySlot = (pieceOf) => Object.fromEntries(BUILD_ARMOR.map((k) => [k, pieceOf(k)?.id]));
+  const reaching = state.wanted
+    .map((w) => state.more?.levels?.get(w.id))
+    .filter((m, i) => m?.armor && m.level >= state.wanted[i].level)
+    .map((m) => m.armor);
+  const sets = [...reaching, bySlot((k) => state.build.pieces[k]), ...(state.results || []).map((r) => bySlot((k) => r[k]))];
+  return sets.filter((s) => BUILD_ARMOR.every((k) => s[k] > 0));
+}
+
 /** Notice for a search that stopped at its time limit, with a longer retry while below the server's cap. */
 function timedOutNotice(timeLimitMs) {
   const notice = document.createElement("div");
@@ -1850,6 +1864,7 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
     gender: state.gender,
     maxResults: 100,
     timeLimitMs,
+    seedSets: searchSeedSets(),
   };
   results.innerHTML = `
     <div class="results-searching" role="status">
