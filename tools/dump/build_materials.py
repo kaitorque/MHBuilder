@@ -5,22 +5,25 @@ charm ranks the dump has no recipe for fall back to MHWorldData.
 Weapon trees and recipes come from MHWorldData (see build_weapons); zenny costs from the game dump, which
 also supplies forge recipes for event weapons MHWorldData lacks. A few late upgrades missing from both
 (Xeno'jiiva "+", Black Lightning Eagle, ...) are entered by hand in MANUAL_UPGRADES.
-Sources (monster rewards, gathering, quest rewards, combinations) and item icons come from the
+Sources (monster rewards, gathering, quest rewards, combinations) and item icon colors come from the
 Gathering Hall Studios MHWorldData SQLite (tools/dump/mhw_ghs.db), matched by English item name
 because the two use different item ids. MHWorldData's gathering stops at base-game high rank, so gathering
 (and Tailraider Safari hauls, and monster drops for items MHWorldData has none for) come from mhw.poedb.tw
-when tools/dump/poedb_sources.json exists (see fetch_poedb.py). Item icons are copied from the MHOTOMO assets.
+when tools/dump/poedb_sources.json exists (see fetch_poedb.py). Item icon shapes follow the game's own icon id
+(itemData.itm in tools/dump/pkgs) and the PNGs are copied from the MHOTOMO assets.
 """
 from __future__ import annotations
 
 import json
 import shutil
 import sqlite3
+import struct
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DUMP = ROOT / "tools/dump/MHWMasterDataUtils/MHWMasterDataUtils.Exporter/data"
+PKGS = ROOT / "tools/dump/pkgs"
 GHS = ROOT / "tools/dump/mhw_ghs.db"
 POEDB = ROOT / "tools/dump/poedb_sources.json"
 ICON_SRC = ROOT / "tools/dump/mhotomo/apk_extract/assets/flutter_assets/assets/3.0x"
@@ -41,6 +44,13 @@ ICONS = {
     "Ammo": "bowgun_ammo", "Pellets": "bowgun_ammo", "Husk": "shell", "Web": "web", "Bait": "meat",
     "Barrel": "bomb", "Charm": "questionmark", "CharmOre": "rock",
 }
+# Game itemData.itm icon id -> MHOTOMO item_<file>.png; ids missing here fall back to MHWorldData's icon_name.
+GAME_ICONS = {
+    0: "account_item", 3: "web", 5: "potion", 8: "dung", 9: "gem", 13: "bag", 22: "rock", 23: "bug", 25: "coin",
+    26: "ticket", 36: "book", 37: "feystone", 41: "fur", 42: "dragonbone", 43: "scale", 44: "skin", 45: "tooth",
+    46: "shell", 47: "raregem", 52: "tail", 58: "questionmark", 59: "wing", 60: "headbone", 61: "plate",
+    65: "streamstone",
+}
 RANK_ORDER = {"MR": 0, "HR": 1, "LR": 2, None: 3}
 SLOT_FILES = ["heads", "chests", "arms", "waists", "legs"]
 # Same order as convert_game_dump.py: MHBuilder weapon id = index * 100_000 + game id.
@@ -49,8 +59,6 @@ WEAPON_FILES = [
     "lances", "gunlances", "switch-axes", "charge-blades", "insect-glaives", "bows",
     "light-bowguns", "heavy-bowguns",
 ]
-MAX_QUESTS = 8
-
 _SAFI_UPGRADE = [("Safi'jiiva Hardhorn", 4), ("Safi'jiiva Hardclaw", 6), ("Pulsing Dragonshell", 7), ("Safi'jiiva Cortex", 8)]
 _AZURE_UPGRADE = [("Large Azure Era Gem", 1), ("Bergcrusher Claw", 1), ("Silverwhite Frostfang", 1), ("Velkhana Crystal", 1)]
 # Late upgrades that neither the dump nor MHWorldData has, entered by hand from mhw.poedb.tw / Kiranico.
@@ -82,6 +90,34 @@ def eng(obj) -> str:
 def clean(text: str) -> str:
     # Game text wraps lines with a space where the Japanese layout had a break.
     return " ".join(text.replace("\r", " ").replace("\n", " ").split())
+
+
+def game_item_icons() -> dict[int, tuple[int, int]]:
+    """Game item id -> (icon id, icon color index) from /common/item/itemData.itm in the newest chunk that has it.
+
+    The MHWMasterDataUtils export drops these fields, so the file is read straight from the chunkG*.pkg
+    packages (layout as in its PackageReader / ItemEntryPrimitive).
+    """
+    target = b"\\common\\item\\itemData.itm"
+    chunks = sorted(PKGS.glob("chunkG*.pkg"), key=lambda p: -int(p.stem.removeprefix("chunkG")))
+    for pkg in chunks:
+        with pkg.open("rb") as f:
+            f.seek(0x0C)
+            (parents,) = struct.unpack("<i", f.read(4))
+            f.seek(0x100)
+            for _ in range(parents):
+                f.seek(0x3C, 1)
+                *_, children = struct.unpack("<qqii", f.read(24))
+                for _ in range(children):
+                    name = f.read(160).split(b"\0", 1)[0]
+                    size, offset, _, _ = struct.unpack("<qqii", f.read(24))
+                    if name.replace(b"/", b"\\") == target:
+                        f.seek(offset)
+                        data = f.read(size)
+                        (count,) = struct.unpack_from("<H", data, 6)
+                        entries = (struct.unpack_from("<I14xIB", data, 10 + i * 32) for i in range(count))
+                        return {iid: (icon, color) for iid, icon, color in entries}
+    raise SystemExit(f"itemData.itm not found in {PKGS}")
 
 
 def recipe(entry) -> dict | None:
@@ -204,6 +240,7 @@ def main() -> None:
                     | {i for w in weapons.values() for key in ("forgeItems", "items") for i, _ in w.get(key, [])})
 
     ghs_icon = {iid: (icon, color) for iid, icon, color in q("select id, icon_name, icon_color from item")}
+    game_icon = game_item_icons()
     monster = dict(q("select id, name from monster_text where lang_id='en'"))
     condition = dict(q("select id, name from monster_reward_condition_text where lang_id='en'"))
     location = dict(q("select id, name from location_text where lang_id='en'"))
@@ -243,7 +280,7 @@ def main() -> None:
         if ghs_id is None:
             unmatched.append(name)
         icon_name, color = ghs_icon.get(ghs_id, ("Question", "White"))
-        icon = ICONS.get(icon_name, "questionmark")
+        icon = GAME_ICONS.get(game_icon.get(gid, (None,))[0]) or ICONS.get(icon_name, "questionmark")
         icons_used.add(icon)
 
         extra = poedb.get(str(gid), {})
@@ -275,11 +312,12 @@ def main() -> None:
                 best_safari[key] = s
         safari = sorted(best_safari.values(), key=lambda s: (RANK_ORDER.get(s["rank"], 3), -s["chance"], s["map"]))
 
-        quests = [
-            {"quest": quest[qid][0], "rank": quest[qid][1], "stars": quest[qid][2], "category": quest[qid][3],
-             "chance": pct, "stack": stack}
+        # Some quests exist under two ids with the same name (e.g. Blue Prominence with a different second monster).
+        quests = list({
+            (quest[qid], pct, stack): {"quest": quest[qid][0], "rank": quest[qid][1], "stars": quest[qid][2],
+                                       "category": quest[qid][3], "chance": pct, "stack": stack}
             for qid, stack, pct in quest_rewards.get(ghs_id, []) if qid in quest
-        ]
+        }.values())
         quests.sort(key=lambda x: (-x["chance"], RANK_ORDER.get(x["rank"], 3), x["quest"]))
 
         combine = [
@@ -302,9 +340,7 @@ def main() -> None:
         if safari:
             sources["safari"] = safari
         if quests:
-            sources["quests"] = quests[:MAX_QUESTS]
-            if len(quests) > MAX_QUESTS:
-                sources["moreQuests"] = len(quests) - MAX_QUESTS
+            sources["quests"] = quests
         if combine:
             sources["combine"] = combine
         if sources:

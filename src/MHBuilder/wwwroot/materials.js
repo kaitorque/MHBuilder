@@ -393,7 +393,7 @@ function renderMaterialDetail(pane, item, total) {
     <div class="mat-line">
       <span><strong>${escapeHtml(qu.quest)}</strong> · ★${qu.stars} ${escapeHtml(qu.category || "")}${rankTag(qu.rank)}</span>
       <span>${stack(qu.stack)} ${pct(qu.chance)}</span>
-    </div>`).join("") + (s.moreQuests ? `<p class="hint">…and ${s.moreQuests} more quest${s.moreQuests > 1 ? "s" : ""} with lower odds.</p>` : "");
+    </div>`).join("");
   const combine = (s.combine || []).map((c) => `
     <div class="mat-line"><span>${c.from.map((f) => escapeHtml(f.name)).join(" + ")}</span><span>→ ×${c.quantity}</span></div>`).join("");
 
