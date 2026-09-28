@@ -986,17 +986,12 @@ function applySaveDecorations(slot, hunterName) {
 const DECO_EXPORT_KIND = "mhbuilder.decorations";
 
 function exportDecoList() {
-  const byId = new Map(state.decorations.map((d) => [d.id, d]));
-  const decorations = Object.entries(state.decoQty)
-    .map(([id, count]) => ({ id: Number(id), name: byId.get(Number(id))?.name ?? null, count: Number(count) || 0 }))
-    .filter((d) => d.count > 0)
-    .sort((a, b) => String(a.name).localeCompare(String(b.name)));
   downloadJson("mhbuilder-decorations.json", {
     kind: DECO_EXPORT_KIND,
     version: 1,
     exportedAt: new Date().toISOString(),
     unlimited: state.unlimitedDecos,
-    decorations,
+    decorations: decoEntries(state.decoQty),
   });
 }
 
@@ -1013,16 +1008,7 @@ async function importDecoList() {
     await noticeDialog("Can't import deco list", "That file isn't an MHBuilder deco list export.");
     return;
   }
-  const byId = new Map(state.decorations.map((d) => [d.id, d]));
-  const byName = new Map(state.decorations.map((d) => [d.name.toLowerCase(), d]));
-  const qty = {};
-  let unknown = 0;
-  for (const entry of data.decorations) {
-    const d = byId.get(Number(entry?.id)) || byName.get(String(entry?.name || "").toLowerCase());
-    const count = Math.min(999, Math.max(0, Math.floor(Number(entry?.count) || 0)));
-    if (!d) unknown++;
-    else if (count > 0) qty[d.id] = (qty[d.id] || 0) + count;
-  }
+  const { qty, unknown } = decoQtyFrom(data.decorations);
   const types = Object.keys(qty).length;
   const total = Object.values(qty).reduce((a, b) => a + b, 0);
   const unlimited = data.unlimited === true;
@@ -1035,12 +1021,122 @@ async function importDecoList() {
     confirmLabel: "Import",
   });
   if (!ok) return;
+  applyDecoList(qty, unlimited);
+}
+
+/** Jewel counts by id from [{ id, name, count }] entries, matched by id then name; unknown jewels are counted. */
+function decoQtyFrom(entries) {
+  const byId = new Map(state.decorations.map((d) => [d.id, d]));
+  const byName = new Map(state.decorations.map((d) => [d.name.toLowerCase(), d]));
+  const qty = {};
+  let unknown = 0;
+  for (const entry of Array.isArray(entries) ? entries : []) {
+    const d = byId.get(Number(entry?.id)) || byName.get(String(entry?.name || "").toLowerCase());
+    const count = Math.min(999, Math.max(0, Math.floor(Number(entry?.count) || 0)));
+    if (!d) unknown++;
+    else if (count > 0) qty[d.id] = (qty[d.id] || 0) + count;
+  }
+  return { qty, unknown };
+}
+
+/** [{ id, name, count }] for the jewels with a count, by name. */
+function decoEntries(qty) {
+  const byId = new Map(state.decorations.map((d) => [d.id, d]));
+  return Object.entries(qty)
+    .map(([id, count]) => ({ id: Number(id), name: byId.get(Number(id))?.name ?? null, count: Number(count) || 0 }))
+    .filter((d) => d.count > 0)
+    .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+}
+
+function applyDecoList(qty, unlimited) {
   state.decoQty = qty;
   state.unlimitedDecos = unlimited;
   $("unlimitedDecos").checked = unlimited;
   saveDecoPrefs();
   renderDecoSummary();
   if (state.modal?.kind === "deco") renderModal();
+}
+
+const EXCLUDE_EXPORT_KIND = "mhbuilder.exclude";
+
+function exportExcludeList() {
+  downloadJson("mhbuilder-exclude.json", {
+    kind: EXCLUDE_EXPORT_KIND,
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    exclude: state.exclude.map(({ id, level, name, slot }) => ({ id, level, name, slot })),
+  });
+}
+
+/**
+ * Exclude entries rebuilt from exported ones ({ id, level?, name, slot }) against the current armor and charms:
+ * matched by id, then by name within the slot. Pieces no longer in the data are counted as unknown.
+ */
+async function excludeEntriesFrom(raw) {
+  const [armorLists, charms] = await Promise.all([Promise.all(BUILD_ARMOR.map(armorForSlot)), charmList()]);
+  const armor = armorLists.flat();
+  const armorById = new Map(armor.map((a) => [a.id, a]));
+  const armorByName = new Map(armor.map((a) => [`${String(a.slot).toLowerCase()}|${a.name.toLowerCase()}`, a]));
+  const entries = [];
+  let unknown = 0;
+  for (const x of Array.isArray(raw) ? raw : []) {
+    const slot = String(x?.slot || "").toLowerCase();
+    const name = String(x?.name || "").toLowerCase();
+    let entry = null;
+    if (slot === "charm") {
+      const c = charms.find((c) => c.id === Number(x.id) && c.level === Number(x.level))
+        || charms.find((c) => c.name.toLowerCase() === name);
+      if (c) entry = charmExcludeEntry(c);
+    } else {
+      const a = armorById.get(Number(x?.id)) || armorByName.get(`${slot}|${name}`);
+      if (a) entry = armorExcludeEntry(a);
+    }
+    if (!entry) unknown++;
+    else if (!entries.some((e) => e.key === entry.key)) entries.push(entry);
+  }
+  return { entries, unknown };
+}
+
+function applyExcludeList(entries) {
+  state.exclude = entries;
+  for (const entry of entries) unpinExcluded(entry);
+  savePrefs();
+  renderExclude();
+  if (state.modal?.kind === "exclude") renderModal();
+}
+
+async function importExcludeList() {
+  let data;
+  try {
+    data = await pickJsonFile();
+  } catch (err) {
+    await noticeDialog("Can't import exclude list", err.message);
+    return;
+  }
+  if (!data) return;
+  if (data.kind !== EXCLUDE_EXPORT_KIND || !Array.isArray(data.exclude)) {
+    await noticeDialog("Can't import exclude list", "That file isn't an MHBuilder exclude list export.");
+    return;
+  }
+  const { entries, unknown } = await excludeEntriesFrom(data.exclude);
+  const charms = entries.filter((e) => e.slot === "charm").length;
+  const armor = entries.length - charms;
+  const what = [armor ? `${armor} armor piece${armor === 1 ? "" : "s"}` : "", charms ? `${charms} charm${charms === 1 ? "" : "s"}` : ""]
+    .filter(Boolean).join(" and ") || "nothing";
+  const skipped = unknown ? ` ${unknown} piece${unknown === 1 ? " isn't" : "s aren't"} in the current data and ${unknown === 1 ? "is" : "are"} skipped.` : "";
+  const mode = state.exclude.length
+    ? await confirmDialog({
+      title: "Import exclude list?",
+      message: `The file excludes ${what}.${skipped}`,
+      confirmLabel: "Import",
+      choices: [
+        { value: "replace", label: "Replace my exclude list", detail: `Drops the ${state.exclude.length} you have now` },
+        { value: "add", label: "Add to my exclude list" },
+      ],
+    })
+    : (await confirmDialog({ title: "Import exclude list?", message: `Exclude ${what}.${skipped}`, confirmLabel: "Import" })) && "replace";
+  if (!mode) return;
+  applyExcludeList(mode === "add" ? [...state.exclude, ...entries.filter((e) => !isExcludedKey(e.key))] : entries);
 }
 
 function closeModal() {
@@ -1159,6 +1255,10 @@ async function renderModal() {
   }
   if (kind === "saved") {
     renderSavedSetsModal(q, cats, pane, extra);
+    return;
+  }
+  if (kind === "savedlists") {
+    renderSavedListsModal(q, cats, pane, extra);
     return;
   }
   if (kind === "setskills") {
@@ -1430,9 +1530,11 @@ async function renderModal() {
 
     extra.innerHTML = `
       ${state.unlimitedDecos ? `<p class="hint">Unlimited is on, so search uses every jewel. This list applies once you untick it.</p>` : ""}
+      <button type="button" class="btn small ghost" id="decoSaved" title="Save this deco list or load a saved one">Saved lists</button>
       <button type="button" class="btn small ghost" id="decoImport" title="Replace your deco list with one from a JSON file">Import</button>
       <button type="button" class="btn small ghost" id="decoExport" title="Download your deco list as JSON">Export</button>
       <button type="button" class="btn small" id="decoClearAll">Clear all</button>`;
+    $("decoSaved").onclick = () => openSavedLists("deco");
     $("decoExport").onclick = exportDecoList;
     $("decoImport").onclick = importDecoList;
     $("decoClearAll").onclick = async () => {
@@ -1525,7 +1627,13 @@ async function renderModal() {
       state.modal.category = ALL_TAB;
     }
     drawCats();
-    extra.innerHTML = `<span class="hint">Click a piece to exclude it, click again to allow it</span>`;
+    extra.innerHTML = `<span class="hint">Click a piece to exclude it, click again to allow it</span>
+      <button type="button" class="btn small ghost" id="excludeSaved" title="Save this exclude list or load a saved one">Saved lists</button>
+      <button type="button" class="btn small ghost" id="excludeImport" title="Load an exclude list from a JSON file">Import</button>
+      <button type="button" class="btn small ghost" id="excludeExport" ${state.exclude.length ? "" : "disabled"} title="Download your exclude list as JSON">Export</button>`;
+    $("excludeSaved").onclick = () => openSavedLists("exclude");
+    $("excludeImport").onclick = importExcludeList;
+    $("excludeExport").onclick = exportExcludeList;
 
     if (q && all.length === 0) {
       pane.innerHTML = `<p class="hint">No armor or charm matches “${escapeHtml($("modalSearch").value.trim())}”.</p>`;
@@ -1563,6 +1671,7 @@ async function renderModal() {
         renderExclude();
         row.replaceWith(excludeRow(a));
         drawCats();
+        $("excludeExport").disabled = !state.exclude.length;
       };
       return row;
     };

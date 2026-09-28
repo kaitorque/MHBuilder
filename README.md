@@ -17,6 +17,7 @@ materials and owned-decoration import from a save file.
   material comes from.
 - **Owned decorations**: import from an Iceborne save (decoration box plus jewels slotted in gear and mantles) so
   the search only uses what you own. The save is only read, never modified.
+- **Saved lists**: name and keep builds, exclude lists and deco lists in the browser, with JSON import/export.
 
 ## Running locally
 
