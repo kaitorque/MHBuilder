@@ -429,6 +429,32 @@ function resistRowHtml(resists, { clickable = true, armor = null } = {}) {
     .join("");
 }
 
+/** One armor piece's defense and elemental resistances; empty for pieces without defense (weapon, charm). */
+function pieceStatsHtml(piece) {
+  if (piece?.defenseMax == null) return "";
+  const r = piece.resistances || {};
+  const res = ["fire", "water", "thunder", "ice", "dragon"]
+    .map((k) => {
+      const v = r[k] ?? 0;
+      const cls = v > 0 ? "pos" : v < 0 ? "neg" : "zero";
+      return `<span class="piece-res ${cls}">${elementIcon(k, { size: 13 })}${v > 0 ? "+" : ""}${v}</span>`;
+    })
+    .join("");
+  return `<span class="piece-stats"><span class="piece-def">${defenseIcon({ size: 13 })}${piece.defenseMax}</span>${res}</span>`;
+}
+
+/** "Attack Jewel 1 ×2" chips for a set's jewels ([{name, count, slotSize, iconColor}]); a dash when there are none. */
+function decoChipsHtml(decorations) {
+  if (!decorations?.length) return "—";
+  return decorations
+    .map((d) => {
+      if (typeof d === "string") return escapeHtml(d);
+      const label = d.count > 1 ? `${d.name} ×${d.count}` : d.name;
+      return `<span class="deco-chip">${decoIcon(d.slotSize, d.iconColor, { size: 22, title: label })}${escapeHtml(label)}</span>`;
+    })
+    .join(" ");
+}
+
 /** "Slugger 2 · Marathon Runner 1" under a piece or charm; empty when it has no skills. */
 function pieceSkillsHtml(skills, cls = "piece-skills") {
   if (!skills?.length) return "";
@@ -495,6 +521,7 @@ function pieceRowHtml(label, piece, slot, placements, weaponMeta, actionsHtml = 
       <span class="piece-slot">${label}</span>
       <span class="piece-name">${escapeHtml(piece.name)}${slot === "charm" ? charmNoteTag(piece.name) : armorNoteTag(piece.set, piece.name)}</span>
       <span class="piece-meta rarity-text" style="color:${rarityColor(slot === "weapon" ? wRarity : rarity)}">${metaBits.join(" · ")}</span>
+      ${slot === "weapon" || slot === "charm" ? "" : pieceStatsHtml(piece)}
       ${pieceSkillsHtml(piece.skills)}
       ${slotIcons}
       ${decoNamesHtml(orderByHostSlots(piece.slots, here))}

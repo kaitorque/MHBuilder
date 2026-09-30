@@ -197,6 +197,21 @@ body {
 .bgear-row.empty .bgear-name { color: var(--muted); font-weight: 400; font-style: italic; }
 .bgear-sub { font-size: 0.74rem; }
 .piece-skills { font-size: 0.74rem; color: var(--muted); line-height: 1.3; }
+.piece-stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 0.1rem 0.6rem;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.piece-def, .piece-res { display: inline-flex; align-items: center; gap: 0.18rem; white-space: nowrap; }
+.piece-def { color: var(--accent); font-weight: 600; }
+.piece-res.pos { color: #c8e0c4; }
+.piece-res.neg { color: #e0a098; }
+.piece-res.zero { color: var(--muted); }
+.piece-stats .ico { vertical-align: 0; }
 .bgear-skills { margin-top: 0.1rem; }
 .deco-skills { display: flex; flex-wrap: wrap; gap: 0.1rem 0.6rem; font-size: 0.72rem; line-height: 1.3; }
 .bgear-slots { display: inline-flex; gap: 0.2rem; }

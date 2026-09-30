@@ -2009,15 +2009,7 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
       card.dataset.idx = i;
       const skillHtml = skillPillsHtml(r.skills);
       const placements = r.decorationPlacements || [];
-      const decoHtml = (r.decorations || []).length
-        ? (r.decorations || [])
-            .map((d) => {
-              if (typeof d === "string") return escapeHtml(d);
-              const label = d.count > 1 ? `${d.name} ×${d.count}` : d.name;
-              return `<span class="deco-chip">${decoIcon(d.slotSize, d.iconColor, { size: 22, title: label })}${escapeHtml(label)}</span>`;
-            })
-            .join(" ")
-        : "—";
+      const decoHtml = decoChipsHtml(r.decorations);
       const freeHtml = freeSlotsSummaryHtml(r.freeSlots, r.remainingSlots, { size: 20 });
       const weaponSlots = r.weaponSlots || [];
       const hasWeaponSlots = weaponSlots.some((n) => n > 0);

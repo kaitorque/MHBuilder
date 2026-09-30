@@ -192,7 +192,7 @@ function builderRowHtml(loc) {
     })
     .join("");
 
-  let icon, name, sub, filled, pinnable, skills;
+  let icon, name, sub, filled, pinnable, skills, stats = "";
   if (loc === "weapon") {
     filled = !!state.weaponId;
     icon = weaponIcon(state.weaponType || DEFAULT_WEAPON_TYPE, state.weaponRarity ?? 12, { size: 34 });
@@ -214,6 +214,7 @@ function builderRowHtml(loc) {
     name = p ? p.name : `Pick ${label.toLowerCase()}…`;
     sub = p ? [`R${p.rarity}`, p.set].filter(Boolean).map(escapeHtml).join(" · ") + armorNoteTag(p.set, p.name) : "";
     skills = p?.skills;
+    stats = pieceStatsHtml(p);
     pinnable = true;
   }
   const rarity = loc === "weapon" ? state.weaponRarity : loc === "charm" ? state.build.charm?.rarity : state.build.pieces[loc]?.rarity;
@@ -232,6 +233,7 @@ function builderRowHtml(loc) {
       <span class="bgear-label">${label}</span>
       <button type="button" class="bgear-name" data-act="pick" title="Change ${label.toLowerCase()}">${escapeHtml(name)}</button>
       ${sub ? `<span class="bgear-sub" style="color:${filled ? rarityColor(rarity) : "var(--muted)"}">${sub}</span>` : ""}
+      ${stats}
       ${pieceSkillsHtml(skills, "piece-skills bgear-skills")}
       ${decoNamesHtml(decos.map((d) => d && { ...d, skills: decoById.get(d.id)?.skills }), "deco-skills bgear-skills")}
     </span>
@@ -243,11 +245,32 @@ function builderRowHtml(loc) {
 function renderBuilder() {
   normalizeBuildDecos();
   $("builderGear").innerHTML = BUILD_ROWS.map(builderRowHtml).join("");
+  renderBuilderDecos();
   const pins = Object.entries(state.build.pinned).filter(([k, v]) => v && (k === "charm" ? state.build.charm : state.build.pieces[k])).length;
   $("builderPins").textContent = pins ? `${pins} pinned` : "";
   $("builderClear").disabled = buildIsEmpty();
   $("builderMaterials").disabled = !BUILD_ARMOR.some((k) => state.build.pieces[k]) && !state.build.charm && !state.weaponId;
   syncResultActions();
+}
+
+/** Used jewels and still-empty slots across the builder, like a search result's Decorations section. */
+function renderBuilderDecos() {
+  const used = new Map();
+  const free = [];
+  for (const loc of Object.keys(state.build.decos)) {
+    const decos = state.build.decos[loc] || [];
+    hostSlots(loc).forEach((h, i) => {
+      const d = decos[i];
+      if (!d) return free.push(h);
+      const g = used.get(d.id);
+      if (g) g.count++;
+      else used.set(d.id, { ...d, count: 1 });
+    });
+  }
+  const list = [...used.values()].sort((a, b) => b.slotSize - a.slotSize || a.name.localeCompare(b.name));
+  $("builderDecoBlock").classList.toggle("hidden", !list.length && !free.length);
+  $("builderDecosUsed").innerHTML = decoChipsHtml(list);
+  $("builderDecosFree").innerHTML = freeSlotsSummaryHtml(null, free, { size: 20 });
 }
 
 function renderBuilderSummary() {
@@ -320,14 +343,20 @@ async function evaluateBuild() {
   renderBuilderSummary();
 }
 
-/** Builds saved before pieces and charms kept their skills: copy them from the evaluated build. */
+/** Builds saved before pieces and charms kept their skills and stats: copy them from the evaluated build. */
 function fillBuildSkills(ev) {
   const b = state.build;
   let changed = false;
   for (const k of BUILD_ARMOR) {
     const p = b.pieces[k];
-    if (p && !p.skills && ev[k]?.id === p.id) {
+    if (!p || ev[k]?.id !== p.id) continue;
+    if (!p.skills) {
       p.skills = ev[k].skills;
+      changed = true;
+    }
+    if (p.defenseMax == null || !p.resistances) {
+      p.defenseMax = ev[k].defenseMax;
+      p.resistances = ev[k].resistances;
       changed = true;
     }
   }
