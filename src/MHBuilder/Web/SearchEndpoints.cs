@@ -48,11 +48,11 @@ public static class SearchEndpoints
             }
         });
 
-        app.MapPost("/api/search/more", (SearchApiRequest body, SkillExpander expander, GameCatalog cat) =>
+        app.MapPost("/api/search/more", (SearchApiRequest body, SkillExpander expander, GameCatalog cat, HttpContext http) =>
         {
             try
             {
-                var result = expander.Find(body.ToSearchRequest(cat), Recall(body));
+                var result = expander.Find(body.ToSearchRequest(cat), Recall(body), cancellationToken: http.RequestAborted);
                 return Results.Json(new
                 {
                     elapsedMs = result.ElapsedMs,
@@ -69,6 +69,10 @@ public static class SearchEndpoints
                         armor = s.Armor?.ToDictionary(x => x.Key.ToString().ToLowerInvariant(), x => x.Value),
                     })
                 });
+            }
+            catch (OperationCanceledException)
+            {
+                return Results.StatusCode(499);
             }
             catch (ArgumentException ex)
             {

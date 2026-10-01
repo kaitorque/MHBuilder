@@ -43,10 +43,15 @@ public sealed class SkillExpander
             .ToHashSet();
     }
 
-    public AdditionalSkillsResult Find(SearchRequest request, IReadOnlyList<SearchResult>? baseline = null, int budgetMs = 25_000)
+    public AdditionalSkillsResult Find(
+        SearchRequest request,
+        IReadOnlyList<SearchResult>? baseline = null,
+        int budgetMs = 25_000,
+        CancellationToken cancellationToken = default)
     {
         var sw = Stopwatch.StartNew();
-        baseline ??= _searcher.Search(request with { MaxResults = Math.Max(request.MaxResults, 30) });
+        baseline ??= _searcher.Search(request with { MaxResults = Math.Max(request.MaxResults, 30) }, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
         if (baseline.Count == 0)
             return new AdditionalSkillsResult([], 0, 0, false, sw.ElapsedMilliseconds);
 
@@ -67,7 +72,8 @@ public sealed class SkillExpander
         int remainingMs = Math.Max(1_000, budgetMs - (int)sw.ElapsedMilliseconds);
         // Roughly one failing check per skill spread over all cores, with headroom for the passing ones.
         int checkMs = Math.Clamp(remainingMs * Environment.ProcessorCount / Math.Max(1, candidates.Count * 2), 300, 2_000);
-        using var cts = new CancellationTokenSource(remainingMs);
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        cts.CancelAfter(remainingMs);
         var found = new ConcurrentBag<AdditionalSkill>();
         int checkedCount = 0;
         bool exhausted = false;
@@ -134,6 +140,7 @@ public sealed class SkillExpander
         {
             exhausted = true;
         }
+        cancellationToken.ThrowIfCancellationRequested();
 
         if (exhausted)
         {

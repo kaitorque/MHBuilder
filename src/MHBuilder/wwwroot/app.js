@@ -84,17 +84,35 @@ function levelPipsHtml(s, level, avail = null) {
   return html + `</span>`;
 }
 
-async function openMoreSkills() {
+function syncMoreSkillsBtn() {
+  const btn = $("moreSkillsBtn");
+  const more = state.more;
+  btn.textContent = !more || more.error
+    ? "More skills…"
+    : more.loading ? "Checking more skills…" : `More skills (${more.levels.size})`;
+}
+
+/** Stops a "more skills" check still running for an older search. */
+function cancelMoreSkills() {
+  state.more?.abort?.abort();
+  state.more = null;
+  syncMoreSkillsBtn();
+}
+
+/** Starts the "more skills" check for the last search unless it is already done or running. */
+async function loadMoreSkills() {
   if (!state.lastSearchBody) return;
   const key = JSON.stringify(state.lastSearchBody);
-  if (state.more?.key !== key || state.more.error) state.more = { key, loading: true };
-  openModal("more", "More skills that fit");
-  if (!state.more.loading) return;
+  if (state.more?.key === key && !state.more.error) return;
+  const abort = new AbortController();
+  state.more = { key, loading: true, abort };
+  syncMoreSkillsBtn();
   try {
     const data = await api("/api/search/more", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: key,
+      signal: abort.signal,
     });
     if (state.more?.key !== key) return;
     state.more = {
@@ -104,10 +122,17 @@ async function openMoreSkills() {
       levels: new Map(data.skills.map((s) => [s.id, { level: s.level, maybeMore: s.maybeMore, armor: s.armor }])),
     };
   } catch (err) {
-    if (state.more?.key !== key) return;
+    if (state.more?.key !== key || abort.signal.aborted) return;
     state.more = { key, loading: false, error: err.message };
   }
+  syncMoreSkillsBtn();
   if (state.modal?.kind === "more") renderModal();
+}
+
+function openMoreSkills() {
+  if (!state.lastSearchBody) return;
+  loadMoreSkills();
+  openModal("more", "More skills that fit");
 }
 
 function setWantedLevel(s, level) {
@@ -1975,6 +2000,7 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
     timeLimitMs,
     seedSets: searchSeedSets(),
   };
+  cancelMoreSkills();
   results.innerHTML = `
     <div class="results-searching" role="status">
       <span class="spinner" aria-hidden="true"></span>
@@ -2081,6 +2107,7 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
     syncResultActions();
     syncSkillAddables();
     syncStatChips();
+    loadMoreSkills();
   } catch (err) {
     status.textContent = err.message;
     results.innerHTML = `<p class="hint">Search failed: ${escapeHtml(err.message)}</p>`;
