@@ -197,7 +197,8 @@ function renderWanted() {
   saveSkillPrefs();
   const ul = $("wantedSkills");
   ul.innerHTML = "";
-  for (const s of state.wanted) {
+  const inGameOrder = [...state.wanted].sort((a, b) => a.setEffect - b.setEffect || b.level - a.level || a.id - b.id);
+  for (const s of inGameOrder) {
     const li = document.createElement("li");
     li.className = "chip chip-skill" + (s.setEffect ? " chip-set" : "");
     li.title = withDescription(
