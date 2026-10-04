@@ -1144,7 +1144,7 @@ img.tint-layer { object-fit: contain; }
 
 /* —— Saved set builds —— */
 .saved-name-input { width: 13rem; min-width: 0; padding: 0.3rem 0.5rem; font-size: 0.84rem; }
-.saved-row { cursor: default; align-items: center; }
+.saved-row { cursor: pointer; align-items: center; }
 .saved-main { display: grid; gap: 0.25rem; min-width: 0; }
 .saved-title { display: flex; align-items: baseline; gap: 0.6rem; min-width: 0; }
 .saved-title strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

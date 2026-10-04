@@ -195,6 +195,7 @@ function renderSavedSetsModal(q, cats, pane, extra) {
   for (const s of list) {
     const row = document.createElement("div");
     row.className = "pick-row saved-row";
+    row.title = "Click to use this name, then Save current to replace it";
     const when = new Date(s.savedAt);
     row.innerHTML = `
       <div class="saved-main">
@@ -209,7 +210,11 @@ function renderSavedSetsModal(q, cats, pane, extra) {
       </div>`;
     row.onclick = async (e) => {
       const act = e.target.closest("[data-act]")?.dataset.act;
-      if (act === "load") loadSavedSet(s);
+      if (!act) {
+        nameInput.value = m.draftName = s.name;
+        nameInput.focus();
+        nameInput.select();
+      } else if (act === "load") loadSavedSet(s);
       else if (act === "export") exportSavedSets([s], `mhbuilder-build-${fileSlug(s.name)}.json`);
       else if (act === "delete") {
         const ok = await confirmDialog({
