@@ -143,8 +143,8 @@ public static class ResultDto
                     };
                 })
                 .OrderByDescending(s => s.wanted)
-                .ThenByDescending(s => s.level)
-                .ThenBy(s => s.name)
+                .ThenByDescending(s => s.wantedLevel ?? s.level)
+                .ThenBy(s => s.id)
         };
     }
 
