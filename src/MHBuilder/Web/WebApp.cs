@@ -18,6 +18,7 @@ public static class WebApp
         string dataDir = CatalogPaths.FindDataDir();
         builder.Services.AddSingleton(GameCatalog.Load(dataDir));
         builder.Services.AddSingleton(MaterialsCatalog.Load(dataDir));
+        builder.Services.AddSingleton(MonstersCatalog.Load(dataDir));
         builder.Services.AddSingleton<SetSearcher>();
         builder.Services.AddSingleton<SkillExpander>();
 
@@ -29,6 +30,7 @@ public static class WebApp
         app.MapCatalogEndpoints();
         app.MapSearchEndpoints();
         app.MapMaterialsEndpoints();
+        app.MapMonsterEndpoints();
         app.MapSaveEndpoints();
 
         var catalog = app.Services.GetRequiredService<GameCatalog>();

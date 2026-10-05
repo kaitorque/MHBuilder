@@ -1253,6 +1253,7 @@ function modalData(kind) {
   if (kind === "barmor") return armorForSlot(state.modal.loc);
   if (kind === "bcharm") return charmList();
   if (kind === "materials") return materialsData().catch(() => null);
+  if (kind === "monsters") return monstersData().catch(() => null);
   return null;
 }
 
@@ -1277,6 +1278,10 @@ async function renderModal() {
   }
   if (kind === "materials") {
     await renderMaterialsModal(q, cats, pane, extra, seq);
+    return;
+  }
+  if (kind === "monsters") {
+    await renderMonstersModal(q, cats, pane, extra, seq);
     return;
   }
   if (kind === "saved") {
@@ -2178,6 +2183,7 @@ async function init() {
     const ev = state.buildEval;
     if (ev) importSetSkills(ev.skills, ev.setBonuses, "the builder");
   };
+  $("openMonsters").onclick = openMonsters;
   $("builderSaved").onclick = () => openModal("saved", "Saved set builds", { draftName: "" });
   $("builderSkillInfo").onclick = () => openSetSkills("Skills · builder", state.buildEval);
   $("builderMaterials").onclick = () =>

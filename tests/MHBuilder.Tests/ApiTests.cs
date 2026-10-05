@@ -49,6 +49,7 @@ public sealed class ApiTests(WebApplicationFactory<Program> factory) : IClassFix
         Assert.True((await GetJson("/api/charms")).GetArrayLength() > 100);
         Assert.Equal(20, (await GetJson("/api/armor?slot=head&limit=20")).GetArrayLength());
         Assert.NotEmpty((await GetJson("/api/weapons?q=Safi&limit=5")).EnumerateArray());
+        Assert.True((await GetJson("/api/monsters")).GetProperty("monsters").GetArrayLength() > 70);
     }
 
     [Fact]

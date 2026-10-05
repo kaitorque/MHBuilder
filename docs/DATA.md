@@ -47,6 +47,22 @@ material comes from.
   Items still without source data (festival tickets and similar) show what their in-game description says.
 - **Icons:** item icons copied into `src/MHBuilder/wwwroot/icons/mh/` and tinted in the browser.
 
+## Monsters (`data/monsters.json`)
+
+Backs the **Monsters** view: every large monster's weakness stars, roar / wind pressure / tremor level and the
+ailments it inflicts.
+
+- **Weakness stars** (element and status, plus the alternate state such as Fulgur Anjanath charged or Barroth in
+  mud): the game's Hunter's Notes values via [mhw.poedb.tw](https://mhw.poedb.tw/eng/monsters/large). MHWorldData
+  agrees except for Anjanath and Tigrex, where the build prints the difference and uses the game values (Kiranico's
+  hitzones back the game values).
+- **Roar, wind, tremor, ailments, traps, alternate state names:** MHWorldData, with the gaps for Furious Rajang,
+  Raging Brachydios and Safi'jiiva filled in by hand (`FIXES` in `build_monsters.py`).
+- **Habitats, in-game tip, icons:** poedb. Three poedb pages hold another monster's info (the Behemoth page has
+  Barroth's, Leshen has Bazelgeuse's, Ancient Leshen has Tzitzi-Ya-Ku's); `POEDB_SHIFTED` moves them back.
+- **Notes:** a few short hand-written mechanics the game tip leaves out (`NOTES`).
+- Counter skills shown with each threat use the game's own skill level text from `skills.json`.
+
 ## Regenerating
 
 Local prerequisites under `tools/dump/` (not in git):
@@ -58,6 +74,7 @@ Local prerequisites under `tools/dump/` (not in git):
 | `mhw_ghs.db` | [MHWorldData](https://github.com/gatheringhallstudios/MHWorldData) SQLite build |
 | `mhotomo/` | Icon source assets |
 | `poedb/`, `poedb_sources.json` | Cached mhw.poedb.tw item pages and the sources parsed from them (`fetch_poedb.py`) |
+| `poedb_monsters/` | Cached mhw.poedb.tw monster pages and icons (`build_monsters.py`) |
 
 Then, from the repository root:
 
@@ -67,6 +84,7 @@ python tools/dump/build_materials.py       # materials.json and item icons
 python tools/dump/fetch_poedb.py           # poedb pages for every material (cached; --refresh refetches)
 python tools/dump/build_materials.py       # again, to merge poedb_sources.json
 python tools/dump/restore_jewel_icons.py   # slot, jewel and gear icons
+python tools/dump/build_monsters.py        # monsters.json and monster icons (cached; --refresh refetches)
 ```
 
 `fetch_poedb.py` reads the material list from `materials.json`, so it runs after a first build; once

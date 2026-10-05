@@ -1,4 +1,4 @@
-/** MHW UI icons (from MHOTOMO assets) — armor slots + element resists. */
+/** MHW UI icons (from MHOTOMO assets) — armor slots, element resists and status ailments. */
 
 const ELEMENT_META = {
   fire: { label: "Fire", file: "el-fire.png" },
@@ -6,6 +6,14 @@ const ELEMENT_META = {
   thunder: { label: "Thunder", file: "el-thunder.png" },
   ice: { label: "Ice", file: "el-ice.png" },
   dragon: { label: "Dragon", file: "el-dragon.png" },
+};
+
+const STATUS_META = {
+  poison: { label: "Poison", file: "st-poison.png" },
+  sleep: { label: "Sleep", file: "st-sleep.png" },
+  paralysis: { label: "Paralysis", file: "st-paralysis.png" },
+  blast: { label: "Blast", file: "st-blast.png" },
+  stun: { label: "Stun", file: "st-stun.png" },
 };
 
 const ARMOR_FILES = {
@@ -130,6 +138,12 @@ function elementIcon(kind, { size = 20 } = {}) {
   const meta = ELEMENT_META[kind];
   if (!meta) return "";
   return `<img class="ico ico-el ico-el-${kind}" src="${iconUrl(meta.file)}" width="${size}" height="${size}" alt="${meta.label}" title="${meta.label}" />`;
+}
+
+function statusIcon(kind, { size = 20 } = {}) {
+  const meta = STATUS_META[kind];
+  if (!meta) return "";
+  return `<img class="ico ico-el ico-st-${kind}" src="${iconUrl(meta.file)}" width="${size}" height="${size}" alt="${meta.label}" title="${meta.label}" />`;
 }
 
 function armorIcon(slot, rarity, { size = 22 } = {}) {

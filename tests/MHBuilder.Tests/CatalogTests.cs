@@ -85,4 +85,28 @@ public sealed class CatalogTests(CatalogFixture fixture)
         int withRecipe = _catalog.Armor.Count(a => materials.ArmorRecipe(a.Id) is not null);
         Assert.True(withRecipe > _catalog.Armor.Count * 9 / 10, $"only {withRecipe} armor pieces have a recipe");
     }
+
+    [Fact]
+    public void Monsters_catalog_has_weaknesses_and_threats()
+    {
+        var monsters = MonstersCatalog.Load(CatalogPaths.FindDataDir());
+        Assert.True(monsters.Count > 70);
+        using var doc = System.Text.Json.JsonDocument.Parse(monsters.Json);
+        var byName = doc.RootElement.GetProperty("monsters").EnumerateArray()
+            .ToDictionary(m => m.GetProperty("name").GetString()!);
+
+        var kushala = byName["Kushala Daora"];
+        Assert.Equal("extreme", kushala.GetProperty("wind").GetString());
+        Assert.Equal(3, kushala.GetProperty("element").GetProperty("thunder").GetInt32());
+
+        var fulgur = byName["Fulgur Anjanath"];
+        Assert.Equal(3, fulgur.GetProperty("element").GetProperty("ice").GetInt32());
+        Assert.Equal("Charged", fulgur.GetProperty("alt").GetProperty("label").GetString());
+        Assert.Equal(3, fulgur.GetProperty("alt").GetProperty("element").GetProperty("water").GetInt32());
+
+        Assert.Equal("large", byName["Paolumu"].GetProperty("wind").GetString());
+        Assert.Equal("large", byName["Xeno'jiiva"].GetProperty("wind").GetString());
+        Assert.Contains("mud", byName["Barroth"].GetProperty("ailments").EnumerateArray().Select(a => a.GetString()));
+        Assert.All(byName.Values, m => Assert.Equal(5, m.GetProperty("element").EnumerateObject().Count()));
+    }
 }
