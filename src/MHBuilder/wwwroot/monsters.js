@@ -25,12 +25,20 @@ const MONSTER_THREATS = {
   tremor: { label: "Tremor", levels: { small: { text: "Minor", counter: skillAt(13, 1) }, large: { text: "Major", counter: skillAt(13, 3) } } },
 };
 
+/** Elemental blights are also prevented by 20+ resistance of that element; the resistance skill's level 3 adds +20. */
+const elementBlight = (element, resistSkill, effect) => ({
+  label: `${element}blight`,
+  counter: skillAt(29, 3),
+  effect,
+  resist: { note: `${element} resistance 20 or higher also prevents it.`, counter: skillAt(resistSkill, 3) },
+});
+
 const MONSTER_AILMENTS = {
-  fireblight: { label: "Fireblight", counter: skillAt(29, 3), effect: "Burns you over time. Roll three times or step into water to put it out." },
-  waterblight: { label: "Waterblight", counter: skillAt(29, 3), effect: "Stamina recovers much more slowly." },
-  thunderblight: { label: "Thunderblight", counter: skillAt(29, 3), effect: "You get stunned much more easily." },
-  iceblight: { label: "Iceblight", counter: skillAt(29, 3), effect: "Actions use more stamina." },
-  dragonblight: { label: "Dragonblight", counter: skillAt(29, 3), effect: "Seals your weapon's element and status." },
+  fireblight: elementBlight("Fire", 24, "Burns you over time. Roll three times or step into water to put it out."),
+  waterblight: elementBlight("Water", 25, "Stamina recovers much more slowly."),
+  thunderblight: elementBlight("Thunder", 27, "You get stunned much more easily."),
+  iceblight: elementBlight("Ice", 26, "Actions use more stamina."),
+  dragonblight: elementBlight("Dragon", 28, "Seals your weapon's element and status."),
   blastblight: { label: "Blastblight", counter: skillAt(6, 3), effect: "Explodes after a while or when you're hit. Roll three times to shake it off." },
   poison: { label: "Poison", counter: skillAt(1, 3), effect: "Drains health over time. An Antidote or Nulberry cures it." },
   sleep: { label: "Sleep", counter: skillAt(3, 3), effect: "Puts you to sleep." },
@@ -51,8 +59,21 @@ function monstersData() {
   return monstersRequest;
 }
 
+const monsterDropsCache = new Map();
+const RANK_NAMES = { LR: "Low Rank", HR: "High Rank", MR: "Master Rank" };
+
+function monsterDrops(name) {
+  if (!monsterDropsCache.has(name)) {
+    monsterDropsCache.set(name, api(`/api/monsters/drops?name=${encodeURIComponent(name)}`).catch((err) => {
+      monsterDropsCache.delete(name);
+      throw err;
+    }));
+  }
+  return monsterDropsCache.get(name);
+}
+
 function openMonsters() {
-  openModal("monsters", "Monsters", { monster: null, sort: null, lastQ: "" });
+  openModal("monsters", "Monsters", { monster: null, sort: null, lastQ: "", dropRank: null });
 }
 
 /** ★★☆ for 0-3 stars; 0 is an ✕ like the Hunter's Notes. */
@@ -92,8 +113,10 @@ function threatInfo(kind, value) {
   return { ...lv, label: t.label, tip: [`${lv.text} ${t.label.toLowerCase()}`, lv.note, counterText(lv.counter)].filter(Boolean).join("\n") };
 }
 
+const resistText = (a) => (a.resist ? `${a.resist.note} ${counterText(a.resist.counter)}` : "");
+
 function ailmentTip(a) {
-  return [a.label, a.effect, counterText(a.counter)].filter(Boolean).join("\n");
+  return [a.label, a.effect, counterText(a.counter), resistText(a)].filter(Boolean).join("\n");
 }
 
 function elementStarsHtml(m, e) {
@@ -272,8 +295,9 @@ function renderMonsterDetail(pane, m) {
   const ailments = m.ailments.map((k) => MONSTER_AILMENTS[k]).filter(Boolean).map((a) => `
     <div class="mon-line">
       <span><strong>${escapeHtml(a.label)}</strong> <span class="mon-line-sub">${escapeHtml(a.effect)}</span>
-        ${a.counter ? `<span class="mon-line-sub">${escapeHtml(counterText(a.counter))}</span>` : ""}</span>
-      ${counterButtonHtml(a.counter)}
+        ${a.counter ? `<span class="mon-line-sub">${escapeHtml(counterText(a.counter))}</span>` : ""}
+        ${a.resist ? `<span class="mon-line-sub">${escapeHtml(resistText(a))}</span>` : ""}</span>
+      <span class="mon-line-btns">${counterButtonHtml(a.counter)}${a.resist ? counterButtonHtml(a.resist.counter) : ""}</span>
     </div>`).join("");
 
   const tips = [m.tip, ...(m.notes || [])].filter(Boolean).map((t, i) =>
@@ -296,7 +320,9 @@ function renderMonsterDetail(pane, m) {
     ${section("Roar, wind and tremor", threats)}
     ${section("Inflicts", ailments || `<p class="hint">No ailments.</p>`)}
     ${section("Tips", tips)}
-    ${section("Traps", `<div class="mon-traps">${traps}</div>`)}`;
+    ${section("Traps", `<div class="mon-traps">${traps}</div>`)}
+    ${section("Drops", `<div class="mon-drops"><p class="hint">Loading drops…</p></div>`)}`;
+  fillMonsterDrops(pane.querySelector(".mon-drops"), m);
   pane.querySelector(".mat-back").onclick = () => {
     state.modal.monster = null;
     renderModal();
@@ -311,4 +337,38 @@ function renderMonsterDetail(pane, m) {
     };
   }
   pane.scrollTop = 0;
+}
+
+/** Drop table per rank; the chosen rank sticks while browsing other monsters (defaults to the highest). */
+async function fillMonsterDrops(box, m) {
+  let ranks;
+  try {
+    ranks = (await monsterDrops(m.name)).ranks || [];
+  } catch (err) {
+    box.innerHTML = `<p class="hint error">${escapeHtml(err.message)}</p>`;
+    return;
+  }
+  if (!box.isConnected) return;
+  if (!ranks.length) {
+    box.innerHTML = `<p class="hint">No drop data for this monster.</p>`;
+    return;
+  }
+  const itemHtml = (it) => `
+    <div class="mat-src">
+      <div class="mat-src-head">${itemIcon(it.icon, it.color, { size: 22 })}<strong style="color:${rarityColor(it.rarity)}">${escapeHtml(it.name)}</strong></div>
+      <div class="mat-drops">${it.drops.map(([cond, pct, n]) => `<span class="mat-drop">${escapeHtml(cond)}${n > 1 ? ` ×${n}` : ""} <span class="mat-pct">${pct}%</span></span>`).join("")}</div>
+    </div>`;
+  const draw = () => {
+    const sel = ranks.find((r) => r.rank === state.modal.dropRank) || ranks[ranks.length - 1];
+    box.innerHTML = `
+      <div class="toggle-group mon-rank-tabs">${ranks.map((r) => `<button type="button" class="toggle${r === sel ? " on" : ""}" data-rank="${r.rank}">${RANK_NAMES[r.rank] || r.rank}</button>`).join("")}</div>
+      ${sel.items.map(itemHtml).join("")}`;
+    for (const btn of box.querySelectorAll("[data-rank]")) {
+      btn.onclick = () => {
+        state.modal.dropRank = btn.dataset.rank;
+        draw();
+      };
+    }
+  };
+  draw();
 }

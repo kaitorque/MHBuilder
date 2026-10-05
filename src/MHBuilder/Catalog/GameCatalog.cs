@@ -364,19 +364,31 @@ public sealed class GameCatalog
         string weaponsPath = Path.Combine(dataDirectory, "weapons.json");
         if (File.Exists(weaponsPath))
         {
+            string statsPath = Path.Combine(dataDirectory, "weapon_stats.json");
+            JsonElement? stats = File.Exists(statsPath) ? ReadArray(statsPath) : null;
             foreach (var w in ReadArray(weaponsPath).EnumerateArray())
             {
+                int id = w.GetProperty("id").GetInt32();
                 var slots = w.TryGetProperty("slots", out var slotsEl)
                     ? slotsEl.EnumerateArray().Select(x => x.GetProperty("rank").GetInt32()).OrderByDescending(x => x).ToArray()
                     : Array.Empty<int>();
+                JsonElement st = default;
+                bool hasStats = stats is { } all && all.TryGetProperty(id.ToString(), out st);
                 weapons.Add(new WeaponInfo(
-                    w.GetProperty("id").GetInt32(),
+                    id,
                     w.GetProperty("name").GetString() ?? "",
                     w.GetProperty("type").GetString() ?? "",
                     w.GetProperty("rarity").GetInt32(),
                     slots,
                     w.TryGetProperty("damage", out var dmg) ? dmg.GetInt32() : 0,
-                    w.TryGetProperty("affinity", out var aff) ? aff.GetInt32() : 0));
+                    w.TryGetProperty("affinity", out var aff) ? aff.GetInt32() : 0,
+                    hasStats && st.TryGetProperty("element", out var els)
+                        ? els.EnumerateArray()
+                            .Select(e => new WeaponElement(e.GetProperty("type").GetString() ?? "", e.GetProperty("value").GetInt32(), e.GetProperty("hidden").GetBoolean()))
+                            .ToList()
+                        : null,
+                    hasStats && st.TryGetProperty("sharpness", out var sh) ? sh.EnumerateArray().Select(x => x.GetInt32()).ToArray() : null,
+                    hasStats && st.TryGetProperty("sharpnessMaxed", out var mx) && mx.GetBoolean()));
             }
         }
 

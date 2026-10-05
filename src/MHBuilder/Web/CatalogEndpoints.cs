@@ -85,6 +85,17 @@ public static class CatalogEndpoints
                 .Select(w => new { w.Id, w.Name, w.Type, w.Rarity, slots = w.Slots, w.Damage, w.Affinity }));
         });
 
+        app.MapGet("/api/weapons/{id:int}", (GameCatalog cat, int id) =>
+            cat.WeaponsById.TryGetValue(id, out var w)
+                ? Results.Json(new
+                {
+                    w.Id, w.Name, w.Type, w.Rarity, slots = w.Slots, w.Damage, w.Affinity,
+                    elements = w.Elements ?? [],
+                    sharpness = w.Sharpness,
+                    sharpnessMaxed = w.SharpnessMaxed
+                })
+                : Results.NotFound());
+
         app.MapGet("/api/weapon-types", (GameCatalog cat) =>
             Results.Json(cat.Weapons.Select(w => w.Type).Distinct().OrderBy(x => x)));
 

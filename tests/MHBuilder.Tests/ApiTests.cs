@@ -53,6 +53,29 @@ public sealed class ApiTests(WebApplicationFactory<Program> factory) : IClassFix
     }
 
     [Fact]
+    public async Task Weapon_detail_has_element_and_sharpness()
+    {
+        var safi = (await GetJson("/api/weapons?q=Safi%27s%20Shatterspear&limit=1"))[0];
+        var w = await GetJson($"/api/weapons/{safi.GetProperty("id").GetInt32()}");
+        Assert.Equal(837, w.GetProperty("damage").GetInt32());
+        var element = Assert.Single(w.GetProperty("elements").EnumerateArray());
+        Assert.Equal("blast", element.GetProperty("type").GetString());
+        Assert.Equal(400, w.GetProperty("sharpness").EnumerateArray().Sum(x => x.GetInt32()));
+        Assert.Equal(HttpStatusCode.NotFound, (await _client.GetAsync("/api/weapons/1")).StatusCode);
+    }
+
+    [Fact]
+    public async Task Monster_drops_are_grouped_by_rank()
+    {
+        var ranks = (await GetJson("/api/monsters/drops?name=Rathalos")).GetProperty("ranks").EnumerateArray().ToList();
+        Assert.Equal(["LR", "HR", "MR"], ranks.Select(r => r.GetProperty("rank").GetString()));
+        var hr = ranks[1].GetProperty("items").EnumerateArray().ToList();
+        var ruby = Assert.Single(hr, i => i.GetProperty("name").GetString() == "Rathalos Ruby");
+        Assert.Contains(ruby.GetProperty("drops").EnumerateArray(), d => d[0].GetString() == "Tail Carve");
+        Assert.Empty((await GetJson("/api/monsters/drops?name=Nobody")).GetProperty("ranks").EnumerateArray());
+    }
+
+    [Fact]
     public async Task Search_returns_sets_with_the_wanted_skills_and_their_materials()
     {
         int critEye = await SkillId("Critical Eye");

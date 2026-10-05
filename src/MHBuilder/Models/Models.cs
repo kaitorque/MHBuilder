@@ -147,7 +147,14 @@ public sealed record WeaponInfo(
     int Rarity,
     int[] Slots,
     int Damage,
-    int Affinity);
+    int Affinity,
+    IReadOnlyList<WeaponElement>? Elements = null,
+    // Hits per sharpness color (red … purple) at Handicraft 5; null for bows and bowguns.
+    int[]? Sharpness = null,
+    bool SharpnessMaxed = false);
+
+/// <summary>Display element or status value; Hidden needs Free Elem/Ammo Up.</summary>
+public sealed record WeaponElement(string Type, int Value, bool Hidden);
 
 public sealed record SearchRequest(
     IReadOnlyDictionary<int, int> WantedSkills,

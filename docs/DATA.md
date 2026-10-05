@@ -14,6 +14,7 @@ Exported from the game's own tables (PC, final title update), so ids, defense an
 | `charms.json` | 110 families | Ranks I–V grouped by name |
 | `decorations.json` | 404 | Slot size, skills, icon color |
 | `weapons.json` | 3695 | Rarity, slots, damage, affinity |
+| `weapon_stats.json` | 3150 | Element/status (hidden flag) and sharpness at Handicraft 5, from MHWorldData by name and type |
 | `materials.json` | | Crafting recipes and material sources (below) |
 
 `SOURCE.json` records the exporter and the counts.
@@ -80,6 +81,7 @@ Then, from the repository root:
 
 ```sh
 python tools/dump/convert_game_dump.py     # skills, armor, charms, decorations, weapons, SOURCE.json
+python tools/dump/build_weapon_stats.py    # weapon_stats.json (element and sharpness)
 python tools/dump/build_materials.py       # materials.json and item icons
 python tools/dump/fetch_poedb.py           # poedb pages for every material (cached; --refresh refetches)
 python tools/dump/build_materials.py       # again, to merge poedb_sources.json

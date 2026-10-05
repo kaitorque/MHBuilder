@@ -1296,6 +1296,10 @@ async function renderModal() {
     renderSetSkillsModal(q, pane, extra);
     return;
   }
+  if (kind === "damage") {
+    await renderAttackPanel();
+    return;
+  }
 
   const matchesQuery = (text) => !q || String(text || "").toLowerCase().includes(q);
 
@@ -2169,6 +2173,7 @@ async function init() {
   initFreeSlotMins();
   initSaveImport();
   $("builderGear").onclick = onBuilderClick;
+  initAttackPanel();
   $("results").onclick = onResultsClick;
   for (const id of ["results", "builder"]) {
     $(id).addEventListener("click", onStatChipClick);

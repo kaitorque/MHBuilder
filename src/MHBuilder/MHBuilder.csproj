@@ -13,6 +13,7 @@
     <None Include="..\..\data\decorations.json" Link="data\decorations.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\data\charms.json" Link="data\charms.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\data\weapons.json" Link="data\weapons.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\data\weapon_stats.json" Link="data\weapon_stats.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\data\materials.json" Link="data\materials.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\data\monsters.json" Link="data\monsters.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\data\SOURCE.json" Link="data\SOURCE.json" CopyToOutputDirectory="PreserveNewest" />

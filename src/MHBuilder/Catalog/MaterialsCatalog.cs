@@ -21,10 +21,14 @@ public sealed class MaterialsCatalog
     /// <summary>One step of a weapon path: forge WeaponId from scratch, or upgrade into it.</summary>
     public sealed record WeaponStep(int WeaponId, bool Forge, Recipe Recipe);
 
+    /// <summary>An item a monster drops at one rank; Drops is the raw [[condition, percent, quantity], ...] list.</summary>
+    public sealed record MonsterDrop(int ItemId, string Rank, JsonElement Drops);
+
     private readonly Dictionary<int, Recipe> _armor = new();
     private readonly Dictionary<string, Recipe> _charms = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<int, WeaponNode> _weapons = new();
     private readonly Dictionary<int, JsonElement> _items = new();
+    private readonly Dictionary<string, List<MonsterDrop>> _dropsByMonster = new(StringComparer.OrdinalIgnoreCase);
 
     public bool Loaded { get; }
 
@@ -51,6 +55,20 @@ public sealed class MaterialsCatalog
         }
         foreach (var p in root.GetProperty("items").EnumerateObject())
             _items[int.Parse(p.Name)] = p.Value.Clone();
+        foreach (var (id, item) in _items)
+        {
+            if (!item.TryGetProperty("sources", out var sources) || sources.ValueKind != JsonValueKind.Object
+                || !sources.TryGetProperty("monsters", out var monsters))
+                continue;
+            foreach (var m in monsters.EnumerateArray())
+            {
+                string? name = m.GetProperty("monster").GetString();
+                if (string.IsNullOrEmpty(name)) continue;
+                if (!_dropsByMonster.TryGetValue(name, out var list))
+                    _dropsByMonster[name] = list = [];
+                list.Add(new MonsterDrop(id, m.GetProperty("rank").GetString() ?? "", m.GetProperty("drops")));
+            }
+        }
         Loaded = true;
     }
 
@@ -70,6 +88,8 @@ public sealed class MaterialsCatalog
     public JsonElement? Item(int itemId) => _items.TryGetValue(itemId, out var e) ? e : null;
 
     public WeaponNode? Weapon(int weaponId) => _weapons.GetValueOrDefault(weaponId);
+
+    public IReadOnlyList<MonsterDrop> MonsterDrops(string monster) => _dropsByMonster.GetValueOrDefault(monster) ?? [];
 
     /// <summary>
     /// Cheapest way to get a weapon from nothing: forge the nearest forgeable ancestor, then upgrade down to it.

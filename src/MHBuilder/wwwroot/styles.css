@@ -1143,6 +1143,63 @@ img.tint-layer { object-fit: contain; }
   cursor: help;
 }
 
+/* —— Builder attack panel —— */
+.atk-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 0.9rem; font-size: 0.86rem; }
+.atk-stats { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; }
+#builderAttack .atk-weapon { margin-bottom: 0.45rem; }
+.atk-stat { display: inline-flex; align-items: baseline; gap: 0.35rem; font-variant-numeric: tabular-nums; font-weight: 600; }
+.atk-stat-label { color: var(--muted); font-size: 0.74rem; font-weight: 400; }
+#modal[data-kind="damage"] .modal { width: min(980px, 100%); height: auto; max-height: 88vh; }
+#modal[data-kind="damage"] .modal-toolbar, #modal[data-kind="damage"] .cat-nav { display: none; }
+#modal[data-kind="damage"] .modal-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+#modal[data-kind="damage"] .cat-pane { padding: 0.9rem 1rem 1rem; scrollbar-gutter: auto; }
+.atk-weapon { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.6rem; margin-bottom: 0.7rem; font-size: 0.86rem; }
+.atk-el { display: inline-flex; align-items: center; gap: 0.2rem; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.atk-el.off { color: var(--muted); }
+.atk-el.off .ico { opacity: 0.45; }
+.atk-sharp { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.78rem; }
+.atk-bar { display: inline-flex; width: 6.5rem; height: 0.55rem; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+.atk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.6rem 1rem; align-items: start; }
+.atk-col { display: grid; gap: 0.1rem; }
+.atk-head { color: var(--muted); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.atk-row {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--r-sm);
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.atk-row.on { color: var(--text); }
+.atk-row.cond { cursor: pointer; }
+.atk-row.cond:hover { background: var(--surface-2); }
+.atk-row.inactive { color: var(--muted); }
+.atk-row input { margin: 0; accent-color: var(--accent); }
+.atk-name { min-width: 0; }
+.atk-when { display: block; color: var(--muted); font-size: 0.74rem; }
+.atk-select { margin-top: 0.15rem; padding: 0.1rem 0.25rem; font-size: 0.76rem; }
+.atk-val { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; white-space: nowrap; }
+.atk-row.cond:not(.on) .atk-val { font-weight: 400; }
+.atk-total { margin-top: 0.2rem; border-top: 1px solid var(--line); border-radius: 0; color: var(--text); }
+.atk-total .atk-val { color: var(--accent); font-size: 0.95rem; }
+.atk-items { display: flex; flex-wrap: wrap; gap: 0.25rem; margin: 0.2rem 0 0 1.8rem; }
+.atk-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+.atk-item.on { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); color: var(--text); }
+.atk-item input { margin: 0; accent-color: var(--accent); }
+.atk-note { margin: 0.2rem 0 0; font-size: 0.74rem; }
+
 /* —— Monsters modal —— */
 #modal[data-kind="monsters"] .modal { width: min(1320px, 100%); height: min(88vh, 860px); }
 #modal[data-kind="monsters"] .modal-body { grid-template-columns: 160px minmax(0, 1fr); }
@@ -1246,12 +1303,14 @@ img.tint-layer { object-fit: contain; }
 }
 .mon-line + .mon-line { margin-top: 0.15rem; }
 .mon-line .btn { flex-shrink: 0; }
+.mon-line-btns { display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem; flex-shrink: 0; }
 .mon-line-sub { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
 .mon-tip { margin: 0 0 0.35rem; padding: 0.4rem 0.55rem; border-left: 3px solid var(--line-strong); background: var(--surface-0); font-size: 0.86rem; line-height: 1.45; }
 .mon-tip-src { display: block; color: var(--accent-2); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 .mon-traps { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .mon-trap { padding: 0.15rem 0.5rem; border: 1px solid color-mix(in srgb, var(--accent-2) 60%, var(--line)); border-radius: var(--r-sm); color: var(--accent-2); font-size: 0.8rem; }
 .mon-trap.off { border-color: var(--line); color: var(--muted); }
+.mon-rank-tabs { margin-bottom: 0.45rem; }
 @container (max-width: 520px) {
   .mon-weak { display: grid; margin-right: 0; }
   .mon-weak-row { grid-template-columns: 5.5rem repeat(5, minmax(0, 1fr)); }

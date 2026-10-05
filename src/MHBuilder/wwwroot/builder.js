@@ -298,6 +298,7 @@ function renderBuilderSummary() {
   $("builderSkillInfo").disabled = empty || !(ev?.skills?.length || ev?.setBonuses?.length);
   syncSkillAddables();
   syncStatChips();
+  renderAttackPanel();
 
   const missing = state.wanted
     .filter((w) => !w.setEffect)
