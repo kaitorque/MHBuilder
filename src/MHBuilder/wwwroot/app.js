@@ -574,6 +574,14 @@ function onResultsClick(e) {
     if (tab) openResultMaterials(r, idx, tab);
     return;
   }
+  if (btn.dataset.ract === "swap") {
+    swapResultDeco(btn.closest(".result-card"), Number(btn.dataset.from), Number(btn.dataset.host), Number(btn.dataset.to));
+    return;
+  }
+  if (btn.dataset.ract === "swap-more") {
+    btn.closest(".deco-swap").classList.add("open");
+    return;
+  }
   const r = (state.results || [])[Number(btn.closest(".result-card")?.dataset.idx)];
   if (r && btn.dataset.ract === "import-skills") {
     importSetSkills(r.skills, r.setBonuses, `result #${Number(btn.closest(".result-card").dataset.idx) + 1}`);
@@ -2039,81 +2047,7 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
       results.insertAdjacentHTML("beforeend", `<p class="hint">No sets found. Relax skills${minsNote}, add weapon slots, or enable unlimited decos.</p>`);
       return;
     }
-    for (const [i, r] of data.results.entries()) {
-      const card = document.createElement("article");
-      card.className = "result-card";
-      card.dataset.idx = i;
-      const skillHtml = skillPillsHtml(r.skills);
-      const placements = r.decorationPlacements || [];
-      const decoHtml = decoChipsHtml(r.decorations);
-      const freeHtml = freeSlotsSummaryHtml(r.freeSlots, r.remainingSlots, { size: 20 });
-      const weaponSlots = r.weaponSlots || [];
-      const hasWeaponSlots = weaponSlots.some((n) => n > 0);
-      const weaponPlaced = placements.some((p) => p.location === "Weapon");
-      const weaponMeta = {
-        type: r.weaponType || DEFAULT_WEAPON_TYPE,
-        rarity: r.weaponRarity ?? 12,
-      };
-      const weaponRow =
-        hasWeaponSlots || weaponPlaced
-          ? pieceRowHtml(
-              "Weapon",
-              {
-                name: r.weapon || "Weapon slots",
-                rarity: weaponMeta.rarity,
-                set: "",
-                slots: weaponSlots,
-              },
-              "weapon",
-              placements,
-              weaponMeta
-            )
-          : "";
-      card.innerHTML = `
-        <div class="result-card-head">
-          <div class="result-title-row">
-            <h3>#${i + 1} <span class="def-chip" ${statChipAttrs("defense", r.defense, r.armorDefense)}>${defChipHtml(r.defense)}</span>${r.weapon ? ` · ${escapeHtml(r.weapon)}` : ""}</h3>
-            <span class="result-head-actions">
-              <button type="button" class="btn small ghost" data-ract="skills" title="What each skill in this set does">Skills</button>
-              <button type="button" class="btn small ghost" data-ract="materials" title="Forging materials and where to get them">Materials</button>
-              <button type="button" class="btn small primary apply-btn" title="Load this set into the builder">Apply to builder</button>
-            </span>
-          </div>
-          <div class="resists">${resistRowHtml(r.resistances, { armor: r.armorResistances })}</div>
-        </div>
-        <div class="result-body">
-          <div class="result-section">
-            <div class="result-section-label">Equipment</div>
-            <div class="pieces">
-              ${BUILD_ARMOR.map((k) => pieceRowHtml(BUILD_LABELS[k], r[k], k, placements, null, r[k]?.id ? resultActionsHtml() : "")).join("")}
-              ${pieceRowHtml("Charm", { name: r.charm, rarity: r.charmInfo?.rarity ?? 10, set: "", skills: r.charmInfo?.skills }, "charm", undefined, null, r.charmInfo?.id ? resultActionsHtml() : "")}
-              ${weaponRow}
-            </div>
-          </div>
-          <div class="result-section">
-            <div class="result-section-label">Decorations</div>
-            <div class="deco-line"><span class="deco-line-label">Used</span> <span class="deco-chips">${decoHtml}</span></div>
-            <div class="deco-line"><span class="deco-line-label">Free</span> <span class="slot-row free-slots">${freeHtml}</span></div>
-          </div>
-          <div class="result-section set-bonuses-block">
-            <div class="result-section-label">Set bonuses</div>
-            <div class="set-bonuses">${setBonusesHtml(r.setBonuses)}</div>
-          </div>
-          <div class="result-section">
-            <div class="result-section-label section-label-row">Skills
-              <button type="button" class="btn small ghost" data-ract="import-skills" title="Replace your wanted skills with this set's skills">Use these skills</button>
-            </div>
-            <div class="skills">${skillHtml}</div>
-          </div>
-        </div>`;
-      card.querySelector(".apply-btn").onclick = () => applyResultToBuild(r);
-      for (const row of card.querySelectorAll(".piece-row[data-loc]")) {
-        if (!materialsTabFor(row.dataset.loc, resultSlotPiece(r, row.dataset.loc), r.weaponId)) continue;
-        row.classList.add("has-mats");
-        row.title = "Click for forging materials";
-      }
-      results.appendChild(card);
-    }
+    for (const [i, r] of data.results.entries()) results.appendChild(resultCardEl(r, i));
     syncResultActions();
     syncSkillAddables();
     syncStatChips();
@@ -2122,6 +2056,185 @@ async function runSearch(timeLimitMs = SEARCH_TIME_MS) {
     status.textContent = err.message;
     results.innerHTML = `<p class="hint">Search failed: ${escapeHtml(err.message)}</p>`;
   }
+}
+
+const DECO_SWAPS_SHOWN = 6;
+
+/**
+ * Seated jewels that another jewel could replace without losing a searched skill level, trading the jewel's
+ * other skill for a different one: [{ placed, alts }]. Uses the last search's skills, exclusions and owned jewels.
+ */
+function decoSwapGroups(r) {
+  const body = state.lastSearchBody;
+  if (!body) return [];
+  const wanted = new Set(body.skills.map((s) => s.id));
+  const excluded = new Set(body.excludedSkillIds || []);
+  const owned = body.unlimitedDecorations ? null : new Map((body.ownedDecorations || []).map((x) => [x.id, x.count]));
+  const placements = r.decorationPlacements || [];
+  const used = new Map();
+  for (const p of placements) used.set(p.id, (used.get(p.id) || 0) + 1);
+  const sig = (skills) => skills.map((s) => `${s.skillId}:${s.level}`).sort().join(",");
+  const groups = new Map();
+  for (const p of placements) {
+    const key = `${p.id}:${p.slotSize}`;
+    const kept = (p.skills || []).filter((s) => wanted.has(s.skillId));
+    if (groups.has(key) || !kept.length) continue;
+    const seen = new Set([sig(p.skills || [])]);
+    const alts = state.decorations
+      .filter((d) =>
+        d.slotSize <= p.slotSize
+        && d.skills.some((s) => !wanted.has(s.skillId))
+        && !d.skills.some((s) => excluded.has(s.skillId))
+        && kept.every((k) => (d.skills.find((s) => s.skillId === k.skillId)?.level ?? 0) >= k.level)
+        && (!owned || (owned.get(d.id) || 0) - (used.get(d.id) || 0) > 0))
+      .sort((a, b) => a.slotSize - b.slotSize)
+      .filter((d) => !seen.has(sig(d.skills)) && seen.add(sig(d.skills)))
+      .map((d) => ({ deco: d, label: d.skills.filter((s) => !wanted.has(s.skillId)).map((s) => `${s.name} ${s.level}`).join(" + ") }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+    if (alts.length) groups.set(key, { placed: p, alts });
+  }
+  return [...groups.values()];
+}
+
+function decoSwapsHtml(groups) {
+  if (!groups.length) return "";
+  const rows = groups.map(({ placed, alts }) => {
+    const skills = (placed.skills || []).map((s) => `${s.name} ${s.level}`).join(" + ");
+    const chips = alts.map(({ deco, label }, n) =>
+      `<button type="button" class="deco-chip deco-swap-alt${n >= DECO_SWAPS_SHOWN ? " deco-swap-extra" : ""}" data-ract="swap" data-from="${placed.id}" data-host="${placed.slotSize}" data-to="${deco.id}" title="Swap in ${escapeHtml(deco.name)}">${decoIcon(deco.slotSize, deco.iconColor, { size: 18 })}${escapeHtml(label)}</button>`);
+    const more = alts.length > DECO_SWAPS_SHOWN
+      ? `<button type="button" class="btn small ghost deco-swap-more" data-ract="swap-more">+${alts.length - DECO_SWAPS_SHOWN} more</button>`
+      : "";
+    return `<div class="deco-swap">
+      <span class="deco-chip deco-swap-from" title="${escapeHtml(skills)}">${decoIcon(placed.decoSlotSize, placed.iconColor, { size: 18 })}${escapeHtml(placed.name)}</span>
+      <span class="deco-swap-or">or</span>
+      ${chips.join("")}${more}
+    </div>`;
+  });
+  return `<div class="deco-line deco-swaps"><span class="deco-line-label" title="Jewels that keep your searched skills but give a different extra skill">Swap</span><div class="deco-swap-list">${rows.join("")}</div></div>`;
+}
+
+/** Replaces one seated jewel in a result card, then re-evaluates the set so its skills and set bonuses stay right. */
+async function swapResultDeco(card, fromId, hostSize, toId) {
+  const idx = Number(card.dataset.idx);
+  const r = (state.results || [])[idx];
+  const deco = state.decorations.find((d) => d.id === toId);
+  const at = r?.decorationPlacements?.findIndex((p) => p.id === fromId && p.slotSize === hostSize) ?? -1;
+  if (!deco || at < 0 || card.dataset.busy) return;
+  card.dataset.busy = "1";
+  const placements = r.decorationPlacements.map((p, i) => i !== at ? p : {
+    ...p, id: deco.id, name: deco.name, decoSlotSize: deco.slotSize, rarity: deco.rarity, iconColor: deco.iconColor, skills: deco.skills,
+  });
+  try {
+    const ev = await api("/api/build/evaluate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        skills: state.lastSearchBody?.skills || [],
+        weaponSlots: r.weaponSlots || [],
+        armor: Object.fromEntries(BUILD_ARMOR.filter((k) => r[k]?.id).map((k) => [k, r[k].id])),
+        charm: r.charmInfo?.id ? { id: r.charmInfo.id, level: r.charmInfo.level } : null,
+        decorationIds: placements.map((p) => p.id),
+      }),
+    });
+    if (state.results?.[idx] !== r) return;
+    Object.assign(r, {
+      decorationPlacements: placements,
+      decorations: ev.decorations,
+      skills: ev.skills,
+      setBonuses: ev.setBonuses,
+      defense: ev.defense,
+      resistances: ev.resistances,
+      armorDefense: ev.armorDefense,
+      armorResistances: ev.armorResistances,
+    });
+    card.replaceWith(resultCardEl(r, idx));
+    syncResultActions();
+    syncSkillAddables();
+    syncStatChips();
+  } catch (err) {
+    $("searchStatus").textContent = err.message;
+  } finally {
+    delete card.dataset.busy;
+  }
+}
+
+function resultCardEl(r, i) {
+  const card = document.createElement("article");
+  card.className = "result-card";
+  card.dataset.idx = i;
+  const skillHtml = skillPillsHtml(r.skills);
+  const placements = r.decorationPlacements || [];
+  const decoHtml = decoChipsHtml(r.decorations);
+  const swapHtml = decoSwapsHtml(decoSwapGroups(r));
+  const freeHtml = freeSlotsSummaryHtml(r.freeSlots, r.remainingSlots, { size: 20 });
+  const weaponSlots = r.weaponSlots || [];
+  const hasWeaponSlots = weaponSlots.some((n) => n > 0);
+  const weaponPlaced = placements.some((p) => p.location === "Weapon");
+  const weaponMeta = {
+    type: r.weaponType || DEFAULT_WEAPON_TYPE,
+    rarity: r.weaponRarity ?? 12,
+  };
+  const weaponRow =
+    hasWeaponSlots || weaponPlaced
+      ? pieceRowHtml(
+          "Weapon",
+          {
+            name: r.weapon || "Weapon slots",
+            rarity: weaponMeta.rarity,
+            set: "",
+            slots: weaponSlots,
+          },
+          "weapon",
+          placements,
+          weaponMeta
+        )
+      : "";
+  card.innerHTML = `
+    <div class="result-card-head">
+      <div class="result-title-row">
+        <h3>#${i + 1} <span class="def-chip" ${statChipAttrs("defense", r.defense, r.armorDefense)}>${defChipHtml(r.defense)}</span>${r.weapon ? ` · ${escapeHtml(r.weapon)}` : ""}</h3>
+        <span class="result-head-actions">
+          <button type="button" class="btn small ghost" data-ract="skills" title="What each skill in this set does">Skills</button>
+          <button type="button" class="btn small ghost" data-ract="materials" title="Forging materials and where to get them">Materials</button>
+          <button type="button" class="btn small primary apply-btn" title="Load this set into the builder">Apply to builder</button>
+        </span>
+      </div>
+      <div class="resists">${resistRowHtml(r.resistances, { armor: r.armorResistances })}</div>
+    </div>
+    <div class="result-body">
+      <div class="result-section">
+        <div class="result-section-label">Equipment</div>
+        <div class="pieces">
+          ${BUILD_ARMOR.map((k) => pieceRowHtml(BUILD_LABELS[k], r[k], k, placements, null, r[k]?.id ? resultActionsHtml() : "")).join("")}
+          ${pieceRowHtml("Charm", { name: r.charm, rarity: r.charmInfo?.rarity ?? 10, set: "", skills: r.charmInfo?.skills }, "charm", undefined, null, r.charmInfo?.id ? resultActionsHtml() : "")}
+          ${weaponRow}
+        </div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-label">Decorations</div>
+        <div class="deco-line"><span class="deco-line-label">Used</span> <span class="deco-chips">${decoHtml}</span></div>
+        <div class="deco-line"><span class="deco-line-label">Free</span> <span class="slot-row free-slots">${freeHtml}</span></div>
+        ${swapHtml}
+      </div>
+      <div class="result-section set-bonuses-block">
+        <div class="result-section-label">Set bonuses</div>
+        <div class="set-bonuses">${setBonusesHtml(r.setBonuses)}</div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-label section-label-row">Skills
+          <button type="button" class="btn small ghost" data-ract="import-skills" title="Replace your wanted skills with this set's skills">Use these skills</button>
+        </div>
+        <div class="skills">${skillHtml}</div>
+      </div>
+    </div>`;
+  card.querySelector(".apply-btn").onclick = () => applyResultToBuild(r);
+  for (const row of card.querySelectorAll(".piece-row[data-loc]")) {
+    if (!materialsTabFor(row.dataset.loc, resultSlotPiece(r, row.dataset.loc), r.weaponId)) continue;
+    row.classList.add("has-mats");
+    row.title = "Click for forging materials";
+  }
+  return card;
 }
 
 async function init() {

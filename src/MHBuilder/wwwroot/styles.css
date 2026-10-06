@@ -729,6 +729,24 @@ input:focus, select:focus, button:focus-visible {
   letter-spacing: 0.05em;
   font-weight: 600;
 }
+.deco-swaps { align-items: flex-start; }
+.deco-swaps .deco-line-label { padding-top: 0.3rem; cursor: help; }
+.deco-swap-list { display: grid; gap: 0.35rem; flex: 1; min-width: 0; }
+.deco-swap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.4rem; }
+.deco-swap-from { color: var(--text); }
+.deco-swap-or { font-size: 0.76rem; }
+.deco-swap-alt {
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-style: dashed;
+  cursor: pointer;
+}
+.deco-swap-alt:hover,
+.deco-swap-alt:focus-visible { color: var(--accent); border-color: var(--accent); border-style: solid; outline: none; }
+.deco-swap-extra { display: none; }
+.deco-swap.open .deco-swap-extra { display: inline-flex; }
+.deco-swap.open .deco-swap-more { display: none; }
 .slot-row { display: inline-flex; gap: 0.2rem; align-items: center; vertical-align: middle; }
 .piece-slots {
   display: inline-flex;
