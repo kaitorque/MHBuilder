@@ -32,22 +32,22 @@ OUT = ROOT / "data/materials.json"
 
 # MHWorldData icon_name -> MHOTOMO item_<file>.png
 ICONS = {
-    "Fang": "tooth", "Scale": "scale", "Body": "fur", "Carapace": "shell", "Hide": "skin",
+    "Fang": "tooth", "Scale": "scale", "Body": "skin", "Carapace": "shell", "Hide": "fur",
     "Tail": "tail", "Bone": "dragonbone", "Wing": "wing", "Ore": "rock", "Voucher": "ticket",
     "Vocuher": "ticket", "Sac": "bag", "Gem": "gem", "Mantle": "raregem", "Coin": "coin",
-    "Jaw": "headbone", "Liquid": "potion", "Bug": "bug", "Webbing": "web", "Plate": "plate",
+    "Jaw": "headbone", "Liquid": "potion", "Bug": "bug", "Webbing": "honey", "Plate": "plate",
     "Question": "questionmark", "Dung": "dung", "Book": "book", "Streamstone": "streamstone",
     "Feystone": "feystone", "Herb": "herb", "Seed": "seed", "Mushroom": "mushroom", "Meat": "meat",
     "Egg": "egg", "Smoke": "smoke", "Bottle": "bottle", "EmptyBottle": "bottle", "Trap": "trap",
     "TrapTool": "traptool", "BarrelBomb": "bomb", "Sphere": "armorsphere", "Slinger": "slinger",
     "Knife": "dagger", "Boomerang": "boomerang", "Binoculars": "binoculars", "Decoration": "jewel",
-    "Ammo": "bowgun_ammo", "Pellets": "bowgun_ammo", "Husk": "shell", "Web": "web", "Bait": "meat",
+    "Ammo": "bowgun_ammo", "Pellets": "bowgun_ammo", "Husk": "shell", "Web": "honey", "Bait": "meat",
     "Barrel": "bomb", "Charm": "questionmark", "CharmOre": "rock",
 }
 # Game itemData.itm icon id -> MHOTOMO item_<file>.png; ids missing here fall back to MHWorldData's icon_name.
 GAME_ICONS = {
-    0: "account_item", 3: "web", 5: "potion", 8: "dung", 9: "gem", 13: "bag", 22: "rock", 23: "bug", 25: "coin",
-    26: "ticket", 36: "book", 37: "feystone", 41: "fur", 42: "dragonbone", 43: "scale", 44: "skin", 45: "tooth",
+    0: "account_item", 3: "honey", 5: "potion", 8: "dung", 9: "gem", 13: "bag", 22: "rock", 23: "bug", 25: "coin",
+    26: "ticket", 36: "book", 37: "feystone", 41: "skin", 42: "dragonbone", 43: "scale", 44: "fur", 45: "tooth",
     46: "shell", 47: "raregem", 52: "tail", 58: "questionmark", 59: "wing", 60: "headbone", 61: "plate",
     65: "streamstone",
 }

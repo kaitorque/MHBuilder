@@ -180,9 +180,9 @@ function clampSlot(n, fallback = 1) {
 
 /** Material icon stems (item_<stem>.png) that data/materials.json refers to. */
 const ITEM_ICON_STEMS = [
-  "account_item", "bag", "book", "bug", "coin", "dragonbone", "dung", "feystone", "fur", "gem", "headbone", "plate",
-  "potion", "questionmark", "raregem", "rock", "scale", "shell", "skin", "streamstone", "tail", "ticket", "tooth", "web",
-  "wing",
+  "account_item", "bag", "book", "bug", "coin", "dragonbone", "dung", "feystone", "fur", "gem", "headbone", "honey",
+  "plate", "potion", "questionmark", "raregem", "rock", "scale", "shell", "skin", "streamstone", "tail", "ticket",
+  "tooth", "wing",
 ];
 
 /** Original MHOTOMO PNG multiplied by a color: white takes the tint, black outlines and gray shading survive. */
