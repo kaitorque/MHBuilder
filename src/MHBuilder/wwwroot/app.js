@@ -1404,7 +1404,7 @@ async function renderModal() {
       const setLabels = [...new Set(sets.map((x) => `${x.name} (${x.parts})`))];
       const jewelLabels = jewels.map((j) => j.name);
       const charmLabels = charms.map((c) => c.name);
-      const armorLabels = armor.map((a) => a.name);
+      const armorLabels = [...new Set(armor.map((a) => a.set || a.name))];
 
       let iconHtml = "";
       if (jewels.length) {
@@ -1443,10 +1443,10 @@ async function renderModal() {
         : jewels.length === 1
           ? "" // icon already shows the jewel
           : "";
-      const charmBadge = !jewels.length && charms.length
+      const charmBadge = charms.length
         ? `<span class="pick-badge charm" title="${escapeHtml(charmLabels.join(" · "))}">Charm</span>`
         : "";
-      const armorBadge = !jewels.length && !charms.length && armor.length
+      const armorBadge = armor.length
         ? `<span class="pick-badge armor" title="${escapeHtml(armorLabels.join(" · "))}">Armor</span>`
         : "";
       const avail = availOf(s);

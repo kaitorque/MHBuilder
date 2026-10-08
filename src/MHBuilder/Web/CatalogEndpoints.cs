@@ -145,7 +145,7 @@ public static class CatalogEndpoints
                 g => g.Select(x => x.a).DistinctBy(a => a.Id)
                     .OrderByDescending(a => a.Rarity)
                     .ThenBy(a => a.Name, StringComparer.OrdinalIgnoreCase)
-                    .Select(a => new { a.Id, a.Name, slot = a.Slot.ToString().ToLowerInvariant(), a.Rarity })
+                    .Select(a => new { a.Id, a.Name, slot = a.Slot.ToString().ToLowerInvariant(), a.Rarity, set = a.ArmorSetName })
                     .ToList());
 
         var setBonusRarity = cat.Armor
