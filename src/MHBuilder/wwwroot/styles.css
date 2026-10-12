@@ -1637,8 +1637,7 @@ img.tint-layer { object-fit: contain; }
 .exclude-summary-text { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--text); }
 .exclude-summary-text svg { color: var(--danger); flex-shrink: 0; }
 .exclude-row-end { display: inline-flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-.exclude-row .icon-btn { pointer-events: none; }
-.exclude-row:hover .icon-btn.exclude { color: var(--danger); }
+.exclude-row:focus-visible { outline: 2px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: -2px; }
 .pick-row.exclude-row.is-excluded {
   border-color: color-mix(in srgb, var(--danger) 45%, var(--line));
   background: color-mix(in srgb, var(--danger) 8%, transparent);

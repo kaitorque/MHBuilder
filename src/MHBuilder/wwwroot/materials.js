@@ -10,13 +10,14 @@ const SIEGE_SOURCES = {
 
 /**
  * pieces: armor objects with an id (builder pieces or result pieces); charm: { id, level } or null; weaponId: catalog
- * weapon or null. category: the tab to open on (see materialsTabFor).
+ * weapon or null. category: the tab to open on (see materialsTabFor). extra: more modal state (excludeEntry/excludeBack
+ * when opened from the exclude list).
  */
-function openMaterials(title, pieces, charm, weaponId = null, category = ALL_TAB) {
+function openMaterials(title, pieces, charm, weaponId = null, category = ALL_TAB, extra = {}) {
   const armorIds = pieces.filter((p) => p?.id).map((p) => p.id);
   const charmSel = charm?.id ? { id: charm.id, level: charm.level } : null;
   if (!armorIds.length && !charmSel && !weaponId) return;
-  openModal("materials", title, { armorIds, charm: charmSel, weaponId, category, item: null, lastQ: "" });
+  openModal("materials", title, { armorIds, charm: charmSel, weaponId, category, item: null, lastQ: "", ...extra });
 }
 
 /** Materials tab for one equipment slot (armor slot key, "charm" or "weapon"), or null when it has nothing to forge. */
@@ -262,6 +263,7 @@ async function renderMaterialsModal(q, cats, pane, extra, seq) {
   const zenny = recipes.reduce((sum, r) => sum + (r.zenny || 0), 0);
   const noRecipe = recipes.filter((r) => !r.items);
   extra.innerHTML = `<span class="hint">Click a material to see where it comes from</span>`;
+  if (m.excludeEntry) renderExcludeMaterialsBar(extra);
   const head = document.createElement("div");
   head.className = "mat-summary";
   head.innerHTML = `

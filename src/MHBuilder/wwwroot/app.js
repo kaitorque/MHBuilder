@@ -509,9 +509,7 @@ async function renderExclude() {
   };
 }
 
-function toggleResultExclude(loc, r) {
-  const entry = resultExcludeEntry(loc, r);
-  if (!entry) return;
+function toggleExclude(entry) {
   if (isExcludedKey(entry.key)) {
     removeExclude(entry.key);
   } else {
@@ -519,6 +517,11 @@ function toggleResultExclude(loc, r) {
     unpinExcluded(entry);
   }
   renderExclude();
+}
+
+function toggleResultExclude(loc, r) {
+  const entry = resultExcludeEntry(loc, r);
+  if (entry) toggleExclude(entry);
 }
 
 function resultActionsHtml() {
@@ -1670,7 +1673,7 @@ async function renderModal() {
       state.modal.category = ALL_TAB;
     }
     drawCats();
-    extra.innerHTML = `<span class="hint">Click a piece to exclude it, click again to allow it</span>
+    extra.innerHTML = `<span class="hint">Click a piece to see its materials, ${materialIcon("block", 14)} to exclude or allow it</span>
       <button type="button" class="btn small ghost" id="excludeSaved" title="Save this exclude list or load a saved one">Saved lists</button>
       <button type="button" class="btn small ghost" id="excludeImport" title="Load an exclude list from a JSON file">Import</button>
       <button type="button" class="btn small ghost" id="excludeExport" ${state.exclude.length ? "" : "disabled"} title="Download your exclude list as JSON">Export</button>`;
@@ -1694,32 +1697,63 @@ async function renderModal() {
     const excludeRow = (a) => {
       const entry = entryOf(a);
       const excluded = isExcludedKey(entry.key);
-      const row = document.createElement("button");
-      row.type = "button";
+      const row = document.createElement("div");
       row.className = "pick-row exclude-row" + (excluded ? " is-excluded" : "");
-      row.setAttribute("aria-pressed", excluded);
+      row.tabIndex = 0;
       const detail = a.isCharm
         ? `R${a.rarity} · ${escapeHtml(skillsText(a.skills))}`
         : `R${a.rarity} · ${escapeHtml(a.set || "—")} · [${slotsLabel(a.slots)}]`;
       row.innerHTML = `<span class="pick-with-ico">${armorIcon(a.slot, a.rarity, { size: 16 })}<span class="pick-name">${escapeHtml(a.name)}</span></span>
         <span class="exclude-row-end"><span class="sub" style="color:${rarityColor(a.rarity)}">${detail}</span>
-        <span class="icon-btn exclude${excluded ? " on" : ""}" aria-hidden="true">${materialIcon("block")}</span></span>`;
-      row.title = excluded ? "Excluded from Auto Search · click to allow" : "Click to exclude from Auto Search";
-      row.onclick = () => {
-        if (isExcludedKey(entry.key)) removeExclude(entry.key);
-        else {
-          addExclude(entry);
-          unpinExcluded(entry);
+        <button type="button" class="icon-btn exclude${excluded ? " on" : ""}" data-act="toggle" aria-pressed="${excluded}"
+          title="${excluded ? "Excluded from Auto Search · click to allow" : "Exclude from Auto Search"}">${materialIcon("block")}</button></span>`;
+      row.title = "Click to see what it costs to forge";
+      row.onclick = (e) => {
+        if (!e.target.closest('[data-act="toggle"]')) {
+          openExcludeMaterials(a);
+          return;
         }
-        renderExclude();
-        row.replaceWith(excludeRow(a));
+        toggleExclude(entry);
+        const next = excludeRow(a);
+        row.replaceWith(next);
+        next.querySelector('[data-act="toggle"]').focus();
         drawCats();
         $("excludeExport").disabled = !state.exclude.length;
+      };
+      row.onkeydown = (e) => {
+        if (e.key === "Enter" && e.target === row) openExcludeMaterials(a);
       };
       return row;
     };
     for (const a of list) pane.appendChild(excludeRow(a));
   }
+}
+
+/** Materials for one exclude-list piece, with a way to allow or exclude it and return to the same tab and search. */
+function openExcludeMaterials(a) {
+  const back = { category: state.modal.category, search: $("modalSearch").value };
+  const entry = a.isCharm ? charmExcludeEntry(a) : armorExcludeEntry(a);
+  openMaterials(`Materials · ${a.name}`, a.isCharm ? [] : [a], a.isCharm ? a : null, null,
+    a.isCharm ? MAT_CHARM_TAB : `p${a.id}`, { excludeEntry: entry, excludeBack: back });
+}
+
+function renderExcludeMaterialsBar(extra) {
+  const { excludeEntry: entry, excludeBack: back } = state.modal;
+  const excluded = isExcludedKey(entry.key);
+  extra.insertAdjacentHTML("beforeend", `
+    <button type="button" class="btn small ${excluded ? "primary" : "ghost"}" id="excludeMatToggle">${excluded ? "Allow in Auto Search" : "Exclude from Auto Search"}</button>
+    <button type="button" class="btn small ghost" id="excludeMatBack">Back to exclude list</button>`);
+  $("excludeMatToggle").onclick = () => {
+    toggleExclude(entry);
+    renderModal();
+  };
+  $("excludeMatBack").onclick = () => {
+    openModal("exclude", "Exclude armor & charms", { category: back.category });
+    if (back.search) {
+      $("modalSearch").value = back.search;
+      renderModal();
+    }
+  };
 }
 
 /** A piece excluded from search can't also stay pinned in the builder. */
