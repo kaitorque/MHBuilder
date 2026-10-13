@@ -72,7 +72,7 @@ public static class CatalogEndpoints
                 }));
         });
 
-        app.MapGet("/api/weapons", (GameCatalog cat, string? q, string? type, int limit = 80) =>
+        app.MapGet("/api/weapons", (GameCatalog cat, MaterialsCatalog mats, string? q, string? type, int limit = 80) =>
         {
             IEnumerable<WeaponInfo> list = cat.Weapons;
             if (!string.IsNullOrWhiteSpace(type))
@@ -82,7 +82,14 @@ public static class CatalogEndpoints
             return Results.Json(list
                 .OrderByDescending(w => w.Rarity).ThenBy(w => w.Name)
                 .Take(Math.Clamp(limit, 1, 5000))
-                .Select(w => new { w.Id, w.Name, w.Type, w.Rarity, slots = w.Slots, w.Damage, w.Affinity }));
+                .Select(w => new
+                {
+                    w.Id, w.Name, w.Type, w.Rarity, slots = w.Slots, w.Damage, w.Affinity,
+                    elements = w.Elements ?? [],
+                    sharpness = w.Sharpness,
+                    sharpnessMaxed = w.SharpnessMaxed,
+                    parent = mats.Weapon(w.Id)?.Parent
+                }));
         });
 
         app.MapGet("/api/weapons/{id:int}", (GameCatalog cat, int id) =>

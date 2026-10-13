@@ -665,8 +665,28 @@ function savePrefs() {
   }));
 }
 
+const WEAPON_HEAD_HTML = `<div class="weapon-row wpn-head"><span>Weapon</span><span class="wpn-atk">Attack</span><span class="wpn-aff">Affinity</span><span>Element</span><span class="wpn-sharp">Sharpness</span><span>Slots</span><span class="wpn-rar">Rarity</span></div>`;
+
 function weaponPickRowHtml(w) {
-  return `<span class="pick-with-ico">${weaponIcon(w.type, w.rarity, { size: 20, title: w.name })}<span>${escapeHtml(w.name)}</span></span><span class="sub">R${w.rarity} · [${slotsLabel(w.slots)}]</span>`;
+  const aff = w.affinity
+    ? `<span class="${w.affinity > 0 ? "pos" : "neg"}">${w.affinity > 0 ? "+" : ""}${w.affinity}%</span>`
+    : "0%";
+  const els = weaponElements(w, 0).map((e) => {
+    const icon = elementIcon(e.type, { size: 14 }) || statusIcon(e.type, { size: 14 });
+    const tip = e.hidden ? `${e.label}, hidden: needs Free Elem/Ammo Up` : e.label;
+    return `<span class="atk-el${e.hidden ? " off" : ""}" title="${tip}">${icon}${e.hidden ? `(${e.value})` : e.value}</span>`;
+  }).join("");
+  const base = topSharpness(w, 0);
+  const sharp = base
+    ? `<span class="atk-bar wpn-bar" title="${base.name} sharpness${w.sharpnessMaxed ? " (Handicraft adds nothing)" : `, ${topSharpness(w, 5).name} with Handicraft 5`}">${base.bar.map((s, i) => (s.hits ? `<span style="flex:${s.hits};background:${SHARPNESS[i].color};opacity:${s.used ? 1 : 0.22}"></span>` : "")).join("")}</span>`
+    : `<span class="muted-dash">—</span>`;
+  return `<span class="pick-with-ico wpn-name">${weaponIcon(w.type, w.rarity, { size: 20, title: w.name })}<span>${escapeHtml(w.name)}</span></span>
+    <span class="wpn-atk">${w.damage}</span>
+    <span class="wpn-aff">${aff}</span>
+    <span class="wpn-els">${els || `<span class="muted-dash">—</span>`}</span>
+    <span class="wpn-sharp">${sharp}</span>
+    <span class="slot-row wpn-slots">${slotsIconsHtml(w.slots, { size: 15 })}</span>
+    <span class="sub wpn-rar">R${w.rarity}</span>`;
 }
 
 function renderWeaponSelected() {
@@ -1242,12 +1262,10 @@ function setModalCategory(cat) {
 }
 
 const weaponListCache = {};
-function weaponList() {
-  const raw = $("modalSearch").value.trim();
-  const category = state.modal.category || ALL_TAB;
+function fetchWeapons(q, type) {
   const params = new URLSearchParams({ limit: "5000" });
-  if (raw) params.set("q", raw);
-  else if (category !== ALL_TAB) params.set("type", category);
+  if (q) params.set("q", q);
+  else if (type && type !== ALL_TAB) params.set("type", type);
   const key = params.toString();
   weaponListCache[key] ||= api(`/api/weapons?${key}`).catch((err) => {
     delete weaponListCache[key];
@@ -1256,10 +1274,108 @@ function weaponList() {
   return weaponListCache[key];
 }
 
+function weaponList() {
+  return fetchWeapons($("modalSearch").value.trim(), state.modal.category || ALL_TAB);
+}
+
+const WEAPON_VIEW_KEY = "mhbuilder.weaponView.v1";
+const WEAPON_TAB_KEY = "mhbuilder.weaponTab.v1";
+let weaponView = localStorage.getItem(WEAPON_VIEW_KEY) === "tree" ? "tree" : "list";
+
+function setWeaponView(view) {
+  weaponView = view;
+  localStorage.setItem(WEAPON_VIEW_KEY, view);
+  if (state.modal) state.modal.scrolled = false;
+  renderModal();
+}
+
+/** Tabs for the current view; opens on the last tab clicked, else All (list) or the chosen weapon's type (tree). */
+function weaponTabs() {
+  const tree = weaponView === "tree";
+  const tabs = tree ? state.weaponTypes : [ALL_TAB, ...state.weaponTypes];
+  if (!tabs.includes(state.modal.category)) {
+    const saved = localStorage.getItem(WEAPON_TAB_KEY);
+    state.modal.category = tabs.includes(saved) ? saved
+      : !tree ? ALL_TAB
+        : tabs.includes(state.weaponType) ? state.weaponType : tabs[0];
+  }
+  return tabs;
+}
+
+/** Upgrade trees of one weapon type. hits: ids matching the search (shown with their ancestors), or null for all. */
+function renderWeaponTree(all, hits, pane) {
+  const byId = new Map(all.map((w) => [w.id, w]));
+  const children = new Map();
+  const roots = [];
+  for (const w of [...all].sort((a, b) => a.id - b.id)) {
+    if (w.parent != null && byId.has(w.parent)) {
+      if (!children.has(w.parent)) children.set(w.parent, []);
+      children.get(w.parent).push(w);
+    } else {
+      roots.push(w);
+    }
+  }
+  let keep = null;
+  if (hits) {
+    keep = new Set();
+    for (const id of hits) {
+      for (let w = byId.get(id); w && !keep.has(w.id); w = byId.get(w.parent)) keep.add(w.id);
+    }
+  }
+  const kids = (w) => (children.get(w.id) || []).filter((c) => !keep || keep.has(c.id));
+  const rowFor = (w) => {
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = "pick-row weapon-row" + (state.weaponId === w.id ? " active" : "") + (hits && !hits.has(w.id) ? " wtree-ctx" : "");
+    row.innerHTML = weaponPickRowHtml(w);
+    row.onclick = () => selectWeapon(w);
+    return row;
+  };
+  // A single upgrade continues at the same depth; only real branches indent.
+  const chain = (start, into) => {
+    for (let node = start; node; ) {
+      into.appendChild(rowFor(node));
+      const next = kids(node);
+      node = null;
+      if (next.length === 1) {
+        node = next[0];
+      } else if (next.length > 1) {
+        const fork = document.createElement("div");
+        fork.className = "wtree-fork";
+        for (const c of next) {
+          const branch = document.createElement("div");
+          branch.className = "wtree-branch";
+          chain(c, branch);
+          fork.appendChild(branch);
+        }
+        into.appendChild(fork);
+      }
+    }
+  };
+  const shown = roots.filter((r) => !keep || keep.has(r.id));
+  for (const r of shown.filter((r) => kids(r).length)) {
+    const box = document.createElement("div");
+    box.className = "wtree";
+    chain(r, box);
+    pane.appendChild(box);
+  }
+  const singles = shown.filter((r) => !kids(r).length);
+  if (singles.length) {
+    const box = document.createElement("div");
+    box.className = "wtree";
+    box.innerHTML = `<div class="wtree-label">Not part of an upgrade tree</div>`;
+    for (const w of singles) box.appendChild(rowFor(w));
+    pane.appendChild(box);
+  }
+}
+
 const ALL_TAB = "All";
 
 function modalData(kind) {
-  if (kind === "weapon") return weaponList();
+  if (kind === "weapon") {
+    weaponTabs();
+    return weaponList();
+  }
   if (kind === "exclude") return Promise.all([...BUILD_ARMOR.map(armorForSlot), charmList()]);
   if (kind === "barmor") return armorForSlot(state.modal.loc);
   if (kind === "bcharm") return charmList();
@@ -1503,46 +1619,72 @@ async function renderModal() {
   }
 
   if (kind === "weapon") {
+    const tree = weaponView === "tree";
     const types = state.weaponTypes;
-    if (![ALL_TAB, ...types].includes(state.modal.category)) {
-      state.modal.category = ALL_TAB;
-    }
+    let tabs = weaponTabs();
     const fetched = await weaponList();
     if (seq !== modalRenderSeq) return;
-    let visibleTypes = types;
     let counts = null;
     if (q) {
       counts = Object.fromEntries(types.map((t) => [t, 0]));
       for (const w of fetched) {
         if (counts[w.type] != null) counts[w.type]++;
       }
-      visibleTypes = types.filter((t) => counts[t] > 0);
-      if (state.modal.category !== ALL_TAB && !visibleTypes.includes(state.modal.category)) {
-        state.modal.category = ALL_TAB;
+      tabs = tabs.filter((t) => t === ALL_TAB || counts[t] > 0);
+      if (!tabs.includes(state.modal.category)) {
+        state.modal.category = tree ? tabs[0] : ALL_TAB;
       }
     }
-    for (const t of [ALL_TAB, ...visibleTypes]) {
+    extra.innerHTML = `${tree ? `<span class="hint">Each row upgrades into the next; indented groups branch off the weapon above</span>` : ""}
+      <div class="toggle-group" role="group" aria-label="Weapon view">
+        <button type="button" class="toggle${tree ? "" : " on"}" data-view="list" aria-pressed="${!tree}">List</button>
+        <button type="button" class="toggle${tree ? " on" : ""}" data-view="tree" aria-pressed="${tree}">Tree</button>
+      </div>`;
+    for (const btn of extra.querySelectorAll("[data-view]")) {
+      btn.onclick = () => {
+        if (btn.dataset.view !== weaponView) setWeaponView(btn.dataset.view);
+      };
+    }
+    for (const t of tabs) {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "cat-btn" + (t === state.modal.category ? " active" : "");
       const count = counts ? ` (${t === ALL_TAB ? fetched.length : counts[t]})` : "";
       btn.innerHTML = t === ALL_TAB ? `${ALL_TAB}${count}` : `${weaponIcon(t, 12, { size: 16 })} ${WEAPON_LABELS[t] || t}${count}`;
-      btn.onclick = () => setModalCategory(t);
+      btn.onclick = () => {
+        localStorage.setItem(WEAPON_TAB_KEY, t);
+        setModalCategory(t);
+      };
       cats.appendChild(btn);
     }
     if (q && fetched.length === 0) {
       pane.innerHTML = `<p class="hint">No weapons match “${escapeHtml($("modalSearch").value.trim())}”.</p>`;
       return;
     }
+    const scrollToChosen = () => {
+      if (q || state.modal.scrolled) return;
+      state.modal.scrolled = true;
+      pane.querySelector(".pick-row.active")?.scrollIntoView({ block: "center" });
+    };
+    if (tree) {
+      const all = q ? await fetchWeapons("", state.modal.category) : fetched;
+      if (seq !== modalRenderSeq) return;
+      pane.innerHTML = WEAPON_HEAD_HTML;
+      renderWeaponTree(all, q ? new Set(fetched.map((w) => w.id)) : null, pane);
+      scrollToChosen();
+      return;
+    }
     const list = q && state.modal.category !== ALL_TAB ? fetched.filter((w) => w.type === state.modal.category) : fetched;
+    pane.innerHTML = WEAPON_HEAD_HTML;
     for (const w of list) {
       const row = document.createElement("button");
       row.type = "button";
-      row.className = "pick-row" + (state.weaponId === w.id ? " active" : "");
+      row.className = "pick-row weapon-row" + (state.weaponId === w.id ? " active" : "");
       row.innerHTML = weaponPickRowHtml(w);
       row.onclick = () => selectWeapon(w);
       pane.appendChild(row);
     }
+    scrollToChosen();
     return;
   }
 
@@ -2294,7 +2436,8 @@ async function init() {
     if (e.key === "Escape") closeModal();
   });
   $("modalSearch").oninput = debounce(() => {
-    if (state.modal && !["Selected", "Excluded"].includes(state.modal.category)) state.modal.category = ALL_TAB;
+    const keepTab = ["Selected", "Excluded"].includes(state.modal?.category) || (state.modal?.kind === "weapon" && weaponView === "tree");
+    if (state.modal && !keepTab) state.modal.category = ALL_TAB;
     renderModal();
   }, 150);
 

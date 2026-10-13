@@ -1471,6 +1471,45 @@ img.tint-layer { object-fit: contain; }
   font-size: 0.78rem;
   white-space: nowrap;
 }
+#modal[data-kind="weapon"] .modal { width: min(1080px, 100%); }
+.weapon-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.2rem 3.8rem 6.2rem 4.4rem 3.6rem 2.6rem;
+  gap: 0.7rem;
+  align-items: center;
+}
+.pick-row.weapon-row { display: grid; }
+.wpn-head {
+  position: sticky;
+  top: -0.35rem;
+  z-index: 1;
+  padding: 0.35rem calc(0.65rem + 1px);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.2rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.wpn-name > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wpn-atk, .wpn-aff { text-align: right; font-variant-numeric: tabular-nums; }
+.wpn-aff .pos { color: #c8e0c4; }
+.wpn-aff .neg { color: #e0a098; }
+.wpn-els { display: inline-flex; flex-wrap: wrap; gap: 0.15rem 0.45rem; }
+.wpn-bar { width: 4.2rem; vertical-align: middle; }
+.wtree { margin-bottom: 0.7rem; padding-bottom: 0.45rem; border-bottom: 1px dashed var(--line); }
+.wtree:last-child { border-bottom: none; }
+.wtree-fork { margin-left: 1rem; }
+.wtree-branch {
+  border-left: 2px solid var(--line);
+  padding-left: 0.4rem;
+  margin: 0.2rem 0 0.35rem;
+}
+.wtree-branch:hover { border-left-color: var(--line-strong); }
+.wtree-label { padding: 0.35rem 0.65rem; color: var(--muted); font-size: 0.78rem; }
+.pick-row.wtree-ctx { opacity: 0.55; }
+.pick-row.wtree-ctx:hover { opacity: 1; }
 .pick-row.pick-skill {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) 11.5rem 2rem;
@@ -1715,6 +1754,8 @@ img.tint-layer { object-fit: contain; }
   .modal-extra { max-width: none; width: 100%; flex-wrap: wrap; }
   .modal-extra:empty { display: none; }
   .deco-row .pick-with-ico { min-width: 0; }
+  .weapon-row { grid-template-columns: minmax(0, 1fr) 2.6rem 3.2rem 4.6rem 3.2rem; gap: 0.45rem; }
+  .weapon-row .wpn-sharp, .weapon-row .wpn-rar { display: none; }
   .cat-nav {
     flex-direction: row;
     flex-wrap: wrap;

@@ -65,6 +65,17 @@ public sealed class ApiTests(WebApplicationFactory<Program> factory) : IClassFix
     }
 
     [Fact]
+    public async Task Weapon_list_has_element_and_upgrade_parent()
+    {
+        var list = (await GetJson("/api/weapons?q=Chrome%20Razor&type=great-sword&limit=50")).EnumerateArray().ToList();
+        var first = list.Single(w => w.GetProperty("name").GetString() == "Chrome Razor I");
+        var second = list.Single(w => w.GetProperty("name").GetString() == "Chrome Razor II");
+        Assert.Equal(first.GetProperty("id").GetInt32(), second.GetProperty("parent").GetInt32());
+        Assert.Equal("poison", Assert.Single(second.GetProperty("elements").EnumerateArray()).GetProperty("type").GetString());
+        Assert.Equal(400, second.GetProperty("sharpness").EnumerateArray().Sum(x => x.GetInt32()));
+    }
+
+    [Fact]
     public async Task Monster_drops_are_grouped_by_rank()
     {
         var ranks = (await GetJson("/api/monsters/drops?name=Rathalos")).GetProperty("ranks").EnumerateArray().ToList();
