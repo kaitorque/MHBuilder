@@ -665,7 +665,86 @@ function savePrefs() {
   }));
 }
 
-const WEAPON_HEAD_HTML = `<div class="weapon-row wpn-head"><span>Weapon</span><span class="wpn-atk">Attack</span><span class="wpn-aff">Affinity</span><span>Element</span><span class="wpn-sharp">Sharpness</span><span>Slots</span><span class="wpn-rar">Rarity</span></div>`;
+/** Sort keys compare as arrays; hidden elements rank below any visible one. */
+const WEAPON_COLUMNS = [
+  { key: "name", label: "Weapon", asc: true },
+  { key: "attack", label: "Attack", cls: "wpn-atk", value: (w) => [w.damage] },
+  { key: "affinity", label: "Affinity", cls: "wpn-aff", value: (w) => [w.affinity || 0] },
+  {
+    key: "element",
+    label: "Element",
+    value: (w) => {
+      const els = w.elements || [];
+      const max = (list) => Math.max(0, ...list.map((e) => e.value));
+      return [max(els.filter((e) => !e.hidden)), max(els.filter((e) => e.hidden))];
+    },
+  },
+  {
+    key: "sharpness",
+    label: "Sharpness",
+    cls: "wpn-sharp",
+    value: (w) => {
+      const s = topSharpness(w, 0);
+      return s ? [SHARPNESS.findIndex((x) => x.name === s.name), s.hits] : [-1, 0];
+    },
+  },
+  {
+    key: "slots",
+    label: "Slots",
+    value: (w) => {
+      const s = (w.slots || []).filter((n) => n > 0);
+      return [s.reduce((a, n) => a + n, 0), Math.max(0, ...s)];
+    },
+  },
+  { key: "rarity", label: "Rarity", cls: "wpn-rar", value: (w) => [w.rarity] },
+];
+
+const WEAPON_SORT_KEY = "mhbuilder.weaponSort.v1";
+let weaponSort = null;
+try {
+  const saved = JSON.parse(localStorage.getItem(WEAPON_SORT_KEY) || "null");
+  if (WEAPON_COLUMNS.some((c) => c.key === saved?.key)) weaponSort = { key: saved.key, desc: !!saved.desc };
+} catch {
+  /* corrupt storage: unsorted */
+}
+
+/** Header for the list (sortable) or the tree (sort: undefined). */
+function weaponHeadHtml(sort) {
+  const cells = WEAPON_COLUMNS.map((c) => {
+    const cls = c.cls || "";
+    if (sort === undefined) return `<span class="${cls}">${c.label}</span>`;
+    const on = sort?.key === c.key;
+    const arrow = on ? `<span class="wpn-arrow">${sort.desc ? "▼" : "▲"}</span>` : "";
+    return `<button type="button" class="wpn-sort ${cls}${on ? " active" : ""}" data-sort="${c.key}" title="Sort by ${c.label.toLowerCase()}">${c.label}${arrow}</button>`;
+  });
+  return `<div class="weapon-row wpn-head">${cells.join("")}</div>`;
+}
+
+/** Click cycles a column: its natural direction, reversed, then back to game order. */
+function cycleWeaponSort(key) {
+  const col = WEAPON_COLUMNS.find((c) => c.key === key);
+  const natural = !col.asc;
+  if (weaponSort?.key !== key) weaponSort = { key, desc: natural };
+  else if (weaponSort.desc === natural) weaponSort = { key, desc: !natural };
+  else weaponSort = null;
+  if (weaponSort) localStorage.setItem(WEAPON_SORT_KEY, JSON.stringify(weaponSort));
+  else localStorage.removeItem(WEAPON_SORT_KEY);
+}
+
+function sortWeapons(list) {
+  if (!weaponSort) return list;
+  const col = WEAPON_COLUMNS.find((c) => c.key === weaponSort.key);
+  const dir = weaponSort.desc ? -1 : 1;
+  const cmp = col.value
+    ? (a, b) => {
+        const va = col.value(a);
+        const vb = col.value(b);
+        for (let i = 0; i < va.length; i++) if (va[i] !== vb[i]) return va[i] - vb[i];
+        return 0;
+      }
+    : (a, b) => a.name.localeCompare(b.name);
+  return [...list].sort((a, b) => dir * cmp(a, b));
+}
 
 function weaponPickRowHtml(w) {
   const aff = w.affinity
@@ -1201,11 +1280,40 @@ function closeModal() {
   state.modal = null;
 }
 
+/** Filter text per modal kind, restored when that modal opens again. */
+const FILTER_STORAGE_KEY = "mhbuilder.modalFilter.v1";
+
+function savedFilters() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(FILTER_STORAGE_KEY) || "null");
+    if (saved && typeof saved === "object") return saved;
+  } catch {
+    /* corrupt storage: no filters */
+  }
+  return {};
+}
+
+function rememberFilter() {
+  const kind = state.modal?.kind;
+  if (!kind) return;
+  const filters = savedFilters();
+  const q = $("modalSearch").value;
+  if (q.trim()) filters[kind] = q;
+  else delete filters[kind];
+  localStorage.setItem(FILTER_STORAGE_KEY, JSON.stringify(filters));
+}
+
+function setModalSearch(value) {
+  $("modalSearch").value = value;
+  $("modalSearchClear").classList.toggle("hidden", !value);
+}
+
 function openModal(kind, title, extra = {}) {
   state.modal = { kind, category: null, ...extra };
   $("modal").dataset.kind = kind;
   $("modalTitle").textContent = title;
-  $("modalSearch").value = "";
+  const filter = savedFilters()[kind];
+  setModalSearch(typeof filter === "string" ? filter : "");
   $("modal").classList.remove("hidden");
   $("modalSearch").focus();
   renderModal();
@@ -1669,13 +1777,21 @@ async function renderModal() {
     if (tree) {
       const all = q ? await fetchWeapons("", state.modal.category) : fetched;
       if (seq !== modalRenderSeq) return;
-      pane.innerHTML = WEAPON_HEAD_HTML;
+      pane.innerHTML = weaponHeadHtml();
       renderWeaponTree(all, q ? new Set(fetched.map((w) => w.id)) : null, pane);
       scrollToChosen();
       return;
     }
-    const list = q && state.modal.category !== ALL_TAB ? fetched.filter((w) => w.type === state.modal.category) : fetched;
-    pane.innerHTML = WEAPON_HEAD_HTML;
+    const list = sortWeapons(q && state.modal.category !== ALL_TAB ? fetched.filter((w) => w.type === state.modal.category) : fetched);
+    pane.innerHTML = weaponHeadHtml(weaponSort);
+    pane.querySelector(".wpn-head").onclick = async (e) => {
+      const btn = e.target.closest("[data-sort]");
+      if (!btn) return;
+      cycleWeaponSort(btn.dataset.sort);
+      state.modal.scrolled = true;
+      await renderModal();
+      pane.scrollTop = 0;
+    };
     for (const w of list) {
       const row = document.createElement("button");
       row.type = "button";
@@ -1892,7 +2008,7 @@ function renderExcludeMaterialsBar(extra) {
   $("excludeMatBack").onclick = () => {
     openModal("exclude", "Exclude armor & charms", { category: back.category });
     if (back.search) {
-      $("modalSearch").value = back.search;
+      setModalSearch(back.search);
       renderModal();
     }
   };
@@ -2435,11 +2551,28 @@ async function init() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
-  $("modalSearch").oninput = debounce(() => {
-    const keepTab = ["Selected", "Excluded"].includes(state.modal?.category) || (state.modal?.kind === "weapon" && weaponView === "tree");
-    if (state.modal && !keepTab) state.modal.category = ALL_TAB;
+  const onModalSearch = () => {
+    if (!state.modal) return;
+    const { kind } = state.modal;
+    const keepTab = ["Selected", "Excluded"].includes(state.modal.category) || (kind === "weapon" && weaponView === "tree");
+    if (!keepTab) {
+      state.modal.category = ALL_TAB;
+      if (kind === "weapon") localStorage.setItem(WEAPON_TAB_KEY, ALL_TAB);
+      if (kind === "monsters") saveMonsterPrefs();
+    }
+    rememberFilter();
     renderModal();
-  }, 150);
+  };
+  const onModalSearchDebounced = debounce(onModalSearch, 150);
+  $("modalSearch").oninput = () => {
+    $("modalSearchClear").classList.toggle("hidden", !$("modalSearch").value);
+    onModalSearchDebounced();
+  };
+  $("modalSearchClear").onclick = () => {
+    setModalSearch("");
+    $("modalSearch").focus();
+    onModalSearch();
+  };
 
   $("unlimitedDecos").onchange = () => {
     state.unlimitedDecos = $("unlimitedDecos").checked;

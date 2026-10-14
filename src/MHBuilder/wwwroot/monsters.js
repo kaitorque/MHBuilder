@@ -72,8 +72,35 @@ function monsterDrops(name) {
   return monsterDropsCache.get(name);
 }
 
+const MONSTERS_STORAGE_KEY = "mhbuilder.monsters.v1";
+
+/** Tab, weakness sort and drop rank kept between visits; stale values fall back in the renderers. */
+function loadMonsterPrefs() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MONSTERS_STORAGE_KEY) || "null");
+    if (saved && typeof saved === "object") return saved;
+  } catch {
+    /* corrupt storage: defaults */
+  }
+  return {};
+}
+
+function saveMonsterPrefs() {
+  const m = state.modal;
+  if (m?.kind !== "monsters") return;
+  localStorage.setItem(MONSTERS_STORAGE_KEY, JSON.stringify({ category: m.category, sort: m.sort, dropRank: m.dropRank }));
+}
+
 function openMonsters() {
-  openModal("monsters", "Monsters", { monster: null, sort: null, lastQ: "", dropRank: null });
+  const saved = loadMonsterPrefs();
+  const sortKeys = [...MONSTER_ELEMENTS, ...MONSTER_STATUSES];
+  openModal("monsters", "Monsters", {
+    category: typeof saved.category === "string" ? saved.category : null,
+    monster: null,
+    sort: sortKeys.includes(saved.sort) ? saved.sort : null,
+    lastQ: "",
+    dropRank: typeof saved.dropRank === "string" ? saved.dropRank : null,
+  });
 }
 
 /** ★★☆ for 0-3 stars; 0 is an ✕ like the Hunter's Notes. */
@@ -184,7 +211,9 @@ async function renderMonstersModal(q, cats, pane, extra, seq) {
     btn.textContent = t === ALL_TAB ? "All monsters" : t;
     btn.onclick = () => {
       m.monster = null;
-      setModalCategory(t);
+      m.category = t;
+      saveMonsterPrefs();
+      renderModal();
     };
     cats.appendChild(btn);
   }
@@ -222,6 +251,7 @@ async function renderMonstersModal(q, cats, pane, extra, seq) {
     const btn = e.target.closest("[data-sort]");
     if (!btn) return;
     m.sort = m.sort === btn.dataset.sort ? null : btn.dataset.sort;
+    saveMonsterPrefs();
     renderModal();
   };
   pane.appendChild(head);
@@ -366,6 +396,7 @@ async function fillMonsterDrops(box, m) {
     for (const btn of box.querySelectorAll("[data-rank]")) {
       btn.onclick = () => {
         state.modal.dropRank = btn.dataset.rank;
+        saveMonsterPrefs();
         draw();
       };
     }
