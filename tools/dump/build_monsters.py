@@ -43,11 +43,16 @@ POEDB_SHIFTED = {"Behemoth": "Barroth", "Leshen": "Bazelgeuse", "Ancient Leshen"
 
 # MHWorldData leaves the first three empty; values follow the in-game Monster Field Guide. It also marks Xeno'jiiva's
 # wind as dragon-level like Kushala's; its critical-state burst is major wind pressure (Game8 lists Kushala as
-# Dragon/High and Xeno'jiiva as High).
+# Dragon/High and Xeno'jiiva as High). MHWorldData has no blastscourge or noxious poison and lists them as blastblight
+# and poison.
 FIXES = {
+    "Brachydios": {"ailments": ["blastscourge"]},
     "Furious Rajang": {"roar": "large", "ailments": ["thunderblight"]},
-    "Raging Brachydios": {"roar": "large", "ailments": ["blastblight"]},
+    "Gold Rathian": {"ailments": ["fireblight", "noxiouspoison"]},
+    "Pink Rathian": {"ailments": ["fireblight", "noxiouspoison"]},
+    "Raging Brachydios": {"roar": "large", "ailments": ["blastscourge", "fireblight"]},
     "Safi'jiiva": {"roar": "large"},
+    "Viper Tobi-Kadachi": {"ailments": ["noxiouspoison", "paralysis"]},
     "Xeno'jiiva": {"wind": "large"},
 }
 

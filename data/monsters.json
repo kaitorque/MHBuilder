@@ -695,7 +695,7 @@
    "tremor": null,
    "ailments": [
     "fireblight",
-    "poison"
+    "noxiouspoison"
    ],
    "traps": {
     "pitfall": true,
@@ -1277,7 +1277,7 @@
    "wind": null,
    "tremor": null,
    "ailments": [
-    "poison",
+    "noxiouspoison",
     "paralysis"
    ],
    "traps": {
@@ -1527,7 +1527,7 @@
    "wind": null,
    "tremor": null,
    "ailments": [
-    "blastblight"
+    "blastscourge"
    ],
    "traps": {
     "pitfall": true,
@@ -2111,7 +2111,7 @@
    "tremor": null,
    "ailments": [
     "fireblight",
-    "poison"
+    "noxiouspoison"
    ],
    "traps": {
     "pitfall": true,
@@ -2368,7 +2368,8 @@
    "wind": null,
    "tremor": null,
    "ailments": [
-    "blastblight"
+    "blastscourge",
+    "fireblight"
    ],
    "traps": {
     "pitfall": true,
