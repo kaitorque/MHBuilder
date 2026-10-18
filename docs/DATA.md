@@ -61,6 +61,9 @@ ailments it inflicts.
   Raging Brachydios and Safi'jiiva filled in by hand (`FIXES` in `build_monsters.py`).
 - **Habitats, in-game tip, icons:** poedb. Three poedb pages hold another monster's info (the Behemoth page has
   Barroth's, Leshen has Bazelgeuse's, Ancient Leshen has Tzitzi-Ya-Ku's); `POEDB_SHIFTED` moves them back.
+- **Guiding Lands:** poedb's copy of the game's spawn table: per region, the spawn stars at region levels 1-7 and the
+  level from which the monster is tempered. Yian Garuga's level 6-7 slots are Scarred Yian Garuga's. poedb keeps one
+  entry per level, so `GL_MIXED` marks Ruiner Nergigante's level 7 as normal or tempered in every region.
 - **Notes:** a few short hand-written mechanics the game tip leaves out (`NOTES`).
 - Counter skills shown with each threat use the game's own skill level text from `skills.json`.
 

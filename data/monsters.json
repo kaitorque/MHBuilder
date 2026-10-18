@@ -30,6 +30,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
    "icon": "great-jagras.png"
   },
   {
@@ -63,6 +77,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
    "icon": "kulu-ya-ku.png"
   },
   {
@@ -98,6 +126,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      3,
+      3,
+      2,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "pukei-pukei.png"
   },
   {
@@ -143,6 +199,21 @@
      "dragon": 1
     }
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      3,
+      3,
+      2,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "barroth.png"
   },
   {
@@ -222,6 +293,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      3,
+      3,
+      2,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "tobi-kadachi.png"
   },
   {
@@ -257,6 +343,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      2,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      2,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "anjanath.png"
   },
   {
@@ -293,6 +407,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      2,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      1,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "rathian.png"
   },
   {
@@ -327,6 +469,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
    "icon": "tzitzi-ya-ku.png"
   },
   {
@@ -359,6 +515,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      1,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "paolumu.png"
   },
   {
@@ -393,6 +564,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Rotted",
+     "levels": [
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
    "icon": "great-girros.png"
   },
   {
@@ -427,6 +612,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Rotted",
+     "levels": [
+      1,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "radobaan.png"
   },
   {
@@ -461,6 +661,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      2,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "legiana.png"
   },
   {
@@ -496,6 +724,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      1,
+      3,
+      3,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "odogaron.png"
   },
   {
@@ -531,6 +787,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "rathalos.png"
   },
   {
@@ -563,6 +847,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "diablos.png"
   },
   {
@@ -598,6 +897,21 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "kirin.png"
   },
   {
@@ -665,6 +979,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Volcanic",
+     "levels": [
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
    "icon": "dodogama.png"
   },
   {
@@ -701,6 +1029,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      2,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "pink-rathian.png"
   },
   {
@@ -823,6 +1179,21 @@
      "dragon": 1
     }
    },
+   "guidingLands": [
+    {
+     "region": "Volcanic",
+     "levels": [
+      2,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "lavasioth.png"
   },
   {
@@ -858,6 +1229,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "uragaan.png"
   },
   {
@@ -894,6 +1280,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      2,
+      3,
+      3,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      3,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "azure-rathalos.png"
   },
   {
@@ -926,6 +1340,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      2,
+      3,
+      3,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "black-diablos.png"
   },
   {
@@ -997,6 +1426,34 @@
    "notes": [
     "When enraged it can charge Supernova, a huge explosion centred on its body. Get far away."
    ],
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "teostra.png"
   },
   {
@@ -1032,6 +1489,34 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "lunastra.png"
   },
   {
@@ -1065,6 +1550,34 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "kushala-daora.png"
   },
   {
@@ -1249,6 +1762,86 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      3,
+      2,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      3,
+      2,
+      1,
+      3,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 4
+    }
+   ],
    "icon": "banbaro.png"
   },
   {
@@ -1284,6 +1877,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Tundra",
+     "levels": [
+      2,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "viper-tobi-kadachi.png"
   },
   {
@@ -1319,6 +1927,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      2,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      1,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "nightshade-paolumu.png"
   },
   {
@@ -1353,6 +1989,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      1,
+      3,
+      3,
+      2,
+      3,
+      2,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "coral-pukei-pukei.png"
   },
   {
@@ -1387,6 +2038,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "barioth.png"
   },
   {
@@ -1422,6 +2088,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      2,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "nargacuga.png"
   },
   {
@@ -1458,6 +2152,47 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "glavenus.png"
   },
   {
@@ -1499,6 +2234,73 @@
    "notes": [
     "Its roar also damages hunters standing right next to it."
    ],
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      1,
+      3,
+      3,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      3,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "tigrex.png"
   },
   {
@@ -1533,6 +2335,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      1,
+      3,
+      3,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "brachydios.png"
   },
   {
@@ -1567,6 +2384,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      2,
+      3,
+      3,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "shrieking-legiana.png"
   },
   {
@@ -1616,6 +2448,86 @@
      "dragon": 1
     }
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1
+     ],
+     "temperedFrom": 5
+    }
+   ],
    "icon": "fulgur-anjanath.png"
   },
   {
@@ -1660,6 +2572,21 @@
      "dragon": 1
     }
    },
+   "guidingLands": [
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      1,
+      3,
+      3,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "acidic-glavenus.png"
   },
   {
@@ -1700,6 +2627,86 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      2,
+      3,
+      2,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "ebony-odogaron.png"
   },
   {
@@ -1734,6 +2741,73 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      2,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "velkhana.png"
   },
   {
@@ -1769,6 +2843,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      2,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "seething-bazelgeuse.png"
   },
   {
@@ -1804,6 +2893,21 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "blackveil-vaal-hazak.png"
   },
   {
@@ -1839,6 +2943,21 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "namielle.png"
   },
   {
@@ -1880,6 +2999,86 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      2
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "savage-deviljho.png"
   },
   {
@@ -1914,6 +3113,98 @@
     "pitfall": false,
     "shock": false
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+     ],
+     "mixed": [
+      7
+     ]
+    }
+   ],
    "icon": "ruiner-nergigante.png"
   },
   {
@@ -1978,6 +3269,34 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      2,
+      3,
+      3,
+      3,
+      3,
+      2
+     ],
+     "temperedFrom": 6
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      2,
+      2,
+      2,
+      2,
+      1
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "zinogre.png"
   },
   {
@@ -2013,6 +3332,20 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      3,
+      3,
+      3,
+      0,
+      0
+     ]
+    }
+   ],
    "icon": "yian-garuga.png"
   },
   {
@@ -2048,6 +3381,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      3
+     ],
+     "temperedFrom": 6
+    }
+   ],
    "icon": "scarred-yian-garuga.png"
   },
   {
@@ -2082,6 +3430,21 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "brute-tigrex.png"
   },
   {
@@ -2117,6 +3480,33 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      3
+     ]
+    }
+   ],
    "icon": "gold-rathian.png"
   },
   {
@@ -2152,6 +3542,33 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      3
+     ]
+    }
+   ],
    "icon": "silver-rathalos.png"
   },
   {
@@ -2186,6 +3603,81 @@
     "pitfall": true,
     "shock": true
    },
+   "guidingLands": [
+    {
+     "region": "Forest",
+     "levels": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "region": "Wildspire",
+     "levels": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "region": "Coral",
+     "levels": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "region": "Rotted",
+     "levels": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "region": "Volcanic",
+     "levels": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    },
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      3
+     ]
+    }
+   ],
    "icon": "rajang.png"
   },
   {
@@ -2230,6 +3722,21 @@
      "dragon": 0
     }
    },
+   "guidingLands": [
+    {
+     "region": "Tundra",
+     "levels": [
+      0,
+      0,
+      2,
+      3,
+      3,
+      3,
+      3
+     ],
+     "temperedFrom": 7
+    }
+   ],
    "icon": "stygian-zinogre.png"
   },
   {

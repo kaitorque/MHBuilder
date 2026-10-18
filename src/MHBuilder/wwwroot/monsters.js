@@ -184,7 +184,31 @@ function ailmentChipsHtml(m) {
 function monsterMatches(m, q) {
   if (!q) return true;
   const ailments = m.ailments.map((k) => MONSTER_AILMENTS[k]?.label || k);
-  return [m.name, m.ecology, m.alt?.label, ...ailments].some((t) => String(t || "").toLowerCase().includes(q));
+  const gl = m.guidingLands ? ["Guiding Lands", ...m.guidingLands.map((r) => r.region)] : [];
+  return [m.name, m.ecology, m.alt?.label, ...ailments, ...gl].some((t) => String(t || "").toLowerCase().includes(q));
+}
+
+const GL_FREQUENCY = ["", "Rare", "Uncommon", "Common"];
+
+function guidingLandsGridHtml(m) {
+  if (!m.guidingLands?.length) return "";
+  const levels = [1, 2, 3, 4, 5, 6, 7];
+  const rows = m.guidingLands.map((r) => `
+    <div class="mon-gl-row"><span class="mon-gl-region">${escapeHtml(r.region)}</span>${r.levels.map((s, i) => {
+      if (!s) return `<span class="mon-none">—</span>`;
+      const mixed = r.mixed?.includes(i + 1);
+      const tempered = !mixed && r.temperedFrom && i + 1 >= r.temperedFrom;
+      const kind = mixed ? ", normal or tempered" : tempered ? ", tempered" : "";
+      const tip = `${r.region} level ${i + 1}: ${GL_FREQUENCY[s]}${kind}`;
+      return `<span class="mon-gl-cell${tempered ? " tempered" : mixed ? " mixed" : ""}" title="${escapeHtml(tip)}">${monsterStarsHtml(s)}</span>`;
+    }).join("")}</div>`).join("");
+  return `
+    <div class="mon-gl-grid">
+      <div class="mon-gl-row mon-weak-head"><span class="mon-gl-region">Region level</span>${levels.map((lv) => `<span>${lv}</span>`).join("")}</div>
+      ${rows}
+    </div>
+    <p class="hint">Stars show how often it appears at that region level. Highlighted levels are tempered${
+      m.guidingLands.some((r) => r.mixed?.length) ? "; dashed ones can be normal or tempered" : ""}.</p>`;
 }
 
 async function renderMonstersModal(q, cats, pane, extra, seq) {
@@ -357,6 +381,7 @@ function renderMonsterDetail(pane, m) {
     ${section("Inflicts", ailments || `<p class="hint">No ailments.</p>`)}
     ${section("Tips", tips)}
     ${section("Traps", `<div class="mon-traps">${traps}</div>`)}
+    ${section("Guiding Lands", guidingLandsGridHtml(m))}
     ${section("Drops", `<div class="mon-drops"><p class="hint">Loading drops…</p></div>`)}`;
   fillMonsterDrops(pane.querySelector(".mon-drops"), m);
   pane.querySelector(".mat-back").onclick = () => {

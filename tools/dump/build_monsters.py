@@ -5,7 +5,8 @@ Two sources, joined by English name:
                                        the name of the alternate weakness state ("when charged")
   mhw.poedb.tw monster pages           game data: Hunter's Notes weakness stars (element and status, normal and
                                        alternate state), known habitats, the in-game "Useful Information" tip and
-                                       the monster icon
+                                       the monster icon; the Guiding Lands spawn table (stars per region level and
+                                       which levels are tempered)
 Pages and icons are cached in tools/dump/poedb_monsters/ (delete a file or pass --refresh to fetch it again).
 Weakness stars disagree for Anjanath and Tigrex; those are printed and the game data wins (Kiranico's hitzones agree
 with the game: Anjanath takes at most 10 dragon, Tigrex 0 fire but 10 water on the head). poedb's rank list is
@@ -63,6 +64,20 @@ ALT_LABELS = {
 }
 # Name of the normal row where the game's default is itself a state.
 BASE_LABELS = {"Alatreon": "Fire active"}
+
+# poedb names each Guiding Lands region after the map it copies; listed in the game's region order.
+GL_REGIONS = {
+    "Ancient Forest": "Forest",
+    "Wildspire Waste": "Wildspire",
+    "Coral Highlands": "Coral",
+    "Rotten Vale": "Rotted",
+    "Elder's Recess": "Volcanic",
+    "Hoarfrost Reach": "Tundra",
+}
+
+# Levels where the game spawns both a normal and a tempered version. poedb keeps one entry per level (tempered in
+# Tundra only), while Fextralife and Fandom list a second, sometimes tempered Ruiner Nergigante at level 7 in every region.
+GL_MIXED = {"Ruiner Nergigante": 7}
 
 # Mechanics the in-game tip doesn't mention.
 NOTES = {
@@ -139,6 +154,47 @@ def poedb_monsters(refresh: bool) -> dict[str, dict]:
     return out
 
 
+def guiding_lands(refresh: bool) -> dict[str, list[dict]]:
+    """Monster -> [{region, levels: stars at region level 1-7 (0 = doesn't appear), temperedFrom, mixed}] in region
+    order; mixed lists the levels where it can be either normal or tempered."""
+    html = fetch(f"{BASE}/eng/monsters/guiding_lands", CACHE / "guiding_lands.html", refresh)
+    out: dict[str, list[dict]] = {}
+
+    def add(name: str, region: str, levels: list[int], tempered: list[bool]) -> None:
+        shown = [lv for lv, s in enumerate(levels, 1) if s]
+        if not shown:
+            return
+        first_t = next((lv for lv, s, t in zip(range(1, 8), levels, tempered) if s and t), None)
+        if first_t and any(levels[lv - 1] and not tempered[lv - 1] for lv in shown if lv > first_t):
+            raise SystemExit(f"{name} {region}: tempered levels aren't contiguous")
+        entry = {"region": region, "levels": levels}
+        if first_t:
+            entry["temperedFrom"] = first_t
+        out.setdefault(name, []).append(entry)
+
+    body = html.split("<tbody>", 1)[1].split("</table>", 1)[0]
+    for row in body.split("<tr>")[1:]:
+        cells = ["<td" + c for c in row.split("<td")[1:]]
+        region, name = GL_REGIONS[text(cells[0])], text(cells[2])
+        levels = [c.count("★") for c in cells[3:10]]
+        tempered = ["bg-tempered" in c for c in cells[3:10]]
+        weighted = [bool(re.search(r"★\(\d+\)", c)) for c in cells[3:10]]
+        # Yian Garuga's weightless level 6-7 slots are Scarred Yian Garuga, which has no row of its own.
+        if name == "Yian Garuga":
+            add("Scarred Yian Garuga", region, [s if not w else 0 for s, w in zip(levels, weighted)], tempered)
+            levels = [s if w else 0 for s, w in zip(levels, weighted)]
+        add(name, region, levels, tempered)
+    for name, lv in GL_MIXED.items():
+        for r in out[name]:
+            if r.get("temperedFrom") == lv:
+                del r["temperedFrom"]
+            r["mixed"] = [lv]
+    order = list(GL_REGIONS.values())
+    for regions in out.values():
+        regions.sort(key=lambda r: order.index(r["region"]))
+    return out
+
+
 def ghs_monsters() -> list[dict]:
     db = sqlite3.connect(GHS)
     db.row_factory = sqlite3.Row
@@ -177,6 +233,7 @@ def main() -> None:
     for page_name, owner in POEDB_SHIFTED.items():
         pages[owner].update(habitats=pages[page_name]["habitats"], tip=pages[page_name]["tip"])
         pages[page_name].update(habitats=[], tip="", element={}, status={})
+    gl = guiding_lands(refresh)
 
     monsters, mismatches, unmatched = [], [], []
     ICON_DST.mkdir(parents=True, exist_ok=True)
@@ -222,6 +279,8 @@ def main() -> None:
         m.update(FIXES.get(name, {}))
         if NOTES.get(name):
             m["notes"] = NOTES[name]
+        if gl.get(name):
+            m["guidingLands"] = gl[name]
         if p["icon"]:
             icon = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") + ".png"
             png = fetch(BASE + p["icon"], CACHE / "icons" / Path(p["icon"]).name, refresh, binary=True)
@@ -231,7 +290,9 @@ def main() -> None:
 
     OUT.write_text(json.dumps({"monsters": monsters}, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"monsters {len(monsters)}, with alternate state {sum('alt' in m for m in monsters)}, "
-          f"icons {sum('icon' in m for m in monsters)}, game tips {sum(bool(m['tip']) for m in monsters)}")
+          f"icons {sum('icon' in m for m in monsters)}, game tips {sum(bool(m['tip']) for m in monsters)}, "
+          f"in the Guiding Lands {sum('guidingLands' in m for m in monsters)}")
+    print(f"Guiding Lands rows with no monster: {sorted(set(gl) - {m['name'] for m in monsters})}")
     print(f"not on poedb: {unmatched}")
     print(f"weakness disagreements (game data used): {len(mismatches)}")
     for line in mismatches:
