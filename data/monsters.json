@@ -3796,9 +3796,11 @@
     "stun": 2
    },
    "roar": "large",
-   "wind": null,
-   "tremor": null,
-   "ailments": [],
+   "wind": "large",
+   "tremor": "small",
+   "ailments": [
+    "fireblight"
+   ],
    "traps": {
     "pitfall": false,
     "shock": false

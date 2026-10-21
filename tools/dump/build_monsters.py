@@ -52,7 +52,7 @@ FIXES = {
     "Gold Rathian": {"ailments": ["fireblight", "noxiouspoison"]},
     "Pink Rathian": {"ailments": ["fireblight", "noxiouspoison"]},
     "Raging Brachydios": {"roar": "large", "ailments": ["blastscourge", "fireblight"]},
-    "Safi'jiiva": {"roar": "large"},
+    "Safi'jiiva": {"roar": "large", "wind": "large", "tremor": "small", "ailments": ["fireblight"]},
     "Viper Tobi-Kadachi": {"ailments": ["noxiouspoison", "paralysis"]},
     "Xeno'jiiva": {"wind": "large"},
 }
